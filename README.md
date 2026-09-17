@@ -5,8 +5,10 @@
 A personal learning environment. The first course is **Physics I — Seeing the
 World Through Physics**, and the first two lessons of it are built.
 
-Everything lives on this machine. Nothing is uploaded, there is no account, and
-the fonts are bundled, so it works with the wifi off.
+Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
+
+It also runs entirely on this machine — no account, no server, fonts bundled, so
+it works with the wifi off.
 
 ---
 
@@ -45,10 +47,10 @@ their name. Both forms are covered by the tests.
 
 Two ways, depending on what you want them to do with it.
 
-**A link.** The built app is published as a private page on claude.ai; share the
-link from the page's share menu and it opens on any machine, no install. It is a
-copy frozen at the moment it was published — after changing anything here, run
-`npm run build` and republish to update it.
+**A link.** The course is live at <https://disruptivecapitalist.github.io/heartwood/>. It is public, needs no account and works
+on any device — a tablet included, which the file below does not. Pushing to
+`main` rebuilds and redeploys it; the workflow runs the tests first and will not
+publish a build that fails them.
 
 **One file they can keep.**
 

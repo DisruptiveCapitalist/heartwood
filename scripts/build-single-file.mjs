@@ -62,8 +62,11 @@ once('<script>', 'opening <script> tag')
 once('</script>', 'closing </script> tag')
 if (!single.includes('id="root"')) throw new Error('The inlined page lost its mount point.')
 if (!single.includes('createRoot')) throw new Error('The bundle was not inlined.')
-if (/(src|href)="(?!data:)[a-zA-Z0-9./]/.test(single)) {
-  throw new Error('Something in the page still points outside it; this file has to stand alone.')
+// Nothing may be *loaded* from outside the file. A plain <a href> is fine and
+// expected — the fallback page offers the web address to anyone whose browser
+// refused to run this one.
+if (/\bsrc="(?!data:)/.test(single) || /<link\b[^>]*\bhref=/.test(single)) {
+  throw new Error('The page still loads something from outside it; this file has to stand alone.')
 }
 
 const file = resolve(root, 'Heartwood - Physics I.html')
