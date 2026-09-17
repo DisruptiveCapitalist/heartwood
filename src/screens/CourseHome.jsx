@@ -104,10 +104,7 @@ export default function CourseHome({ course, onOpenLesson, sessionMinutes = 30 }
           {weeks.map((w) => (
             <div
               key={w.number}
-              style={{
-                display: 'grid', gridTemplateColumns: 'minmax(0, 320px) minmax(0, 1fr)',
-                gap: 24, padding: '24px 0', borderTop: '1px solid #e0d6c4'
-              }}
+              className="hw-week"
             >
               <div>
                 <span style={{
