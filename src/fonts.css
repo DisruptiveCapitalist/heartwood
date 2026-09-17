@@ -1,0 +1,26 @@
+/* Self-hosted so Heartwood works with no network at all.
+   Run `node scripts/fetch-fonts.mjs` to (re)download them.
+   If the files are absent the stack falls back to Georgia / system sans, which
+   is legible but not the designed setting. */
+
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('./fonts/newsreader-roman.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: italic;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('./fonts/newsreader-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Public Sans';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('./fonts/publicsans-roman.woff2') format('woff2');
+}

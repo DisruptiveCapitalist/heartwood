@@ -1,0 +1,77 @@
+/* Heartwood design tokens.
+   Values come from the Physics I design handoff. Where a value was changed,
+   the original is kept in a comment and the reason is stated — see README.md
+   ("Deliberate deviations from the prototype"). */
+
+:root {
+  /* ---- Surfaces ---- */
+  --canvas:      #efe8db;   /* page background */
+  --paper:       #fffdf7;   /* cards, inputs, simulation scenes */
+  --paper-alt:   #faf6ed;   /* control rows, plot grounds */
+  --ground:      #f0e9dc;   /* below the horizon in scenes */
+
+  /* ---- Text ---- */
+  --ink:         #231e18;   /* primary text, current-stage fill */
+  --ink-2:       #3d362d;   /* body copy inside cards */
+  --ink-3:       #4a4238;   /* secondary prose */
+  --ink-4:       #5c5348;   /* italic faculty dialogue */
+  --muted:       #6b6155;   /* captions */
+  --label:       #7e7466;   /* WAS #8a7f70 (3.9:1). Uppercase UI labels and the
+                               simulation readout captions are content the learner
+                               must read; 4.5:1 on paper. */
+  --faint:       #6f675b;   /* WAS #a89c8a (2.2:1 on canvas). Hints and de-emphasised
+                               rows. Still clearly recessive against --ink. */
+
+  /* ---- Lines ---- */
+  --rule:        #d8cdba;   /* decorative dividers and card edges — unchanged */
+  --rule-2:      #e6ddcd;   /* inner dividers, empty pips */
+  --rule-3:      #f0e9dc;   /* map row separators */
+  --field:       #9c9282;   /* WAS #cdc0ab (1.8:1). Borders that define an
+                               interactive control — textareas, inputs, secondary
+                               buttons — need 3:1 to be findable. */
+  --inert:       #e4dbca;   /* border of an unwritten, non-interactive lesson row */
+
+  /* ---- Accents (same L and C, hue only) ---- */
+  --accent:        oklch(0.50 0.12 45);
+  --accent-bright: oklch(0.54 0.14 45);
+  --accent-deep:   oklch(0.44 0.11 45);
+  --accent-wash:   oklch(0.97 0.015 45);
+  --accent-wash-2: oklch(0.96 0.02 45);
+  --accent-edge:   oklch(0.85 0.05 45);
+  --accent-edge-2: oklch(0.88 0.04 45);
+
+  --green:       oklch(0.50 0.12 155);
+  --green-deep:  oklch(0.36 0.10 155);
+  --green-text:  oklch(0.40 0.10 155);
+  --green-wash:  oklch(0.96 0.03 155);
+  --green-wash-2:oklch(0.97 0.015 155);
+  --green-edge:  oklch(0.88 0.04 155);
+  --green-edge-2:oklch(0.85 0.05 155);
+
+  --editor:      oklch(0.42 0.13 25);
+  --editor-wash: oklch(0.97 0.015 25);
+  --brake:       oklch(0.46 0.15 25);
+  --brake-held:  oklch(0.36 0.13 25);
+  --brake-edge:  #6d1f12;
+  --warn:        oklch(0.52 0.13 60);
+  --builder:     oklch(0.44 0.10 250);
+
+  --machine:     #12100e;   /* bicycle frame and handlebar */
+  --car-body:    #332c24;
+  --car-cabin:   #453c32;
+  --car-glass:   #e8f0f2;
+  --tyre:        #171310;
+  --tyre-rim:    #5c5348;
+
+  /* ---- Type ---- */
+  --serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --sans:  'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* ---- Geometry ---- */
+  --column: 1080px;
+  --gutter: 28px;
+  --tap: 46px;            /* minimum height of every control */
+  --r-sm: 5px;
+  --r-md: 7px;
+  --r-lg: 8px;
+}

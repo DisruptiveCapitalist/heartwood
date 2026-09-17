@@ -1,0 +1,27 @@
+{
+  "name": "heartwood",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Heartwood University — a personal learning environment. Physics I.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview --port 4173 --open",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build:single": "node scripts/build-single-file.mjs"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.7",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
