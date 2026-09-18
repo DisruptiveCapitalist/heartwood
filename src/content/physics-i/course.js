@@ -1,5 +1,8 @@
 import lesson01 from './lessons/lesson-01.js'
 import lesson02 from './lessons/lesson-02.js'
+import lesson03 from './lessons/lesson-03.js'
+import lesson04 from './lessons/lesson-04.js'
+import lesson05 from './lessons/lesson-05.js'
 
 // A course is a syllabus plus whichever of its lessons have actually been
 // written. Unwritten lessons are titles only — the home page shows them as part
@@ -24,9 +27,9 @@ export default {
       lessons: [
         { title: `The passenger who keeps going`, lessonId: 'lesson-01' },
         { title: `The bicycle that is always falling over`, lessonId: 'lesson-02' },
-        { title: `Why a rolling ball eventually stops` },
-        { title: `Why a heavy thing is harder to get moving` },
-        { title: `What momentum actually measures` }
+        { title: `Why a rolling ball eventually stops`, lessonId: 'lesson-03' },
+        { title: `Why a heavy thing is harder to get moving`, lessonId: 'lesson-04' },
+        { title: `What momentum actually measures`, lessonId: 'lesson-05' }
       ]
     },
     {
@@ -86,12 +89,18 @@ export default {
     }
   ],
 
-  lessons: { 'lesson-01': lesson01, 'lesson-02': lesson02 },
+  lessons: {
+    'lesson-01': lesson01,
+    'lesson-02': lesson02,
+    'lesson-03': lesson03,
+    'lesson-04': lesson04,
+    'lesson-05': lesson05
+  },
 
   // Shown when every written lesson is finished.
   nextUp: {
-    title: `Lesson 3 is not written yet`,
-    blurb: `Both lessons are done, and the method works. Next up: why a rolling ball eventually stops — and where, exactly, its motion goes.`
+    title: `Week 1 is finished`,
+    blurb: `Five lessons: motion, balance, friction, mass and momentum — one idea approached from five directions. Week 2 turns to forces themselves, beginning with a chair you are already sitting in. It is not written yet.`
   },
 
   // The five prompts from the brief (§12). The journal card shows these instead

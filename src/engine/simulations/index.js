@@ -1,5 +1,8 @@
 import BrakingCar from './BrakingCar.jsx'
 import BicycleBalance from './BicycleBalance.jsx'
+import RollingBall from './RollingBall.jsx'
+import TwoCarts from './TwoCarts.jsx'
+import CatchIt from './CatchIt.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -10,7 +13,10 @@ import BicycleBalance from './BicycleBalance.jsx'
 
 export const simulations = {
   'braking-car': BrakingCar,
-  'bicycle-balance': BicycleBalance
+  'bicycle-balance': BicycleBalance,
+  'rolling-ball': RollingBall,
+  'two-carts': TwoCarts,
+  'catch-it': CatchIt
 }
 
 export function getSimulation(id) {

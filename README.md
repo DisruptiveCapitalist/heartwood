@@ -3,7 +3,7 @@
 > Learn the heart of a subject. See it in the world.
 
 A personal learning environment. The first course is **Physics I — Seeing the
-World Through Physics**, and the first two lessons of it are built.
+World Through Physics**. Week 1 is complete — five lessons, five simulations.
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -102,8 +102,11 @@ src/
     physics-i/
       course.js             the six-week syllabus and the course's own copy
       lessons/
-        lesson-01.js        "The passenger who keeps going"
-        lesson-02.js        "The bicycle that is always falling over"
+        lesson-01.js        inertia — "The passenger who keeps going"
+        lesson-02.js        dynamic stability — "The bicycle that is always falling over"
+        lesson-03.js        friction — "Why a rolling ball eventually stops"
+        lesson-04.js        mass — "Why a heavy thing is harder to get moving"
+        lesson-05.js        momentum — "What momentum actually measures"
 
   engine/                   renders any lesson of any subject
     Lesson.jsx              the one lesson component
@@ -121,13 +124,36 @@ words means editing one file in `content/`. Giving Lesson 3 a new interactive
 scene means writing a React component and registering it. That asymmetry is the
 real cost of the next twenty-eight lessons, and it is deliberate that it shows.
 
-## Adding Lesson 3
+## Where the course is
 
-1. Copy `src/content/physics-i/lessons/lesson-02.js` to `lesson-03.js` and
+| Week | Lessons | State |
+|---|---|---|
+| 1 · The Rules of Motion | 1–5 | **written** |
+| 2 · Forces | 6–10 | syllabus only |
+| 3 · Energy | 11–15 | syllabus only |
+| 4 · Heat, pressure and the invisible world | 16–20 | syllabus only |
+| 5 · Waves, sound and light | 21–25 | syllabus only |
+| 6 · Physics is everywhere | 26–30 | syllabus only |
+
+Lessons 6–30 are specified in the build package that came with the design
+handoff. They are authored the way Lessons 3–5 were, one week at a time — the
+package is explicit that they must not read like textbook chapters, and volume
+is the enemy of that.
+
+**The simulations are the real cost.** Copy is data; a scene is code. Five
+lessons have needed five scenes so far, and the remaining 25 lessons will need
+roughly ten more *families* of scene rather than 25 separate ones — a particle
+box covers heat, temperature and pressure; a load-path diagram covers the chair,
+the bridge and the lever; a wave on a medium covers sound and the guitar string.
+Building those families is what makes Weeks 2–6 tractable.
+
+## Adding a lesson
+
+1. Copy the nearest existing lesson in `src/content/physics-i/lessons/` and
    rewrite the content. `src/content/schema.js` documents every field.
-2. In `src/content/physics-i/course.js`, add `lessonId: 'lesson-03'` to the
-   third entry of week 1. The home page picks it up: the row stops saying
-   NOT YET WRITTEN, and the Today card offers it when Lesson 2 is done.
+2. In `src/content/physics-i/course.js`, add `lessonId` to the matching syllabus
+   entry. The home page picks it up: the row stops saying NOT YET WRITTEN, and
+   the Today card offers it once the lesson before is done.
 3. If it needs a new scene, add a component under `src/engine/simulations/` and
    a line in that folder's `index.js`. If an existing scene fits with different
    numbers, just point at it: `simulation: { id: 'braking-car', props: {…} }`.
