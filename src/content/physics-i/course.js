@@ -3,6 +3,11 @@ import lesson02 from './lessons/lesson-02.js'
 import lesson03 from './lessons/lesson-03.js'
 import lesson04 from './lessons/lesson-04.js'
 import lesson05 from './lessons/lesson-05.js'
+import lesson06 from './lessons/lesson-06.js'
+import lesson07 from './lessons/lesson-07.js'
+import lesson08 from './lessons/lesson-08.js'
+import lesson09 from './lessons/lesson-09.js'
+import lesson10 from './lessons/lesson-10.js'
 
 // A course is a syllabus plus whichever of its lessons have actually been
 // written. Unwritten lessons are titles only — the home page shows them as part
@@ -36,11 +41,11 @@ export default {
       title: `Forces`,
       idea: `Everything around you is being pushed, pulled, supported, squeezed or stretched.`,
       lessons: [
-        { title: `Push, pull, and the forces you never see` },
-        { title: `Friction: the force that stops everything` },
-        { title: `Compression and tension in a chair` },
-        { title: `Why a bridge carries a truck` },
-        { title: `Your knees, your ladder, your bookshelf` }
+        { title: `Push, pull, and the forces you never see`, lessonId: 'lesson-06' },
+        { title: `Friction: the force that stops everything`, lessonId: 'lesson-07' },
+        { title: `Compression and tension in a chair`, lessonId: 'lesson-08' },
+        { title: `Why a bridge carries a truck`, lessonId: 'lesson-09' },
+        { title: `Your knees, your ladder, your bookshelf`, lessonId: 'lesson-10' }
       ]
     },
     {
@@ -94,13 +99,18 @@ export default {
     'lesson-02': lesson02,
     'lesson-03': lesson03,
     'lesson-04': lesson04,
-    'lesson-05': lesson05
+    'lesson-05': lesson05,
+    'lesson-06': lesson06,
+    'lesson-07': lesson07,
+    'lesson-08': lesson08,
+    'lesson-09': lesson09,
+    'lesson-10': lesson10
   },
 
   // Shown when every written lesson is finished.
   nextUp: {
-    title: `Week 1 is finished`,
-    blurb: `Five lessons: motion, balance, friction, mass and momentum — one idea approached from five directions. Week 2 turns to forces themselves, beginning with a chair you are already sitting in. It is not written yet.`
+    title: `Weeks 1 and 2 are finished`,
+    blurb: `Ten lessons: the rules of motion, and then forces and what they do to the things they pass through. Week 3 asks where the motion goes when a car stops — it is not written yet.`
   },
 
   // The five prompts from the brief (§12). The journal card shows these instead

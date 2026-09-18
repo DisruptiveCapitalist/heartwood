@@ -3,7 +3,7 @@
 > Learn the heart of a subject. See it in the world.
 
 A personal learning environment. The first course is **Physics I — Seeing the
-World Through Physics**. Week 1 is complete — five lessons, five simulations.
+World Through Physics**. Weeks 1 and 2 are complete — ten lessons, ten simulations.
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -107,6 +107,11 @@ src/
         lesson-03.js        friction — "Why a rolling ball eventually stops"
         lesson-04.js        mass — "Why a heavy thing is harder to get moving"
         lesson-05.js        momentum — "What momentum actually measures"
+        lesson-06.js        force — "Push, pull, and the forces you never see"
+        lesson-07.js        static/kinetic friction — "Friction: the force that stops everything"
+        lesson-08.js        compression & tension — "Compression and tension in a chair"
+        lesson-09.js        load paths — "Why a bridge carries a truck"
+        lesson-10.js        torque — "Your knees, your ladder, your bookshelf"
 
   engine/                   renders any lesson of any subject
     Lesson.jsx              the one lesson component
@@ -129,23 +134,28 @@ real cost of the next twenty-eight lessons, and it is deliberate that it shows.
 | Week | Lessons | State |
 |---|---|---|
 | 1 · The Rules of Motion | 1–5 | **written** |
-| 2 · Forces | 6–10 | syllabus only |
+| 2 · Forces | 6–10 | **written** |
 | 3 · Energy | 11–15 | syllabus only |
 | 4 · Heat, pressure and the invisible world | 16–20 | syllabus only |
 | 5 · Waves, sound and light | 21–25 | syllabus only |
 | 6 · Physics is everywhere | 26–30 | syllabus only |
 
-Lessons 6–30 are specified in the build package that came with the design
+Lessons 11–30 are specified in the build package that came with the design
 handoff. They are authored the way Lessons 3–5 were, one week at a time — the
 package is explicit that they must not read like textbook chapters, and volume
 is the enemy of that.
 
-**The simulations are the real cost.** Copy is data; a scene is code. Five
-lessons have needed five scenes so far, and the remaining 25 lessons will need
-roughly ten more *families* of scene rather than 25 separate ones — a particle
-box covers heat, temperature and pressure; a load-path diagram covers the chair,
-the bridge and the lever; a wave on a medium covers sound and the guitar string.
-Building those families is what makes Weeks 2–6 tractable.
+**The simulations are the real cost.** Copy is data; a scene is code. Ten
+lessons have needed ten scenes, and the remaining twenty will need fewer than
+twenty — a particle box covers heat, temperature and pressure; a wave on a
+medium covers sound and the guitar string; a ray diagram covers refraction and
+lenses. Building those families is what makes Weeks 3–6 tractable.
+
+Week 2 paid for one such family in advance: `src/lib/truss.js` is a real
+method-of-joints solver, so the bridge's members are in tension or compression
+because the arithmetic says so, not because someone picked the colours. A
+structure diagram that merely looked structural would be the equivalent of a
+bicycle that does not wobble — right-looking and teaching the wrong thing.
 
 ## Adding a lesson
 

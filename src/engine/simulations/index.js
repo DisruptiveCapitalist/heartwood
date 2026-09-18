@@ -3,6 +3,11 @@ import BicycleBalance from './BicycleBalance.jsx'
 import RollingBall from './RollingBall.jsx'
 import TwoCarts from './TwoCarts.jsx'
 import CatchIt from './CatchIt.jsx'
+import ElevatorScale from './ElevatorScale.jsx'
+import BoxPush from './BoxPush.jsx'
+import ChairLoad from './ChairLoad.jsx'
+import BridgeTruss from './BridgeTruss.jsx'
+import Lever from './Lever.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -16,7 +21,12 @@ export const simulations = {
   'bicycle-balance': BicycleBalance,
   'rolling-ball': RollingBall,
   'two-carts': TwoCarts,
-  'catch-it': CatchIt
+  'catch-it': CatchIt,
+  'elevator-scale': ElevatorScale,
+  'box-push': BoxPush,
+  'chair-load': ChairLoad,
+  'bridge-truss': BridgeTruss,
+  'lever': Lever
 }
 
 export function getSimulation(id) {
