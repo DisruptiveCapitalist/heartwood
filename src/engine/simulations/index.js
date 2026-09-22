@@ -8,6 +8,10 @@ import BoxPush from './BoxPush.jsx'
 import ChairLoad from './ChairLoad.jsx'
 import BridgeTruss from './BridgeTruss.jsx'
 import Lever from './Lever.jsx'
+import BrakingEnergy from './BrakingEnergy.jsx'
+import SpringDrop from './SpringDrop.jsx'
+import ParticleBox from './ParticleBox.jsx'
+import EnergyChain from './EnergyChain.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -26,7 +30,11 @@ export const simulations = {
   'box-push': BoxPush,
   'chair-load': ChairLoad,
   'bridge-truss': BridgeTruss,
-  'lever': Lever
+  'lever': Lever,
+  'braking-energy': BrakingEnergy,
+  'spring-drop': SpringDrop,
+  'particle-box': ParticleBox,
+  'energy-chain': EnergyChain
 }
 
 export function getSimulation(id) {

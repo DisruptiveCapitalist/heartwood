@@ -3,7 +3,7 @@
 > Learn the heart of a subject. See it in the world.
 
 A personal learning environment. The first course is **Physics I — Seeing the
-World Through Physics**. Weeks 1 and 2 are complete — ten lessons, ten simulations.
+World Through Physics**. Weeks 1 to 3 are complete — fifteen lessons, fourteen simulations.
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -112,6 +112,11 @@ src/
         lesson-08.js        compression & tension — "Compression and tension in a chair"
         lesson-09.js        load paths — "Why a bridge carries a truck"
         lesson-10.js        torque — "Your knees, your ladder, your bookshelf"
+        lesson-11.js        energy transformation — "Where the motion goes when a car stops"
+        lesson-12.js        potential energy — "Stored energy: the weight, the spring, the hill"
+        lesson-13.js        thermal energy — "Heat is the place energy goes to hide"
+        lesson-14.js        energy conversion — "How a falling weight makes electricity"
+        lesson-15.js        efficiency — "Why nothing is ever 100% efficient"
 
   engine/                   renders any lesson of any subject
     Lesson.jsx              the one lesson component
@@ -135,27 +140,40 @@ real cost of the next twenty-eight lessons, and it is deliberate that it shows.
 |---|---|---|
 | 1 · The Rules of Motion | 1–5 | **written** |
 | 2 · Forces | 6–10 | **written** |
-| 3 · Energy | 11–15 | syllabus only |
+| 3 · Energy | 11–15 | **written** |
 | 4 · Heat, pressure and the invisible world | 16–20 | syllabus only |
 | 5 · Waves, sound and light | 21–25 | syllabus only |
 | 6 · Physics is everywhere | 26–30 | syllabus only |
 
-Lessons 11–30 are specified in the build package that came with the design
+Lessons 16–30 are specified in the build package that came with the design
 handoff. They are authored the way Lessons 3–5 were, one week at a time — the
 package is explicit that they must not read like textbook chapters, and volume
 is the enemy of that.
 
-**The simulations are the real cost.** Copy is data; a scene is code. Ten
-lessons have needed ten scenes, and the remaining twenty will need fewer than
-twenty — a particle box covers heat, temperature and pressure; a wave on a
-medium covers sound and the guitar string; a ray diagram covers refraction and
-lenses. Building those families is what makes Weeks 3–6 tractable.
+**The simulations are the real cost, and the families are paying off.** Copy is
+data; a scene is code. Fifteen lessons have needed only fourteen scenes, because
+two of them are built to be reused:
 
-Week 2 paid for one such family in advance: `src/lib/truss.js` is a real
-method-of-joints solver, so the bridge's members are in tension or compression
-because the arithmetic says so, not because someone picked the colours. A
-structure diagram that merely looked structural would be the equivalent of a
-bicycle that does not wobble — right-looking and teaching the wrong thing.
+- `truss.js` + `BridgeTruss` — a real method-of-joints solver, so members are in
+  tension or compression because the arithmetic says so rather than because
+  someone picked the colours.
+- `ParticleBox` — the molecular view. Lesson 13 uses it for heat; Lessons 16 and
+  20 will reuse it for temperature and pressure, which is why it already counts
+  wall hits it does not yet need.
+- `EnergyChain` — one component, two lessons: the hydroelectric chain in 14 and
+  the four-machine comparison in 15.
+
+A wave on a medium will cover sound and the guitar string; a ray diagram will
+cover refraction and lenses. That is what keeps Weeks 4–6 from being fifteen
+more scenes.
+
+**Simulations get measured, not eyeballed.** Three defects this week were found
+by driving the running app and checking the numbers against what the lesson
+claims: the spring's total energy drifted 2% under plain Euler (now velocity
+Verlet, drift 0.000%), the particle box reported a non-monotonic wall-hit rate,
+and the energy chain's rounded losses added to 101 out of 100 — in a lesson
+about conservation. A caption that argues with its own simulation is the worst
+failure available here.
 
 ## Adding a lesson
 

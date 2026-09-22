@@ -8,6 +8,11 @@ import lesson07 from './lessons/lesson-07.js'
 import lesson08 from './lessons/lesson-08.js'
 import lesson09 from './lessons/lesson-09.js'
 import lesson10 from './lessons/lesson-10.js'
+import lesson11 from './lessons/lesson-11.js'
+import lesson12 from './lessons/lesson-12.js'
+import lesson13 from './lessons/lesson-13.js'
+import lesson14 from './lessons/lesson-14.js'
+import lesson15 from './lessons/lesson-15.js'
 
 // A course is a syllabus plus whichever of its lessons have actually been
 // written. Unwritten lessons are titles only — the home page shows them as part
@@ -52,11 +57,11 @@ export default {
       title: `Energy`,
       idea: `Nothing comes for free. Energy changes form.`,
       lessons: [
-        { title: `Where the motion goes when a car stops` },
-        { title: `Stored energy: the weight, the spring, the hill` },
-        { title: `Heat is the place energy goes to hide` },
-        { title: `How a falling weight makes electricity` },
-        { title: `Why nothing is ever 100% efficient` }
+        { title: `Where the motion goes when a car stops`, lessonId: 'lesson-11' },
+        { title: `Stored energy: the weight, the spring, the hill`, lessonId: 'lesson-12' },
+        { title: `Heat is the place energy goes to hide`, lessonId: 'lesson-13' },
+        { title: `How a falling weight makes electricity`, lessonId: 'lesson-14' },
+        { title: `Why nothing is ever 100% efficient`, lessonId: 'lesson-15' }
       ]
     },
     {
@@ -104,13 +109,18 @@ export default {
     'lesson-07': lesson07,
     'lesson-08': lesson08,
     'lesson-09': lesson09,
-    'lesson-10': lesson10
+    'lesson-10': lesson10,
+    'lesson-11': lesson11,
+    'lesson-12': lesson12,
+    'lesson-13': lesson13,
+    'lesson-14': lesson14,
+    'lesson-15': lesson15
   },
 
   // Shown when every written lesson is finished.
   nextUp: {
-    title: `Weeks 1 and 2 are finished`,
-    blurb: `Ten lessons: the rules of motion, and then forces and what they do to the things they pass through. Week 3 asks where the motion goes when a car stops — it is not written yet.`
+    title: `Halfway — Weeks 1 to 3 are finished`,
+    blurb: `Fifteen lessons: motion, forces, and energy. Week 4 goes somewhere you cannot look — molecules, temperature, pressure and why a steel ship floats. It is not written yet.`
   },
 
   // The five prompts from the brief (§12). The journal card shows these instead
