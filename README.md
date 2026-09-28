@@ -3,7 +3,7 @@
 > Learn the heart of a subject. See it in the world.
 
 A personal learning environment. The first course is **Physics I — Seeing the
-World Through Physics**. Weeks 1 to 3 are complete — fifteen lessons, fourteen simulations.
+World Through Physics**. Weeks 1 to 4 are complete — twenty lessons, sixteen simulations.
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -117,6 +117,11 @@ src/
         lesson-13.js        thermal energy — "Heat is the place energy goes to hide"
         lesson-14.js        energy conversion — "How a falling weight makes electricity"
         lesson-15.js        efficiency — "Why nothing is ever 100% efficient"
+        lesson-16.js        temperature — "What temperature actually measures"
+        lesson-17.js        density & buoyancy — "Why a hot-air balloon rises"
+        lesson-18.js        displacement — "Why a steel ship floats"
+        lesson-19.js        atmospheric pressure — "Why you can drink through a straw"
+        lesson-20.js        pressure — "Pressure cookers, tires, and weather"
 
   engine/                   renders any lesson of any subject
     Lesson.jsx              the one lesson component
@@ -141,30 +146,35 @@ real cost of the next twenty-eight lessons, and it is deliberate that it shows.
 | 1 · The Rules of Motion | 1–5 | **written** |
 | 2 · Forces | 6–10 | **written** |
 | 3 · Energy | 11–15 | **written** |
-| 4 · Heat, pressure and the invisible world | 16–20 | syllabus only |
+| 4 · Heat, pressure and the invisible world | 16–20 | **written** |
 | 5 · Waves, sound and light | 21–25 | syllabus only |
 | 6 · Physics is everywhere | 26–30 | syllabus only |
 
-Lessons 16–30 are specified in the build package that came with the design
+Lessons 21–30 are specified in the build package that came with the design
 handoff. They are authored the way Lessons 3–5 were, one week at a time — the
 package is explicit that they must not read like textbook chapters, and volume
 is the enemy of that.
 
 **The simulations are the real cost, and the families are paying off.** Copy is
-data; a scene is code. Fifteen lessons have needed only fourteen scenes, because
-two of them are built to be reused:
+data; a scene is code. Twenty lessons have needed only sixteen scenes, because
+several are built to be reused:
 
 - `truss.js` + `BridgeTruss` — a real method-of-joints solver, so members are in
   tension or compression because the arithmetic says so rather than because
   someone picked the colours.
-- `ParticleBox` — the molecular view. Lesson 13 uses it for heat; Lessons 16 and
-  20 will reuse it for temperature and pressure, which is why it already counts
-  wall hits it does not yet need.
+- `ParticleBox` — the molecular view, now serving three lessons from one
+  component: heat (13), temperature (16, with the amount of gas made adjustable
+  so the average and the total separate), and pressure (20, with a wall the
+  learner can push in). Squeezing the box to half its room raises the reading by
+  1.97×, against Boyle's 2 — the law emerging from collisions rather than being
+  asserted.
+- `Buoyancy` — one component, two fluids: the hot-air parcel in Lesson 17 and
+  the steel hull in Lesson 18.
 - `EnergyChain` — one component, two lessons: the hydroelectric chain in 14 and
   the four-machine comparison in 15.
 
 A wave on a medium will cover sound and the guitar string; a ray diagram will
-cover refraction and lenses. That is what keeps Weeks 4–6 from being fifteen
+cover refraction and lenses. That is what keeps Weeks 5 and 6 from being ten
 more scenes.
 
 **Simulations get measured, not eyeballed.** Three defects this week were found

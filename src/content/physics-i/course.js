@@ -13,6 +13,11 @@ import lesson12 from './lessons/lesson-12.js'
 import lesson13 from './lessons/lesson-13.js'
 import lesson14 from './lessons/lesson-14.js'
 import lesson15 from './lessons/lesson-15.js'
+import lesson16 from './lessons/lesson-16.js'
+import lesson17 from './lessons/lesson-17.js'
+import lesson18 from './lessons/lesson-18.js'
+import lesson19 from './lessons/lesson-19.js'
+import lesson20 from './lessons/lesson-20.js'
 
 // A course is a syllabus plus whichever of its lessons have actually been
 // written. Unwritten lessons are titles only — the home page shows them as part
@@ -68,11 +73,11 @@ export default {
       title: `Heat, Pressure and the Invisible World`,
       idea: `Things you cannot see produce effects you can.`,
       lessons: [
-        { title: `What temperature actually measures` },
-        { title: `Why a hot-air balloon rises` },
-        { title: `Why a steel ship floats` },
-        { title: `Why you can drink through a straw` },
-        { title: `Pressure cookers, tires, and weather` }
+        { title: `What temperature actually measures`, lessonId: 'lesson-16' },
+        { title: `Why a hot-air balloon rises`, lessonId: 'lesson-17' },
+        { title: `Why a steel ship floats`, lessonId: 'lesson-18' },
+        { title: `Why you can drink through a straw`, lessonId: 'lesson-19' },
+        { title: `Pressure cookers, tires, and weather`, lessonId: 'lesson-20' }
       ]
     },
     {
@@ -114,13 +119,18 @@ export default {
     'lesson-12': lesson12,
     'lesson-13': lesson13,
     'lesson-14': lesson14,
-    'lesson-15': lesson15
+    'lesson-15': lesson15,
+    'lesson-16': lesson16,
+    'lesson-17': lesson17,
+    'lesson-18': lesson18,
+    'lesson-19': lesson19,
+    'lesson-20': lesson20
   },
 
   // Shown when every written lesson is finished.
   nextUp: {
-    title: `Halfway — Weeks 1 to 3 are finished`,
-    blurb: `Fifteen lessons: motion, forces, and energy. Week 4 goes somewhere you cannot look — molecules, temperature, pressure and why a steel ship floats. It is not written yet.`
+    title: `Two-thirds done — Weeks 1 to 4 are finished`,
+    blurb: `Twenty lessons: motion, forces, energy, and the invisible world. Week 5 is waves — what actually crosses a room when somebody speaks, and what is happening inside your hearing aids. It is not written yet.`
   },
 
   // The five prompts from the brief (§12). The journal card shows these instead

@@ -12,6 +12,8 @@ import BrakingEnergy from './BrakingEnergy.jsx'
 import SpringDrop from './SpringDrop.jsx'
 import ParticleBox from './ParticleBox.jsx'
 import EnergyChain from './EnergyChain.jsx'
+import Buoyancy from './Buoyancy.jsx'
+import StrawPressure from './StrawPressure.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -34,7 +36,9 @@ export const simulations = {
   'braking-energy': BrakingEnergy,
   'spring-drop': SpringDrop,
   'particle-box': ParticleBox,
-  'energy-chain': EnergyChain
+  'energy-chain': EnergyChain,
+  'buoyancy': Buoyancy,
+  'straw-pressure': StrawPressure
 }
 
 export function getSimulation(id) {
