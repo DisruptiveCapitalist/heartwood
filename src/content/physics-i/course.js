@@ -18,6 +18,16 @@ import lesson17 from './lessons/lesson-17.js'
 import lesson18 from './lessons/lesson-18.js'
 import lesson19 from './lessons/lesson-19.js'
 import lesson20 from './lessons/lesson-20.js'
+import lesson21 from './lessons/lesson-21.js'
+import lesson22 from './lessons/lesson-22.js'
+import lesson23 from './lessons/lesson-23.js'
+import lesson24 from './lessons/lesson-24.js'
+import lesson25 from './lessons/lesson-25.js'
+import lesson26 from './lessons/lesson-26.js'
+import lesson27 from './lessons/lesson-27.js'
+import lesson28 from './lessons/lesson-28.js'
+import lesson29 from './lessons/lesson-29.js'
+import lesson30 from './lessons/lesson-30.js'
 
 // A course is a syllabus plus whichever of its lessons have actually been
 // written. Unwritten lessons are titles only — the home page shows them as part
@@ -87,22 +97,22 @@ export default {
       title: `Waves, Sound and Light`,
       idea: `Energy and information can travel as waves.`,
       lessons: [
-        { title: `What happens when you hear a voice` },
-        { title: `Frequency, pitch, and a guitar string` },
-        { title: `What is happening inside your hearing aids` },
-        { title: `Why a straw looks bent in water` },
-        { title: `Mirrors, lenses, and color` }
+        { title: `What happens when you hear a voice`, lessonId: 'lesson-21' },
+        { title: `Frequency, pitch, and a guitar string`, lessonId: 'lesson-22' },
+        { title: `What is happening inside your hearing aids`, lessonId: 'lesson-23' },
+        { title: `Why a straw looks bent in water`, lessonId: 'lesson-24' },
+        { title: `Mirrors, lenses, and color`, lessonId: 'lesson-25' }
       ]
     },
     {
       title: `Physics Is Everywhere`,
       idea: `This week you become the physicist. I bring the objects; you explain them.`,
       lessons: [
-        { title: `A bridge, a ladder, a bicycle` },
-        { title: `A refrigerator and a ceiling fan` },
-        { title: `A boat and an airplane` },
-        { title: `A flashlight and a microwave` },
-        { title: `Anything you point at` }
+        { title: `A bridge, a ladder, a bicycle`, lessonId: 'lesson-26' },
+        { title: `A refrigerator and a ceiling fan`, lessonId: 'lesson-27' },
+        { title: `A boat and an airplane`, lessonId: 'lesson-28' },
+        { title: `A flashlight and a microwave`, lessonId: 'lesson-29' },
+        { title: `Anything you point at`, lessonId: 'lesson-30' }
       ]
     }
   ],
@@ -127,13 +137,23 @@ export default {
     'lesson-17': lesson17,
     'lesson-18': lesson18,
     'lesson-19': lesson19,
-    'lesson-20': lesson20
+    'lesson-20': lesson20,
+    'lesson-21': lesson21,
+    'lesson-22': lesson22,
+    'lesson-23': lesson23,
+    'lesson-24': lesson24,
+    'lesson-25': lesson25,
+    'lesson-26': lesson26,
+    'lesson-27': lesson27,
+    'lesson-28': lesson28,
+    'lesson-29': lesson29,
+    'lesson-30': lesson30
   },
 
   // Shown when every written lesson is finished.
   nextUp: {
-    title: `Two-thirds done — Weeks 1 to 4 are finished`,
-    blurb: `Twenty lessons: motion, forces, energy, and the invisible world. Week 5 is waves — what actually crosses a room when somebody speaks, and what is happening inside your hearing aids. It is not written yet.`
+    title: `Physics I is complete`,
+    blurb: `All thirty lessons, six weeks, from a passenger who keeps going to anything you care to point at. Nothing here is ever locked — go back to any of it, any time. And there is a second class waiting on the catalog.`
   },
 
   // The five prompts from the brief (§12). The journal card shows these instead

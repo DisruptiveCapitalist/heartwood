@@ -95,6 +95,7 @@ export const ROUTE_LABELS = {
  * @property {string} line
  * @property {string} instruction
  * @property {string[]} banned             word stems the explanation may not use
+ * @property {boolean} [unrestricted]     true when the lesson deliberately bans nothing
  * @property {string} bannedNote           what to say when one slips in
  * @property {string} placeholder
  * @property {string[]} checks             four self-assessment items
@@ -156,8 +157,11 @@ export function validateLesson(lesson) {
   need(lesson?.connect?.items?.length === 6, at('CONNECT IT wants six situations'))
   need(!!lesson?.connect?.synthesis, at('CONNECT IT has no synthesis line'))
 
-  need((lesson?.feynman?.banned?.length ?? 0) > 0,
-    at('FEYNMAN IT needs at least one banned word — that is the exercise'))
+  // Week 6 hands the course back to the learner, and its Feynman checks say so
+  // explicitly: use any words you like, the test is how far you get. Those set
+  // `unrestricted` rather than carrying a token banned word.
+  need(lesson?.feynman?.unrestricted || (lesson?.feynman?.banned?.length ?? 0) > 0,
+    at('FEYNMAN IT needs banned words, or feynman.unrestricted to say why not'))
   need(lesson?.feynman?.checks?.length === 4, at('FEYNMAN IT wants four checks'))
 
   const options = lesson?.challenge?.prediction?.options ?? []

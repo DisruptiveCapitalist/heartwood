@@ -7,7 +7,7 @@ five lessons. A catalog is the way in.
 
 | Class | | |
 |---|---|---|
-| **Physics I** — Seeing the World Through Physics | 20 of 30 written | Weeks 1–4 complete |
+| **Physics I** — Seeing the World Through Physics | **30 of 30 written** | **complete** |
 | **Electricity & Energy** — The Power You Never See | 1 of 30 written | Lesson 1 |
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
@@ -130,6 +130,16 @@ src/
         lesson-18.js        displacement — "Why a steel ship floats"
         lesson-19.js        atmospheric pressure — "Why you can drink through a straw"
         lesson-20.js        pressure — "Pressure cookers, tires, and weather"
+        lesson-21.js        sound waves — "What happens when you hear a voice"
+        lesson-22.js        frequency — "Frequency, pitch, and a guitar string"
+        lesson-23.js        sound processing — "What is happening inside your hearing aids"
+        lesson-24.js        refraction — "Why a straw looks bent in water"
+        lesson-25.js        reflection & colour — "Mirrors, lenses, and color"
+        lesson-26.js        transfer — "A bridge, a ladder, a bicycle"
+        lesson-27.js        machines — "A refrigerator and a ceiling fan"
+        lesson-28.js        fluids — "A boat and an airplane"
+        lesson-29.js        the spectrum — "A flashlight and a microwave"
+        lesson-30.js        the last one — "Anything you point at"
 
   engine/                   renders any lesson of any subject
     Lesson.jsx              the one lesson component
@@ -157,13 +167,12 @@ real cost of the next twenty-eight lessons, and it is deliberate that it shows.
 | 2 · Forces | 6–10 | **written** |
 | 3 · Energy | 11–15 | **written** |
 | 4 · Heat, pressure and the invisible world | 16–20 | **written** |
-| 5 · Waves, sound and light | 21–25 | syllabus only |
-| 6 · Physics is everywhere | 26–30 | syllabus only |
+| 5 · Waves, sound and light | 21–25 | **written** |
+| 6 · Physics is everywhere | 26–30 | **written** |
 
-Lessons 21–30 are specified in the build package that came with the design
-handoff. They are authored the way Lessons 3–5 were, one week at a time — the
-package is explicit that they must not read like textbook chapters, and volume
-is the enemy of that.
+Physics I is finished. Electricity & Energy has Lesson 1; Lessons 2–30 are
+titles and week ideas only, and the handoff notes the learner's preference for
+building and testing in small batches rather than all twenty-nine at once.
 
 **The simulations are the real cost, and the families are paying off.** Copy is
 data; a scene is code. Twenty lessons have needed only sixteen scenes, because
@@ -180,12 +189,19 @@ several are built to be reused:
   asserted.
 - `Buoyancy` — one component, two fluids: the hot-air parcel in Lesson 17 and
   the steel hull in Lesson 18.
-- `EnergyChain` — one component, two lessons: the hydroelectric chain in 14 and
-  the four-machine comparison in 15.
+- `EnergyChain` — three lessons: the hydroelectric chain (14), the four-machine
+  comparison (15) and the fridge against the fan (27).
+- `WaveMedium` — sound in air (21) and a string under tension (22). Measured:
+  halving the length doubles the frequency, doubling the tension multiplies it
+  by √2, doubling the thickness divides it by √2.
+- `RayOptics` — the straw at a water surface (24) and mirrors and lenses (25).
+  Angles come from Snell's law, so straight-on really does pass through
+  undeviated, which is what the challenge turns on.
+- `ObjectInspector` — Weeks 6's three object lessons (26, 28, 30). It withholds
+  every answer until asked, one at a time, because that week is the learner's.
 
-A wave on a medium will cover sound and the guitar string; a ray diagram will
-cover refraction and lenses. That is what keeps Weeks 5 and 6 from being ten
-more scenes.
+Thirty lessons needed twenty-one scenes rather than thirty, and the last ten
+lessons needed only five new ones.
 
 **Simulations get measured, not eyeballed.** Three defects this week were found
 by driving the running app and checking the numbers against what the lesson

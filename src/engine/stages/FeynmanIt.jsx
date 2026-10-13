@@ -8,7 +8,7 @@ export default function FeynmanIt({ lesson, progress, set }) {
   const f = lesson.feynman
   const text = progress.feynmanText ?? ''
   const words = text.trim() ? text.trim().split(/\s+/).length : 0
-  const usedBanned = f.banned.some((stem) => new RegExp(stem, 'i').test(text))
+  const usedBanned = (f.banned ?? []).some((stem) => new RegExp(stem, 'i').test(text))
 
   const note = usedBanned ? f.bannedNote : words > 24 ? 'good length' : words > 0 ? 'keep going' : ''
 
