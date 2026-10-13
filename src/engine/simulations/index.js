@@ -21,6 +21,9 @@ import HearingAid from './HearingAid.jsx'
 import ObjectInspector from './ObjectInspector.jsx'
 import Spectrum from './Spectrum.jsx'
 import ElementGrid from './ElementGrid.jsx'
+import CellScope from './CellScope.jsx'
+import ProteinChain from './ProteinChain.jsx'
+import FeedbackLoop from './FeedbackLoop.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -52,7 +55,10 @@ export const simulations = {
   'hearing-aid': HearingAid,
   'object-inspector': ObjectInspector,
   'spectrum': Spectrum,
-  'element-grid': ElementGrid
+  'element-grid': ElementGrid,
+  'cell-scope': CellScope,
+  'protein-chain': ProteinChain,
+  'feedback-loop': FeedbackLoop
 }
 
 export function getSimulation(id) {

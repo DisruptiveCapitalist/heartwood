@@ -1,4 +1,8 @@
 import lesson01 from './lessons/lesson-01.js'
+import lesson02 from './lessons/lesson-02.js'
+import lesson03 from './lessons/lesson-03.js'
+import lesson04 from './lessons/lesson-04.js'
+import lesson05 from './lessons/lesson-05.js'
 
 // Heartwood's third class, and the first with no prerequisite — it does not
 // stand on Physics I the way Electricity & Energy does.
@@ -27,10 +31,10 @@ export default {
       idea: `From atoms to living cells.`,
       lessons: [
         { title: `What are we made of?`, lessonId: 'lesson-01' },
-        { title: `The cell: a tiny living world` },
-        { title: `Mitochondria and the energy of life` },
-        { title: `Proteins, peptides and DNA` },
-        { title: `How cells communicate and become tissues` }
+        { title: `The cell: a tiny living world`, lessonId: 'lesson-02' },
+        { title: `Mitochondria and the energy of life`, lessonId: 'lesson-03' },
+        { title: `Proteins, peptides and DNA`, lessonId: 'lesson-04' },
+        { title: `How cells communicate and become tissues`, lessonId: 'lesson-05' }
       ]
     },
     {
@@ -90,11 +94,17 @@ export default {
     }
   ],
 
-  lessons: { 'lesson-01': lesson01 },
+  lessons: {
+    'lesson-01': lesson01,
+    'lesson-02': lesson02,
+    'lesson-03': lesson03,
+    'lesson-04': lesson04,
+    'lesson-05': lesson05
+  },
 
   nextUp: {
-    title: `Lesson 2 is not written yet`,
-    blurb: `Lesson 1 is done. Next: the cell — the smallest thing that is alive, and everything it has to get done every second to stay that way.`
+    title: `Week 2 is not written yet`,
+    blurb: `Week 1 is complete — atoms to a whole person, the cell, its energy, its instructions, and how all of it stays steady. Next: out of the cell and into the body that supplies it, starting with the heart.`
   },
 
   journalPrompts: [
