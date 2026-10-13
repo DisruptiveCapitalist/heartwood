@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 
 // A hash route, because Heartwood is opened from a folder on one machine and
 // should not need a server that knows how to rewrite paths.
-//   #/                        the course
+//   #/                        the catalog of classes
+//   #/electricity             a class home
 //   #/physics-i/lesson-01     a lesson
 
 export function useRoute() {

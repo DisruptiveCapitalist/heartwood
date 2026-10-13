@@ -16,7 +16,7 @@ import Reflect from './stages/Reflect.jsx'
 
 const STAGE_COMPONENTS = [SeeIt, UnderstandIt, ConnectIt, FeynmanIt, ChallengeIt, Reflect]
 
-export default function Lesson({ course, lesson, onHome, sessionMinutes = 30, showTimings = true }) {
+export default function Lesson({ course, lesson, onHome, onCatalog, sessionMinutes = 30, showTimings = true }) {
   const [progress, setProgress] = useState(() => readProgress(course.id, lesson.id))
   const [stuckOpen, setStuckOpen] = useState(false)
   const [route, setRoute] = useState(null)
@@ -58,9 +58,13 @@ export default function Lesson({ course, lesson, onHome, sessionMinutes = 30, sh
         padding: '26px 0 18px', borderBottom: '1px solid var(--rule)', flexWrap: 'wrap'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-          <span style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.22em', color: 'var(--accent)' }}>
+          <a
+            href="#/"
+            onClick={(e) => { e.preventDefault(); onCatalog?.() }}
+            style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.22em', color: 'var(--accent)', textDecoration: 'none' }}
+          >
             HEARTWOOD UNIVERSITY
-          </span>
+          </a>
           <span style={{ fontSize: 21, fontWeight: 400, letterSpacing: '-.01em' }}>
             {course.title} — {course.subtitle}
           </span>

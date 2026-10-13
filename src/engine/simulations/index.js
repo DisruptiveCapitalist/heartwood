@@ -14,6 +14,7 @@ import ParticleBox from './ParticleBox.jsx'
 import EnergyChain from './EnergyChain.jsx'
 import Buoyancy from './Buoyancy.jsx'
 import StrawPressure from './StrawPressure.jsx'
+import CircuitLoop from './CircuitLoop.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -38,7 +39,8 @@ export const simulations = {
   'particle-box': ParticleBox,
   'energy-chain': EnergyChain,
   'buoyancy': Buoyancy,
-  'straw-pressure': StrawPressure
+  'straw-pressure': StrawPressure,
+  'circuit-loop': CircuitLoop
 }
 
 export function getSimulation(id) {

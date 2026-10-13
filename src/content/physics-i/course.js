@@ -25,8 +25,11 @@ import lesson20 from './lessons/lesson-20.js'
 
 export default {
   id: 'physics-i',
+  order: 1,
+  status: 'open',
   title: `Physics I`,
   subtitle: `Seeing the World Through Physics`,
+  blurb: `Motion, forces, energy and heat — the ideas underneath everything that moves.`,
   meta: `Six weeks · 30 minutes a day · No prerequisites · Understanding over memorization`,
 
   // What the faculty call the learner. Copy addresses them with {name}; left

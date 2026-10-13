@@ -2,8 +2,13 @@
 
 > Learn the heart of a subject. See it in the world.
 
-A personal learning environment. The first course is **Physics I — Seeing the
-World Through Physics**. Weeks 1 to 4 are complete — twenty lessons, sixteen simulations.
+A personal learning environment holding several **classes**, each six weeks of
+five lessons. A catalog is the way in.
+
+| Class | | |
+|---|---|---|
+| **Physics I** — Seeing the World Through Physics | 20 of 30 written | Weeks 1–4 complete |
+| **Electricity & Energy** — The Power You Never See | 1 of 30 written | Lesson 1 |
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -98,7 +103,10 @@ see yours.
 src/
   content/                  the lessons — this is where authoring happens
     schema.js               what a lesson is, and a validator that enforces it
-    index.js                the list of subjects
+    index.js                the class registry the catalog renders
+    electricity/            the second class
+      course.js
+      lessons/lesson-01.js  "The lamp that doesn't wait"
     physics-i/
       course.js             the six-week syllabus and the course's own copy
       lessons/
@@ -129,7 +137,9 @@ src/
     simulations/            the interactive scenes, registered by id
     StageRail, StuckPanel, UnderstandingMap, FacultyBadge
 
-  screens/CourseHome.jsx    the page the learner lands on each day
+  screens/
+    Catalog.jsx             the way in: one card per class
+    CourseHome.jsx          a class home — one component renders any class
   lib/                      storage, progress, the rAF loop and physics helpers
   tokens.css                every colour, size and typeface in one place
 ```
@@ -199,13 +209,27 @@ failure available here.
    "I don't get it" routes, three mental-model sentences, a real verdict on every
    wrong answer, a simulation that actually exists.
 
-## Adding a second subject
+## Adding a class
 
-Make a folder beside `physics-i/` with its own `course.js` and `lessons/`, and
-add it to the array in `src/content/index.js`. The engine does not need to change.
+1. Make a folder beside `physics-i/` with its own `course.js` and `lessons/`.
+2. Add it to the array in `src/content/index.js`.
 
-While there is only one subject the app opens straight into it — the brief is
-explicit (§18) that there is no course catalog yet.
+That is the whole procedure — no UI code. The catalog, the class home and the
+lesson player all render whatever they are handed. Electricity & Energy was
+added this way and needed one new file outside its own folder: the circuit
+simulation.
+
+A class record carries `order`, `status` (`open` or `coming`), a one-line
+`blurb` for its catalog card and an optional `after` for the prerequisite
+kicker. `comingClass` in the registry is the dashed placeholder card.
+
+**Do not change a class's `id`.** Progress is stored under
+`heartwood.v1.<courseId>.<lessonId>`, so renaming a class orphans everything the
+learner has written in it.
+
+*(The original brief said at §18 to build no catalog until the method was
+proven. The university handoff reverses that, and this is the catalog it asks
+for. The rest of §18 — no grades, no streaks, no badges — still stands.)*
 
 ---
 

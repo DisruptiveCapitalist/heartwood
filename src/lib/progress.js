@@ -162,3 +162,33 @@ export function weekRows(course, progressOf) {
     })
   }))
 }
+
+/** Every lesson slot in a class, written or not. Six weeks of five. */
+export function totalLessons(course) {
+  return course.weeks.reduce((n, w) => n + w.lessons.length, 0)
+}
+
+/**
+ * What the catalog card needs to know about a class: how much is written, how
+ * much is finished, and whether the learner has started.
+ */
+export function courseProgress(course, progressOf) {
+  const total = totalLessons(course)
+  const written = writtenLessons(course)
+  let done = 0
+  let started = false
+
+  for (const { lesson } of written) {
+    const p = progressOf(lesson.id)
+    if (isDone(p)) done += 1
+    if (isStarted(p)) started = true
+  }
+
+  return {
+    total,
+    built: written.length,
+    done,
+    started: started || done > 0,
+    status: done >= total ? 'COMPLETE' : (started || done > 0) ? 'IN PROGRESS' : 'NOT STARTED'
+  }
+}

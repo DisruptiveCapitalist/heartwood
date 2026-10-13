@@ -16,7 +16,7 @@ const STATUS_STYLE = {
   'NOT YET WRITTEN': { bg: 'transparent', bd: 'var(--inert)', fg: 'var(--faint)' }
 }
 
-export default function CourseHome({ course, onOpenLesson, sessionMinutes = 30 }) {
+export default function CourseHome({ course, onOpenLesson, onCatalog, sessionMinutes = 30 }) {
   const { name, setName } = useLearner()
   const progressOf = useMemo(() => {
     const cache = {}
@@ -35,9 +35,13 @@ export default function CourseHome({ course, onOpenLesson, sessionMinutes = 30 }
         display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 24,
         padding: '26px 0 18px', borderBottom: '1px solid var(--rule)', flexWrap: 'wrap'
       }}>
-        <span style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.22em', color: 'var(--accent)' }}>
+        <a
+          href="#/"
+          onClick={(e) => { e.preventDefault(); onCatalog?.() }}
+          style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.22em', color: 'var(--accent)', textDecoration: 'none' }}
+        >
           HEARTWOOD UNIVERSITY
-        </span>
+        </a>
         <span style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--muted)' }}>
           Learn the heart of a subject. See it in the world.
         </span>

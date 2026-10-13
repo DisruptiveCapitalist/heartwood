@@ -183,3 +183,13 @@ button:disabled { cursor: default; opacity: .45; }
 @media (max-width: 860px) {
   .hw-week { grid-template-columns: minmax(0, 1fr); gap: 16px; }
 }
+
+/* A catalog card is one big link. The only shadow in the whole design lives
+   here, and it is a solid 2px rather than a blur. */
+.hw-class-card {
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+.hw-class-card:hover {
+  border-color: var(--ink) !important;
+  box-shadow: 0 2px 0 var(--ink);
+}
