@@ -4,7 +4,7 @@ import { Rich } from '../../lib/rich.jsx'
 
 // A real situation and a live scene. No definitions, no terminology — the
 // learner manipulates it and notices something before being told anything.
-export default function SeeIt({ lesson, active }) {
+export default function SeeIt({ lesson, active, progress, set }) {
   const see = lesson.see
   const Simulation = getSimulation(see.simulation.id)
 
@@ -20,7 +20,13 @@ export default function SeeIt({ lesson, active }) {
           the numbers from a fresh start. A caption disagreeing with its own
           simulation is the one failure this course cannot afford. */}
       {Simulation
-        ? <Simulation key={lesson.id} active={active} {...(see.simulation.props ?? {})} />
+        ? <Simulation
+            key={lesson.id}
+            active={active}
+            memory={progress?.seeState ?? {}}
+            remember={(patch) => set?.({ seeState: { ...(progress?.seeState ?? {}), ...patch } })}
+            {...(see.simulation.props ?? {})}
+          />
         : (
           <div className="hw-card" style={{ padding: '22px 24px' }}>
             <p style={{ margin: 0, fontSize: 19, color: 'var(--ink-2)' }}>

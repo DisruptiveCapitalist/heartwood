@@ -23,6 +23,49 @@ export default function UnderstandIt({ lesson }) {
         ))}
       </div>
 
+      {/* An optional numbered sequence, for an idea whose shape is a ladder
+          rather than a sentence — the atom-to-organism hierarchy, and later the
+          path a medicine takes through the body. Lessons that don't set it get
+          nothing, so the other two classes are untouched. */}
+      {u.sequence && (
+        <div className="hw-card" style={{ maxWidth: 760, overflow: 'hidden' }}>
+          <div style={{
+            padding: '14px 24px', borderBottom: '1px solid var(--rule)',
+            display: 'flex', alignItems: 'baseline', gap: 10, flexWrap: 'wrap'
+          }}>
+            <span className="hw-label">{u.sequence.label}</span>
+            {u.sequence.note && (
+              <span style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--muted)' }}>
+                {u.sequence.note}
+              </span>
+            )}
+          </div>
+          <ol style={{ margin: 0, padding: '6px 0', listStyle: 'none' }}>
+            {u.sequence.steps.map((step, i) => (
+              <li
+                key={step.name}
+                style={{
+                  display: 'flex', gap: 14, alignItems: 'baseline',
+                  padding: '11px 24px',
+                  borderTop: i === 0 ? 'none' : '1px solid var(--rule-2)'
+                }}
+              >
+                <span style={{
+                  fontFamily: 'var(--sans)', fontSize: 12, fontWeight: 700,
+                  color: 'var(--accent)', minWidth: 16, fontVariantNumeric: 'tabular-nums'
+                }}>{i + 1}</span>
+                <span style={{ fontSize: 19, fontWeight: 600, minWidth: 128, color: 'var(--ink)' }}>
+                  {step.name}
+                </span>
+                <span style={{ flex: 1, minWidth: 220, fontSize: 17.5, lineHeight: 1.5, color: 'var(--ink-2)', textWrap: 'pretty' }}>
+                  <Rich text={step.body} />
+                </span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+
       <div className="hw-card" style={{ padding: '22px 24px', maxWidth: 760 }}>
         <span className="hw-label">{u.comparison.label}</span>
         <p style={{ fontSize: 20, lineHeight: 1.55, margin: '12px 0 0', color: 'var(--ink-2)', textWrap: 'pretty' }}>

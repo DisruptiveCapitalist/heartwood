@@ -20,6 +20,7 @@ import RayOptics from './RayOptics.jsx'
 import HearingAid from './HearingAid.jsx'
 import ObjectInspector from './ObjectInspector.jsx'
 import Spectrum from './Spectrum.jsx'
+import ElementGrid from './ElementGrid.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -50,7 +51,8 @@ export const simulations = {
   'ray-optics': RayOptics,
   'hearing-aid': HearingAid,
   'object-inspector': ObjectInspector,
-  'spectrum': Spectrum
+  'spectrum': Spectrum,
+  'element-grid': ElementGrid
 }
 
 export function getSimulation(id) {

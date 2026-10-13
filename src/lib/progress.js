@@ -8,6 +8,13 @@ export function emptyProgress() {
   return {
     stage: 0,
     visited: { see: true },
+    // Whatever the SEE IT visual wants to remember between sessions. Most
+    // simulations want nothing: a switch position is not worth preserving.
+    // Anatomy Lesson 1 keeps the learner's first guess here, because the whole
+    // visual is built around having committed to one. It must never hold
+    // anything about the learner's body — that lesson's weight slider is
+    // arithmetic only, and the course spec forbids storing it.
+    seeState: {},
     connects: {},
     connectOwn: '',
     feynmanText: '',
@@ -35,7 +42,13 @@ export function writeProgress(courseId, lessonId, progress) {
     predict: progress.predict,
     editorAnswer: progress.editorAnswer,
     editorRevealed: progress.editorRevealed,
-    journalText: progress.journalText
+    journalText: progress.journalText,
+    // Named explicitly, like everything else here: this function writes a known
+    // list of fields rather than whatever the engine happens to be holding, so
+    // nothing reaches storage by accident. A simulation that wants to remember
+    // something has to put it in seeState deliberately — and must not put
+    // anything about the learner's body there, which the course spec forbids.
+    seeState: progress.seeState
   })
 }
 
