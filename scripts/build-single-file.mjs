@@ -69,9 +69,9 @@ if (/\bsrc="(?!data:)/.test(single) || /<link\b[^>]*\bhref=/.test(single)) {
   throw new Error('The page still loads something from outside it; this file has to stand alone.')
 }
 
-const file = resolve(root, 'Heartwood - Physics I.html')
+const file = resolve(root, 'Heartwood University.html')
 await writeFile(file, single)
 await rm(out, { recursive: true, force: true })
 
 const kb = (Buffer.byteLength(single) / 1024).toFixed(0)
-console.log(`\nWrote "Heartwood - Physics I.html" (${kb} KB). One file — email it, double-click it.`)
+console.log(`\nWrote "Heartwood University.html" (${kb} KB). One file — email it, double-click it.`)

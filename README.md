@@ -63,7 +63,7 @@ publish a build that fails them.
 npm run build:single
 ```
 
-That writes **Heartwood - Physics I.html** into this folder: a single 293 KB
+That writes **Heartwood University.html** into this folder: a single 293 KB
 file with the fonts, the styles and the whole app inside it. Email it, drop it in
 a shared folder, double-click it. No install, no server, no network.
 
