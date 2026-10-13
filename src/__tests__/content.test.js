@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { courses } from '../content/index.js'
 import { validateLesson, ROUTE_IDS } from '../content/schema.js'
 import { simulations } from '../engine/simulations/index.js'
+import { MODES as CIRCUIT_MODES } from '../engine/simulations/CircuitLoop.jsx'
 import { fill } from '../lib/rich.jsx'
 
 // Every lesson in every subject is checked on every run, so a content mistake
@@ -17,6 +18,17 @@ describe('lesson content', () => {
 
         it('names a simulation that exists', () => {
           expect(Object.keys(simulations)).toContain(lesson.see.simulation.id)
+        })
+
+        // A simulation family takes a prop to choose which lesson it is serving.
+        // Misspell it and the component silently falls back to its default — so
+        // Lesson 5's copy about a glowing element would sit above Lesson 1's
+        // lamp, and nothing would throw. Check the prop against the component.
+        it('asks its simulation for a mode the simulation has', () => {
+          const { id, props } = lesson.see.simulation
+          if (id === 'circuit-loop' && props?.mode !== undefined) {
+            expect(CIRCUIT_MODES).toContain(props.mode)
+          }
         })
 
         it('offers six different ways in, none of them a repeat', () => {

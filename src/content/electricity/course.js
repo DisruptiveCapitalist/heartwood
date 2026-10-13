@@ -1,4 +1,8 @@
 import lesson01 from './lessons/lesson-01.js'
+import lesson02 from './lessons/lesson-02.js'
+import lesson03 from './lessons/lesson-03.js'
+import lesson04 from './lessons/lesson-04.js'
+import lesson05 from './lessons/lesson-05.js'
 
 // Heartwood's second class. The learner's original brief said electricity
 // deserved a course of its own eventually; this is it, and it deliberately
@@ -22,10 +26,10 @@ export default {
       idea: `It's already in the wire. All you ever supply is the push.`,
       lessons: [
         { title: `The lamp that doesn't wait`, lessonId: 'lesson-01' },
-        { title: `Why a switch has to complete a circle` },
-        { title: `Voltage: the push, not the stuff` },
-        { title: `Current: how much goes by, not how fast` },
-        { title: `Resistance, and why a toaster glows` }
+        { title: `Why a switch has to complete a circle`, lessonId: 'lesson-02' },
+        { title: `Voltage: the push, not the stuff`, lessonId: 'lesson-03' },
+        { title: `Current: how much goes by, not how fast`, lessonId: 'lesson-04' },
+        { title: `Resistance, and why a toaster glows`, lessonId: 'lesson-05' }
       ]
     },
     {
@@ -85,11 +89,17 @@ export default {
     }
   ],
 
-  lessons: { 'lesson-01': lesson01 },
+  lessons: {
+    'lesson-01': lesson01,
+    'lesson-02': lesson02,
+    'lesson-03': lesson03,
+    'lesson-04': lesson04,
+    'lesson-05': lesson05
+  },
 
   nextUp: {
-    title: `Lesson 2 is not written yet`,
-    blurb: `Lesson 1 is done and the format holds. Next: why a switch has to complete a circle — and why a bird can sit on a power line and feel nothing at all.`
+    title: `Week 2 is not written yet`,
+    blurb: `Week 1 is complete — the loop, the push, the flow and the fight, all on the same circuit seen five ways. Next: into the house, starting with what the electric bill actually counts.`
   },
 
   journalPrompts: [

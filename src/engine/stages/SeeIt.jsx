@@ -12,8 +12,15 @@ export default function SeeIt({ lesson, active }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 26 }}>
       <FacultyBadge voice={see.voice} line={see.line} />
 
+      {/* Keyed by lesson, which matters for the simulation families: several
+          lessons mount the same component with different props, and without a
+          key React keeps the instance alive across a lesson change. The props
+          switch but the internal state doesn't, so Lesson 4 would open showing
+          the cell count Lesson 3 was left on — and its observation cards quote
+          the numbers from a fresh start. A caption disagreeing with its own
+          simulation is the one failure this course cannot afford. */}
       {Simulation
-        ? <Simulation active={active} {...(see.simulation.props ?? {})} />
+        ? <Simulation key={lesson.id} active={active} {...(see.simulation.props ?? {})} />
         : (
           <div className="hw-card" style={{ padding: '22px 24px' }}>
             <p style={{ margin: 0, fontSize: 19, color: 'var(--ink-2)' }}>
