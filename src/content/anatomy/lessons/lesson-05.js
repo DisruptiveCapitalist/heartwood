@@ -43,10 +43,10 @@ export default {
       label: `THE FOUR KINDS OF TISSUE`,
       note: `every organ in you is built from these`,
       steps: [
-        { name: `Epithelial`, body: `Sheets that line and cover — the surface of your skin, the inside of your gut, the lining of every blood vessel. Wherever the body meets something that isn't it.` },
-        { name: `Connective`, body: `Holds things together and apart: bone, cartilage, tendon, ligament, fat — and, surprisingly, **blood**, which counts as connective tissue.` },
-        { name: `Muscle`, body: `Shortens when told to. Three sorts: skeletal, which you command; cardiac, in the heart; and smooth, in vessels, gut and airways, which you don't.` },
-        { name: `Nervous`, body: `Carries signals fast and far — brain, spinal cord and nerves. The alternative to sending a molecule and waiting.` }
+        { name: `Epithelial`, plate: 'epithelial', body: `Sheets that line and cover — the surface of your skin, the inside of your gut, the lining of every blood vessel. Wherever the body meets something that isn't it.` },
+        { name: `Connective`, plate: 'connective', body: `Holds things together and apart: bone, cartilage, tendon, ligament, fat — and, surprisingly, **blood**, which counts as connective tissue.` },
+        { name: `Muscle`, plate: 'muscle', body: `Shortens when told to. Three sorts: skeletal, which you command; cardiac, in the heart; and smooth, in vessels, gut and airways, which you don't.` },
+        { name: `Nervous`, plate: 'nervous', body: `Carries signals fast and far — brain, spinal cord and nerves. The alternative to sending a molecule and waiting.` }
       ]
     },
     comparison: {

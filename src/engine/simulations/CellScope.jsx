@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Plate from '../plates.jsx'
 
 // Anatomy & Physiology, Week 1. One cell, looked at two ways.
 //
@@ -136,14 +137,11 @@ export default function CellScope({ mode = 'tour' }) {
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4, maxWidth: 600 }}>
             <span className="hw-readout-label">
-              {live ? `Following a message · step ${step} of ${STEPS.length}`
-                : part ? `${part.name} — what it is for`
-                  : `Eight parts, one cell`}
+              {live ? `Following a message · step ${step} of ${STEPS.length}` : `Eight parts, one cell`}
             </span>
             <p aria-live="polite" style={{ margin: 0, fontSize: 15.5, lineHeight: 1.5, color: 'var(--ink-2)', textWrap: 'pretty', minHeight: 66 }}>
               {live ? <Mark text={live.text} />
-                : part ? <><em>{part.need}</em> {part.role}</>
-                  : `Tap any part of the cell to see what the cell needs it for — or follow a message all the way through, below.`}
+                : `Tap any part of the cell to see what the cell needs it for, and what it looks like close up — or follow a message all the way through, below.`}
             </p>
           </div>
         )}
@@ -166,6 +164,20 @@ export default function CellScope({ mode = 'tour' }) {
           />
           {lit === 'membrane' && (
             <ellipse cx="280" cy="140" rx="252" ry="126" fill="none" stroke="var(--accent)" strokeWidth="2.5" strokeDasharray="7 6" />
+          )}
+          {/* The rim is its own target. Without this the membrane is the one
+              part of the cell that cannot be selected, because the filled
+              ellipse underneath claims every click for the cytoplasm — and the
+              membrane is both the hardest part to picture and the best drawing
+              of the set. Stroke-only hit testing, so it never steals a click
+              from an organelle inside. */}
+          {!isEnergy && (
+            <ellipse
+              cx="280" cy="140" rx="252" ry="126"
+              fill="none" stroke="transparent" strokeWidth="20" pointerEvents="stroke"
+              style={{ cursor: 'pointer' }}
+              onClick={() => setSel(sel === 'membrane' ? null : 'membrane')}
+            />
           )}
 
           {/* the nucleus */}
@@ -255,6 +267,26 @@ export default function CellScope({ mode = 'tour' }) {
             : 'A teaching diagram, not a photograph. A real cell is far more crowded than this, and far less tidy.'}
         </div>
       </div>
+
+      {/* The selected part, drawn as well as described. The scene shows where it
+          sits; this shows what it is, which a dot on a diagram cannot. */}
+      {part && !live && !isEnergy && (
+        <div style={{
+          display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap',
+          padding: '18px 24px', borderTop: '1px solid var(--rule)', background: 'var(--card)'
+        }}>
+          <Plate id={part.id} title={part.name} width={180} />
+          <div style={{ flex: 1, minWidth: 250, display: 'flex', flexDirection: 'column', gap: 7 }}>
+            <span className="hw-label">{part.name.toUpperCase()}</span>
+            <p style={{ margin: 0, fontSize: 17, lineHeight: 1.45, fontStyle: 'italic', color: 'var(--ink)' }}>
+              {part.need}
+            </p>
+            <p style={{ margin: 0, fontSize: 16.5, lineHeight: 1.5, color: 'var(--ink-2)', textWrap: 'pretty' }}>
+              {part.role}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="hw-controls">
         {isEnergy ? (

@@ -3,6 +3,7 @@ import { courses } from '../content/index.js'
 import { validateLesson, ROUTE_IDS } from '../content/schema.js'
 import { simulations } from '../engine/simulations/index.js'
 import { MODES as CIRCUIT_MODES } from '../engine/simulations/CircuitLoop.jsx'
+import { PLATE_IDS } from '../engine/plates.jsx'
 import { fill } from '../lib/rich.jsx'
 
 // Every lesson in every subject is checked on every run, so a content mistake
@@ -28,6 +29,15 @@ describe('lesson content', () => {
           const { id, props } = lesson.see.simulation
           if (id === 'circuit-loop' && props?.mode !== undefined) {
             expect(CIRCUIT_MODES).toContain(props.mode)
+          }
+        })
+
+        // A plate renders nothing at all when its id doesn't match a drawing, so
+        // a typo would quietly leave the step as text — which is the thing the
+        // drawings were added to fix.
+        it('asks only for detail drawings that exist', () => {
+          for (const step of lesson.understand.sequence?.steps ?? []) {
+            if (step.plate) expect(PLATE_IDS).toContain(step.plate)
           }
         })
 

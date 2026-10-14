@@ -1,5 +1,6 @@
 import FacultyBadge from '../FacultyBadge.jsx'
 import { Rich } from '../../lib/rich.jsx'
+import Plate from '../plates.jsx'
 
 // Three sentences carry the mental model. The concept is named only after the
 // learner already has it, and the vocabulary comes last of all.
@@ -45,8 +46,9 @@ export default function UnderstandIt({ lesson }) {
               <li
                 key={step.name}
                 style={{
-                  display: 'flex', gap: 14, alignItems: 'baseline',
-                  padding: '11px 24px',
+                  display: 'flex', gap: 14, flexWrap: 'wrap',
+                  alignItems: step.plate ? 'center' : 'baseline',
+                  padding: step.plate ? '14px 24px' : '11px 24px',
                   borderTop: i === 0 ? 'none' : '1px solid var(--rule-2)'
                 }}
               >
@@ -60,6 +62,10 @@ export default function UnderstandIt({ lesson }) {
                 <span style={{ flex: 1, minWidth: 220, fontSize: 17.5, lineHeight: 1.5, color: 'var(--ink-2)', textWrap: 'pretty' }}>
                   <Rich text={step.body} />
                 </span>
+                {/* A step may carry a drawing of the thing it names. Four words
+                    for four kinds of tissue is pure vocabulary; four pictures
+                    is a lesson. */}
+                {step.plate && <Plate id={step.plate} title={step.name} width={150} />}
               </li>
             ))}
           </ol>
