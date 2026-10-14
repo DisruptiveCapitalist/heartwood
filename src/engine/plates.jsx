@@ -175,6 +175,218 @@ const PLATES = {
     <Cap>A THICK SOUP, NOT A ROOMY BAG</Cap>
   </g>,
 
+
+  // ---- the ladder, atom to organism (Lesson 1) ----------------------------
+  atom: () => <g>
+    <ellipse cx="190" cy="98" rx="74" ry="30" fill="none" stroke="oklch(0.60 0.07 235)" strokeWidth="1.8" />
+    <ellipse cx="190" cy="98" rx="74" ry="30" fill="none" stroke="oklch(0.60 0.07 235)" strokeWidth="1.8" transform="rotate(62 190 98)" />
+    <circle cx="190" cy="98" r="19" fill="oklch(0.62 0.12 45)" stroke="oklch(0.40 0.13 45)" strokeWidth="2.4" />
+    {[[264, 98], [155, 32], [152, 163]].map(([x, y]) => (
+      <circle key={x + y} cx={x} cy={y} r="6.5" fill="oklch(0.50 0.11 235)" />
+    ))}
+    <Lead at={[190, 79]} to={[150, 44]} text="nucleus" side="left" />
+    <Lead at={[264, 98]} to={[278, 80]} text="electrons" side="right" />
+    <Cap>ONE ATOM — FAR TOO SMALL TO EVER SEE</Cap>
+  </g>,
+
+  water: () => <g>
+    <line x1="190" y1="106" x2="146" y2="66" stroke="oklch(0.50 0.06 235)" strokeWidth="9" strokeLinecap="round" />
+    <line x1="190" y1="106" x2="234" y2="66" stroke="oklch(0.50 0.06 235)" strokeWidth="9" strokeLinecap="round" />
+    <circle cx="190" cy="106" r="31" fill="oklch(0.52 0.11 235)" stroke="oklch(0.36 0.10 235)" strokeWidth="2.4" />
+    <text x="190" y="113" textAnchor="middle" fontFamily="var(--sans)" fontSize="19" fontWeight="700" fill="#f6f1e7">O</text>
+    {[[146, 66], [234, 66]].map(([x, y]) => <g key={x}>
+      <circle cx={x} cy={y} r="19" fill="oklch(0.82 0.06 235)" stroke="oklch(0.44 0.08 235)" strokeWidth="2.2" />
+      <text x={x} y={y + 6} textAnchor="middle" fontFamily="var(--sans)" fontSize="15" fontWeight="700" fill="oklch(0.32 0.08 235)">H</text>
+    </g>)}
+    <Lead at={[163, 124]} to={[120, 142]} text="one oxygen" side="left" />
+    <Lead at={[251, 60]} to={[276, 44]} text="two hydrogen" side="right" />
+    <Cap>WATER — AND MOST OF YOUR OXYGEN IS IN IT</Cap>
+  </g>,
+
+  cellWhole: () => <g>
+    <ellipse cx="190" cy="96" rx="84" ry="56" fill="oklch(0.95 0.015 235)" stroke="oklch(0.52 0.09 235)" strokeWidth="3.2" />
+    <circle cx="168" cy="92" r="26" fill="oklch(0.89 0.045 300)" stroke="oklch(0.45 0.12 300)" strokeWidth="2.4" />
+    <path d="M 152 86 q 8 7 16 0 q 8 -7 16 0" fill="none" stroke="oklch(0.42 0.13 300)" strokeWidth="2" />
+    {[[232, 76], [240, 110], [214, 126]].map(([x, y]) => (
+      <ellipse key={x} cx={x} cy={y} rx="15" ry="8" fill="oklch(0.84 0.07 40)" stroke="oklch(0.46 0.12 40)" strokeWidth="2" />
+    ))}
+    <Lead at={[113, 70]} to={[100, 48]} text="a border" side="left" />
+    <Lead at={[168, 118]} to={[106, 146]} text="instructions" side="left" />
+    <Lead at={[247, 76]} to={[280, 56]} text="its own power" side="right" />
+    <Cap>THE SMALLEST THING THAT IS ALIVE</Cap>
+  </g>,
+
+  tissue: () => <g>
+    {Array.from({ length: 12 }, (_, i) => {
+      const x = 120 + (i % 4) * 44
+      const y = 52 + Math.floor(i / 4) * 36
+      return <g key={i}>
+        <rect x={x} y={y} width="40" height="32" rx="9" fill="oklch(0.90 0.045 155)" stroke="oklch(0.44 0.10 155)" strokeWidth="2.2" />
+        <circle cx={x + 20} cy={y + 16} r="6" fill="oklch(0.48 0.11 155)" />
+      </g>
+    })}
+    <Lead at={[140, 68]} to={[108, 44]} text="all one kind" side="left" />
+    <Lead at={[140, 140]} to={[108, 154]} text="side by side" side="left" />
+    <Lead at={[264, 104]} to={[284, 96]} text="one job" side="right" />
+    <Cap>CELLS OF ONE KIND, DOING ONE JOB</Cap>
+  </g>,
+
+  // Drawn as an organ, not a valentine. A heart in an anatomy course has to be
+  // the right shape: a blunt cone seen from the front, apex down and toward the
+  // viewer's right, because an anterior view puts the patient's left there.
+  // Lesson 6 of Week 2 reuses this, where a symbol instead of an organ would be
+  // actively misleading — which the course spec forbids.
+  organ: () => <g>
+    <path d="M 130 60 C 158 44 212 48 240 64 C 262 80 260 116 240 134 C 226 154 216 164 206 168 C 170 158 134 136 126 104 C 122 82 124 68 130 60 Z"
+      fill="oklch(0.82 0.09 28)" stroke="oklch(0.42 0.14 28)" strokeWidth="3" strokeLinejoin="round" />
+    <path d="M 186 58 Q 186 116 204 164" fill="none" stroke="oklch(0.46 0.13 28)" strokeWidth="2.4" strokeDasharray="6 5" />
+    <path d="M 132 102 Q 190 120 250 104" fill="none" stroke="oklch(0.46 0.13 28)" strokeWidth="2.2" />
+    <path d="M 152 88 q 16 10 0 22 M 220 90 q -16 10 0 22" fill="none" stroke="oklch(0.50 0.13 28)" strokeWidth="2" />
+    <path d="M 140 60 C 134 38 124 32 116 38" fill="none" stroke="oklch(0.48 0.09 250)" strokeWidth="7" strokeLinecap="round" />
+    <path d="M 180 54 C 176 32 160 26 150 32" fill="none" stroke="oklch(0.52 0.10 250)" strokeWidth="6" strokeLinecap="round" />
+    <path d="M 214 56 C 220 28 246 24 258 38" fill="none" stroke="oklch(0.50 0.14 28)" strokeWidth="7" strokeLinecap="round" />
+    <Lead at={[128, 92]} to={[108, 72]} text="muscle wall" side="left" />
+    <Lead at={[164, 128]} to={[106, 146]} text="a chamber" side="left" />
+    <Lead at={[252, 34]} to={[278, 30]} text="big vessels" side="right" />
+    <Cap>SEVERAL TISSUES, BUILT INTO ONE ORGAN</Cap>
+  </g>,
+
+  system: () => <g>
+    <ellipse cx="190" cy="48" rx="46" ry="22" fill="oklch(0.88 0.05 235)" stroke="oklch(0.44 0.10 235)" strokeWidth="2.4" />
+    <path d="M 168 76 C 178 68 198 70 208 78 C 216 84 216 98 208 105 C 202 112 198 116 194 118 C 181 114 168 106 165 93 C 163 85 165 79 168 76 Z"
+      fill="oklch(0.82 0.09 28)" stroke="oklch(0.42 0.14 28)" strokeWidth="2.6" strokeLinejoin="round" />
+    <rect x="150" y="128" width="80" height="34" rx="10" fill="oklch(0.90 0.04 85)" stroke="oklch(0.46 0.10 85)" strokeWidth="2.4" />
+    <path d="M 166 68 q -34 10 -34 44 q 0 28 34 30" fill="none" stroke="oklch(0.52 0.13 28)" strokeWidth="3.4" />
+    <path d="M 214 68 q 34 10 34 44 q 0 28 -34 30" fill="none" stroke="oklch(0.50 0.10 235)" strokeWidth="3.4" />
+    <Lead at={[150, 48]} to={[112, 36]} text="lungs" side="left" />
+    <Lead at={[172, 88]} to={[106, 92]} text="heart" side="left" />
+    <Lead at={[232, 142]} to={[278, 148]} text="the body" side="right" />
+    <Cap>ORGANS THAT ONLY WORK TOGETHER</Cap>
+  </g>,
+
+  organism: () => <g>
+    <circle cx="190" cy="40" r="19" fill="oklch(0.88 0.04 45)" stroke="oklch(0.44 0.09 45)" strokeWidth="2.4" />
+    <path d="M 190 59 l 0 56 M 190 72 l -34 26 M 190 72 l 34 26 M 190 115 l -22 48 M 190 115 l 22 48"
+      fill="none" stroke="oklch(0.44 0.09 45)" strokeWidth="5" strokeLinecap="round" />
+    <circle cx="190" cy="40" r="7" fill="oklch(0.55 0.12 300)" />
+    <circle cx="190" cy="84" r="8" fill="oklch(0.62 0.13 28)" />
+    <ellipse cx="190" cy="104" rx="13" ry="7" fill="oklch(0.62 0.10 235)" />
+    <Lead at={[190, 40]} to={[128, 34]} text="nerves" side="left" />
+    <Lead at={[190, 84]} to={[122, 84]} text="heart" side="left" />
+    <Lead at={[203, 104]} to={[276, 110]} text="every system" side="right" />
+    <Cap>ALL OF IT, KEEPING ITSELF GOING</Cap>
+  </g>,
+
+  // ---- where each element actually sits (Lesson 1) -------------------------
+  carbonChain: () => <g>
+    {[0, 1, 2, 3, 4, 5].map((i) => {
+      const x = 118 + i * 29
+      const y = i % 2 ? 110 : 80
+      return <g key={i}>
+        {i > 0 && <line x1={x - 29} y1={i % 2 ? 80 : 110} x2={x} y2={y} stroke="#3d362d" strokeWidth="3.4" />}
+        <circle cx={x} cy={y} r="11" fill="#3d362d" />
+        <text x={x} y={y + 4.5} textAnchor="middle" fontFamily="var(--sans)" fontSize="11" fontWeight="700" fill="#f6f1e7">C</text>
+        <line x1={x} y1={y} x2={x} y2={i % 2 ? y + 22 : y - 22} stroke="oklch(0.70 0.04 235)" strokeWidth="2.4" />
+        <circle cx={x} cy={i % 2 ? y + 22 : y - 22} r="7" fill="oklch(0.84 0.05 235)" stroke="oklch(0.50 0.07 235)" strokeWidth="1.6" />
+      </g>
+    })}
+    <Lead at={[118, 80]} to={[104, 44]} text="carbon" side="left" />
+    <Lead at={[147, 132]} to={[104, 150]} text="hydrogen" side="left" />
+    <Lead at={[263, 110]} to={[280, 134]} text="and onward" side="right" />
+    <Cap>CHAINS LIKE THIS: FATS, SUGARS, PROTEINS</Cap>
+  </g>,
+
+  hydrogenEverywhere: () => <g>
+    <line x1="128" y1="96" x2="100" y2="68" stroke="oklch(0.50 0.06 235)" strokeWidth="7" strokeLinecap="round" />
+    <line x1="128" y1="96" x2="156" y2="68" stroke="oklch(0.50 0.06 235)" strokeWidth="7" strokeLinecap="round" />
+    <circle cx="128" cy="96" r="21" fill="oklch(0.52 0.11 235)" />
+    {[[100, 68], [156, 68]].map(([x, y]) => (
+      <circle key={x} cx={x} cy={y} r="14" fill="oklch(0.80 0.09 45)" stroke="oklch(0.44 0.13 45)" strokeWidth="2.4" />
+    ))}
+    {[0, 1, 2, 3].map((i) => {
+      const x = 212 + i * 26
+      const y = i % 2 ? 110 : 84
+      return <g key={i}>
+        {i > 0 && <line x1={x - 26} y1={i % 2 ? 84 : 110} x2={x} y2={y} stroke="#3d362d" strokeWidth="3" />}
+        <circle cx={x} cy={y} r="9" fill="#3d362d" />
+        <line x1={x} y1={y} x2={x} y2={i % 2 ? y + 20 : y - 20} stroke="oklch(0.70 0.06 45)" strokeWidth="2.2" />
+        <circle cx={x} cy={i % 2 ? y + 20 : y - 20} r="7.5" fill="oklch(0.80 0.09 45)" stroke="oklch(0.44 0.13 45)" strokeWidth="2" />
+      </g>
+    })}
+    <Lead at={[100, 68]} to={[98, 44]} text="in water" side="left" />
+    <Lead at={[238, 130]} to={[276, 148]} text="in everything" side="right" />
+    <Cap>THE LIGHTEST ATOM, AND THE MOST NUMEROUS</Cap>
+  </g>,
+
+  aminoAcid: () => <g>
+    <circle cx="190" cy="96" r="15" fill="#3d362d" />
+    <text x="190" y="101" textAnchor="middle" fontFamily="var(--sans)" fontSize="13" fontWeight="700" fill="#f6f1e7">C</text>
+    <line x1="175" y1="96" x2="142" y2="96" stroke="#3d362d" strokeWidth="3.2" />
+    <circle cx="128" cy="96" r="18" fill="oklch(0.52 0.12 155)" stroke="oklch(0.34 0.12 155)" strokeWidth="2.4" />
+    <text x="128" y="102" textAnchor="middle" fontFamily="var(--sans)" fontSize="14" fontWeight="700" fill="#f6f1e7">N</text>
+    <line x1="205" y1="96" x2="238" y2="96" stroke="#3d362d" strokeWidth="3.2" />
+    <circle cx="252" cy="96" r="18" fill="oklch(0.60 0.13 45)" stroke="oklch(0.40 0.13 45)" strokeWidth="2.4" />
+    <line x1="190" y1="81" x2="190" y2="52" stroke="#3d362d" strokeWidth="3.2" />
+    <rect x="172" y="30" width="36" height="22" rx="7" fill="oklch(0.86 0.06 300)" stroke="oklch(0.46 0.12 300)" strokeWidth="2.2" />
+    <text x="190" y="46" textAnchor="middle" fontFamily="var(--sans)" fontSize="12" fontWeight="700" fill="oklch(0.36 0.12 300)">R</text>
+    <Lead at={[128, 114]} to={[104, 140]} text="the nitrogen" side="left" />
+    <Lead at={[190, 30]} to={[278, 30]} text="this part varies" side="right" />
+    <Lead at={[252, 114]} to={[278, 140]} text="links to next" side="right" />
+    <Cap>EVERY AMINO ACID CARRIES ONE NITROGEN</Cap>
+  </g>,
+
+  boneMineral: () => <g>
+    <rect x="104" y="44" width="172" height="104" rx="10" fill="oklch(0.94 0.02 85)" stroke="oklch(0.50 0.08 85)" strokeWidth="2.6" />
+    {Array.from({ length: 18 }, (_, i) => (
+      <rect key={i} x={116 + (i % 6) * 27} y={56 + Math.floor(i / 6) * 32} width="19" height="13" rx="2"
+        fill="oklch(0.84 0.07 85)" stroke="oklch(0.52 0.09 85)" strokeWidth="1.6" />
+    ))}
+    {[0, 1, 2].map((i) => (
+      <path key={i} d={`M 110 ${80 + i * 32} q 42 9 84 0 q 42 -9 80 0`} fill="none" stroke="oklch(0.58 0.10 45)" strokeWidth="2.6" />
+    ))}
+    <ellipse cx="214" cy="124" rx="12" ry="8" fill="oklch(0.74 0.09 155)" stroke="oklch(0.40 0.11 155)" strokeWidth="2" />
+    <Lead at={[130, 62]} to={[102, 38]} text="mineral" side="left" />
+    <Lead at={[140, 112]} to={[102, 150]} text="collagen" side="left" />
+    <Lead at={[226, 124]} to={[280, 142]} text="living cells" side="right" />
+    <Cap>99% OF YOUR CALCIUM IS IN YOUR SKELETON</Cap>
+  </g>,
+
+  atp: () => <g>
+    <rect x="108" y="76" width="54" height="44" rx="11" fill="oklch(0.86 0.05 300)" stroke="oklch(0.46 0.12 300)" strokeWidth="2.4" />
+    <text x="135" y="103" textAnchor="middle" fontFamily="var(--sans)" fontSize="11.5" fontWeight="700" fill="oklch(0.36 0.12 300)">BASE</text>
+    {[0, 1, 2].map((i) => {
+      const x = 192 + i * 42
+      return <g key={i}>
+        <line x1={x - 21} y1="98" x2={x} y2="98" stroke="oklch(0.46 0.12 45)" strokeWidth={i === 2 ? 5 : 3.2} />
+        <circle cx={x} cy="98" r="18" fill="oklch(0.62 0.13 45)" stroke="oklch(0.40 0.13 45)" strokeWidth="2.4" />
+        <text x={x} y="104" textAnchor="middle" fontFamily="var(--sans)" fontSize="14" fontWeight="700" fill="#f6f1e7">P</text>
+      </g>
+    })}
+    <path d="M 252 74 l 9 -14 l -4 13 l 10 -3 l -14 16" fill="oklch(0.62 0.16 60)" />
+    <Lead at={[192, 116]} to={[104, 146]} text="three of them" side="left" />
+    <Lead at={[262, 68]} to={[280, 48]} text="energy here" side="right" />
+    <Cap>ATP — WHAT A CELL ACTUALLY SPENDS</Cap>
+  </g>,
+
+  saltLattice: () => <g>
+    {Array.from({ length: 16 }, (_, i) => {
+      const x = 128 + (i % 4) * 42
+      const y = 48 + Math.floor(i / 4) * 34
+      const na = (Math.floor(i / 4) + i) % 2 === 0
+      return <g key={i}>
+        <circle cx={x} cy={y} r={na ? 11 : 15}
+          fill={na ? 'oklch(0.70 0.12 300)' : 'oklch(0.80 0.10 155)'}
+          stroke={na ? 'oklch(0.42 0.13 300)' : 'oklch(0.42 0.11 155)'} strokeWidth="2" />
+        <text x={x} y={y + 4} textAnchor="middle" fontFamily="var(--sans)" fontSize="9.5" fontWeight="700"
+          fill={na ? '#f6f1e7' : 'oklch(0.30 0.10 155)'}>{na ? 'Na' : 'Cl'}</text>
+      </g>
+    })}
+    <Lead at={[128, 48]} to={[104, 34]} text="sodium" side="left" />
+    <Lead at={[170, 82]} to={[104, 150]} text="chloride" side="left" />
+    <Lead at={[254, 116]} to={[280, 140]} text="and traces" side="right" />
+    <Cap>SODIUM, POTASSIUM, IRON AND A DOZEN MORE</Cap>
+  </g>,
+
   // ---- the four kinds of tissue -------------------------------------------
   epithelial: () => <g>
     {Array.from({ length: 6 }, (_, i) => (

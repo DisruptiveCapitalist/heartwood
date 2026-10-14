@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Plate from '../plates.jsx'
 
 // Anatomy & Physiology, Lesson 1 — what a body is made of.
 //
@@ -19,37 +20,37 @@ import { useState } from 'react'
 
 const EL = [
   {
-    id: 'O', name: 'Oxygen', color: 'oklch(0.52 0.11 235)',
+    id: 'O', plate: 'water', name: 'Oxygen', color: 'oklch(0.52 0.11 235)',
     w: 65, wSq: 65, c: 24, cSq: 24,
     role: `Mostly inside water, and part of nearly every other molecule in you as well. The oxygen you breathe in is what lets your cells release energy from food — that is Lesson 3.`
   },
   {
-    id: 'C', name: 'Carbon', color: '#3d362d',
+    id: 'C', plate: 'carbonChain', name: 'Carbon', color: '#3d362d',
     w: 18, wSq: 18, c: 12, cSq: 12,
     role: `The backbone of the molecules of life. Proteins, fats, sugars and DNA are all built on chains and rings of carbon atoms.`
   },
   {
-    id: 'H', name: 'Hydrogen', color: 'oklch(0.80 0.07 235)',
+    id: 'H', plate: 'hydrogenEverywhere', name: 'Hydrogen', color: 'oklch(0.80 0.07 235)',
     w: 10, wSq: 10, c: 62, cSq: 62,
     role: `The lightest atom there is, so it adds little weight. But it is in every water molecule and every organic molecule, which makes it by far the most numerous.`
   },
   {
-    id: 'N', name: 'Nitrogen', color: 'oklch(0.52 0.12 155)',
+    id: 'N', plate: 'aminoAcid', name: 'Nitrogen', color: 'oklch(0.52 0.12 155)',
     w: 3, wSq: 3, c: 1.1, cSq: 1,
     role: `Part of every amino acid — so of every protein — and of DNA. You breathe plenty of it in and out unused; the nitrogen your body builds with comes from food.`
   },
   {
-    id: 'Ca', name: 'Calcium', color: 'oklch(0.84 0.07 85)',
+    id: 'Ca', plate: 'boneMineral', name: 'Calcium', color: 'oklch(0.84 0.07 85)',
     w: 1.5, wSq: 2, c: 0.2, cSq: 0,
     role: `About 99% of it sits in bones and teeth. The small amount in blood and cells helps trigger muscle contraction and nerve signals.`
   },
   {
-    id: 'P', name: 'Phosphorus', color: 'oklch(0.60 0.13 45)',
+    id: 'P', plate: 'atp', name: 'Phosphorus', color: 'oklch(0.60 0.13 45)',
     w: 1, wSq: 1, c: 0.2, cSq: 0,
     role: `Calcium's partner in bone mineral. Also part of DNA, of every cell's outer membrane, and of ATP, the molecule cells use to hand energy around.`
   },
   {
-    id: 'X', name: 'Everything else', color: '#b9ab94',
+    id: 'X', plate: 'saltLattice', name: 'Everything else', color: '#b9ab94',
     w: 1.5, wSq: 1, c: 0.5, cSq: 1,
     role: `Potassium, sulfur, sodium, chlorine and magnesium, plus traces of a dozen more. Iron is in here: only about 4 grams in a whole adult, roughly the weight of a small nail — yet it is what lets your blood carry oxygen.`
   }
@@ -191,13 +192,18 @@ export default function ElementGrid({ memory = {}, remember }) {
 
         {selected && (
           <div style={{
-            marginTop: 16, padding: '14px 16px', borderLeft: '3px solid var(--accent)',
+            marginTop: 18, padding: '16px 18px 18px', borderLeft: '3px solid var(--accent)',
             background: 'var(--accent-wash)', borderRadius: 'var(--r-sm)'
           }}>
-            <span className="hw-label">{selected.name.toUpperCase()} — WHAT IT DOES IN YOU</span>
-            <p style={{ margin: '8px 0 0', fontSize: 16, lineHeight: 1.55, color: 'var(--ink-2)', textWrap: 'pretty' }}>
-              {selected.role}
-            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: 12 }}>
+              <Plate id={selected.plate} title={selected.name} width={420} />
+            </div>
+            <div style={{ maxWidth: 600, margin: '0 auto' }}>
+              <span className="hw-label">{selected.name.toUpperCase()} — WHAT IT DOES IN YOU</span>
+              <p style={{ margin: '8px 0 0', fontSize: 16, lineHeight: 1.55, color: 'var(--ink-2)', textWrap: 'pretty' }}>
+                {selected.role}
+              </p>
+            </div>
           </div>
         )}
 

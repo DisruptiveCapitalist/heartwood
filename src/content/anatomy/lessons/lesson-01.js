@@ -46,13 +46,13 @@ export default {
       label: `THE LADDER — SMALLEST TO LARGEST`,
       note: `each rung is built from the one before`,
       steps: [
-        { name: `Atom`, body: `The smallest piece of an element. One oxygen atom.` },
-        { name: `Molecule`, body: `Atoms joined together. Water: two hydrogen atoms and one oxygen.` },
-        { name: `Cell`, body: `The smallest thing that is alive. You have roughly 30 trillion; most are red blood cells.` },
-        { name: `Tissue`, body: `Cells of a kind working together — muscle tissue, nerve tissue.` },
-        { name: `Organ`, body: `Several tissues combined to do a job. The heart is muscle, nerve, connective tissue and a smooth lining.` },
-        { name: `Organ system`, body: `Organs that cooperate. Heart + blood vessels + blood = the circulatory system.` },
-        { name: `Organism`, body: `All the systems together, keeping each other going. You.` }
+        { name: `Atom`, plate: 'atom', body: `The smallest piece of an element. One oxygen atom.` },
+        { name: `Molecule`, plate: 'water', body: `Atoms joined together. Water: two hydrogen atoms and one oxygen.` },
+        { name: `Cell`, plate: 'cellWhole', body: `The smallest thing that is alive. You have roughly 30 trillion; most are red blood cells.` },
+        { name: `Tissue`, plate: 'tissue', body: `Cells of a kind working together — muscle tissue, nerve tissue.` },
+        { name: `Organ`, plate: 'organ', body: `Several tissues combined to do a job. The heart is muscle, nerve, connective tissue and a smooth lining.` },
+        { name: `Organ system`, plate: 'system', body: `Organs that cooperate. Heart + blood vessels + blood = the circulatory system.` },
+        { name: `Organism`, plate: 'organism', body: `All the systems together, keeping each other going. You.` }
       ]
     },
     comparison: {
