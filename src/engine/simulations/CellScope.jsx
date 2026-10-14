@@ -272,11 +272,12 @@ export default function CellScope({ mode = 'tour' }) {
           sits; this shows what it is, which a dot on a diagram cannot. */}
       {part && !live && !isEnergy && (
         <div style={{
-          display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap',
-          padding: '18px 24px', borderTop: '1px solid var(--rule)', background: 'var(--card)'
+          padding: '20px 24px 22px', borderTop: '1px solid var(--rule)', background: 'var(--card)'
         }}>
-          <Plate id={part.id} title={part.name} width={180} />
-          <div style={{ flex: 1, minWidth: 250, display: 'flex', flexDirection: 'column', gap: 7 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', paddingBottom: 16 }}>
+            <Plate id={part.id} title={part.name} width={440} />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 7, maxWidth: 620, margin: '0 auto' }}>
             <span className="hw-label">{part.name.toUpperCase()}</span>
             <p style={{ margin: 0, fontSize: 17, lineHeight: 1.45, fontStyle: 'italic', color: 'var(--ink)' }}>
               {part.need}

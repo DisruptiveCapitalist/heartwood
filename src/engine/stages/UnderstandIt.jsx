@@ -46,26 +46,32 @@ export default function UnderstandIt({ lesson }) {
               <li
                 key={step.name}
                 style={{
-                  display: 'flex', gap: 14, flexWrap: 'wrap',
-                  alignItems: step.plate ? 'center' : 'baseline',
-                  padding: step.plate ? '14px 24px' : '11px 24px',
+                  padding: step.plate ? '16px 24px 20px' : '11px 24px',
                   borderTop: i === 0 ? 'none' : '1px solid var(--rule-2)'
                 }}
               >
-                <span style={{
-                  fontFamily: 'var(--sans)', fontSize: 12, fontWeight: 700,
-                  color: 'var(--accent)', minWidth: 16, fontVariantNumeric: 'tabular-nums'
-                }}>{i + 1}</span>
-                <span style={{ fontSize: 19, fontWeight: 600, minWidth: 128, color: 'var(--ink)' }}>
-                  {step.name}
-                </span>
-                <span style={{ flex: 1, minWidth: 220, fontSize: 17.5, lineHeight: 1.5, color: 'var(--ink-2)', textWrap: 'pretty' }}>
-                  <Rich text={step.body} />
-                </span>
-                {/* A step may carry a drawing of the thing it names. Four words
-                    for four kinds of tissue is pure vocabulary; four pictures
-                    is a lesson. */}
-                {step.plate && <Plate id={step.plate} title={step.name} width={150} />}
+                <div style={{ display: 'flex', gap: 14, alignItems: 'baseline', flexWrap: 'wrap' }}>
+                  <span style={{
+                    fontFamily: 'var(--sans)', fontSize: 12, fontWeight: 700,
+                    color: 'var(--accent)', minWidth: 16, fontVariantNumeric: 'tabular-nums'
+                  }}>{i + 1}</span>
+                  <span style={{ fontSize: 19, fontWeight: 600, minWidth: 128, color: 'var(--ink)' }}>
+                    {step.name}
+                  </span>
+                  <span style={{ flex: 1, minWidth: 220, fontSize: 17.5, lineHeight: 1.5, color: 'var(--ink-2)', textWrap: 'pretty' }}>
+                    <Rich text={step.body} />
+                  </span>
+                </div>
+                {/* The figure gets a row to itself, centred. Set beside the
+                    text it was cramped into a column too narrow for its labels,
+                    and the labels ran out over the words. Four words for four
+                    kinds of tissue is vocabulary; four labelled figures is a
+                    lesson, and a figure needs the width to be one. */}
+                {step.plate && (
+                  <div style={{ display: 'flex', justifyContent: 'center', padding: '16px 0 2px' }}>
+                    <Plate id={step.plate} title={step.name} width={430} />
+                  </div>
+                )}
               </li>
             ))}
           </ol>
