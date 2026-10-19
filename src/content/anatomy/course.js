@@ -18,6 +18,11 @@ import lesson17 from './lessons/lesson-17.js'
 import lesson18 from './lessons/lesson-18.js'
 import lesson19 from './lessons/lesson-19.js'
 import lesson20 from './lessons/lesson-20.js'
+import lesson21 from './lessons/lesson-21.js'
+import lesson22 from './lessons/lesson-22.js'
+import lesson23 from './lessons/lesson-23.js'
+import lesson24 from './lessons/lesson-24.js'
+import lesson25 from './lessons/lesson-25.js'
 
 // Heartwood's third class, and the first with no prerequisite — it does not
 // stand on Physics I the way Electricity & Energy does.
@@ -89,11 +94,11 @@ export default {
       title: `Defense, Repair, Disease and Cancer`,
       idea: `How the body protects itself — and what can go wrong.`,
       lessons: [
-        { title: `The immune system: recognizing a threat` },
-        { title: `Inflammation, fever and healing` },
-        { title: `Infection, disease and the body's response` },
-        { title: `Cancer: when cells stop following the rules` },
-        { title: `How the body detects and responds to abnormal cells` }
+        { title: `The immune system: recognizing a threat`, lessonId: 'lesson-21' },
+        { title: `Inflammation, fever and healing`, lessonId: 'lesson-22' },
+        { title: `Infection, disease and the body's response`, lessonId: 'lesson-23' },
+        { title: `Cancer: when cells stop following the rules`, lessonId: 'lesson-24' },
+        { title: `How the body detects and responds to abnormal cells`, lessonId: 'lesson-25' }
       ]
     },
     {
@@ -129,12 +134,17 @@ export default {
     'lesson-17': lesson17,
     'lesson-18': lesson18,
     'lesson-19': lesson19,
-    'lesson-20': lesson20
+    'lesson-20': lesson20,
+    'lesson-21': lesson21,
+    'lesson-22': lesson22,
+    'lesson-23': lesson23,
+    'lesson-24': lesson24,
+    'lesson-25': lesson25
   },
 
   nextUp: {
-    title: `Week 5 is not written yet`,
-    blurb: `Twenty lessons done, including the week this course was commissioned for. Next: defence and repair — the immune system, inflammation, infection, and what cancer actually is.`
+    title: `Week 6 is not written yet`,
+    blurb: `Twenty-five done. One week left: reproduction, how medicines travel through the body, the digestive organs — and then the whole person, all six weeks at once.`
   },
 
   journalPrompts: [

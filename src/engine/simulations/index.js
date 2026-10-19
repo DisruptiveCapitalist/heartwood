@@ -35,6 +35,9 @@ import Endocrine from './Endocrine.jsx'
 import Receptor from './Receptor.jsx'
 import FuelStore from './FuelStore.jsx'
 import EvidenceLadder from './EvidenceLadder.jsx'
+import Immune from './Immune.jsx'
+import Pathogens from './Pathogens.jsx'
+import Cancer from './Cancer.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -80,7 +83,10 @@ export const simulations = {
   'endocrine': Endocrine,
   'receptor': Receptor,
   'fuel-store': FuelStore,
-  'evidence-ladder': EvidenceLadder
+  'evidence-ladder': EvidenceLadder,
+  'immune': Immune,
+  'pathogens': Pathogens,
+  'cancer': Cancer
 }
 
 export function getSimulation(id) {
