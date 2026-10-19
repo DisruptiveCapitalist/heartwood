@@ -24,6 +24,9 @@ import ElementGrid from './ElementGrid.jsx'
 import CellScope from './CellScope.jsx'
 import ProteinChain from './ProteinChain.jsx'
 import FeedbackLoop from './FeedbackLoop.jsx'
+import Circulation from './Circulation.jsx'
+import BodyHeat from './BodyHeat.jsx'
+import NerveSignal from './NerveSignal.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -58,7 +61,10 @@ export const simulations = {
   'element-grid': ElementGrid,
   'cell-scope': CellScope,
   'protein-chain': ProteinChain,
-  'feedback-loop': FeedbackLoop
+  'feedback-loop': FeedbackLoop,
+  'circulation': Circulation,
+  'body-heat': BodyHeat,
+  'nerve-signal': NerveSignal
 }
 
 export function getSimulation(id) {

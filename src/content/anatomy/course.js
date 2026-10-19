@@ -3,6 +3,11 @@ import lesson02 from './lessons/lesson-02.js'
 import lesson03 from './lessons/lesson-03.js'
 import lesson04 from './lessons/lesson-04.js'
 import lesson05 from './lessons/lesson-05.js'
+import lesson06 from './lessons/lesson-06.js'
+import lesson07 from './lessons/lesson-07.js'
+import lesson08 from './lessons/lesson-08.js'
+import lesson09 from './lessons/lesson-09.js'
+import lesson10 from './lessons/lesson-10.js'
 
 // Heartwood's third class, and the first with no prerequisite — it does not
 // stand on Physics I the way Electricity & Energy does.
@@ -41,11 +46,11 @@ export default {
       title: `Transport and Control`,
       idea: `Blood, heart, nerves and temperature.`,
       lessons: [
-        { title: `The heart: more than a pump` },
-        { title: `Blood, arteries, veins and capillaries` },
-        { title: `Oxygen, the lungs and what cells need` },
-        { title: `Why do hands and feet get cold?` },
-        { title: `The nervous system: signals at extraordinary speed` }
+        { title: `The heart: more than a pump`, lessonId: 'lesson-06' },
+        { title: `Blood, arteries, veins and capillaries`, lessonId: 'lesson-07' },
+        { title: `Oxygen, the lungs and what cells need`, lessonId: 'lesson-08' },
+        { title: `Why do hands and feet get cold?`, lessonId: 'lesson-09' },
+        { title: `The nervous system: signals at extraordinary speed`, lessonId: 'lesson-10' }
       ]
     },
     {
@@ -99,12 +104,17 @@ export default {
     'lesson-02': lesson02,
     'lesson-03': lesson03,
     'lesson-04': lesson04,
-    'lesson-05': lesson05
+    'lesson-05': lesson05,
+    'lesson-06': lesson06,
+    'lesson-07': lesson07,
+    'lesson-08': lesson08,
+    'lesson-09': lesson09,
+    'lesson-10': lesson10
   },
 
   nextUp: {
-    title: `Week 2 is not written yet`,
-    blurb: `Week 1 is complete — atoms to a whole person, the cell, its energy, its instructions, and how all of it stays steady. Next: out of the cell and into the body that supplies it, starting with the heart.`
+    title: `Week 3 is not written yet`,
+    blurb: `Two weeks done — the cell and its chemistry, then the transport and control systems that supply it. Next: the frame that carries all of it, starting with the fact that bone is alive.`
   },
 
   journalPrompts: [
