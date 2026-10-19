@@ -13,6 +13,11 @@ import lesson12 from './lessons/lesson-12.js'
 import lesson13 from './lessons/lesson-13.js'
 import lesson14 from './lessons/lesson-14.js'
 import lesson15 from './lessons/lesson-15.js'
+import lesson16 from './lessons/lesson-16.js'
+import lesson17 from './lessons/lesson-17.js'
+import lesson18 from './lessons/lesson-18.js'
+import lesson19 from './lessons/lesson-19.js'
+import lesson20 from './lessons/lesson-20.js'
 
 // Heartwood's third class, and the first with no prerequisite — it does not
 // stand on Physics I the way Electricity & Energy does.
@@ -73,11 +78,11 @@ export default {
       title: `The Body's Chemical Messengers`,
       idea: `Hormones, receptors, metabolism and peptides.`,
       lessons: [
-        { title: `The endocrine system: messages through the body` },
-        { title: `Hormones and peptides: alike and different` },
-        { title: `Receptors: how cells receive instructions` },
-        { title: `Metabolism, insulin and energy balance` },
-        { title: `Peptides in health: evidence, possibilities and risks` }
+        { title: `The endocrine system: messages through the body`, lessonId: 'lesson-16' },
+        { title: `Hormones and peptides: alike and different`, lessonId: 'lesson-17' },
+        { title: `Receptors: how cells receive instructions`, lessonId: 'lesson-18' },
+        { title: `Metabolism, insulin and energy balance`, lessonId: 'lesson-19' },
+        { title: `Peptides in health: evidence, possibilities and risks`, lessonId: 'lesson-20' }
       ]
     },
     {
@@ -119,12 +124,17 @@ export default {
     'lesson-12': lesson12,
     'lesson-13': lesson13,
     'lesson-14': lesson14,
-    'lesson-15': lesson15
+    'lesson-15': lesson15,
+    'lesson-16': lesson16,
+    'lesson-17': lesson17,
+    'lesson-18': lesson18,
+    'lesson-19': lesson19,
+    'lesson-20': lesson20
   },
 
   nextUp: {
-    title: `Week 4 is not written yet`,
-    blurb: `Half the course is done — the cell, the systems that supply it, and the frame that carries it. Next: back to molecules, for hormones, receptors, metabolism, and the word "peptide" held up to the light.`
+    title: `Week 5 is not written yet`,
+    blurb: `Twenty lessons done, including the week this course was commissioned for. Next: defence and repair — the immune system, inflammation, infection, and what cancer actually is.`
   },
 
   journalPrompts: [

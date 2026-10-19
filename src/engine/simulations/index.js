@@ -31,6 +31,10 @@ import Bone from './Bone.jsx'
 import Joint from './Joint.jsx'
 import MuscleUnit from './MuscleUnit.jsx'
 import Recovery from './Recovery.jsx'
+import Endocrine from './Endocrine.jsx'
+import Receptor from './Receptor.jsx'
+import FuelStore from './FuelStore.jsx'
+import EvidenceLadder from './EvidenceLadder.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -72,7 +76,11 @@ export const simulations = {
   'bone': Bone,
   'joint': Joint,
   'muscle-unit': MuscleUnit,
-  'recovery': Recovery
+  'recovery': Recovery,
+  'endocrine': Endocrine,
+  'receptor': Receptor,
+  'fuel-store': FuelStore,
+  'evidence-ladder': EvidenceLadder
 }
 
 export function getSimulation(id) {
