@@ -23,6 +23,11 @@ import lesson22 from './lessons/lesson-22.js'
 import lesson23 from './lessons/lesson-23.js'
 import lesson24 from './lessons/lesson-24.js'
 import lesson25 from './lessons/lesson-25.js'
+import lesson26 from './lessons/lesson-26.js'
+import lesson27 from './lessons/lesson-27.js'
+import lesson28 from './lessons/lesson-28.js'
+import lesson29 from './lessons/lesson-29.js'
+import lesson30 from './lessons/lesson-30.js'
 
 // Heartwood's third class, and the first with no prerequisite — it does not
 // stand on Physics I the way Electricity & Energy does.
@@ -105,11 +110,11 @@ export default {
       title: `Reproduction, Medicines and the Whole Body`,
       idea: `Seeing the body as one connected system.`,
       lessons: [
-        { title: `The female reproductive system` },
-        { title: `The male reproductive system and human reproduction` },
-        { title: `How medicines work in the body` },
-        { title: `The digestive system, liver and kidneys` },
-        { title: `The whole person: connecting the systems` }
+        { title: `The female reproductive system`, lessonId: 'lesson-26' },
+        { title: `The male reproductive system and human reproduction`, lessonId: 'lesson-27' },
+        { title: `How medicines work in the body`, lessonId: 'lesson-28' },
+        { title: `The digestive system, liver and kidneys`, lessonId: 'lesson-29' },
+        { title: `The whole person: connecting the systems`, lessonId: 'lesson-30' }
       ]
     }
   ],
@@ -139,12 +144,17 @@ export default {
     'lesson-22': lesson22,
     'lesson-23': lesson23,
     'lesson-24': lesson24,
-    'lesson-25': lesson25
+    'lesson-25': lesson25,
+    'lesson-26': lesson26,
+    'lesson-27': lesson27,
+    'lesson-28': lesson28,
+    'lesson-29': lesson29,
+    'lesson-30': lesson30
   },
 
   nextUp: {
-    title: `Week 6 is not written yet`,
-    blurb: `Twenty-five done. One week left: reproduction, how medicines travel through the body, the digestive organs — and then the whole person, all six weeks at once.`
+    title: `All thirty lessons are written`,
+    blurb: `The course is complete — atoms to a whole person, by way of the cell, the systems that supply it, the frame that carries it, the messengers that run it, the defences that protect it, and the evidence to judge what anyone claims about it.`
   },
 
   journalPrompts: [

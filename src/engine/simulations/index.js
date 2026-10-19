@@ -38,6 +38,9 @@ import EvidenceLadder from './EvidenceLadder.jsx'
 import Immune from './Immune.jsx'
 import Pathogens from './Pathogens.jsx'
 import Cancer from './Cancer.jsx'
+import Reproduction from './Reproduction.jsx'
+import Processing from './Processing.jsx'
+import WholeBody from './WholeBody.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -86,7 +89,10 @@ export const simulations = {
   'evidence-ladder': EvidenceLadder,
   'immune': Immune,
   'pathogens': Pathogens,
-  'cancer': Cancer
+  'cancer': Cancer,
+  'reproduction': Reproduction,
+  'processing': Processing,
+  'whole-body': WholeBody
 }
 
 export function getSimulation(id) {
