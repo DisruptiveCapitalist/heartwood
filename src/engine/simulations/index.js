@@ -27,6 +27,10 @@ import FeedbackLoop from './FeedbackLoop.jsx'
 import Circulation from './Circulation.jsx'
 import BodyHeat from './BodyHeat.jsx'
 import NerveSignal from './NerveSignal.jsx'
+import Bone from './Bone.jsx'
+import Joint from './Joint.jsx'
+import MuscleUnit from './MuscleUnit.jsx'
+import Recovery from './Recovery.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -64,7 +68,11 @@ export const simulations = {
   'feedback-loop': FeedbackLoop,
   'circulation': Circulation,
   'body-heat': BodyHeat,
-  'nerve-signal': NerveSignal
+  'nerve-signal': NerveSignal,
+  'bone': Bone,
+  'joint': Joint,
+  'muscle-unit': MuscleUnit,
+  'recovery': Recovery
 }
 
 export function getSimulation(id) {

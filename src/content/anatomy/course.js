@@ -8,6 +8,11 @@ import lesson07 from './lessons/lesson-07.js'
 import lesson08 from './lessons/lesson-08.js'
 import lesson09 from './lessons/lesson-09.js'
 import lesson10 from './lessons/lesson-10.js'
+import lesson11 from './lessons/lesson-11.js'
+import lesson12 from './lessons/lesson-12.js'
+import lesson13 from './lessons/lesson-13.js'
+import lesson14 from './lessons/lesson-14.js'
+import lesson15 from './lessons/lesson-15.js'
 
 // Heartwood's third class, and the first with no prerequisite — it does not
 // stand on Physics I the way Electricity & Energy does.
@@ -57,11 +62,11 @@ export default {
       title: `Bones, Muscles and Movement`,
       idea: `The living framework of the body.`,
       lessons: [
-        { title: `Bones are living tissue` },
-        { title: `What are bones made of?` },
-        { title: `Joints, cartilage, tendons and ligaments` },
-        { title: `The major muscles and how they work` },
-        { title: `Movement, recovery and aging` }
+        { title: `Bones are living tissue`, lessonId: 'lesson-11' },
+        { title: `What are bones made of?`, lessonId: 'lesson-12' },
+        { title: `Joints, cartilage, tendons and ligaments`, lessonId: 'lesson-13' },
+        { title: `The major muscles and how they work`, lessonId: 'lesson-14' },
+        { title: `Movement, recovery and aging`, lessonId: 'lesson-15' }
       ]
     },
     {
@@ -109,12 +114,17 @@ export default {
     'lesson-07': lesson07,
     'lesson-08': lesson08,
     'lesson-09': lesson09,
-    'lesson-10': lesson10
+    'lesson-10': lesson10,
+    'lesson-11': lesson11,
+    'lesson-12': lesson12,
+    'lesson-13': lesson13,
+    'lesson-14': lesson14,
+    'lesson-15': lesson15
   },
 
   nextUp: {
-    title: `Week 3 is not written yet`,
-    blurb: `Two weeks done — the cell and its chemistry, then the transport and control systems that supply it. Next: the frame that carries all of it, starting with the fact that bone is alive.`
+    title: `Week 4 is not written yet`,
+    blurb: `Half the course is done — the cell, the systems that supply it, and the frame that carries it. Next: back to molecules, for hormones, receptors, metabolism, and the word "peptide" held up to the light.`
   },
 
   journalPrompts: [
