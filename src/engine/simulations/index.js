@@ -45,6 +45,10 @@ import PowerUse from './PowerUse.jsx'
 import Mains from './Mains.jsx'
 import Transformer from './Transformer.jsx'
 import SeriesParallel from './SeriesParallel.jsx'
+import Oersted from './Oersted.jsx'
+import Machine from './Machine.jsx'
+import FieldShape from './FieldShape.jsx'
+import GridJourney from './GridJourney.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -100,7 +104,11 @@ export const simulations = {
   'power-use': PowerUse,
   'mains': Mains,
   'transformer': Transformer,
-  'series-parallel': SeriesParallel
+  'series-parallel': SeriesParallel,
+  'oersted': Oersted,
+  'machine': Machine,
+  'field-shape': FieldShape,
+  'grid-journey': GridJourney
 }
 
 export function getSimulation(id) {

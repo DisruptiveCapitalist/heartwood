@@ -8,6 +8,11 @@ import lesson07 from './lessons/lesson-07.js'
 import lesson08 from './lessons/lesson-08.js'
 import lesson09 from './lessons/lesson-09.js'
 import lesson10 from './lessons/lesson-10.js'
+import lesson11 from './lessons/lesson-11.js'
+import lesson12 from './lessons/lesson-12.js'
+import lesson13 from './lessons/lesson-13.js'
+import lesson14 from './lessons/lesson-14.js'
+import lesson15 from './lessons/lesson-15.js'
 
 // Heartwood's second class. The learner's original brief said electricity
 // deserved a course of its own eventually; this is it, and it deliberately
@@ -52,11 +57,11 @@ export default {
       title: `Magnets and Motion`,
       idea: `Electricity and magnetism are one thing seen from two sides.`,
       lessons: [
-        { title: `The compass needle that flinches near a wire` },
-        { title: `How a motor turns electricity into spin` },
-        { title: `How a generator turns spin into electricity` },
-        { title: `The magnetic field that goes round in a circle` },
-        { title: `From the power plant to your wall` }
+        { title: `The compass needle that flinches near a wire`, lessonId: 'lesson-11' },
+        { title: `How a motor turns electricity into spin`, lessonId: 'lesson-12' },
+        { title: `How a generator turns spin into electricity`, lessonId: 'lesson-13' },
+        { title: `The magnetic field that goes round in a circle`, lessonId: 'lesson-14' },
+        { title: `From the power plant to your wall`, lessonId: 'lesson-15' }
       ]
     },
     {
@@ -104,12 +109,17 @@ export default {
     'lesson-07': lesson07,
     'lesson-08': lesson08,
     'lesson-09': lesson09,
-    'lesson-10': lesson10
+    'lesson-10': lesson10,
+    'lesson-11': lesson11,
+    'lesson-12': lesson12,
+    'lesson-13': lesson13,
+    'lesson-14': lesson14,
+    'lesson-15': lesson15
   },
 
   nextUp: {
-    title: `Week 3 is not written yet`,
-    blurb: `Two weeks done — the circuit itself, then the house it runs. Next: magnetism, and the discovery that electricity and magnetism were never two subjects.`
+    title: `Week 4 is not written yet`,
+    blurb: `Halfway. The circuit, the house, and now the machinery — and the whole path from a boiler to a lamp. Next: no moving parts at all, just light falling on silicon.`
   },
 
   journalPrompts: [

@@ -14,11 +14,13 @@ teaches and what it must not do — this repository is the authority on how.
 | `lesson-engine-handoff.md` | The Physics I lesson-engine handoff: the full specification of the player, the stages and the panels. Still applies to every class. |
 | `university-handoff.md` | The multi-class handoff. The catalog, the class home, and how to add a class. Also records which Lesson 1 copy was approved by the learner. |
 | `physics-i-lessons-3-30.md` | The build package for Physics I, Lessons 3–30. **Built: 30/30.** |
-| `anatomy-course-spec.md` | The full Anatomy & Physiology course spec, all 30 lessons. **Built: 5/30** (Week 1). Sections 5, 6 and 8 are what you need. |
+| `anatomy-course-spec.md` | The full Anatomy & Physiology course spec, all 30 lessons. **Built: 30/30.** Sections 5, 6 and 8 are what you need. |
 
 Electricity & Energy has no separate document: its syllabus arrived inside
 `university-handoff.md` and the design references, and the built syllabus in
-`src/content/electricity/course.js` is now the record of it.
+`src/content/electricity/course.js` is now the record of it. **Built: 15/30**
+(Weeks 1–3). Weeks 4–6 are sunlight, storage, and the week that hands the
+course back to the learner.
 
 ## Two things worth knowing before you use these
 
