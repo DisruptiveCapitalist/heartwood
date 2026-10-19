@@ -41,6 +41,10 @@ import Cancer from './Cancer.jsx'
 import Reproduction from './Reproduction.jsx'
 import Processing from './Processing.jsx'
 import WholeBody from './WholeBody.jsx'
+import PowerUse from './PowerUse.jsx'
+import Mains from './Mains.jsx'
+import Transformer from './Transformer.jsx'
+import SeriesParallel from './SeriesParallel.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -92,7 +96,11 @@ export const simulations = {
   'cancer': Cancer,
   'reproduction': Reproduction,
   'processing': Processing,
-  'whole-body': WholeBody
+  'whole-body': WholeBody,
+  'power-use': PowerUse,
+  'mains': Mains,
+  'transformer': Transformer,
+  'series-parallel': SeriesParallel
 }
 
 export function getSimulation(id) {

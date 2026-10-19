@@ -3,6 +3,11 @@ import lesson02 from './lessons/lesson-02.js'
 import lesson03 from './lessons/lesson-03.js'
 import lesson04 from './lessons/lesson-04.js'
 import lesson05 from './lessons/lesson-05.js'
+import lesson06 from './lessons/lesson-06.js'
+import lesson07 from './lessons/lesson-07.js'
+import lesson08 from './lessons/lesson-08.js'
+import lesson09 from './lessons/lesson-09.js'
+import lesson10 from './lessons/lesson-10.js'
 
 // Heartwood's second class. The learner's original brief said electricity
 // deserved a course of its own eventually; this is it, and it deliberately
@@ -36,11 +41,11 @@ export default {
       title: `Power in the House`,
       idea: `Watts, AC and DC, and what the wall is actually doing.`,
       lessons: [
-        { title: `What the electric bill actually counts` },
-        { title: `DC and AC: one way, or back and forth` },
-        { title: `Why the outlet has three holes` },
-        { title: `Transformers: trading push for flow` },
-        { title: `Why one dead bulb used to darken the whole string` }
+        { title: `What the electric bill actually counts`, lessonId: 'lesson-06' },
+        { title: `DC and AC: one way, or back and forth`, lessonId: 'lesson-07' },
+        { title: `Why the outlet has three holes`, lessonId: 'lesson-08' },
+        { title: `Transformers: trading push for flow`, lessonId: 'lesson-09' },
+        { title: `Why one dead bulb used to darken the whole string`, lessonId: 'lesson-10' }
       ]
     },
     {
@@ -94,12 +99,17 @@ export default {
     'lesson-02': lesson02,
     'lesson-03': lesson03,
     'lesson-04': lesson04,
-    'lesson-05': lesson05
+    'lesson-05': lesson05,
+    'lesson-06': lesson06,
+    'lesson-07': lesson07,
+    'lesson-08': lesson08,
+    'lesson-09': lesson09,
+    'lesson-10': lesson10
   },
 
   nextUp: {
-    title: `Week 2 is not written yet`,
-    blurb: `Week 1 is complete — the loop, the push, the flow and the fight, all on the same circuit seen five ways. Next: into the house, starting with what the electric bill actually counts.`
+    title: `Week 3 is not written yet`,
+    blurb: `Two weeks done — the circuit itself, then the house it runs. Next: magnetism, and the discovery that electricity and magnetism were never two subjects.`
   },
 
   journalPrompts: [
