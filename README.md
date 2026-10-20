@@ -10,7 +10,7 @@ five lessons. A catalog is the way in.
 | **Physics I** — Seeing the World Through Physics | **30 of 30 written** | **complete** |
 | **Electricity & Energy** — The Power You Never See | **30 of 30 written** | **complete** |
 | **Anatomy & Physiology** — The Human Body, from the Cell to the Whole Person | **30 of 30 written** | **complete** |
-| **Algebra Companion** — Understand what it means. Use it. Explain why it works. | 30 of 30 ported · Week 1 playable | in progress |
+| **Algebra Companion** — Understand what it means. Use it. Explain why it works. | **30 of 30 playable** | engine done |
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -236,7 +236,19 @@ rather than `courses`.
 
 All thirty lessons arrived written and are ported as data, nearly verbatim —
 the only edits are three hrefs that were `.dc.html` query strings and are now
-routes. `npm test` runs every one of them through the port checks.
+routes. `npm test` runs every one of them through the port checks, and drives
+every generic lesson's render function at its defaults, on every tab and after
+every button, because a bad plot spec would otherwise throw while the learner
+is moving a slider.
+
+Six See It visuals cover all thirty lessons, and `generic` alone covers
+twenty-one: the content supplies the controls and a pure `render(values)`, and
+the component supplies the mechanics. That is the same economy the other
+classes got from simulation families.
+
+**Still to build:** the Refresher screen (five optional questions suggesting a
+starting lesson) and "bring a problem from school" on the class home — the
+parser for it is already ported in `algebra-content.js`.
 
 **One thing the handoff asks for that this build cannot do.** It says the
 Feynman stage should "in production, replace [the keyword checks] with an LLM

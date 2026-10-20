@@ -166,7 +166,16 @@ export default function AlgebraLesson({ course, n, path, onPath, onLesson, onHom
           <>
             <Prompt voice="PROFESSOR">{lesson.see.prompt[path]}</Prompt>
             {Visual
-              ? <Visual see={lesson.see} onEngaged={() => save({ visited: { ...p.visited, seeEngaged: true } })} />
+              ? <Visual
+                  // Keyed by lesson and pathway so a new lesson gets a FRESH
+                  // visual. Without this React keeps the component mounted and
+                  // only swaps the props, so Lesson 12 inherits Lesson 18's
+                  // slider values — and a tabbed visual arriving with no `tab`
+                  // in its state crashes on the first render. The generic
+                  // player next door needs the same key for the same reason.
+                  key={`${n}.${path}`}
+                  see={lesson.see}
+                  onEngaged={() => save({ visited: { ...p.visited, seeEngaged: true } })} />
               : <div style={{ border: '1px dashed var(--field)', borderRadius: 7, padding: 28, fontFamily: 'var(--sans)', color: 'var(--muted)' }}>
                   The <strong>{lesson.see.visual}</strong> visual is not built yet. It arrives with a later week.
                 </div>}
