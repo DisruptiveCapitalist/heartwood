@@ -13,6 +13,11 @@ import lesson12 from './lessons/lesson-12.js'
 import lesson13 from './lessons/lesson-13.js'
 import lesson14 from './lessons/lesson-14.js'
 import lesson15 from './lessons/lesson-15.js'
+import lesson16 from './lessons/lesson-16.js'
+import lesson17 from './lessons/lesson-17.js'
+import lesson18 from './lessons/lesson-18.js'
+import lesson19 from './lessons/lesson-19.js'
+import lesson20 from './lessons/lesson-20.js'
 
 // Heartwood's second class. The learner's original brief said electricity
 // deserved a course of its own eventually; this is it, and it deliberately
@@ -68,11 +73,11 @@ export default {
       title: `Electricity From Sunlight`,
       idea: `Light knocks something loose, and a one-way door does the rest.`,
       lessons: [
-        { title: `From sunlight to electricity` },
-        { title: `P-type and N-type silicon: the one-way door` },
-        { title: `Why a shaded corner hurts the whole panel` },
-        { title: `Panels in a row, panels side by side` },
-        { title: `The panel's best moment` }
+        { title: `From sunlight to electricity`, lessonId: 'lesson-16' },
+        { title: `P-type and N-type silicon: the one-way door`, lessonId: 'lesson-17' },
+        { title: `Why a shaded corner hurts the whole panel`, lessonId: 'lesson-18' },
+        { title: `Panels in a row, panels side by side`, lessonId: 'lesson-19' },
+        { title: `The panel's best moment`, lessonId: 'lesson-20' }
       ]
     },
     {
@@ -114,12 +119,17 @@ export default {
     'lesson-12': lesson12,
     'lesson-13': lesson13,
     'lesson-14': lesson14,
-    'lesson-15': lesson15
+    'lesson-15': lesson15,
+    'lesson-16': lesson16,
+    'lesson-17': lesson17,
+    'lesson-18': lesson18,
+    'lesson-19': lesson19,
+    'lesson-20': lesson20
   },
 
   nextUp: {
-    title: `Week 4 is not written yet`,
-    blurb: `Halfway. The circuit, the house, and now the machinery — and the whole path from a boiler to a lamp. Next: no moving parts at all, just light falling on silicon.`
+    title: `Week 5 is not written yet`,
+    blurb: `Twenty lessons. The circuit, the house, the machinery, and now the panel on the roof. Next: holding power until it is wanted, and reshaping it for the house.`
   },
 
   journalPrompts: [

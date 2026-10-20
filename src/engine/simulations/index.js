@@ -49,6 +49,10 @@ import Oersted from './Oersted.jsx'
 import Machine from './Machine.jsx'
 import FieldShape from './FieldShape.jsx'
 import GridJourney from './GridJourney.jsx'
+import Photon from './Photon.jsx'
+import Junction from './Junction.jsx'
+import PanelArray from './PanelArray.jsx'
+import IVCurve from './IVCurve.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -108,7 +112,11 @@ export const simulations = {
   'oersted': Oersted,
   'machine': Machine,
   'field-shape': FieldShape,
-  'grid-journey': GridJourney
+  'grid-journey': GridJourney,
+  'photon': Photon,
+  'junction': Junction,
+  'panel-array': PanelArray,
+  'iv-curve': IVCurve
 }
 
 export function getSimulation(id) {
