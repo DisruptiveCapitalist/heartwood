@@ -6,6 +6,7 @@ import CourseHome from './screens/CourseHome.jsx'
 import Lesson from './engine/Lesson.jsx'
 import AlgebraHome from './engine/algebra/AlgebraHome.jsx'
 import AlgebraLesson from './engine/algebra/AlgebraLesson.jsx'
+import AlgebraRefresher from './engine/algebra/AlgebraRefresher.jsx'
 import { PATH_IDS, readPathChoice } from './lib/algebra.js'
 
 // Tweakables from the handoff. 20 switches the stage rail to the shorter
@@ -21,7 +22,7 @@ const lessonNumber = (id) => {
 }
 
 export default function App() {
-  const { courseId, lessonId, pathId } = useRoute()
+  const { courseId, lessonId, pathId, stageId, deeper } = useRoute()
   const course = courseId ? courseById(courseId) : null
 
   // The Algebra Companion is built on a different lesson shape and has its own
@@ -29,12 +30,23 @@ export default function App() {
   if (course?.kind === 'algebra') {
     const n = lessonNumber(lessonId)
     const path = PATH_IDS.includes(pathId) ? pathId : (readPathChoice() ?? 'learn')
-    const openLesson = (num, p) => go(`/${course.id}/lesson-${String(num).padStart(2, '0')}/${p ?? path}`)
-    const screen = n ? (
+    const openLesson = (num, p, stage, deep) => {
+      const tail = [stage, deep ? 'deeper' : null].filter(Boolean).join('/')
+      go(`/${course.id}/lesson-${String(num).padStart(2, '0')}/${p ?? path}${tail ? `/${tail}` : ''}`)
+    }
+    const screen = lessonId === 'refresher' ? (
+      <AlgebraRefresher
+        onOpenLesson={openLesson}
+        onHome={() => go(`/${course.id}`)}
+        onCatalog={() => go('/')}
+      />
+    ) : n ? (
       <AlgebraLesson
         course={course}
         n={n}
         path={path}
+        openStage={stageId && stageId !== 'deeper' ? stageId : null}
+        openDeeper={deeper}
         onPath={(p) => openLesson(n, p)}
         onLesson={(num) => openLesson(num, path)}
         onHome={() => go(`/${course.id}`)}
@@ -44,6 +56,7 @@ export default function App() {
       <AlgebraHome
         course={course}
         onOpenLesson={openLesson}
+        onRefresher={() => go(`/${course.id}/refresher`)}
         onCatalog={() => go('/')}
       />
     )

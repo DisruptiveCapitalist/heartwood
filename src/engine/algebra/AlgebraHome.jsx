@@ -2,8 +2,9 @@ import { useMemo, useState } from 'react'
 import { PATHS, LEVELS } from '../../content/algebra/algebra-content.js'
 import {
   readAlgebra, readPathChoice, writePathChoice, PATH_IDS,
-  conceptLevels, weekRows, todayCard, algebraProgress
+  conceptLevels, weekRows, todayCard, algebraProgress, readRefresher
 } from '../../lib/algebra.js'
+import ProblemReader from './ProblemReader.jsx'
 
 // The Algebra Companion's class home.
 //
@@ -18,6 +19,7 @@ const STATUS_COLOR = {
 
 export default function AlgebraHome({ course, onOpenLesson, onCatalog, onRefresher }) {
   const [path, setPath] = useState(() => readPathChoice())
+  const refresherDone = !!readRefresher()?.finished
 
   const progressOf = useMemo(() => {
     const cache = {}
@@ -87,11 +89,35 @@ export default function AlgebraHome({ course, onOpenLesson, onCatalog, onRefresh
             )
           })}
         </div>
-        {!path && onRefresher && (
+        {onRefresher && (
           <button className="hw-btn" onClick={onRefresher}
             style={{ marginTop: 16, fontSize: 12.5, padding: '11px 16px', borderColor: 'var(--accent)', color: 'var(--accent)' }}>
-            Not sure where to start? Try the five-question refresher
+            {refresherDone
+              ? 'See your check-in again →'
+              : 'Not sure where to start? Five questions, none of them scored →'}
           </button>
+        )}
+
+        {path === 'refresh' && (
+          <div style={{ marginTop: 18, display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <span style={{ fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.18em', color: 'var(--muted)' }}>
+              QUESTIONS ADULTS OFTEN BRING
+            </span>
+            {[
+              { label: 'Why does "do the same to both sides" actually work?', n: 4, stage: 'understand', deeper: true },
+              // The design reference sent this to Lesson 7's two-step stretch
+              // because Lesson 8 was not written when it was drawn — its own
+              // code says so ("Lesson 8 isn't written yet"). All thirty are
+              // built here, so it goes where the spec's pilot scenario 3 asks:
+              // Lesson 8, which is two-step equations and nothing else.
+              { label: 'I remember algebra, but not how to solve a two-step equation.', n: 8 }
+            ].map((q) => (
+              <button key={q.label} className="hw-link" onClick={() => onOpenLesson(q.n, 'refresh', q.stage, q.deeper)}
+                style={{ textAlign: 'left', fontSize: 19, lineHeight: 1.4, background: 'none', border: 0, padding: 0, color: 'var(--accent)', cursor: 'pointer' }}>
+                {q.label}
+              </button>
+            ))}
+          </div>
         )}
       </section>
 
@@ -113,6 +139,8 @@ export default function AlgebraHome({ course, onOpenLesson, onCatalog, onRefresh
               <span style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--muted)' }}>{today.meta}</span>
             </div>
           </section>
+
+          <ProblemReader path={active} onOpenLesson={onOpenLesson} />
 
           <section aria-labelledby="journey" style={{ marginBottom: 44 }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 14, borderBottom: '1px solid var(--rule-2)', paddingBottom: 10, marginBottom: 20 }}>

@@ -246,9 +246,22 @@ twenty-one: the content supplies the controls and a pure `render(values)`, and
 the component supplies the mechanics. That is the same economy the other
 classes got from simulation families.
 
-**Still to build:** the Refresher screen (five optional questions suggesting a
-starting lesson) and "bring a problem from school" on the class home — the
-parser for it is already ported in `algebra-content.js`.
+The class home also carries the two pieces that make it a companion rather
+than a course:
+
+- **The refresher** at `#/algebra/refresher`. Five optional questions, none of
+  them scored. Every one has an "I know this — skip it" button beside it,
+  because letting an adult skip what is still there is the entire point; a
+  wrong answer gets the explanation rather than a cross. It ends with one
+  suggested lesson and a list to override it with.
+- **"Bring a problem from school."** The parser classifies what a problem is
+  testing and points at the lesson that covers it, then offers a similar
+  problem to try first or a walk through the learner's own — and in the walk,
+  the learner does every calculation. It never just hands over the answer.
+
+Both are reachable by deep link, which is how the adult questions on the class
+home open Lesson 4 at Understand It with the "go deeper" section already
+expanded: `#/algebra/lesson-04/refresh/understand/deeper`.
 
 **One thing the handoff asks for that this build cannot do.** It says the
 Feynman stage should "in production, replace [the keyword checks] with an LLM

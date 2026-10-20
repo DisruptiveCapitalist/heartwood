@@ -35,13 +35,29 @@ const Prompt = ({ voice, children }) => (
   </div>
 )
 
-export default function AlgebraLesson({ course, n, path, onPath, onLesson, onHome, onCatalog }) {
+export default function AlgebraLesson({ course, n, path, openStage, openDeeper, onPath, onLesson, onHome, onCatalog }) {
   const lesson = LESSONS[n]
   const [p, setP] = useState(() => readAlgebra(n, path))
   const [stuck, setStuck] = useState(null)
 
-  // A new lesson or a new pathway is a different record entirely.
-  useEffect(() => { setP(readAlgebra(n, path)); setStuck(null); window.scrollTo(0, 0) }, [n, path])
+  // A new lesson or a new pathway is a different record entirely. A deep link
+  // can also ask for a particular stage, and for the "go deeper" section to be
+  // open — that is how the refresher's list and the adult questions on the
+  // class home reach "why does the same to both sides actually work".
+  useEffect(() => {
+    const saved = readAlgebra(n, path)
+    const wanted = openStage ? STAGES.findIndex((s) => s.key === openStage) : -1
+    setP(wanted >= 0 || openDeeper
+      ? {
+          ...saved,
+          stage: wanted >= 0 ? wanted : saved.stage,
+          visited: { ...saved.visited, ...(wanted >= 0 ? { [STAGES[wanted].key]: true } : {}) },
+          deeper: openDeeper || saved.deeper
+        }
+      : saved)
+    setStuck(null)
+    window.scrollTo(0, 0)
+  }, [n, path, openStage, openDeeper])
 
   const save = (patch) => {
     const next = { ...p, ...patch }
