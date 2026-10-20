@@ -57,6 +57,7 @@ import Tracker from './Tracker.jsx'
 import Battery from './Battery.jsx'
 import Inverter from './Inverter.jsx'
 import Phases from './Phases.jsx'
+import HousePanel from './HousePanel.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -124,7 +125,8 @@ export const simulations = {
   'tracker': Tracker,
   'battery': Battery,
   'inverter': Inverter,
-  'phases': Phases
+  'phases': Phases,
+  'house-panel': HousePanel
 }
 
 export function getSimulation(id) {

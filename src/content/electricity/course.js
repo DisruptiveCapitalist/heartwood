@@ -23,6 +23,11 @@ import lesson22 from './lessons/lesson-22.js'
 import lesson23 from './lessons/lesson-23.js'
 import lesson24 from './lessons/lesson-24.js'
 import lesson25 from './lessons/lesson-25.js'
+import lesson26 from './lessons/lesson-26.js'
+import lesson27 from './lessons/lesson-27.js'
+import lesson28 from './lessons/lesson-28.js'
+import lesson29 from './lessons/lesson-29.js'
+import lesson30 from './lessons/lesson-30.js'
 
 // Heartwood's second class. The learner's original brief said electricity
 // deserved a course of its own eventually; this is it, and it deliberately
@@ -100,11 +105,11 @@ export default {
       title: `Energy Is Everywhere`,
       idea: `This week you become the electrician. I bring the objects; you explain them.`,
       lessons: [
-        { title: `A flashlight and a toaster` },
-        { title: `A refrigerator and a ceiling fan` },
-        { title: `A car's alternator and a hybrid's brakes` },
-        { title: `Your house, from the meter inward` },
-        { title: `The Heartwood Energy Challenge` }
+        { title: `A flashlight and a toaster`, lessonId: 'lesson-26' },
+        { title: `A refrigerator and a ceiling fan`, lessonId: 'lesson-27' },
+        { title: `A car's alternator and a hybrid's brakes`, lessonId: 'lesson-28' },
+        { title: `Your house, from the meter inward`, lessonId: 'lesson-29' },
+        { title: `The Heartwood Energy Challenge`, lessonId: 'lesson-30' }
       ]
     }
   ],
@@ -134,12 +139,18 @@ export default {
     'lesson-22': lesson22,
     'lesson-23': lesson23,
     'lesson-24': lesson24,
-    'lesson-25': lesson25
+    'lesson-25': lesson25,
+    'lesson-26': lesson26,
+    'lesson-27': lesson27,
+    'lesson-28': lesson28,
+    'lesson-29': lesson29,
+    'lesson-30': lesson30
   },
 
+  // Shown when every written lesson is finished.
   nextUp: {
-    title: `Week 6 is not written yet`,
-    blurb: `Twenty-five lessons. One week left — and in it you do the explaining. I bring the objects; you tell me what is happening inside them.`
+    title: `Electricity & Energy is complete`,
+    blurb: `All thirty lessons — from a lamp that doesn't wait, through the house, the machinery, the panel on the roof and the battery in the garage, to anything you care to point at. Nothing is ever locked; go back to any of it, any time.`
   },
 
   journalPrompts: [
