@@ -25,7 +25,7 @@ const W = 520, H = 190, PADL = 44, PADB = 30
 const watts = (n) => `${Math.round(n)} ${Math.round(n) === 1 ? 'watt' : 'watts'}`
 
 export default function IVCurve() {
-  const [vPct, setVPct] = useState(82)
+  const [vPct, setVPct] = useState(82.3)
   const [irr, setIrr] = useState(1000)
   const [degC, setDegC] = useState(25)
 
