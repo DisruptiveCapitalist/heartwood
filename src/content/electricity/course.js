@@ -18,6 +18,11 @@ import lesson17 from './lessons/lesson-17.js'
 import lesson18 from './lessons/lesson-18.js'
 import lesson19 from './lessons/lesson-19.js'
 import lesson20 from './lessons/lesson-20.js'
+import lesson21 from './lessons/lesson-21.js'
+import lesson22 from './lessons/lesson-22.js'
+import lesson23 from './lessons/lesson-23.js'
+import lesson24 from './lessons/lesson-24.js'
+import lesson25 from './lessons/lesson-25.js'
 
 // Heartwood's second class. The learner's original brief said electricity
 // deserved a course of its own eventually; this is it, and it deliberately
@@ -84,11 +89,11 @@ export default {
       title: `Storing and Shaping Power`,
       idea: `Batteries hold it. Electronics reshape it for the house.`,
       lessons: [
-        { title: `Finding the best point, all day long` },
-        { title: `A battery is a chemical spring` },
-        { title: `Why batteries wear out` },
-        { title: `The inverter and the pure sine wave` },
-        { title: `Single-phase and three-phase` }
+        { title: `Finding the best point, all day long`, lessonId: 'lesson-21' },
+        { title: `A battery is a chemical spring`, lessonId: 'lesson-22' },
+        { title: `Why batteries wear out`, lessonId: 'lesson-23' },
+        { title: `The inverter and the pure sine wave`, lessonId: 'lesson-24' },
+        { title: `Single-phase and three-phase`, lessonId: 'lesson-25' }
       ]
     },
     {
@@ -124,12 +129,17 @@ export default {
     'lesson-17': lesson17,
     'lesson-18': lesson18,
     'lesson-19': lesson19,
-    'lesson-20': lesson20
+    'lesson-20': lesson20,
+    'lesson-21': lesson21,
+    'lesson-22': lesson22,
+    'lesson-23': lesson23,
+    'lesson-24': lesson24,
+    'lesson-25': lesson25
   },
 
   nextUp: {
-    title: `Week 5 is not written yet`,
-    blurb: `Twenty lessons. The circuit, the house, the machinery, and now the panel on the roof. Next: holding power until it is wanted, and reshaping it for the house.`
+    title: `Week 6 is not written yet`,
+    blurb: `Twenty-five lessons. One week left — and in it you do the explaining. I bring the objects; you tell me what is happening inside them.`
   },
 
   journalPrompts: [

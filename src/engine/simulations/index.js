@@ -53,6 +53,10 @@ import Photon from './Photon.jsx'
 import Junction from './Junction.jsx'
 import PanelArray from './PanelArray.jsx'
 import IVCurve from './IVCurve.jsx'
+import Tracker from './Tracker.jsx'
+import Battery from './Battery.jsx'
+import Inverter from './Inverter.jsx'
+import Phases from './Phases.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -116,7 +120,11 @@ export const simulations = {
   'photon': Photon,
   'junction': Junction,
   'panel-array': PanelArray,
-  'iv-curve': IVCurve
+  'iv-curve': IVCurve,
+  'tracker': Tracker,
+  'battery': Battery,
+  'inverter': Inverter,
+  'phases': Phases
 }
 
 export function getSimulation(id) {

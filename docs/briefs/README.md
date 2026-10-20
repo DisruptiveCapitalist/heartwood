@@ -18,9 +18,8 @@ teaches and what it must not do — this repository is the authority on how.
 
 Electricity & Energy has no separate document: its syllabus arrived inside
 `university-handoff.md` and the design references, and the built syllabus in
-`src/content/electricity/course.js` is now the record of it. **Built: 20/30**
-(Weeks 1–4). Weeks 5–6 are storage and shaping, then the week that hands the
-course back to the learner.
+`src/content/electricity/course.js` is now the record of it. **Built: 25/30**
+(Weeks 1–5). Week 6 is the one that hands the course back to the learner.
 
 ## Two things worth knowing before you use these
 
