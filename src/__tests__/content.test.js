@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { courses } from '../content/index.js'
+import { standardCourses as courses } from '../content/index.js'
 import { validateLesson, ROUTE_IDS } from '../content/schema.js'
 import { simulations } from '../engine/simulations/index.js'
 import { MODES as CIRCUIT_MODES } from '../engine/simulations/CircuitLoop.jsx'
@@ -8,6 +8,11 @@ import { fill } from '../lib/rich.jsx'
 
 // Every lesson in every subject is checked on every run, so a content mistake
 // fails here rather than in front of the learner.
+//
+// The Algebra Companion is deliberately not in this loop. It is built on a
+// different lesson shape — three pathways, answered problems, its own player —
+// so it gets its own validator and its own file, algebra.test.js. Walking
+// `standardCourses` rather than `courses` is what keeps the two apart.
 
 describe('lesson content', () => {
   for (const course of courses) {

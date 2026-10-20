@@ -8,7 +8,9 @@ five lessons. A catalog is the way in.
 | Class | | |
 |---|---|---|
 | **Physics I** — Seeing the World Through Physics | **30 of 30 written** | **complete** |
-| **Electricity & Energy** — The Power You Never See | 1 of 30 written | Lesson 1 |
+| **Electricity & Energy** — The Power You Never See | **30 of 30 written** | **complete** |
+| **Anatomy & Physiology** — The Human Body, from the Cell to the Whole Person | **30 of 30 written** | **complete** |
+| **Algebra Companion** — Understand what it means. Use it. Explain why it works. | 30 of 30 ported · Week 1 playable | in progress |
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -170,9 +172,9 @@ real cost of the next twenty-eight lessons, and it is deliberate that it shows.
 | 5 · Waves, sound and light | 21–25 | **written** |
 | 6 · Physics is everywhere | 26–30 | **written** |
 
-Physics I is finished. Electricity & Energy has Lesson 1; Lessons 2–30 are
-titles and week ideas only, and the handoff notes the learner's preference for
-building and testing in small batches rather than all twenty-nine at once.
+Physics I, Electricity & Energy and Anatomy & Physiology are all finished —
+ninety lessons. The Algebra Companion is the fourth class and the first that
+does not share their shape; see "The Algebra Companion" below.
 
 **The simulations are the real cost, and the families are paying off.** Copy is
 data; a scene is code. Twenty lessons have needed only sixteen scenes, because
@@ -210,6 +212,38 @@ Verlet, drift 0.000%), the particle box reported a non-monotonic wall-hit rate,
 and the energy chain's rounded losses added to 101 out of 100 — in a lesson
 about conservation. A caption that argues with its own simulation is the worst
 failure available here.
+
+## The Algebra Companion
+
+Class 4 breaks the rule that a new class needs no new UI code, and the handoff
+it came from breaks it too — it ships a separate generic lesson player for this
+class alone. The reasons are structural rather than cosmetic:
+
+- **Three pathways.** LEARN IT, REFRESH IT and LEARN TOGETHER. The content
+  differs at every stage, not just in tone, and each keeps its own progress
+  record — the same lesson worked as a student and as an adult are two passes.
+- **The learner answers questions.** 145 challenge problems and 52 guided ones,
+  each carrying the wrong answers people actually give and what each one means:
+  a meaning mix-up, a sign slip, the order of steps. A wrong answer is diagnosed
+  and met, never buzzed.
+- **It is a companion, not a track.** Enter at any concept; nothing is locked.
+
+So it has `kind: 'algebra'`, its own home (`engine/algebra/AlgebraHome.jsx`),
+its own player (`AlgebraLesson.jsx`), its own validator
+(`content/algebra/schema.js`) and its own test file. Anything that assumes the
+standard lesson shape should walk `standardCourses` from `content/index.js`
+rather than `courses`.
+
+All thirty lessons arrived written and are ported as data, nearly verbatim —
+the only edits are three hrefs that were `.dc.html` query strings and are now
+routes. `npm test` runs every one of them through the port checks.
+
+**One thing the handoff asks for that this build cannot do.** It says the
+Feynman stage should "in production, replace [the keyword checks] with an LLM
+call". Heartwood has no server, no account and runs with the wifi off, so there
+is nowhere to put one. The keyword self-check stays, and the stage says plainly
+on screen that it is a crude check and the learner's own judgement is the one
+that counts.
 
 ## Adding a lesson
 

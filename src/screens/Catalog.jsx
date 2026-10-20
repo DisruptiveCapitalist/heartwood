@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { openCourses, comingClass } from '../content/index.js'
 import { readProgress, courseProgress } from '../lib/progress.js'
+import { readAlgebra, readPathChoice, algebraProgress } from '../lib/algebra.js'
 import { useLearner } from '../lib/learner.jsx'
 
 // The way in. One card per class, and a dashed one for the class being written.
@@ -23,12 +24,19 @@ function greeting(name) {
 }
 
 function ClassCard({ course, index, onOpen }) {
-  const progressOf = useMemo(() => {
+  // The Algebra Companion keeps one record per lesson AND pathway, so its
+  // progress cannot be read the generic way. The card shows the pathway the
+  // learner last chose, defaulting to the student's.
+  const p = useMemo(() => {
+    if (course.kind === 'algebra') {
+      const cache = {}
+      const of = (n, path) => (cache[`${n}.${path}`] ??= readAlgebra(n, path))
+      return algebraProgress(readPathChoice() ?? 'learn', of)
+    }
     const cache = {}
-    return (lessonId) => (cache[lessonId] ??= readProgress(course.id, lessonId))
-  }, [course.id])
-
-  const p = courseProgress(course, progressOf)
+    const of = (lessonId) => (cache[lessonId] ??= readProgress(course.id, lessonId))
+    return courseProgress(course, of)
+  }, [course])
   const kicker = `CLASS ${index}${course.after ? ` · AFTER ${course.after.toUpperCase()}` : ''}`
 
   return (

@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react'
 //   #/                        the catalog of classes
 //   #/electricity             a class home
 //   #/physics-i/lesson-01     a lesson
+//   #/algebra/lesson-08/learn the Algebra Companion, which picks a pathway
+//   #/algebra/refresher       its optional five-question refresher
 
 export function useRoute() {
   const [hash, setHash] = useState(() => window.location.hash)
@@ -14,7 +16,7 @@ export function useRoute() {
     return () => window.removeEventListener('hashchange', on)
   }, [])
   const parts = hash.replace(/^#\/?/, '').split('/').filter(Boolean)
-  return { courseId: parts[0] ?? null, lessonId: parts[1] ?? null }
+  return { courseId: parts[0] ?? null, lessonId: parts[1] ?? null, pathId: parts[2] ?? null }
 }
 
 export function go(path) {

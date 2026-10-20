@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { courses } from '../content/index.js'
+import { standardCourses as courses } from '../content/index.js'
 
 // The ObjectInspector's readout panel is absolutely positioned over the stage,
 // so a list longer than five items does not push the drawing down — it draws
