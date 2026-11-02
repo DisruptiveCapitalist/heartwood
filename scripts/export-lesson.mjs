@@ -25,6 +25,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { courses } from '../src/content/index.js'
+import { describe as describeSim } from '../src/engine/simulations/descriptions.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'docs', 'lessons')
@@ -59,11 +60,20 @@ function render(course, lesson) {
   // SEE IT
   out.push(`\n${H(2, 'SEE IT')}`)
   out.push(`*The Professor:* ${P(lesson.see.line)}`)
+  const sim = describeSim(lesson.see.simulation.id)
   out.push(
     `\n**On-screen simulation:** \`${lesson.see.simulation.id}\`` +
-    (lesson.see.simulation.props ? ` (${JSON.stringify(lesson.see.simulation.props)})` : '') +
-    `  \n_For the handbook: this is the lesson's hands-on moment. Where it replaces a real field exercise, that exercise belongs in the Field Guide._\n`
+    (lesson.see.simulation.props ? ` (${JSON.stringify(lesson.see.simulation.props)})` : '') + '\n'
   )
+  if (sim) {
+    out.push(`\n**What it shows.** ${strip(sim.shows)}\n`)
+    out.push(`\n**What the learner can change.** ${strip(sim.changes)}\n`)
+    if (sim.numbers) out.push(`\n**The numbers behind it.** ${strip(sim.numbers)}\n`)
+    if (sim.handbook) out.push(`\n> _For the handbook:_ ${strip(sim.handbook)}\n`)
+  } else {
+    out.push(`\n> _No description recorded for this simulation yet._\n`)
+  }
+  out.push(`\n> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._\n`)
   out.push(`\n**What the learner should notice**\n`)
   out.push(LIST(lesson.see.observations.map((o) => o.text)))
 
@@ -95,6 +105,13 @@ function render(course, lesson) {
   out.push(`*The Roommate:* ${P(lesson.connect.line)}`)
   out.push(`\n**Where it shows up**\n`)
   out.push(LIST(lesson.connect.items.map((i) => (typeof i === 'string' ? i : i.t))))
+  if (lesson.connect.synthesis) {
+    // It answers the list directly — "every one of those…" — so it reads with
+    // the list rather than at the end of the stage. On screen it is withheld
+    // until the learner has ticked two, or written one of their own.
+    out.push(`\n${P(lesson.connect.synthesis)}`)
+    out.push(`\n_Shown on screen only once the learner has ticked two of the items above, or written one of their own._\n`)
+  }
   if (lesson.connect.builder) {
     out.push(`\n${H(3, 'The Builder — try it yourself')}`)
     out.push(P(lesson.connect.builder.body))
@@ -107,7 +124,6 @@ function render(course, lesson) {
     out.push(`\n> **What remains uncertain:** ${strip(ac.uncertain)}  \n> **Sources:** ${strip(ac.sources)}\n`)
     out.push(`\n_Do not restate this claim in the handbook without its label, its uncertainty and its sources._\n`)
   }
-  if (lesson.connect.synthesis) out.push(`\n${P(lesson.connect.synthesis)}`)
 
   // FEYNMAN IT
   out.push(`\n${H(2, 'FEYNMAN IT')}`)

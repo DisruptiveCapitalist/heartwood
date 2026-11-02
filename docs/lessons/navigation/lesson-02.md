@@ -8,8 +8,17 @@ _Opening question._ Stand in a parking lot and the ground is perfectly flat. Loo
 ## SEE IT
 *The Professor:* Start in your backyard and zoom out, one step at a time. Tell me when the ground stops looking flat.
 
-**On-screen simulation:** `zoom-out`  
-_For the handbook: this is the lesson's hands-on moment. Where it replaces a real field exercise, that exercise belongs in the Field Guide._
+**On-screen simulation:** `zoom-out`
+
+**What it shows.** A side-on slice of the ground, 900 px wide, with a dashed straight line across it labelled "a perfectly flat line" and the ground drawn beneath. A marker reads "You" at the centre. When the drop is big enough to see, a vertical bar at the right edge measures it. A caption always reads "Drawn to true scale — nothing exaggerated".
+
+**What the learner can change.** Seven zoom stops: a backyard (100 feet), a neighborhood (1 mile), a county (25 miles), a state (about 280 miles), half a country (1,000 miles), coast to coast (about 2,800 miles), and the whole Earth. The view eases between them. The last stop cross-fades to a globe showing the axis, both poles, the Equator, the two hemispheres, an arrow reading "turns toward the east, once a day", and a marker at about 40° N.
+
+**The numbers behind it.** Earth's radius is taken as 3,959 miles, and the drop across a span is R − √(R² − (span/2)²). That gives less than a thousandth of an inch across a backyard, about 2 inches across a mile, about 104 feet across a county, about 2.5 miles across a state, about 32 miles across a thousand, and about 256 miles coast to coast.
+
+> _For the handbook:_ The curvature must not be exaggerated — that is the whole argument of the lesson. On a 900 px width the bend is under one pixel at county size and about eight pixels at state size. A handbook diagram that makes the bend obvious at small scales would illustrate the opposite of what the lesson says.
+
+> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._
 
 **What the learner should notice**
 - Across a whole neighborhood, the ground drops about **2 inches** below a flat line. Less than a curb.
@@ -51,6 +60,10 @@ One refinement for later: the Earth is very slightly wider around the Equator th
 - A round shadow creeping across the Moon during a lunar eclipse.
 - Different stars overhead on a trip far north or far south.
 
+Notice that none of these needed a spaceship. People with sharp eyes and a little patience worked it out from the ground.
+
+_Shown on screen only once the learner has ticked two of the items above, or written one of their own._
+
 ### The Builder — try it yourself
 Tonight, in a dark room: one lamp with the shade off is the Sun. An orange is the Earth — push a toothpick through it top to bottom for the axis, and stick a pin about halfway between the top and the middle. That pin is you. Hold the orange so the pin faces away from the lamp (midnight), then slowly turn it toward the east — counterclockwise, looking down on the top. Watch the pin come around the edge into the light. From the pin's point of view, the lamp just "rose" — in the east.
 
@@ -65,8 +78,6 @@ About a century later, Eratosthenes, a scholar in Alexandria, measured it — wi
 > **Sources:** Aristotle, *On the Heavens*, Book II, ch. 14; Cleomedes, *Lectures on Astronomy*, trans. Bowen and Todd (2004).
 
 _Do not restate this claim in the handbook without its label, its uncertainty and its sources._
-
-Notice that none of these needed a spaceship. People with sharp eyes and a little patience worked it out from the ground.
 
 ## FEYNMAN IT
 A Scout asks you: "If the Earth is round, why is the ground flat?" Answer him — **without using the words "curve," "curvature," or "sphere."**

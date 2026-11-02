@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest'
 import { courses } from '../content/index.js'
 import { isDone, emptyProgress } from '../lib/progress.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../content/schema.js'
+import { describe as describeSim } from '../engine/simulations/descriptions.js'
 
 // Navigation is the first class to change when a lesson counts as finished.
 // Everything else still completes on reaching REFLECT, and that must keep
@@ -44,6 +45,20 @@ describe('navigation course shape', () => {
 
   it('keeps Physics on the default six', () => {
     expect(physics.routeIds).toBeUndefined()
+  })
+
+  // The companion handbook's diagrams are meant to picture the same thing the
+  // simulation does, so every Navigation simulation has to say what it shows
+  // and what the learner can change. Without this a lesson could ship with a
+  // blank where the handbook writer needs a description.
+  it('every simulation it uses is described for the handbook', () => {
+    for (const lesson of Object.values(navigation.lessons)) {
+      const id = lesson.see.simulation.id
+      const d = describeSim(id)
+      expect(d, `no description for simulation "${id}" (lesson ${lesson.number})`).toBeTruthy()
+      expect(d.shows, `${id}: what it shows`).toBeTruthy()
+      expect(d.changes, `${id}: what the learner can change`).toBeTruthy()
+    }
   })
 
   // The handoff is firm: never a cultural claim without all three.

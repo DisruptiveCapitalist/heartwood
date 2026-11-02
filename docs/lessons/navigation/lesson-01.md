@@ -8,8 +8,17 @@ _Opening question._ A friend phones you, lost somewhere in a big park. "Don't wo
 ## SEE IT
 *The Professor:* Here's the park. Turn on what she tells you, one clue at a time, and watch where she could be.
 
-**On-screen simulation:** `clue-map`  
-_For the handbook: this is the lesson's hands-on moment. Where it replaces a real field exercise, that exercise belongs in the Field Guide._
+**On-screen simulation:** `clue-map`
+
+**What it shows.** A park seen from above, 900 × 520. Two footpaths, a pond at the upper left, a cluster of woods at the right, a north arrow in the top corner and a scale bar reading 100 steps. Two reference points are marked and labelled: a water tower as an open ink circle at the upper right, and an old oak as a green disc near the centre.
+
+**What the learner can change.** Five clue buttons, each toggling independently. Two of them — "I'm walking north" and "I can see the water tower" — draw nothing at all, which is the point. The other three each draw a shape: a solid line running due south from the tower, a dashed circle 300 steps around the tower, and a dotted circle 200 steps around the oak. A status line above the map names how many places she could be.
+
+**The numbers behind it.** The tower sits 160 steps east and 180 steps north of the oak. The three shapes are chosen so the line meets the tower's circle at exactly one point, the two circles cross at two, and all three agree at a single spot 300 steps due south of the tower — which is also exactly 200 from the oak.
+
+> _For the handbook:_ A diagram should show the same three shapes over the same two reference points, and the single crossing. The two useless clues are worth drawing too — as a map with nothing on it.
+
+> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._
 
 **What the learner should notice**
 - "I'm walking north" changed nothing. Which way she's **going** says nothing about where she **is**.
@@ -49,6 +58,10 @@ This is why a compass on its own can't tell you where you are. It tells you whic
 - Telling a 911 operator the nearest cross street or mile marker.
 - "Turn left where the old gas station used to be."
 
+Every one of those works only because both people share the reference. The minute they don't, "by the gate" means nothing.
+
+_Shown on screen only once the learner has ticked two of the items above, or written one of their own._
+
 ### The Builder — try it yourself
 Stand at your front door. Say out loud, in one sentence, where your car or mailbox is — using a reference, a direction, and a distance. Now say it again from a **different** reference: the garage, a tree, the street corner. Same car, two perfectly good descriptions. Position is never one fixed sentence; it depends on what you measure from.
 
@@ -63,8 +76,6 @@ It's today's lesson exactly: you can't know where you are without something to m
 > **Sources:** Gladwin, *East Is a Big Bird* (1970); Lewis, *We, the Navigators* (1972).
 
 _Do not restate this claim in the handbook without its label, its uncertainty and its sources._
-
-Every one of those works only because both people share the reference. The minute they don't, "by the gate" means nothing.
 
 ## FEYNMAN IT
 Explain to your friend in the park why "I'm walking north" didn't help you find her — **without using the words "direction" or "location."**

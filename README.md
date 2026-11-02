@@ -318,10 +318,21 @@ npm run lesson:export                        # everything written
 
 It writes `docs/lessons/<course>/<lesson>.md` — the whole lesson in reading
 order, including the things someone reading the screen would miss: the formal
-names, every "I don't get it" route, the Understanding Map levels, which
-simulation stands in for a field exercise, and the Across Cultures card with
-its evidence label, its uncertainty note and its sources. That last one carries
-a line telling the writer not to restate the claim without them.
+names, every "I don't get it" route, the Understanding Map levels, and the
+Across Cultures card with its evidence label, its uncertainty note and its
+sources, carrying a line telling the writer not to restate the claim without
+them.
+
+Each export also describes its simulation — what is on screen, what the learner
+can change, the numbers behind it, and a note on what a diagram of it must not
+get wrong. Those live in `engine/simulations/descriptions.js`, beside the
+simulations so they are edited when those are, and a Navigation lesson whose
+simulation has no entry fails the test suite.
+
+CONNECT IT's closing line is exported directly under the list it answers,
+rather than at the end of the stage where it sits on screen, and is marked as
+appearing only once the learner has ticked two items. It reads as a response to
+the list, and a handbook writer reading top to bottom should meet it there.
 
 The Algebra Companion is a different lesson shape and needs its own renderer;
 the script says so rather than exporting something wrong.
