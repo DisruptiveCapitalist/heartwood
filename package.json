@@ -3,14 +3,15 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Heartwood University — a personal learning environment. Physics I.",
+  "description": "Heartwood University \u2014 a personal learning environment. Physics I.",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "start": "vite preview --port 4173 --open",
     "test": "vitest run",
     "test:watch": "vitest",
-    "build:single": "node scripts/build-single-file.mjs"
+    "build:single": "node scripts/build-single-file.mjs",
+    "lesson:export": "node scripts/export-lesson.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",

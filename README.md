@@ -304,6 +304,28 @@ county and 8px across a state — because the whole argument is that the ground
 really does look flat for the patch you can see. Exaggerating the curvature to
 make it visible would destroy the lesson while appearing to illustrate it.
 
+## Sending a finished lesson to the handbook writer
+
+The Navigation companion handbook is written outside this build, and the
+handoff asks that its wording and diagrams stay consistent with the lessons.
+So a finished lesson can be exported as a Markdown document:
+
+```bash
+npm run lesson:export navigation lesson-01   # one lesson
+npm run lesson:export navigation             # a whole course
+npm run lesson:export                        # everything written
+```
+
+It writes `docs/lessons/<course>/<lesson>.md` — the whole lesson in reading
+order, including the things someone reading the screen would miss: the formal
+names, every "I don't get it" route, the Understanding Map levels, which
+simulation stands in for a field exercise, and the Across Cultures card with
+its evidence label, its uncertainty note and its sources. That last one carries
+a line telling the writer not to restate the claim without them.
+
+The Algebra Companion is a different lesson shape and needs its own renderer;
+the script says so rather than exporting something wrong.
+
 ## Adding a lesson
 
 1. Copy the nearest existing lesson in `src/content/physics-i/lessons/` and
