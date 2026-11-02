@@ -1,5 +1,8 @@
 import lesson01 from './lessons/lesson-01.js'
 import lesson02 from './lessons/lesson-02.js'
+import lesson03 from './lessons/lesson-03.js'
+import lesson04 from './lessons/lesson-04.js'
+import lesson05 from './lessons/lesson-05.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -40,9 +43,9 @@ export default {
       lessons: [
         { title: `What does it mean to know where you are?`, lessonId: 'lesson-01' },
         { title: `The Earth beneath our feet`, lessonId: 'lesson-02' },
-        { title: `Latitude and longitude` },
-        { title: `Maps and what they flatten` },
-        { title: `Scale, distance and the shape of a journey` }
+        { title: `The language of latitude and longitude`, lessonId: 'lesson-03' },
+        { title: `Maps: turning the Earth into a picture`, lessonId: 'lesson-04' },
+        { title: `Putting it together: where am I?`, lessonId: 'lesson-05' }
       ]
     },
     {
@@ -104,12 +107,15 @@ export default {
 
   lessons: {
     'lesson-01': lesson01,
-    'lesson-02': lesson02
+    'lesson-02': lesson02,
+    'lesson-03': lesson03,
+    'lesson-04': lesson04,
+    'lesson-05': lesson05
   },
 
   nextUp: {
-    title: `Lesson 3 is not written yet`,
-    blurb: `Two lessons in — a position needs something to measure from, and the ground is flat only for the patch you can see. Next: giving an exact address to a ball with no edges and no corners.`
+    title: `Week 2 is not written yet`,
+    blurb: `Week 1 is complete. A position needs something to measure from; the ground is flat only for the patch you can see; two angles give an exact address; every flat map trades something away; and a position is worth only as much as the form you describe it in. Next: the compass — a needle that points north, except not at the North Pole, and wrong by an amount that depends on where you stand.`
   },
 
   journalPrompts: [

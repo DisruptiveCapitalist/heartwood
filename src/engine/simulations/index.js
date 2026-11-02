@@ -60,6 +60,9 @@ import Battery from './Battery.jsx'
 import Inverter from './Inverter.jsx'
 import Phases from './Phases.jsx'
 import HousePanel from './HousePanel.jsx'
+import GlobeGrid from './GlobeGrid.jsx'
+import MapMaker from './MapMaker.jsx'
+import Locate from './Locate.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -130,7 +133,10 @@ export const simulations = {
   'battery': Battery,
   'inverter': Inverter,
   'phases': Phases,
-  'house-panel': HousePanel
+  'house-panel': HousePanel,
+  'globe-grid': GlobeGrid,
+  'map-maker': MapMaker,
+  'locate': Locate
 }
 
 export function getSimulation(id) {
