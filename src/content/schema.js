@@ -43,6 +43,29 @@ export const LEVELS = ['encountered', 'recognize', 'understand', 'explain', 'use
  */
 export const ROUTE_IDS = ['analogy', 'object', 'story', 'experiment', 'smaller', 'backward']
 
+/**
+ * Navigation uses seven doors rather than six, and names three of the shared
+ * ones differently — "break it into smaller steps" rather than "ask me a
+ * smaller question". So a course names its own set, and each route may carry
+ * its own label; StuckPanel prefers that over the table below.
+ */
+export const NAVIGATION_ROUTE_IDS = ['compass', 'map', 'object', 'diagram', 'example', 'smaller', 'backward']
+
+/**
+ * When a lesson counts as finished.
+ *
+ *   'reflect'  reaching the REFLECT stage — Physics, Electricity, Anatomy
+ *   'feynman'  submitting the Feynman explanation — Navigation
+ *
+ * The learner chose the second rule for Navigation after using the first: the
+ * explanation is the stage that counts, so finishing without writing one should
+ * not read as finished. Nothing is locked either way — every stage stays open.
+ */
+export const COMPLETION = { REFLECT: 'reflect', FEYNMAN: 'feynman' }
+
+/** Navigation asks for at least this many words before it will take the submit. */
+export const FEYNMAN_MIN_WORDS = 15
+
 export const ROUTE_LABELS = {
   analogy:    'Give me an analogy',
   object:     'Use something in my hand',
@@ -132,7 +155,8 @@ export const ROUTE_LABELS = {
  *
  * @returns {string[]} problems; empty means the lesson is well-formed
  */
-export function validateLesson(lesson) {
+export function validateLesson(lesson, course) {
+  const expected = course?.routeIds ?? ROUTE_IDS
   const problems = []
   const need = (cond, message) => { if (!cond) problems.push(message) }
   const where = lesson?.id ?? '(no id)'
@@ -178,7 +202,7 @@ export function validateLesson(lesson) {
   need(!!lesson?.reflect?.tomorrow, at('REFLECT has no teaser for tomorrow'))
 
   const routeIds = (lesson?.routes ?? []).map((r) => r.id)
-  for (const id of ROUTE_IDS) {
+  for (const id of expected) {
     need(routeIds.includes(id), at(`"I don't get it" is missing the ${id} route`))
   }
   for (const r of lesson?.routes ?? []) {

@@ -53,6 +53,8 @@ import Photon from './Photon.jsx'
 import Junction from './Junction.jsx'
 import PanelArray from './PanelArray.jsx'
 import IVCurve from './IVCurve.jsx'
+import ClueMap from './ClueMap.jsx'
+import ZoomOut from './ZoomOut.jsx'
 import Tracker from './Tracker.jsx'
 import Battery from './Battery.jsx'
 import Inverter from './Inverter.jsx'
@@ -122,6 +124,8 @@ export const simulations = {
   'junction': Junction,
   'panel-array': PanelArray,
   'iv-curve': IVCurve,
+  'clue-map': ClueMap,
+  'zoom-out': ZoomOut,
   'tracker': Tracker,
   'battery': Battery,
   'inverter': Inverter,

@@ -1,8 +1,9 @@
 import FacultyBadge from '../FacultyBadge.jsx'
 import UnderstandingMap from '../UnderstandingMap.jsx'
 import { Rich } from '../../lib/rich.jsx'
+import { COMPLETION } from '../../content/schema.js'
 
-export default function Reflect({ lesson, course, progress, set }) {
+export default function Reflect({ lesson, course, progress, set, goStage }) {
   const r = lesson.reflect
   const written = (progress.journalText ?? '').trim().length > 0
 
@@ -34,6 +35,29 @@ export default function Reflect({ lesson, course, progress, set }) {
           footer={r.mapFooter}
         />
       </div>
+
+      {course?.completeOn === COMPLETION.FEYNMAN && (
+        // The learner asked for this: everything stays open, but a lesson is
+        // not "done" until the explanation exists. The banner says so plainly
+        // rather than hiding the rule inside a disabled button.
+        <div style={{
+          maxWidth: 800, padding: '18px 22px', borderRadius: 'var(--r-md)',
+          background: progress.feynmanSubmitted ? 'oklch(0.97 0.02 155)' : 'var(--paper)',
+          border: `1px solid ${progress.feynmanSubmitted ? 'oklch(0.85 0.05 155)' : 'var(--rule-2)'}`,
+          display: 'flex', gap: 16, alignItems: 'center', flexWrap: 'wrap'
+        }}>
+          <span style={{ fontSize: 19, lineHeight: 1.5, color: 'var(--ink-2)', flex: 1, minWidth: 260, textWrap: 'pretty' }}>
+            {progress.feynmanSubmitted
+              ? `Lesson ${lesson.number} is complete. Your explanation is saved with it.`
+              : `Everything here is open, but the lesson counts as done once you've written your explanation in FEYNMAN IT.`}
+          </span>
+          {!progress.feynmanSubmitted && goStage && (
+            <button className="hw-btn" onClick={() => goStage(3)} style={{ padding: '12px 18px' }}>
+              GO TO FEYNMAN IT
+            </button>
+          )}
+        </div>
+      )}
 
       <div style={{
         maxWidth: 800, padding: '22px 24px', background: 'var(--accent-wash)',

@@ -1,5 +1,6 @@
 import FacultyBadge from '../FacultyBadge.jsx'
 import { Rich } from '../../lib/rich.jsx'
+import AcrossCultures from '../AcrossCultures.jsx'
 
 // "Where else have you seen this?" Multi-select, plus one of the learner's own.
 export default function ConnectIt({ lesson, progress, set }) {
@@ -49,6 +50,8 @@ export default function ConnectIt({ lesson, progress, set }) {
           </p>
         </div>
       )}
+
+      {c.acrossCultures && <AcrossCultures card={c.acrossCultures} />}
 
       <div style={{ maxWidth: 760, display: 'flex', flexDirection: 'column', gap: 9 }}>
         <label className="hw-label" htmlFor="hw-connect-own">ONE OF YOUR OWN</label>

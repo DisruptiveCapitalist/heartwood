@@ -83,6 +83,20 @@ export default function ChallengeIt({ lesson, progress, set }) {
                 <Rich text={para} />
               </p>
             ))}
+            {/* Heartwood courses refer to each other on purpose, so the
+                reference is a real link rather than a sentence mentioning one.
+                Content carries it as data — Rich takes no HTML. */}
+            {c.open.crossLink && (
+              <a
+                href={`#/${c.open.crossLink.courseId}/${c.open.crossLink.lessonId}`}
+                style={{
+                  display: 'inline-block', marginTop: 18, fontFamily: 'var(--sans)',
+                  fontSize: 13, fontWeight: 700, letterSpacing: '.08em', color: 'var(--accent)'
+                }}
+              >
+                {c.open.crossLink.label} →
+              </a>
+            )}
           </div>
         )}
       </div>

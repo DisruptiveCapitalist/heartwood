@@ -1,4 +1,4 @@
-import { ROUTE_IDS, ROUTE_LABELS } from '../content/schema.js'
+import { ROUTE_LABELS } from '../content/schema.js'
 import { Rich } from '../lib/rich.jsx'
 
 // The most important interaction in the product (brief §8). Saying "I don't get
@@ -53,7 +53,7 @@ export default function StuckPanel({ open, onToggle, routes, route, onRoute }) {
           </div>
 
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', padding: '16px 20px' }}>
-            {ROUTE_IDS.map((id) => {
+            {routes.map((r) => r.id).map((id) => {
               const on = route === id
               return (
                 <button
@@ -68,7 +68,7 @@ export default function StuckPanel({ open, onToggle, routes, route, onRoute }) {
                     color: on ? '#f6f1e7' : 'var(--ink-3)'
                   }}
                 >
-                  {ROUTE_LABELS[id]}
+                  {routes.find((r) => r.id === id)?.label ?? ROUTE_LABELS[id]}
                 </button>
               )
             })}

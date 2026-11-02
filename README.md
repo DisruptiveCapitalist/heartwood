@@ -11,6 +11,7 @@ five lessons. A catalog is the way in.
 | **Electricity & Energy** — The Power You Never See | **30 of 30 written** | **complete** |
 | **Anatomy & Physiology** — The Human Body, from the Cell to the Whole Person | **30 of 30 written** | **complete** |
 | **Algebra Companion** — Understand what it means. Use it. Explain why it works. | **30 of 30 playable** | engine done |
+| **The Art and Science of Navigation** — Knowing where you are, and which way to go | 2 of 30 written | Lessons 1–2 |
 
 Live at **<https://disruptivecapitalist.github.io/heartwood/>**.
 
@@ -269,6 +270,39 @@ call". Heartwood has no server, no account and runs with the wifi off, so there
 is nowhere to put one. The keyword self-check stays, and the stage says plainly
 on screen that it is a crude check and the learner's own judgement is the one
 that counts.
+
+## Navigation, and two rules it changes
+
+Class 5 is the first to change the engine rather than just fill it, and both
+changes are the learner's, made after using the other courses.
+
+**A lesson completes when the explanation is written, not when REFLECT is
+reached.** On this subject the explanation *is* the lesson, so arriving at the
+end without writing one should not read as finished. Nothing is locked —
+every stage stays open and freely navigable — but FEYNMAN IT asks for at least
+fifteen words before it will take a submit, the stage rail marks itself
+`✓ written`, and REFLECT carries a banner saying plainly what is still missing.
+A course sets `completeOn: COMPLETION.FEYNMAN`; everything else keeps the old
+rule, and `completion.test.js` holds both.
+
+**Seven doors instead of six.** A compass and a map are this subject's own
+tools, so they get their own ways in, and three of the shared doors are renamed
+— "break it into smaller steps" is not the same invitation as "ask me a smaller
+question". A course names its set in `routeIds` and each route carries its own
+`label`.
+
+One rule of content is enforced in code. Traditions appear as an **Across
+Cultures** card beside the skill they illustrate rather than gathered into one
+lesson, and no cultural claim goes on screen without an evidence label, an
+honest note on what is still uncertain, and a real source with a year. The test
+suite checks all four, so a missing source fails the build instead of shipping.
+
+Both simulations are held to their specs by arithmetic rather than by eye. The
+clue map's three shapes agree at exactly one point, and `ClueMap.jsx` records
+the check. The zoom-out is drawn to **true scale** — the bend is 0.7px across a
+county and 8px across a state — because the whole argument is that the ground
+really does look flat for the patch you can see. Exaggerating the curvature to
+make it visible would destroy the lesson while appearing to illustrate it.
 
 ## Adding a lesson
 

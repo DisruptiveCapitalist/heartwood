@@ -2,7 +2,7 @@ import { STAGES } from '../content/schema.js'
 
 // The only navigation in a lesson. Stages are freely clickable in any order —
 // nothing is ever locked.
-export default function StageRail({ stage, visited, onGo, sessionMinutes = 30, showTimings = true }) {
+export default function StageRail({ stage, visited, onGo, sessionMinutes = 30, showTimings = true, writtenStage = null }) {
   return (
     <nav
       aria-label="Lesson stages"
@@ -11,9 +11,13 @@ export default function StageRail({ stage, visited, onGo, sessionMinutes = 30, s
       {STAGES.map((s, i) => {
         const current = i === stage
         const done = visited[s.key] && !current
-        const meta = showTimings
-          ? `${sessionMinutes >= 30 ? s.m30 : s.m20} min`
-          : done ? 'visited' : current ? 'now' : '—'
+        // On a course that completes with the explanation, the Feynman stage
+        // says whether it has been written rather than how long it takes.
+        const meta = s.key === writtenStage
+          ? '✓ written'
+          : showTimings
+            ? `${sessionMinutes >= 30 ? s.m30 : s.m20} min`
+            : done ? 'visited' : current ? 'now' : '—'
         return (
           <button
             key={s.key}

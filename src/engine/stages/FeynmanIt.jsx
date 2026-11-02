@@ -1,16 +1,24 @@
 import FacultyBadge from '../FacultyBadge.jsx'
 import { Rich } from '../../lib/rich.jsx'
+import { COMPLETION, FEYNMAN_MIN_WORDS } from '../../content/schema.js'
 
 // The learner explains it back, with the technical word taken away. What comes
 // back is a checklist to hold their own answer against — self-assessment, not
 // machine grading. See README, "What is deliberately not built".
-export default function FeynmanIt({ lesson, progress, set }) {
+export default function FeynmanIt({ lesson, course, progress, set }) {
   const f = lesson.feynman
   const text = progress.feynmanText ?? ''
   const words = text.trim() ? text.trim().split(/\s+/).length : 0
   const usedBanned = (f.banned ?? []).some((stem) => new RegExp(stem, 'i').test(text))
 
   const note = usedBanned ? f.bannedNote : words > 24 ? 'good length' : words > 0 ? 'keep going' : ''
+
+  // On Navigation the explanation is what completes the lesson, so a one-line
+  // answer is turned away rather than quietly accepted. The guard is a floor on
+  // effort, not a judgement of the words.
+  const gated = course?.completeOn === COMPLETION.FEYNMAN
+  const tooShort = gated && words < FEYNMAN_MIN_WORDS
+  const submit = () => { if (!tooShort) set({ feynmanSubmitted: true }) }
 
   return (
     <div className="hw-fade" style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
@@ -38,12 +46,18 @@ export default function FeynmanIt({ lesson, progress, set }) {
           <span style={{ flex: 1 }} />
           <button
             className="hw-btn hw-btn-solid"
-            onClick={() => set({ feynmanSubmitted: true })}
+            onClick={submit}
+            disabled={tooShort}
             style={{ padding: '12px 22px' }}
           >
             I'M DONE — READ IT BACK
           </button>
         </div>
+        {tooShort && words > 0 && (
+          <p aria-live="polite" style={{ fontFamily: 'var(--sans)', fontSize: 14, margin: 0, color: 'var(--brake)' }}>
+            A little more, please — at least two or three sentences, so it's a real explanation.
+          </p>
+        )}
       </div>
 
       {progress.feynmanSubmitted && (
@@ -58,6 +72,11 @@ export default function FeynmanIt({ lesson, progress, set }) {
           <p style={{ fontSize: 19, lineHeight: 1.55, margin: '6px 0 0', color: 'var(--ink-4)', fontStyle: 'italic', textWrap: 'pretty' }}>
             <Rich text={f.closing} />
           </p>
+          {gated && (
+            <p style={{ fontFamily: 'var(--sans)', fontSize: 13, fontWeight: 600, margin: '6px 0 0', color: 'var(--green-text)' }}>
+              Lesson {lesson.number} now counts as complete.
+            </p>
+          )}
         </div>
       )}
     </div>

@@ -2,6 +2,7 @@ import physicsI from './physics-i/course.js'
 import electricity from './electricity/course.js'
 import anatomy from './anatomy/course.js'
 import algebra from './algebra/course.js'
+import navigation from './navigation/course.js'
 
 // Every class Heartwood knows about. Adding one is a line here and a folder
 // beside the others — the catalog, the class home and the lesson player all
@@ -10,7 +11,7 @@ import algebra from './algebra/course.js'
 // The original brief (§18) said not to build a course catalog yet. The
 // university handoff reverses that: the catalog is now the way in.
 
-export const courses = [physicsI, electricity, anatomy, algebra]
+export const courses = [physicsI, electricity, anatomy, algebra, navigation]
 
 /**
  * The classes built on the standard six-stage lesson shape.

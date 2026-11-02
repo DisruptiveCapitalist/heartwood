@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { STAGES } from '../content/schema.js'
+import { STAGES, COMPLETION } from '../content/schema.js'
 import { readProgress, writeProgress } from '../lib/progress.js'
 import { Rich } from '../lib/rich.jsx'
 import StageRail from './StageRail.jsx'
@@ -42,14 +42,23 @@ export default function Lesson({ course, lesson, onHome, onCatalog, sessionMinut
     const stage = Math.max(0, Math.min(STAGES.length - 1, i))
     setRoute(null)
     set({ stage, visited: { ...progress.visited, [STAGES[stage].key]: true } })
-    topRef.current?.scrollIntoView({ block: 'start', behavior: 'auto' })
+    topRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' })
   }
 
   const week = useMemo(() => course.weeks[lesson.week - 1], [course, lesson.week])
   const Stage = STAGE_COMPONENTS[progress.stage] ?? SeeIt
-  const nextLabel = progress.stage >= STAGES.length - 1
-    ? 'FINISH FOR TODAY'
+  // On a course that completes with the explanation, REFLECT's forward button
+  // sends the learner to write it rather than pretending the lesson is over.
+  const gated = course.completeOn === COMPLETION.FEYNMAN && !progress.feynmanSubmitted
+  const onLast = progress.stage >= STAGES.length - 1
+  const nextLabel = onLast
+    ? (gated ? 'WRITE YOUR EXPLANATION FIRST' : 'FINISH FOR TODAY')
     : `NEXT · ${STAGES[progress.stage + 1].label}`
+  const onNext = () => {
+    if (!onLast) return goStage(progress.stage + 1)
+    if (gated) return goStage(3)
+    return onHome()
+  }
 
   return (
     <div ref={topRef} className="hw-shell" style={{ paddingBottom: 80 }}>
@@ -102,6 +111,7 @@ export default function Lesson({ course, lesson, onHome, onCatalog, sessionMinut
         onGo={goStage}
         sessionMinutes={sessionMinutes}
         showTimings={showTimings}
+        writtenStage={course.completeOn === COMPLETION.FEYNMAN && progress.feynmanSubmitted ? 'feynman' : null}
       />
 
       <main style={{ padding: '34px 0 0' }}>
@@ -111,6 +121,7 @@ export default function Lesson({ course, lesson, onHome, onCatalog, sessionMinut
           course={course}
           progress={progress}
           set={set}
+          goStage={goStage}
           active={progress.stage === 0}
         />
       </main>
@@ -131,7 +142,7 @@ export default function Lesson({ course, lesson, onHome, onCatalog, sessionMinut
         <button
           className="hw-btn hw-btn-solid"
           style={{ padding: '13px 26px' }}
-          onClick={() => (progress.stage >= STAGES.length - 1 ? onHome() : goStage(progress.stage + 1))}
+          onClick={onNext}
         >
           {nextLabel}
         </button>

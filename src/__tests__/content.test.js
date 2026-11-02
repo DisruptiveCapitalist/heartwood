@@ -19,7 +19,7 @@ describe('lesson content', () => {
     for (const [id, lesson] of Object.entries(course.lessons)) {
       describe(`${course.id}/${id}`, () => {
         it('is well-formed', () => {
-          expect(validateLesson(lesson)).toEqual([])
+          expect(validateLesson(lesson, course)).toEqual([])
         })
 
         it('names a simulation that exists', () => {
@@ -46,10 +46,32 @@ describe('lesson content', () => {
           }
         })
 
-        it('offers six different ways in, none of them a repeat', () => {
+        // Six ways in for most courses; Navigation uses seven, and names three
+        // of the shared ones differently. The course decides.
+        it('offers a different way in for every door, none of them a repeat', () => {
+          const expected = course.routeIds ?? ROUTE_IDS
           const bodies = lesson.routes.map((r) => r.body)
-          expect(lesson.routes.map((r) => r.id).sort()).toEqual([...ROUTE_IDS].sort())
-          expect(new Set(bodies).size).toBe(ROUTE_IDS.length)
+          expect(lesson.routes.map((r) => r.id).sort()).toEqual([...expected].sort())
+          expect(new Set(bodies).size).toBe(expected.length)
+        })
+
+        // Navigation's doors carry their own labels, because "break it into
+        // smaller steps" is not the same invitation as "ask me a smaller
+        // question". Where a course names its own set, every route must say so.
+        it('labels its doors when the course names its own set', () => {
+          if (!course.routeIds) return
+          for (const r of lesson.routes) expect(r.label, `route ${r.id}`).toBeTruthy()
+        })
+
+        // A cross-course reference that points at a lesson which does not exist
+        // would be a dead link in the middle of an answer.
+        it('only links across to a lesson that exists', () => {
+          const link = lesson.challenge.open.crossLink
+          if (!link) return
+          const target = courses.find((c) => c.id === link.courseId)
+          expect(target, `no course "${link.courseId}"`).toBeTruthy()
+          expect(target.lessons[link.lessonId], `no lesson "${link.lessonId}"`).toBeTruthy()
+          expect(link.label).toBeTruthy()
         })
 
         it('answers every wrong prediction instead of buzzing it', () => {

@@ -1,5 +1,5 @@
 import { read, write, lessonKey } from './storage.js'
-import { STAGES } from '../content/schema.js'
+import { STAGES, COMPLETION } from '../content/schema.js'
 
 // Everything the screens need about where the learner has got to, derived from
 // storage in one place. The engine writes; the home page only reads.
@@ -57,9 +57,18 @@ export function isStarted(p) {
   return !!p && ((p.stage ?? 0) > 0 || (p.journalText ?? '').trim().length > 0)
 }
 
-/** Reached REFLECT. Nothing is ever locked, so this is a fact, not a gate. */
-export function isDone(p) {
-  return !!p && !!(p.visited ?? {}).reflect
+/**
+ * Finished. Nothing is ever locked, so this is a fact, not a gate.
+ *
+ * Most courses count a lesson done on reaching REFLECT. Navigation counts it
+ * done when the Feynman explanation has been submitted, because for that course
+ * the explanation IS the lesson — see schema.js COMPLETION.
+ */
+export function isDone(p, course) {
+  if (!p) return false
+  return course?.completeOn === COMPLETION.FEYNMAN
+    ? !!p.feynmanSubmitted
+    : !!(p.visited ?? {}).reflect
 }
 
 /** The lessons of a course that have actually been written, in order. */
@@ -87,7 +96,7 @@ export function courseMap(course, progressOf) {
   const written = writtenLessons(course)
   let map = written[0]?.lesson.map ?? []
   for (const item of written) {
-    if (isStarted(progressOf(item.lesson.id)) || isDone(progressOf(item.lesson.id))) {
+    if (isStarted(progressOf(item.lesson.id)) || isDone(progressOf(item.lesson.id), course)) {
       map = item.lesson.map
     }
   }
@@ -118,7 +127,7 @@ export function todayCard(course, progressOf, sessionMinutes = 30) {
 
   for (const { lesson, week, number } of written) {
     const p = progressOf(lesson.id)
-    if (isDone(p)) continue
+    if (isDone(p, course)) continue
 
     const started = isStarted(p)
     const place = `WEEK ${week}, LESSON ${number}`
@@ -163,7 +172,7 @@ export function weekRows(course, progressOf) {
     lessons: week.lessons.map((entry, li) => {
       const lesson = entry.lessonId ? course.lessons[entry.lessonId] : null
       const p = lesson ? progressOf(lesson.id) : null
-      const complete = !!lesson && isDone(p)
+      const complete = !!lesson && isDone(p, course)
       const inProgress = !!lesson && !complete && isStarted(p)
       return {
         number: li + 1,
@@ -193,7 +202,7 @@ export function courseProgress(course, progressOf) {
 
   for (const { lesson } of written) {
     const p = progressOf(lesson.id)
-    if (isDone(p)) done += 1
+    if (isDone(p, course)) done += 1
     if (isStarted(p)) started = true
   }
 
