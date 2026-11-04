@@ -185,6 +185,10 @@ const SHAPES = {
   )
 }
 
+const BARE = 248   // the drawing's own height, with no list over it
+const TOP = 18    // .hw-readouts' top inset, from the stylesheet
+const FOOT = 46   // room under the panel for the "No labels" line (14 + ~18, rounded up)
+
 export default function ObjectInspector({ objects = [], prompt = 'What physics can you see?' }) {
   const [pick, setPick] = useState(objects[0]?.id)
   const [shown, setShown] = useState(0)
@@ -205,17 +209,37 @@ export default function ObjectInspector({ objects = [], prompt = 'What physics c
   // Guessing a per-item height does not work, because the notes vary from one
   // line to four. The panel is measured instead, and the stage is told to be
   // at least that tall.
+  //
+  // Two things the first version of this got wrong, both found by Design:
+  //
+  //   - 36 px of slack was not enough. The panel starts 18 px down, so 36
+  //     leaves 18 px under it, and the "No labels on the drawing" line needs
+  //     32 — it sits 14 px off the bottom and stands about 18 px tall. The
+  //     longest list ran into it by those 14 px. FOOT is that line's room.
+  //   - Below the stylesheet's breakpoint the panel is no longer absolute: it
+  //     flows ABOVE the stage, so nothing is overlapping and a stage grown to
+  //     match the list is just a tall blank space. The question is not how
+  //     wide the window is but whether the panel is floating, so that is what
+  //     is asked — of the panel itself, rather than by keeping a copy of the
+  //     breakpoint here that could drift away from the stylesheet's.
   const panelRef = useRef(null)
-  const [stageHeight, setStageHeight] = useState(248)
+  const [stageHeight, setStageHeight] = useState(BARE)
   useLayoutEffect(() => {
     const el = panelRef.current
     if (!el) return
-    const measure = () => setStageHeight(Math.max(248, el.offsetHeight + 36))
+    const measure = () => {
+      const floating = typeof getComputedStyle === 'function' &&
+        getComputedStyle(el).position === 'absolute'
+      setStageHeight(floating ? Math.max(BARE, el.offsetHeight + TOP + FOOT) : BARE)
+    }
     measure()
-    if (typeof ResizeObserver === 'undefined') return
-    const ro = new ResizeObserver(measure)
-    ro.observe(el)
-    return () => ro.disconnect()
+    // The panel changes shape when it stops floating, so the observer catches
+    // the crossing on its own; the window listener is for the case where it
+    // happens to come out the same height on both sides of the line.
+    window.addEventListener('resize', measure)
+    const ro = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(measure)
+    ro?.observe(el)
+    return () => { window.removeEventListener('resize', measure); ro?.disconnect() }
   }, [pick, revealed, ideas.length])
 
   const choose = (id) => { setPick(id); setShown(0) }

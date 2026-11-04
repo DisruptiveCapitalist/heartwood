@@ -114,9 +114,24 @@ button:disabled { cursor: default; opacity: .45; }
   overflow: hidden;
 }
 
-/* The readouts sit over the scene at full width, exactly as designed. Below
-   720px they collided with each other — two absolutely positioned blocks in a
-   320px column — so there they flow above the stage instead. */
+/* The readouts sit over the scene at full width, exactly as designed. In a
+   narrow column they collided with each other — two absolutely positioned
+   blocks in a 320px column — so there they flow above the stage instead.
+
+   The line was at 720px, which was too low: the two text columns are 228 and
+   268 wide, and with the 22px insets they take 540 of the card's width,
+   leaving too little in the middle for the drawing. Design read that as 800,
+   from the viewport; measured, the card is 56px narrower than the viewport, so
+   the free middle is (viewport - 596). At 801 that is 203px and Lesson 28's
+   boat — the widest drawing at 192px — still overlapped the right column by
+   16. At 860 the free middle is 263. The drawing is centred in the whole card
+   rather than in that gap — the left column is 228 wide and the right 268 — so
+   the clearances are uneven. Measured at 861, the tightest floating width, the
+   boat has 57px on its left and 14 on its right, and every other drawing has
+   more: bridge 25, ladder 22, airplane 33, bicycle 41.
+
+   ObjectInspector asks the panel whether it is still floating rather than
+   keeping its own copy of this number — moving the line here is enough. */
 .hw-readouts {
   position: absolute;
   inset: 18px 22px auto 22px;
@@ -130,7 +145,7 @@ button:disabled { cursor: default; opacity: .45; }
 
 .hw-stage { position: relative; overflow: hidden; }
 
-@media (max-width: 720px) {
+@media (max-width: 860px) {
   .hw-readouts {
     position: static;
     flex-direction: column;
