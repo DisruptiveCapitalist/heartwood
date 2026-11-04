@@ -33,6 +33,12 @@ export default {
   openingQuestion: `Peel an orange and try to press the peel flat on the table. It tears. A map is somebody doing that to the whole Earth anyway — so what did they decide to give up?`,
   concept: `Every flat map trades something away`,
 
+  fieldGuide: {
+    chapter: 3,
+    title: `Maps and the Shape of the Land`,
+    exercise: `Finding a real hill on a topographic map, reading its contour interval off the legend, and counting lines from bottom to top to get the climb — what the second tab does with one invented hill.`
+  },
+
   see: {
     voice: 'professor',
     line: `Two tabs, two different problems. Start with the globe, then press Mercator and watch Greenland.`,

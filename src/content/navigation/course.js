@@ -3,6 +3,11 @@ import lesson02 from './lessons/lesson-02.js'
 import lesson03 from './lessons/lesson-03.js'
 import lesson04 from './lessons/lesson-04.js'
 import lesson05 from './lessons/lesson-05.js'
+import lesson06 from './lessons/lesson-06.js'
+import lesson07 from './lessons/lesson-07.js'
+import lesson08 from './lessons/lesson-08.js'
+import lesson09 from './lessons/lesson-09.js'
+import lesson10 from './lessons/lesson-10.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -49,14 +54,14 @@ export default {
       ]
     },
     {
-      title: `Direction`,
+      title: `The Compass and Earth's Magnetic Field`,
       idea: `North is not one thing, and a compass does not know where you are.`,
       lessons: [
-        { title: `The compass and magnetic north` },
-        { title: `True north, grid north, and declination` },
-        { title: `Taking and following a bearing` },
-        { title: `Finding direction without a compass` },
-        { title: `Review: crossing unfamiliar ground` }
+        { title: `What is magnetism?`, lessonId: 'lesson-06' },
+        { title: `True north and magnetic north`, lessonId: 'lesson-07' },
+        { title: `Learning to use a compass`, lessonId: 'lesson-08' },
+        { title: `Following a bearing`, lessonId: 'lesson-09' },
+        { title: `The map and compass work together`, lessonId: 'lesson-10' }
       ]
     },
     {
@@ -110,12 +115,17 @@ export default {
     'lesson-02': lesson02,
     'lesson-03': lesson03,
     'lesson-04': lesson04,
-    'lesson-05': lesson05
+    'lesson-05': lesson05,
+    'lesson-06': lesson06,
+    'lesson-07': lesson07,
+    'lesson-08': lesson08,
+    'lesson-09': lesson09,
+    'lesson-10': lesson10
   },
 
   nextUp: {
-    title: `Week 2 is not written yet`,
-    blurb: `Week 1 is complete. A position needs something to measure from; the ground is flat only for the patch you can see; two angles give an exact address; every flat map trades something away; and a position is worth only as much as the form you describe it in. Next: the compass — a needle that points north, except not at the North Pole, and wrong by an amount that depends on where you stand.`
+    title: `Week 3 is not written yet`,
+    blurb: `Ten lessons in, and the compass is in hand: why a needle moves at all, the gap between its north and the map's, the two movements that turn a thing you can see into a number, how to walk that number across a mile of woods, and how to carry it back onto paper. Next: the Sun — the oldest compass and the oldest clock turn out to be the same object.`
   },
 
   journalPrompts: [

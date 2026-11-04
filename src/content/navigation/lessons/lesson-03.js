@@ -29,6 +29,12 @@ export default {
   openingQuestion: `Your house has an address because somebody laid out the streets and numbered them. The open ocean has no streets. So how do you give an address to a spot out there — and have a stranger find it?`,
   concept: `A coordinate is two measured angles`,
 
+  fieldGuide: {
+    chapter: 2,
+    title: `Latitude and Longitude`,
+    exercise: `Reading your own front door's coordinates, then walking a hundred yards north and reading them again, to feel which of the two numbers moves — the globe's two readouts, measured with your feet.`
+  },
+
   see: {
     voice: 'professor',
     line: `Slide the marker north and watch the two distances underneath. One of them is not like the other.`,

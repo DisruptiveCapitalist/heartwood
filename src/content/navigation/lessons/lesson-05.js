@@ -32,6 +32,12 @@ export default {
   openingQuestion: `Four lessons of groundwork, and now the real test. Somebody hands you a map and asks the oldest question in navigation. Where are you — and could you tell another person so that they could find you?`,
   concept: `A position described three ways`,
 
+  fieldGuide: {
+    chapter: 2,
+    title: `Latitude and Longitude`,
+    exercise: `Going to a place within a mile of home and writing its position three ways — coordinates, bearing and distance, landmarks — which is the plot-and-find exercise taken outdoors. Chapter 3 covers the map-reading half.`
+  },
+
   see: {
     voice: 'professor',
     line: `Six places, a grid in minutes, and two sliders. Take the tasks in order — find one, then plot one.`,

@@ -60,7 +60,7 @@ function render(course, lesson) {
   // SEE IT
   out.push(`\n${H(2, 'SEE IT')}`)
   out.push(`*The Professor:* ${P(lesson.see.line)}`)
-  const sim = describeSim(lesson.see.simulation.id)
+  const sim = describeSim(lesson.see.simulation.id, lesson.see.simulation.props?.mode)
   out.push(
     `\n**On-screen simulation:** \`${lesson.see.simulation.id}\`` +
     (lesson.see.simulation.props ? ` (${JSON.stringify(lesson.see.simulation.props)})` : '') + '\n'
@@ -73,7 +73,17 @@ function render(course, lesson) {
   } else {
     out.push(`\n> _No description recorded for this simulation yet._\n`)
   }
-  out.push(`\n> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._\n`)
+  // The handoff asks every export to name the real-world exercise the
+  // simulation stands in for, and its chapter, so the handbook and the screen
+  // can describe the same thing.
+  if (lesson.fieldGuide) {
+    out.push(
+      `\n> **Field Guide — Chapter ${lesson.fieldGuide.chapter}: ${strip(lesson.fieldGuide.title)}.** ` +
+      `${strip(lesson.fieldGuide.exercise)}\n`
+    )
+  } else {
+    out.push(`\n> _No Field Guide pointer recorded for this lesson yet._\n`)
+  }
   out.push(`\n**What the learner should notice**\n`)
   out.push(LIST(lesson.see.observations.map((o) => o.text)))
 
@@ -107,10 +117,10 @@ function render(course, lesson) {
   out.push(LIST(lesson.connect.items.map((i) => (typeof i === 'string' ? i : i.t))))
   if (lesson.connect.synthesis) {
     // It answers the list directly — "every one of those…" — so it reads with
-    // the list rather than at the end of the stage. On screen it is withheld
-    // until the learner has ticked two, or written one of their own.
+    // the list. Since the Week 2 handoff this is where it sits on screen too,
+    // withheld until the learner has ticked two or written one of their own.
     out.push(`\n${P(lesson.connect.synthesis)}`)
-    out.push(`\n_Shown on screen only once the learner has ticked two of the items above, or written one of their own._\n`)
+    out.push(`\n_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._\n`)
   }
   if (lesson.connect.builder) {
     out.push(`\n${H(3, 'The Builder — try it yourself')}`)

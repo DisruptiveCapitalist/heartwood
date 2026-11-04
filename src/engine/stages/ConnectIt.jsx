@@ -3,6 +3,18 @@ import { Rich } from '../../lib/rich.jsx'
 import AcrossCultures from '../AcrossCultures.jsx'
 
 // "Where else have you seen this?" Multi-select, plus one of the learner's own.
+//
+// The synthesis line is a comment on the six items — "every one of those is the
+// same sentence wearing different clothes" — so it sits directly under them,
+// not at the foot of the stage. Design asked for the move after reading the
+// Navigation exports; it is applied to every course because every course's
+// synthesis line is written the same way, and a per-course branch for a
+// layout detail would not be worth its own code path.
+//
+// It still appears only once the learner has engaged: two items ticked, or one
+// of their own written. Design's note said "ticked two"; the typed-own path is
+// kept because writing your own is the same thinking, and dropping it would
+// hide the line from a learner who answers that way.
 export default function ConnectIt({ lesson, progress, set }) {
   const c = lesson.connect
   const connects = progress.connects ?? {}
@@ -37,6 +49,12 @@ export default function ConnectIt({ lesson, progress, set }) {
         })}
       </div>
 
+      {enough && (
+        <p className="hw-fade" style={{ fontSize: 20, lineHeight: 1.5, maxWidth: 700, margin: 0, color: 'var(--ink-2)', fontStyle: 'italic', textWrap: 'pretty' }}>
+          <Rich text={c.synthesis} />
+        </p>
+      )}
+
       {c.builder && (
         <div className="hw-card" style={{ maxWidth: 800, padding: '22px 24px' }}>
           <span style={{
@@ -64,12 +82,6 @@ export default function ConnectIt({ lesson, progress, set }) {
           style={{ fontSize: 19, lineHeight: 1.5, padding: '14px 16px', minHeight: 96 }}
         />
       </div>
-
-      {enough && (
-        <p className="hw-fade" style={{ fontSize: 20, lineHeight: 1.5, maxWidth: 700, margin: 0, color: 'var(--ink-2)', fontStyle: 'italic', textWrap: 'pretty' }}>
-          <Rich text={c.synthesis} />
-        </p>
-      )}
     </div>
   )
 }

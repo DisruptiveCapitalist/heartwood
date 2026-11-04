@@ -18,7 +18,7 @@ _Opening question._ A friend phones you, lost somewhere in a big park. "Don't wo
 
 > _For the handbook:_ A diagram should show the same three shapes over the same two reference points, and the single crossing. The two useless clues are worth drawing too — as a map with nothing on it.
 
-> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._
+> **Field Guide — Chapter 1: The Earth as Our Navigation Reference.** Describing where something is from two different reference points, out loud, standing at your own front door — the thing the clue map does with a lost friend and a water tower.
 
 **What the learner should notice**
 - "I'm walking north" changed nothing. Which way she's **going** says nothing about where she **is**.
@@ -60,7 +60,7 @@ This is why a compass on its own can't tell you where you are. It tells you whic
 
 Every one of those works only because both people share the reference. The minute they don't, "by the gate" means nothing.
 
-_Shown on screen only once the learner has ticked two of the items above, or written one of their own._
+_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Stand at your front door. Say out loud, in one sentence, where your car or mailbox is — using a reference, a direction, and a distance. Now say it again from a **different** reference: the garage, a tree, the street corner. Same car, two perfectly good descriptions. Position is never one fixed sentence; it depends on what you measure from.

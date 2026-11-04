@@ -17,6 +17,12 @@ export default {
   openingQuestion: `A friend phones you, lost somewhere in a big park. "Don't worry," she says, "I'm walking north." Can you find her?`,
   concept: `Position needs a reference`,
 
+  fieldGuide: {
+    chapter: 1,
+    title: `The Earth as Our Navigation Reference`,
+    exercise: `Describing where something is from two different reference points, out loud, standing at your own front door — the thing the clue map does with a lost friend and a water tower.`
+  },
+
   see: {
     voice: 'professor',
     line: `Here's the park. Turn on what she tells you, one clue at a time, and watch where she could be.`,

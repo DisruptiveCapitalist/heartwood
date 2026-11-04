@@ -18,7 +18,7 @@ _Opening question._ Your house has an address because somebody laid out the stre
 
 > _For the handbook:_ A diagram should put the two figures side by side at two or three latitudes, because the whole lesson is that one of them moves and the other does not. Drawing the parallels evenly spaced and the meridians closing in on the poles is the point; any diagram that spaces the meridians evenly illustrates the opposite of the lesson.
 
-> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._
+> **Field Guide — Chapter 2: Latitude and Longitude.** Reading your own front door's coordinates, then walking a hundred yards north and reading them again, to feel which of the two numbers moves — the globe's two readouts, measured with your feet.
 
 **What the learner should notice**
 - One degree of **latitude** is about **69 miles** — and it is the same 69 miles at the Equator, in Ohio, and out on the Arctic ice.
@@ -64,7 +64,7 @@ That even spacing of the rungs handed sailors a free gift. One minute of latitud
 
 All of them are the same move: two angles, and an agreement about where to start counting the second one. The Earth hands you the first number. People had to vote on the second.
 
-_Shown on screen only once the learner has ticked two of the items above, or written one of their own._
+_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Go outside and get the coordinates of your own front door, in degrees, minutes and seconds if your phone will give them. Write them down. Now walk a hundred yards as close to due north as you can manage, and look again. Latitude will have changed by about **three seconds** — a second of latitude is about 101 feet, and you just walked three of them. Longitude will not have moved at all. You have measured the difference between the two numbers with your feet.

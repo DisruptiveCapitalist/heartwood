@@ -18,7 +18,7 @@ _Opening question._ Stand in a parking lot and the ground is perfectly flat. Loo
 
 > _For the handbook:_ The curvature must not be exaggerated — that is the whole argument of the lesson. On a 900 px width the bend is under one pixel at county size and about eight pixels at state size. A handbook diagram that makes the bend obvious at small scales would illustrate the opposite of what the lesson says.
 
-> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._
+> **Field Guide — Chapter 1: The Earth as Our Navigation Reference.** Watching a boat or a vehicle drop below the horizon from a shoreline or a hilltop, and seeing from a high point how much further you can see — the zoom-out, done with your own eyes.
 
 **What the learner should notice**
 - Across a whole neighborhood, the ground drops about **2 inches** below a flat line. Less than a curb.
@@ -62,7 +62,7 @@ One refinement for later: the Earth is very slightly wider around the Equator th
 
 Notice that none of these needed a spaceship. People with sharp eyes and a little patience worked it out from the ground.
 
-_Shown on screen only once the learner has ticked two of the items above, or written one of their own._
+_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Tonight, in a dark room: one lamp with the shade off is the Sun. An orange is the Earth — push a toothpick through it top to bottom for the axis, and stick a pin about halfway between the top and the middle. That pin is you. Hold the orange so the pin faces away from the lamp (midnight), then slowly turn it toward the east — counterclockwise, looking down on the top. Watch the pin come around the edge into the light. From the pin's point of view, the lamp just "rose" — in the east.

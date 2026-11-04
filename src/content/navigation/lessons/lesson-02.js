@@ -18,6 +18,12 @@ export default {
   openingQuestion: `Stand in a parking lot and the ground is perfectly flat. Look out an airplane window and it still looks flat. So how do we know it's round — and why should a navigator care?`,
   concept: `A small patch of a ball looks flat`,
 
+  fieldGuide: {
+    chapter: 1,
+    title: `The Earth as Our Navigation Reference`,
+    exercise: `Watching a boat or a vehicle drop below the horizon from a shoreline or a hilltop, and seeing from a high point how much further you can see — the zoom-out, done with your own eyes.`
+  },
+
   see: {
     voice: 'professor',
     line: `Start in your backyard and zoom out, one step at a time. Tell me when the ground stops looking flat.`,

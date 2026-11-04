@@ -18,7 +18,7 @@ _Opening question._ Peel an orange and try to press the peel flat on the table. 
 
 > _For the handbook:_ The projection figures are the argument, so a diagram should show the same three pictures of the same two landmasses with the measured ratio against each. For the contours, a handbook diagram should pair the map with the cross-section of the same line, because that pairing is what turns the lines back into ground. The contours come from marching squares over one height function and the cross-section is sampled from that same function, so the two drawings can be trusted to agree with each other. There is deliberately no stream: on ground this smooth the line water would take is a straight diagonal, which looks like a drawing mistake rather than a river.
 
-> _This is the lesson's hands-on moment. Where it stands in for a real field exercise, that exercise belongs in the Field Guide._
+> **Field Guide — Chapter 3: Maps and the Shape of the Land.** Finding a real hill on a topographic map, reading its contour interval off the legend, and counting lines from bottom to top to get the climb — what the second tab does with one invented hill.
 
 **What the learner should notice**
 - On the globe, Africa measures about **15 times** the size of Greenland. The truth is **14 times** — the small error is the globe's own edge, squashing what sits near the rim.
@@ -66,7 +66,7 @@ The crowding of contour lines is the part worth practising, because it turns a f
 
 Notice what all six have in common: the map was not wrong, it was *honest about something else*. The skill is not finding a map that doesn't lie. It is knowing which lie you have in your hand.
 
-_Shown on screen only once the learner has ticked two of the items above, or written one of their own._
+_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Find a hill near you on any free topographic map — the USGS *topoView* site and most hiking apps will show contours. First, read the legend and find the contour interval. Then put a finger at the bottom of the hill and a finger at the top, and count the lines you cross: each one is that many feet of climb. Multiply. Now look at where the lines are closest together and work out roughly how far apart they are on the ground, using the scale bar. That gap, against the interval, is the steepest part of your hill — and it is the part that will be in your legs tomorrow.
