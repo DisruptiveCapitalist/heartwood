@@ -115,7 +115,7 @@ The spin does not pick out any **one** north-south line, because they are all al
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 4: maps. Peeling this grid off a ball and laying it flat on a sheet of paper — which cannot be done honestly. Every map in the world is somebody's decision about where to lie.
+_Tomorrow, Lesson 4: maps. Peeling this grid off a ball and laying it flat on a sheet of paper — which cannot be done honestly. Every map in the world is somebody's decision about where to lie._
 
 ## "I don't get it" — 7 ways in
 

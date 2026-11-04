@@ -116,7 +116,7 @@ _Links across to:_ Electricity, Lesson 11 — the compass needle that flinches n
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 10 closes the week: the map and the compass in the same two hands. A bearing taken on the ground, carried back to the paper, and drawn as a line that tells you something new.
+_Tomorrow, Lesson 10 closes the week: the map and the compass in the same two hands. A bearing taken on the ground, carried back to the paper, and drawn as a line that tells you something new._
 
 ## "I don't get it" — 7 ways in
 

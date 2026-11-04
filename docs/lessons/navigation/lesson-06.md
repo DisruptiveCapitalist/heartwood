@@ -118,7 +118,7 @@ _Links across to:_ Electricity, Lesson 11 — the compass needle that flinches n
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 7: the gap between where the needle points and where north actually is. It has a name, it is a different size in every town, and it is changing while you stand there.
+_Tomorrow, Lesson 7: the gap between where the needle points and where north actually is. It has a name, it is a different size in every town, and it is changing while you stand there._
 
 ## "I don't get it" — 7 ways in
 

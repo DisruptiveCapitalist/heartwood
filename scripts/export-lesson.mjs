@@ -180,7 +180,12 @@ function render(course, lesson) {
   // REFLECT
   out.push(`\n${H(2, 'REFLECT')}`)
   out.push(P(lesson.reflect.prompt))
-  out.push(`\n_Tomorrow:_ ${P(lesson.reflect.tomorrow)}`)
+  // Most lessons' copy already opens with "Tomorrow," or "Next week:", so
+  // adding the label unconditionally produced "_Tomorrow:_ Tomorrow, Lesson 2"
+  // in the exports — every Navigation lesson and three quarters of the others.
+  // Where the copy leads itself, let it.
+  const tomorrow = strip(lesson.reflect.tomorrow)
+  out.push(`\n${/^(tomorrow|next)\b/i.test(tomorrow) ? `_${tomorrow}_` : `_Tomorrow:_ ${tomorrow}`}\n`)
 
   // Routes and map — the alternative explanations, and where the course stands.
   out.push(`\n${H(2, `"I don't get it" — ${lesson.routes.length} ways in`)}`)

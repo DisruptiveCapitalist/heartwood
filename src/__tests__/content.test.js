@@ -161,6 +161,11 @@ describe('the Markdown exports', () => {
         // heading, where "Lesson 1" meant two different things.
         expect(text, 'the week position belongs in the blockquote')
           .toContain(`lesson ${lesson.number} of`)
+
+        // "_Tomorrow:_ Tomorrow, Lesson 2" — the exporter's label on top of
+        // the copy's own lead-in. Most lessons in every course lead
+        // themselves, so the label is only added where they do not.
+        expect(text, 'the Tomorrow label is doubled').not.toMatch(/_Tomorrow:_\s*(Tomorrow|Next)\b/i)
       })
     }
   }

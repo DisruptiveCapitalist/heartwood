@@ -19,7 +19,9 @@ import { julianDay, sunPosition, riseSet, shadow, clock } from '../../lib/sun.js
 //   two marks, 20 minutes apart, first mark at:
 //     equinox      0.1 all day — the shadow tip runs dead straight that day
 //     1 May        0.8 at noon · 7.7 two hours before · 14.9 four hours before
-//     21 June      1.0 at noon · 11.2 two hours before · 23.3 four hours after
+//     21 June      1.0 at noon · 11.2 two hours before · 21.8 four hours before
+//                  (and 23.3 four hours AFTER — the afternoon is always a
+//                   little worse, so a figure has to say which side it is on)
 //     21 December  2.2 at noon · 21.1 two hours before · 30.7 four hours before
 //
 //   equal shadows, same place:

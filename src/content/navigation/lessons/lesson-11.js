@@ -106,12 +106,12 @@ export default {
   feynman: {
     line: `Your turn. A ten-year-old, and no diagrams.`,
     instruction: `Explain to someone why the Sun does not come up in the same place every morning — and why, if they stood on the equator, they would see something different from what you see.`,
-    banned: ['gps', 'app', 'just head'],
-    bannedNote: `Those three are banned because each is a way of not answering.`,
+    banned: ['tilt', 'axis', 'declination'],
+    bannedNote: `These three are the labels, and a label is not an explanation. "It's because of the tilt" is a sentence that can be said by someone who could not draw it. Describe what leans, what it leans relative to, and what stays the same as the Earth goes round.`,
     placeholder: `The Sun doesn't actually move much. What moves is…`,
     checks: [
       `It says clearly that the daily motion is the Earth turning, not the Sun travelling.`,
-      `It explains the yearly change by the tilt of the axis, not by the Earth being nearer or further from the Sun.`,
+      `It explains the yearly change by the Earth leaning, and says that the lean does not swing round to follow the Sun — and not by the Earth being nearer or further away.`,
       `It gives at least one number — a bearing, an altitude or a count of hours — rather than only "higher" and "lower".`,
       `It says what would be different at another latitude, and why.`
     ],

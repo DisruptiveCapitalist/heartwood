@@ -115,11 +115,11 @@ export default {
   feynman: {
     line: `Your turn, and this one has a trap in it.`,
     instruction: `Explain to someone why their garden sundial reads a different time from their phone — and why the difference is not the same in February as it is in June.`,
-    banned: ['gps', 'app', 'just head'],
-    bannedNote: `Banned because each is a way of not answering.`,
+    banned: ['equation', 'zone', 'average'],
+    bannedNote: `Naming the equation of time is not explaining it, and "time zone" smuggles in the whole idea you are being asked to unpack. Say what is actually happening to the Earth and to the clocks.`,
     placeholder: `The sundial isn't broken. There are two or three different things going on…`,
     checks: [
-      `It separates the longitude cause from the equation-of-time cause, rather than running them together as "the clock is off".`,
+      `It separates the cause that comes from where you stand from the cause that comes from the Earth's orbit, rather than running them together as "the clock is off".`,
       `It says the longitude part never changes through the year and the orbit part does.`,
       `It gives at least one real number — minutes, for a named place or date.`,
       `It mentions daylight saving as a third thing, if the reader's country keeps it.`

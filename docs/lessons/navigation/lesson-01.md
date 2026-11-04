@@ -111,7 +111,7 @@ Second, when the job needs more precision than the reference gives. It's fine fo
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 2: the Earth beneath our feet. Why the ground looks perfectly flat, why it isn't, and why a navigator has to care about the difference.
+_Tomorrow, Lesson 2: the Earth beneath our feet. Why the ground looks perfectly flat, why it isn't, and why a navigator has to care about the difference._
 
 ## "I don't get it" — 7 ways in
 

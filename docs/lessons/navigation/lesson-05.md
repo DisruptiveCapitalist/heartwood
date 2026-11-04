@@ -115,7 +115,7 @@ _Links across to:_ Lesson 1 — the friend lost in the park (`navigation/lesson-
 ## REFLECT
 One thing I understand now that I didn't understand on Monday:
 
-_Tomorrow:_ Next week: direction. A needle that points north, except it doesn't point at the North Pole, and the amount it is wrong by depends on where you are standing and changes from year to year. Week 2 is about taking that seriously.
+_Next week: direction. A needle that points north, except it doesn't point at the North Pole, and the amount it is wrong by depends on where you are standing and changes from year to year. Week 2 is about taking that seriously._
 
 ## "I don't get it" — 7 ways in
 

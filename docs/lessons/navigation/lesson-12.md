@@ -83,7 +83,7 @@ _Do not restate this claim in the handbook without its label, its uncertainty an
 ## FEYNMAN IT
 Tell someone how to find true north with a stick, a sunny afternoon and no instruments — and tell them why it is the SHORTEST shadow that matters rather than the first one or the longest.
 
-Banned words: **gps**, **app**, **just head**
+Banned words: **sundial**, **gnomon**, **compass**
 
 **A good explanation contains**
 - It says the shadow falls opposite the Sun, so the shadow is a measurement of where the Sun is.
@@ -116,7 +116,7 @@ _Links across to:_ Navigation, Lesson 11 — why the Sun appears to move (`navig
 ## REFLECT
 A stick in the ground gave you a true bearing, and a compass cannot. Write down what the compass is still better at — there is more than one answer, and tomorrow goes badly if you think the stick has replaced it.
 
-_Tomorrow:_ Tomorrow: the Field Guide gives two ways to turn those marks into an east–west line. One of them is thirty degrees wrong on a December afternoon, and we are going to measure exactly when it fails.
+_Tomorrow: the Field Guide gives two ways to turn those marks into an east–west line. One of them is thirty degrees wrong on a December afternoon, and we are going to measure exactly when it fails._
 
 ## "I don't get it" — 7 ways in
 

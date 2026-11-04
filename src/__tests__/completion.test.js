@@ -189,3 +189,52 @@ describe('CONNECT IT layout', () => {
     expect(src).toMatch(/const synthesis = enough \?/)
   })
 })
+
+// Lessons 11 to 15 all shipped with Lesson 10's banned words — "gps, app,
+// just head" — because the first of them was written from the last of those
+// as a template and the list came along with it. Design caught it by reading
+// five exports in a row; nothing in the suite would have.
+//
+// Scoped to Navigation on purpose. Physics I has two lessons that share a
+// banned list legitimately (26 and 04 are both about inertia) and four later
+// ones with none at all, and those are approved work; this is a rule this
+// course keeps, not one to impose on finished courses from here.
+describe('Navigation banned words', () => {
+  const lessons = Object.entries(navigation.lessons)
+
+  it('gives every lesson its own, and no lesson an empty list', () => {
+    for (const [id, lesson] of lessons) {
+      expect(lesson.feynman.banned?.length, `${id} has no banned words`).toBeGreaterThan(0)
+    }
+  })
+
+  it('never repeats another lesson\'s list', () => {
+    const seen = new Map()
+    for (const [id, lesson] of lessons) {
+      const key = lesson.feynman.banned.map((w) => w.toLowerCase()).sort().join('|')
+      expect(seen.has(key), `${id} has the same banned words as ${seen.get(key)}`).toBe(false)
+      seen.set(key, id)
+    }
+  })
+
+  // The instruction names the banned words on purpose — "explain it without
+  // saying X" is the whole device, and every course does it. The checks are
+  // different: they tell the learner what a good answer contains, so a check
+  // that asks for a word the lesson forbids is asking for the impossible.
+  it('never asks a check for a word the lesson forbids', () => {
+    for (const [id, lesson] of lessons) {
+      for (const word of lesson.feynman.banned) {
+        for (const [i, check] of lesson.feynman.checks.entries()) {
+          expect(check.toLowerCase().includes(word.toLowerCase()),
+            `${id} check ${i + 1} requires the banned word "${word}"`).toBe(false)
+        }
+      }
+    }
+  })
+
+  it('says why they are banned, in words about this lesson', () => {
+    for (const [id, lesson] of lessons) {
+      expect((lesson.feynman.bannedNote ?? '').length, `${id} bannedNote`).toBeGreaterThan(40)
+    }
+  })
+})

@@ -10,11 +10,15 @@
 // src/lib/sun.js, at Columbus, with the first mark put down at the stated time
 // and a 20-minute wait:
 //
-//                      noon    1h before   2h before   4h from noon
-//   20 March           0.1°      0.1°        0.1°         0.1°
-//   1 May              0.8°      3.5°        7.7°        14.9°
-//   21 June            1.0°      5.2°       11.2°        23.3°
-//   21 December        2.2°     10.8°       21.1°        30.7°
+// All four times are BEFORE noon — the afternoon is consistently a little
+// worse, because the chord runs from the mark outward rather than inward, and
+// mixing the two columns is how 21 June's figure first went in wrong:
+//
+//                      noon    1h before   2h before   4h before   4h after
+//   20 March           0.1°      0.1°        0.1°        0.1°        0.2°
+//   1 May              0.8°      3.5°        7.7°       14.9°       16.0°
+//   21 June            1.0°      5.2°       11.2°       21.8°       23.3°
+//   21 December        2.2°     10.8°       21.1°       30.7°       31.1°
 //
 //   equal-shadow method, same place and dates:
 //     20 March 0.09° · 1 May 0.07° · 21 June 0.00° · 21 December 0.00°
@@ -122,8 +126,8 @@ export default {
   feynman: {
     line: `Now you explain the trap.`,
     instruction: `A friend has read the stick-and-two-stones method in a survival book and is about to use it to walk out of a wood in December, at four in the afternoon. Explain what will happen and what they should do instead.`,
-    banned: ['gps', 'app', 'just head'],
-    bannedNote: `Banned because each is a way of not answering.`,
+    banned: ['approximate', 'roughly', 'accurate'],
+    bannedNote: `Every one of these is a number refusing to be said. This lesson exists because "approximate" was doing the work of "between 0.1 and 31 degrees depending on the month". Give the figure.`,
     placeholder: `The method they've read isn't wrong exactly, but…`,
     checks: [
       `It says the two-mark line is a chord of a curved path, and that is why it can be badly wrong.`,

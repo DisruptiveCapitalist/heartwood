@@ -117,7 +117,7 @@ It is the same reasoning behind saying "niner" for nine on the radio, and behind
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 9: you have the number. Now walk it, across ground where you cannot see the far end — and find out why staring at the needle is the worst way to do it.
+_Tomorrow, Lesson 9: you have the number. Now walk it, across ground where you cannot see the far end — and find out why staring at the needle is the worst way to do it._
 
 ## "I don't get it" — 7 ways in
 

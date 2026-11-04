@@ -94,9 +94,9 @@ export default {
       label: `PLAUSIBLE BUT UNCERTAIN`,
       paragraphs: [
         `In 1948 the archaeologist C. L. Vebæk excavated a fragment of a notched wooden disc at a Benedictine convent site at Uunartoq in Norse Greenland. Roughly half of it survives. It has a central hole, a ring of evenly spaced notches round its rim, and some incised curved lines, and it has been interpreted since the 1950s as a sun compass: a pin in the central hole, the curves being the path the shadow tip takes on particular dates, and the navigator steering so that the shadow tip stays on its line.`,
-        `If that reading is right it is the same instrument as the board in the Builder above, at sea, five hundred years before the compass reached northern Europe — and that is exactly why it deserves care. The interpretation is widely repeated with a confidence the evidence does not support.`
+        `If that reading is right it is the same instrument as the board in the Builder above, taken to sea — by people who, on the earlier datings proposed for it, had no magnetic compass to fall back on. That is exactly why it deserves care rather than enthusiasm: the interpretation is widely repeated with a confidence the evidence does not support.`
       ],
-      uncertain: `It is one broken object and the reading of it is contested. A 2013 paper by Bernáth and colleagues argued the incised lines fit a different instrument better — one for finding latitude and local noon rather than for holding a course — partly because the lines stop short of the rim instead of running to it, and the same group later proposed a "twilight board" reading for use with the Sun near the horizon. No gnomon pin was found with the disc, and no second example has turned up. The sun-compass reading remains the common one; it is not the only one, and the artefact cannot settle it.`,
+      uncertain: `It is one broken object and the reading of it is contested. A 2013 paper by Bernáth and colleagues argued the incised lines fit a different instrument better — one for finding latitude and local noon rather than for holding a course — partly because the lines stop short of the rim instead of running to it, and the same group later proposed a "twilight board" reading for use with the Sun near the horizon. No gnomon pin was found with the disc, and no second example has turned up. Its date is not firm either — the site is a Norse Greenland settlement occupied across several centuries, so claims about how far it predates the magnetic compass in Europe, which is recorded there by the end of the twelfth century, are doing more work than the dating can bear. The sun-compass reading remains the common one; it is not the only one, and the artefact cannot settle it.`,
       sources: `Thirslund, *Viking Navigation* (1997); Bernáth, Farkas, Száz, Blahó, Egri, Barta, Åkesson and Horváth, "An alternative interpretation of the Viking sundial artefact," *Proceedings of the Royal Society A* (2013); Vebæk's excavation report in *Meddelelser om Grønland* (1958).`
     }
   },
@@ -104,14 +104,14 @@ export default {
   feynman: {
     line: `The last explanation of the week.`,
     instruction: `Explain how you would check whether a compass is telling you the truth, using nothing but a stick, a piece of string and a sunny day — and say what result would mean the compass is faulty rather than simply being a compass.`,
-    banned: ['gps', 'app', 'just head'],
-    bannedNote: `Banned because each one is a way of not answering.`,
+    banned: ['declination', 'calibrate', 'variation'],
+    bannedNote: `You have had the word declination for eight lessons and it is now doing your thinking for you. Say what the two instruments each point at and why those are not the same direction, without the word that packages it.`,
     placeholder: `I'd start by finding true north without the compass at all, like this…`,
     checks: [
       `It describes a way of getting true north from the Sun, with enough detail to actually follow.`,
-      `It says that a disagreement with the compass is expected, and names it: magnetic declination.`,
-      `It gives a figure — the declination where the reader lives, or one from the simulation.`,
-      `It says what WOULD indicate a fault: a disagreement much bigger than the local declination, or one that changes when you move the compass near metal.`
+      `It says that a disagreement with the compass is expected rather than a fault, and says where that disagreement comes from.`,
+      `It gives a figure — the angle where the reader lives, or one from the simulation.`,
+      `It says what WOULD indicate a fault: a disagreement much bigger than the one expected locally, or one that changes when you move the compass near metal.`
     ],
     closing: `That last check is the one that separates this week from a party trick. Knowing the expected disagreement is what lets you recognise an unexpected one.`
   },
@@ -160,7 +160,7 @@ export default {
     prompt: `Three weeks ago a compass was an instrument that told you where north was. Write down what you would say it does now, in one sentence, to someone who has never thought about it.`,
     placeholder: `A compass is an instrument that…`,
     mapFooter: `Week 3 complete. You can find true north without any instrument at all — and check the one you own against it.`,
-    tomorrow: `Week 4 is not written yet. It takes the same trick into the dark: a turning sky, one star that stays put, and the height of it above your horizon turning out to be your latitude.`
+    tomorrow: `Next: the same trick after dark. The whole sky turns through the night and one star very nearly does not — and how high that one sits above your horizon turns out to be a number you have been using since Week 1.`
   },
 
   routes: [

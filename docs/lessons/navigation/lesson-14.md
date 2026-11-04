@@ -83,10 +83,10 @@ _Do not restate this claim in the handbook without its label, its uncertainty an
 ## FEYNMAN IT
 Explain to someone why their garden sundial reads a different time from their phone — and why the difference is not the same in February as it is in June.
 
-Banned words: **gps**, **app**, **just head**
+Banned words: **equation**, **zone**, **average**
 
 **A good explanation contains**
-- It separates the longitude cause from the equation-of-time cause, rather than running them together as "the clock is off".
+- It separates the cause that comes from where you stand from the cause that comes from the Earth's orbit, rather than running them together as "the clock is off".
 - It says the longitude part never changes through the year and the orbit part does.
 - It gives at least one real number — minutes, for a named place or date.
 - It mentions daylight saving as a third thing, if the reader's country keeps it.
@@ -116,7 +116,7 @@ _Links across to:_ Navigation, Lesson 3 — the language of latitude and longitu
 ## REFLECT
 Clock time is an agreement and solar time is a measurement. Write down one other thing in your life that you have been treating as a measurement when it is really an agreement.
 
-_Tomorrow:_ Tomorrow closes the week: you build the instrument. A stick, a circle, a morning — and then you check your compass against it, which is the only way to measure your own declination without looking anything up.
+_Tomorrow closes the week: you build the instrument. A stick, a circle, a morning — and then you check your compass against it, which is the only way to measure your own declination without looking anything up._
 
 ## "I don't get it" — 7 ways in
 

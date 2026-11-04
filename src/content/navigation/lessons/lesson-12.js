@@ -106,8 +106,8 @@ export default {
   feynman: {
     line: `Explain it to someone holding a stick.`,
     instruction: `Tell someone how to find true north with a stick, a sunny afternoon and no instruments — and tell them why it is the SHORTEST shadow that matters rather than the first one or the longest.`,
-    banned: ['gps', 'app', 'just head'],
-    bannedNote: `Those three are banned because each one is a way of not answering.`,
+    banned: ['sundial', 'gnomon', 'compass'],
+    bannedNote: `The first two let you point at an object instead of explaining one, and the third is the instrument this method exists to do without. If your explanation needs a compass in it, it is not this method.`,
     placeholder: `Push the stick in the ground, and then…`,
     checks: [
       `It says the shadow falls opposite the Sun, so the shadow is a measurement of where the Sun is.`,

@@ -119,7 +119,7 @@ _Links across to:_ Lesson 2 — why a small patch of a ball looks flat (`navigat
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 5 closes the week: a real map, a pair of coordinates, and the question the whole week has been building to — where am I, and how would I tell somebody?
+_Tomorrow, Lesson 5 closes the week: a real map, a pair of coordinates, and the question the whole week has been building to — where am I, and how would I tell somebody?_
 
 ## "I don't get it" — 7 ways in
 

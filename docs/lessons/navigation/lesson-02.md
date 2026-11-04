@@ -115,7 +115,7 @@ _Links across to:_ Physics I, Lesson 1 — the passenger who keeps going (`physi
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 3: latitude and longitude — how to give an exact address to any spot on a ball that has no edges, no corners, and no obvious place to start counting.
+_Tomorrow, Lesson 3: latitude and longitude — how to give an exact address to any spot on a ball that has no edges, no corners, and no obvious place to start counting._
 
 ## "I don't get it" — 7 ways in
 

@@ -14,7 +14,7 @@ _Opening question._ How wrong is the stick-and-two-stones trick?
 
 **What the learner can change.** Three places, four dates, a slider for how long before noon the first mark goes down (20 to 300 minutes), and a slider for the wait between the two marks (10 to 40 minutes).
 
-**The numbers behind it.** Errors against true east–west at Columbus, with a 20-minute wait, by when the first mark is made: on 20 March 0.1° at any hour, because the shadow tip runs dead straight that day; on 1 May 0.8° at noon and 14.9° four hours before; on 21 June 1.0° and 23.3°; on 21 December 2.2° and 30.7°. The equal-shadow method on the same days: 0.09° at the equinox, 0.07° on 1 May, 0.00° at both solstices. The two fail under opposite conditions — the two-mark method is beaten by the curvature of the tip's path, which is nil at the equinoxes and greatest at the solstices, while the equal-shadow method is beaten only by the Sun's declination drifting during the day, which is fastest at the equinoxes and nil at the solstices. Lengthening the wait from 15 to 20 minutes moves the error by about two tenths of a degree: the hour of the day matters, the wait barely does.
+**The numbers behind it.** Errors against true east–west at Columbus, with a 20-minute wait, by when the first mark is made: on 20 March 0.1° at any hour, because the shadow tip runs dead straight that day; on 1 May 0.8° at noon and 14.9° four hours before; on 21 June 1.0° and 21.8°; on 21 December 2.2° and 30.7°. The afternoon is consistently a shade worse than the morning — 23.3° four hours AFTER noon in June against 21.8° four hours before — so a table of these figures has to say which side of noon it means. The equal-shadow method on the same days: 0.09° at the equinox, 0.07° on 1 May, 0.00° at both solstices. The two fail under opposite conditions — the two-mark method is beaten by the curvature of the tip's path, which is nil at the equinoxes and greatest at the solstices, while the equal-shadow method is beaten only by the Sun's declination drifting during the day, which is fastest at the equinoxes and nil at the solstices. Lengthening the wait from 15 to 20 minutes moves the error by about two tenths of a degree: the hour of the day matters, the wait barely does.
 
 > _For the handbook:_ Chapter 5 asks for the two methods to be taught separately and the first to be labelled approximate. It should go further and say approximate BY HOW MUCH, with a figure and a date — "about 21° wrong at Columbus two hours before noon in December" is a sentence a reader can act on, and "approximate" is not. The chapter's instruction to wait 15 to 20 minutes should carry a note that the wait is not the sensitive quantity; working within an hour of midday is worth ten times more than any wait. Both diagrams should be drawn from the same first mark, as the simulation does, so the comparison is visibly fair.
 
@@ -83,7 +83,7 @@ _Do not restate this claim in the handbook without its label, its uncertainty an
 ## FEYNMAN IT
 A friend has read the stick-and-two-stones method in a survival book and is about to use it to walk out of a wood in December, at four in the afternoon. Explain what will happen and what they should do instead.
 
-Banned words: **gps**, **app**, **just head**
+Banned words: **approximate**, **roughly**, **accurate**
 
 **A good explanation contains**
 - It says the two-mark line is a chord of a curved path, and that is why it can be badly wrong.
@@ -116,7 +116,7 @@ _Links across to:_ Navigation, Lesson 8 — learning to use a compass (`navigati
 ## REFLECT
 You now know a published, widely repeated method can be thirty degrees wrong without saying so. Write down one other instruction you follow — in any part of your life — that you have never seen the conditions for.
 
-_Tomorrow:_ Tomorrow: the Sun will tell you the time as well as the direction — but it disagrees with your watch, by up to three-quarters of an hour, for two entirely separate reasons.
+_Tomorrow: the Sun will tell you the time as well as the direction — but it disagrees with your watch, by up to three-quarters of an hour, for two entirely separate reasons._
 
 ## "I don't get it" — 7 ways in
 

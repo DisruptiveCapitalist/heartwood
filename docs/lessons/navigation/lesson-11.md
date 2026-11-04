@@ -83,11 +83,11 @@ _Do not restate this claim in the handbook without its label, its uncertainty an
 ## FEYNMAN IT
 Explain to someone why the Sun does not come up in the same place every morning — and why, if they stood on the equator, they would see something different from what you see.
 
-Banned words: **gps**, **app**, **just head**
+Banned words: **tilt**, **axis**, **declination**
 
 **A good explanation contains**
 - It says clearly that the daily motion is the Earth turning, not the Sun travelling.
-- It explains the yearly change by the tilt of the axis, not by the Earth being nearer or further from the Sun.
+- It explains the yearly change by the Earth leaning, and says that the lean does not swing round to follow the Sun — and not by the Earth being nearer or further away.
 - It gives at least one number — a bearing, an altitude or a count of hours — rather than only "higher" and "lower".
 - It says what would be different at another latitude, and why.
 
@@ -116,7 +116,7 @@ _Links across to:_ Navigation, Lesson 7 — true north and magnetic north (`navi
 ## REFLECT
 Before today, if someone had asked you which way the Sun comes up, what would you have said? Write the answer you would have given, and then write what you would add to it now.
 
-_Tomorrow:_ Tomorrow: a stick in the ground, and the shadow it throws. It turns out that the shortest shadow of the day is a line pointing at the true pole — and you can find it without knowing the time.
+_Tomorrow: a stick in the ground, and the shadow it throws. It turns out that the shortest shadow of the day is a line pointing at the true pole — and you can find it without knowing the time._
 
 ## "I don't get it" — 7 ways in
 

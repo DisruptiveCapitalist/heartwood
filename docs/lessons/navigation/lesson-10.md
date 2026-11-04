@@ -116,7 +116,7 @@ _Links across to:_ Lesson 5 — a position described three ways (`navigation/les
 ## REFLECT
 One thing I understand now that I didn't understand on Monday:
 
-_Tomorrow:_ Next week: the Sun. The oldest compass and the oldest clock turn out to be the same object — and a stick in the ground will tell you both, if you are patient enough to watch its shadow move.
+_Next week: the Sun. The oldest compass and the oldest clock turn out to be the same object — and a stick in the ground will tell you both, if you are patient enough to watch its shadow move._
 
 ## "I don't get it" — 7 ways in
 

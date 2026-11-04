@@ -117,7 +117,7 @@ _Links across to:_ Lesson 1 — a direction is not a position (`navigation/lesso
 ## REFLECT
 One thing I understand now that I didn't understand this morning:
 
-_Tomorrow:_ Tomorrow, Lesson 8: the instrument itself. Every part of a baseplate compass, what each one is for, and the two movements that turn a direction you can see into a number you can carry.
+_Tomorrow, Lesson 8: the instrument itself. Every part of a baseplate compass, what each one is for, and the two movements that turn a direction you can see into a number you can carry._
 
 ## "I don't get it" — 7 ways in
 
