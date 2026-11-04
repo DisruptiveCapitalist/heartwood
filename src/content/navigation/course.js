@@ -13,6 +13,11 @@ import lesson12 from './lessons/lesson-12.js'
 import lesson13 from './lessons/lesson-13.js'
 import lesson14 from './lessons/lesson-14.js'
 import lesson15 from './lessons/lesson-15.js'
+import lesson16 from './lessons/lesson-16.js'
+import lesson17 from './lessons/lesson-17.js'
+import lesson18 from './lessons/lesson-18.js'
+import lesson19 from './lessons/lesson-19.js'
+import lesson20 from './lessons/lesson-20.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -81,14 +86,14 @@ export default {
       ]
     },
     {
-      title: `The Stars`,
-      idea: `A turning sky, and the one star that stays put.`,
+      title: `Navigating by the Night Sky`,
+      idea: `A turning sky, and the one star that very nearly stays put.`,
       lessons: [
-        { title: `Polaris and finding latitude` },
-        { title: `The turning sky` },
-        { title: `Star compasses and rising points` },
-        { title: `The southern sky` },
-        { title: `Review: a night under the stars` }
+        { title: `The night sky is a clock and a compass`, lessonId: 'lesson-16' },
+        { title: `Finding Polaris`, lessonId: 'lesson-17' },
+        { title: `The stars and latitude`, lessonId: 'lesson-18' },
+        { title: `The southern sky and other star traditions`, lessonId: 'lesson-19' },
+        { title: `A night-sky navigation exercise`, lessonId: 'lesson-20' }
       ]
     },
     {
@@ -130,12 +135,17 @@ export default {
     'lesson-12': lesson12,
     'lesson-13': lesson13,
     'lesson-14': lesson14,
-    'lesson-15': lesson15
+    'lesson-15': lesson15,
+    'lesson-16': lesson16,
+    'lesson-17': lesson17,
+    'lesson-18': lesson18,
+    'lesson-19': lesson19,
+    'lesson-20': lesson20
   },
 
   nextUp: {
-    title: `Week 4 is not written yet`,
-    blurb: `Fifteen lessons in. The compass is in hand and now so is the Sun: where it actually comes up, what a stick in the ground will tell you, how wrong the famous shortcut is and on which days, why your watch and the sky disagree by up to three-quarters of an hour, and how to check a compass against something no fence post can deflect. Next: the same trick after dark — a turning sky, one star that stays put, and the height of it turning out to be your latitude.`
+    title: `Week 5 is not written yet`,
+    blurb: `Twenty lessons in, and four ways to find north: a needle, a shadow at noon, a pattern of stars, and a point in the sky with nothing on it. You can also say, for the first time, roughly where you are — the pole's height above your horizon is your latitude, to within about forty miles if you are careless about the hour. Next: crossing the lines, so that two bearings become a place rather than two directions.`
   },
 
   journalPrompts: [
