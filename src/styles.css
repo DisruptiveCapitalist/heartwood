@@ -167,6 +167,18 @@ button:disabled { cursor: default; opacity: .45; }
   font-family: var(--sans);
 }
 
+/* On a phone the spacer pushed the solid button to the right edge and the
+   second button wrapped to the left below it, which read as two unrelated
+   controls. Stacked full width instead — but only where a simulation opts in
+   with .hw-controls-stack, because most of them put sliders and toggles in
+   this row and those should not go full width. */
+@media (max-width: 720px) {
+  .hw-controls-stack { flex-direction: column; align-items: stretch; }
+  .hw-controls-stack .hw-spacer { display: none; }
+  .hw-controls-stack .hw-actions { flex-direction: column; width: 100%; }
+  .hw-controls-stack .hw-actions .hw-btn { width: 100%; }
+}
+
 .hw-readout-num {
   font-family: var(--sans);
   font-size: 38px;

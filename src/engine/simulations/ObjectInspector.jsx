@@ -262,7 +262,10 @@ export default function ObjectInspector({ objects = [], prompt = 'What physics c
         </div>
 
         <div data-align="right" style={{ width: 268, display: 'flex', flexDirection: 'column', gap: 6, textAlign: 'right' }}>
-          <span className="hw-readout-label">{prompt}</span>
+          {/* Long enough to wrap, and it was leaving "IT?" alone on the
+              second line. Balanced here rather than on .hw-readout-label,
+              which every other simulation's readouts use too. */}
+          <span className="hw-readout-label" style={{ textWrap: 'balance' }}>{prompt}</span>
           {revealed === 0 ? (
             <span style={{ fontSize: 13, color: 'var(--muted)', lineHeight: 1.5 }}>
               Nothing yet. That is deliberate — this week you go first.
@@ -295,7 +298,7 @@ export default function ObjectInspector({ objects = [], prompt = 'What physics c
         </div>
       </div>
 
-      <div className="hw-controls">
+      <div className="hw-controls hw-controls-stack">
         <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
           {objects.map((o) => (
             <button
@@ -314,16 +317,18 @@ export default function ObjectInspector({ objects = [], prompt = 'What physics c
             </button>
           ))}
         </div>
-        <span style={{ flex: 1 }} />
-        <button
-          className="hw-btn hw-btn-solid"
-          onClick={() => setShown((n) => Math.min(ideas.length, n + 1))}
-          disabled={all}
-          style={{ padding: '13px 22px' }}
-        >
-          {shown === 0 ? 'I HAVE ONE — SHOW ME' : all ? 'THAT IS ALL OF THEM' : 'SHOW ME ANOTHER'}
-        </button>
-        {shown > 0 && <button className="hw-btn" onClick={() => setShown(0)}>HIDE THEM AGAIN</button>}
+        <span className="hw-spacer" style={{ flex: 1 }} />
+        <div className="hw-actions" style={{ display: 'flex', gap: 10 }}>
+          <button
+            className="hw-btn hw-btn-solid"
+            onClick={() => setShown((n) => Math.min(ideas.length, n + 1))}
+            disabled={all}
+            style={{ padding: '13px 22px' }}
+          >
+            {shown === 0 ? 'I HAVE ONE — SHOW ME' : all ? 'THAT IS ALL OF THEM' : 'SHOW ME ANOTHER'}
+          </button>
+          {shown > 0 && <button className="hw-btn" onClick={() => setShown(0)}>HIDE THEM AGAIN</button>}
+        </div>
       </div>
     </div>
   )
