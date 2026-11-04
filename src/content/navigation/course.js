@@ -8,6 +8,11 @@ import lesson07 from './lessons/lesson-07.js'
 import lesson08 from './lessons/lesson-08.js'
 import lesson09 from './lessons/lesson-09.js'
 import lesson10 from './lessons/lesson-10.js'
+import lesson11 from './lessons/lesson-11.js'
+import lesson12 from './lessons/lesson-12.js'
+import lesson13 from './lessons/lesson-13.js'
+import lesson14 from './lessons/lesson-14.js'
+import lesson15 from './lessons/lesson-15.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -65,14 +70,14 @@ export default {
       ]
     },
     {
-      title: `The Sun`,
+      title: `The Sun, Shadows, and Time`,
       idea: `The oldest clock and the oldest compass are the same object.`,
       lessons: [
-        { title: `The Sun's daily path` },
-        { title: `Shadows, noon and the equal-shadow method` },
-        { title: `The seasons and why the path moves` },
-        { title: `Time, longitude and the problem of the sea` },
-        { title: `Review: a day without instruments` }
+        { title: `Why the Sun appears to move`, lessonId: 'lesson-11' },
+        { title: `The shadow knows`, lessonId: 'lesson-12' },
+        { title: `Finding direction with the Sun`, lessonId: 'lesson-13' },
+        { title: `Solar time and the compass`, lessonId: 'lesson-14' },
+        { title: `Building a simple Sun compass`, lessonId: 'lesson-15' }
       ]
     },
     {
@@ -120,12 +125,17 @@ export default {
     'lesson-07': lesson07,
     'lesson-08': lesson08,
     'lesson-09': lesson09,
-    'lesson-10': lesson10
+    'lesson-10': lesson10,
+    'lesson-11': lesson11,
+    'lesson-12': lesson12,
+    'lesson-13': lesson13,
+    'lesson-14': lesson14,
+    'lesson-15': lesson15
   },
 
   nextUp: {
-    title: `Week 3 is not written yet`,
-    blurb: `Ten lessons in, and the compass is in hand: why a needle moves at all, the gap between its north and the map's, the two movements that turn a thing you can see into a number, how to walk that number across a mile of woods, and how to carry it back onto paper. Next: the Sun — the oldest compass and the oldest clock turn out to be the same object.`
+    title: `Week 4 is not written yet`,
+    blurb: `Fifteen lessons in. The compass is in hand and now so is the Sun: where it actually comes up, what a stick in the ground will tell you, how wrong the famous shortcut is and on which days, why your watch and the sky disagree by up to three-quarters of an hour, and how to check a compass against something no fence post can deflect. Next: the same trick after dark — a turning sky, one star that stays put, and the height of it turning out to be your latitude.`
   },
 
   journalPrompts: [

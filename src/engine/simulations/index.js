@@ -66,6 +66,9 @@ import Locate from './Locate.jsx'
 import MagnetField from './MagnetField.jsx'
 import Declination from './Declination.jsx'
 import Compass from './Compass.jsx'
+import SunPath from './SunPath.jsx'
+import ShadowStick from './ShadowStick.jsx'
+import SolarClock from './SolarClock.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -142,7 +145,10 @@ export const simulations = {
   'locate': Locate,
   'magnet-field': MagnetField,
   'declination': Declination,
-  'compass': Compass
+  'compass': Compass,
+  'sun-path': SunPath,
+  'shadow-stick': ShadowStick,
+  'solar-clock': SolarClock
 }
 
 export function getSimulation(id) {
