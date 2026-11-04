@@ -25,6 +25,7 @@ import { mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { courses } from '../src/content/index.js'
+import { closesItems } from '../src/content/schema.js'
 import { describe as describeSim } from '../src/engine/simulations/descriptions.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -115,13 +116,20 @@ function render(course, lesson) {
   out.push(`*The Roommate:* ${P(lesson.connect.line)}`)
   out.push(`\n**Where it shows up**\n`)
   out.push(LIST(lesson.connect.items.map((i) => (typeof i === 'string' ? i : i.t))))
-  if (lesson.connect.synthesis) {
-    // It answers the list directly — "every one of those…" — so it reads with
-    // the list. Since the Week 2 handoff this is where it sits on screen too,
-    // withheld until the learner has ticked two or written one of their own.
+  // The synthesis line answers the list directly — "every one of those…" — and
+  // in Navigation it sits right under it on screen. Elsewhere it closes the
+  // stage. The export follows the screen, so the handbook writer reads the
+  // lesson in the order a learner meets it.
+  const synthesis = () => {
+    if (!lesson.connect.synthesis) return
     out.push(`\n${P(lesson.connect.synthesis)}`)
-    out.push(`\n_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._\n`)
+    out.push(
+      `\n_On screen it sits here — ${closesItems(course.id) ? 'directly under the items' : 'at the foot of the stage'} — ` +
+      `and appears only once the learner has ticked two of the items above or written one of their own._\n`
+    )
   }
+
+  if (closesItems(course.id)) synthesis()
   if (lesson.connect.builder) {
     out.push(`\n${H(3, 'The Builder — try it yourself')}`)
     out.push(P(lesson.connect.builder.body))
@@ -134,6 +142,7 @@ function render(course, lesson) {
     out.push(`\n> **What remains uncertain:** ${strip(ac.uncertain)}  \n> **Sources:** ${strip(ac.sources)}\n`)
     out.push(`\n_Do not restate this claim in the handbook without its label, its uncertainty and its sources._\n`)
   }
+  if (!closesItems(course.id)) synthesis()
 
   // FEYNMAN IT
   out.push(`\n${H(2, 'FEYNMAN IT')}`)

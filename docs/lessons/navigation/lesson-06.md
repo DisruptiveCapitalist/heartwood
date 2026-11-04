@@ -65,7 +65,7 @@ Two things worth carrying away about the Earth's field. First, it is **weak** �
 
 Every one of those is the same thing twice over: a direction that was already present in the space, and something small enough and free enough to turn until it agrees.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Two minutes tonight, and you will have built the oldest instrument in this course. Take a sewing needle and stroke it along one end of a fridge magnet twenty times — always the same direction, lifting it clear between strokes. Lay the needle on a slice of cork or a plastic bottle cap, and float it in a bowl of water on a wooden or plastic table, well away from anything steel. It will turn, and settle, and settle the same way every time you spin it. Check it against a real compass or a phone. You have just made the thing described in the card below, about a thousand years after somebody wrote the instructions down.

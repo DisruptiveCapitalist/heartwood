@@ -1,27 +1,45 @@
 import FacultyBadge from '../FacultyBadge.jsx'
 import { Rich } from '../../lib/rich.jsx'
 import AcrossCultures from '../AcrossCultures.jsx'
+import { closesItems } from '../../content/schema.js'
 
 // "Where else have you seen this?" Multi-select, plus one of the learner's own.
 //
-// The synthesis line is a comment on the six items — "every one of those is the
-// same sentence wearing different clothes" — so it sits directly under them,
-// not at the foot of the stage. Design asked for the move after reading the
-// Navigation exports; it is applied to every course because every course's
-// synthesis line is written the same way, and a per-course branch for a
-// layout detail would not be worth its own code path.
+// Where the synthesis line sits is a per-course decision, because the stage is
+// not the same shape in every course.
 //
-// It still appears only once the learner has engaged: two items ticked, or one
-// of their own written. Design's note said "ticked two"; the typed-own path is
-// kept because writing your own is the same thinking, and dropping it would
+// In Navigation the line is a comment on the six items and an Across Cultures
+// card stands between them and the foot of the stage, so a learner reading
+// downward met a paragraph from another century before the sentence that
+// answered the list. Design asked for the move after reading the exports.
+//
+// The other three courses have no Across Cultures card — only the Builder
+// activity — and the original engine handoff describes the stage as items,
+// Builder, then one of your own, with the line appearing last. They keep that
+// order until someone asks otherwise, so this is one markup block rendered in
+// one of two places rather than two copies that can drift apart. Which course
+// gets which placement lives in the schema, because the exporter has to tell
+// the handbook writer the same thing.
+//
+// Either way it appears only once the learner has engaged: two items ticked, or
+// one of their own written. Design's note said "ticked two"; the typed-own path
+// is kept because writing your own is the same thinking, and dropping it would
 // hide the line from a learner who answers that way.
-export default function ConnectIt({ lesson, progress, set }) {
+
+export default function ConnectIt({ course, lesson, progress, set }) {
   const c = lesson.connect
   const connects = progress.connects ?? {}
   const selected = Object.values(connects).filter(Boolean).length
   const enough = selected >= 2 || (progress.connectOwn ?? '').trim().length > 12
+  const underItems = closesItems(course?.id)
 
   const toggle = (i) => set({ connects: { ...connects, [i]: !connects[i] } })
+
+  const synthesis = enough ? (
+    <p className="hw-fade" style={{ fontSize: 20, lineHeight: 1.5, maxWidth: 700, margin: 0, color: 'var(--ink-2)', fontStyle: 'italic', textWrap: 'pretty' }}>
+      <Rich text={c.synthesis} />
+    </p>
+  ) : null
 
   return (
     <div className="hw-fade" style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -49,11 +67,7 @@ export default function ConnectIt({ lesson, progress, set }) {
         })}
       </div>
 
-      {enough && (
-        <p className="hw-fade" style={{ fontSize: 20, lineHeight: 1.5, maxWidth: 700, margin: 0, color: 'var(--ink-2)', fontStyle: 'italic', textWrap: 'pretty' }}>
-          <Rich text={c.synthesis} />
-        </p>
-      )}
+      {underItems && synthesis}
 
       {c.builder && (
         <div className="hw-card" style={{ maxWidth: 800, padding: '22px 24px' }}>
@@ -70,6 +84,8 @@ export default function ConnectIt({ lesson, progress, set }) {
       )}
 
       {c.acrossCultures && <AcrossCultures card={c.acrossCultures} />}
+
+      {!underItems && synthesis}
 
       <div style={{ maxWidth: 760, display: 'flex', flexDirection: 'column', gap: 9 }}>
         <label className="hw-label" htmlFor="hw-connect-own">ONE OF YOUR OWN</label>

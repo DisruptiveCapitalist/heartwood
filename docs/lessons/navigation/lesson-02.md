@@ -62,7 +62,7 @@ One refinement for later: the Earth is very slightly wider around the Equator th
 
 Notice that none of these needed a spaceship. People with sharp eyes and a little patience worked it out from the ground.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Tonight, in a dark room: one lamp with the shade off is the Sun. An orange is the Earth — push a toothpick through it top to bottom for the axis, and stick a pin about halfway between the top and the middle. That pin is you. Hold the orange so the pin faces away from the lamp (midnight), then slowly turn it toward the east — counterclockwise, looking down on the top. Watch the pin come around the edge into the light. From the pin's point of view, the lamp just "rose" — in the east.

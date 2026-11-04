@@ -64,7 +64,7 @@ That even spacing of the rungs handed sailors a free gift. One minute of latitud
 
 All of them are the same move: two angles, and an agreement about where to start counting the second one. The Earth hands you the first number. People had to vote on the second.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Go outside and get the coordinates of your own front door, in degrees, minutes and seconds if your phone will give them. Write them down. Now walk a hundred yards as close to due north as you can manage, and look again. Latitude will have changed by about **three seconds** — a second of latitude is about 101 feet, and you just walked three of them. Longitude will not have moved at all. You have measured the difference between the two numbers with your feet.

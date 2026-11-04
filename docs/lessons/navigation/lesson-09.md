@@ -63,7 +63,7 @@ A bearing you cannot see the end of is a straight line you are drawing blind, so
 
 Every one of those works the same way: you stop correcting against the thing that twitches, and start aiming at the thing that holds still. A compass needle twitches. A tree does not.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Thirty minutes in an open, familiar place — a park, a large field, somewhere you can see across. Pick any bearing and set it on the compass. Walk it in four legs, choosing a landmark each time, and count your paces. At the end, take the back bearing and have a look at where you started: it should be lined up behind you. Now walk the same bearing back, and see how close you come to your own starting point. Do this where you can always see a road or a building you know. The point of the exercise is the technique, not the wilderness — never practise navigation by going somewhere you would need navigation to get out of.

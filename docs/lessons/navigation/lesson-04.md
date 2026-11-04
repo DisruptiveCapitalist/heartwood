@@ -66,7 +66,7 @@ The crowding of contour lines is the part worth practising, because it turns a f
 
 Notice what all six have in common: the map was not wrong, it was *honest about something else*. The skill is not finding a map that doesn't lie. It is knowing which lie you have in your hand.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Find a hill near you on any free topographic map — the USGS *topoView* site and most hiking apps will show contours. First, read the legend and find the contour interval. Then put a finger at the bottom of the hill and a finger at the top, and count the lines you cross: each one is that many feet of climb. Multiply. Now look at where the lines are closest together and work out roughly how far apart they are on the ground, using the scale bar. That gap, against the interval, is the steepest part of your hill — and it is the part that will be in your legs tomorrow.

@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
 import { courses } from '../content/index.js'
 import { isDone, emptyProgress } from '../lib/progress.js'
-import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../content/schema.js'
+import { COMPLETION, NAVIGATION_ROUTE_IDS, SYNTHESIS_CLOSES_ITEMS, closesItems } from '../content/schema.js'
 import { MODES as COMPASS_MODES } from '../engine/simulations/Compass.jsx'
 import { describe as describeSim } from '../engine/simulations/descriptions.js'
 
@@ -118,11 +118,16 @@ describe('navigation course shape', () => {
   })
 })
 
-// The CONNECT IT synthesis line closes the six items — "every one of those is
-// the same sentence wearing different clothes" — so it has to sit directly
-// under them. It shipped at the foot of the stage instead, below the Builder
-// card and, in Navigation, below the Across Cultures card, and Design caught it
-// by reading the exports rather than the screen.
+// In Navigation the CONNECT IT synthesis line closes the six items — "every one
+// of those is the same sentence wearing different clothes" — so it has to sit
+// directly under them. It shipped at the foot of the stage, below the Builder
+// card and below the Across Cultures card, and Design caught it by reading the
+// exports rather than the screen.
+//
+// The other three courses have no Across Cultures card and keep the engine
+// handoff's order, with the line last. That is a deliberate split, so it is
+// guarded both ways: the Navigation placement must not drift down, and the
+// others must not be swept along if Navigation changes again.
 //
 // There is no DOM in this suite, so this guards the source order instead. That
 // is a blunt instrument, but the alternative is adding a renderer for one
@@ -131,24 +136,56 @@ describe('navigation course shape', () => {
 describe('CONNECT IT layout', () => {
   const src = readFileSync(new URL('../engine/stages/ConnectIt.jsx', import.meta.url), 'utf8')
 
-  it('closes the six items with the synthesis, before anything else', () => {
-    const items = src.indexOf('c.items.map')
-    const synthesis = src.indexOf('<Rich text={c.synthesis} />')
-    const builder = src.indexOf('{c.builder && (')
-    const cultures = src.indexOf('{c.acrossCultures &&')
-    const own = src.indexOf('hw-connect-own')
+  const at = {
+    items: src.indexOf('c.items.map'),
+    markup: src.indexOf('<Rich text={c.synthesis} />'),
+    underItems: src.indexOf('{underItems && synthesis}'),
+    builder: src.indexOf('{c.builder && ('),
+    cultures: src.indexOf('{c.acrossCultures &&'),
+    atFoot: src.indexOf('{!underItems && synthesis}'),
+    own: src.indexOf('hw-connect-own')
+  }
 
-    for (const [name, i] of Object.entries({ items, synthesis, builder, cultures, own })) {
+  it('has one synthesis block, rendered in one of two places', () => {
+    for (const [name, i] of Object.entries(at)) {
       expect(i, `${name} not found in ConnectIt.jsx`).toBeGreaterThan(-1)
     }
-    expect(synthesis, 'synthesis must come after the items').toBeGreaterThan(items)
-    expect(synthesis, 'synthesis must come before the Builder card').toBeLessThan(builder)
-    expect(synthesis, 'synthesis must come before the Across Cultures card').toBeLessThan(cultures)
-    expect(synthesis, 'synthesis must come before "one of your own"').toBeLessThan(own)
+    // One block, not two copies that can drift apart.
+    expect(src.split('<Rich text={c.synthesis} />').length - 1).toBe(1)
+  })
+
+  it('closes the six items where a course asks for that', () => {
+    expect(at.underItems, 'must come after the items').toBeGreaterThan(at.items)
+    expect(at.underItems, 'must come before the Builder card').toBeLessThan(at.builder)
+    expect(at.underItems, 'must come before the Across Cultures card').toBeLessThan(at.cultures)
+  })
+
+  it('otherwise sits at the foot, as the engine handoff describes', () => {
+    expect(at.atFoot, 'must come after the Across Cultures card').toBeGreaterThan(at.cultures)
+    expect(at.atFoot, 'must come before "one of your own"').toBeLessThan(at.own)
+  })
+
+  it('closes the items in Navigation and only in Navigation', () => {
+    expect(SYNTHESIS_CLOSES_ITEMS).toEqual(['navigation'])
+    expect(closesItems('navigation')).toBe(true)
+    for (const course of courses.filter((c) => c.id !== 'navigation')) {
+      expect(closesItems(course.id), `${course.id} should keep the foot placement`).toBe(false)
+    }
+    // Every id named has to be a real course, or the placement silently
+    // falls back to the foot of the stage.
+    for (const id of SYNTHESIS_CLOSES_ITEMS) {
+      expect(courses.some((c) => c.id === id), `no course "${id}"`).toBe(true)
+    }
+    // The stage reads the rule rather than keeping its own copy, and so does
+    // the exporter — otherwise the handbook can describe a placement the
+    // screen does not use.
+    expect(src).toContain('closesItems(course?.id)')
+    const exporter = readFileSync(new URL('../../scripts/export-lesson.mjs', import.meta.url), 'utf8')
+    expect(exporter).toContain('closesItems(course.id)')
   })
 
   it('still waits until the learner has engaged', () => {
     expect(src).toContain('selected >= 2')
-    expect(src).toMatch(/\{enough && \(/)
+    expect(src).toMatch(/const synthesis = enough \?/)
   })
 })

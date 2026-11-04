@@ -63,6 +63,28 @@ export const NAVIGATION_ROUTE_IDS = ['compass', 'map', 'object', 'diagram', 'exa
  */
 export const COMPLETION = { REFLECT: 'reflect', FEYNMAN: 'feynman' }
 
+/**
+ * Courses whose CONNECT IT synthesis line closes the six items, instead of
+ * sitting at the foot of the stage.
+ *
+ * The line is a comment on the items — "every one of those is the same sentence
+ * wearing different clothes" — and in Navigation an Across Cultures card stands
+ * between them and the foot, so a learner reading downward met a paragraph from
+ * another century before the sentence that answered the list. Design asked for
+ * the move after reading the Navigation exports.
+ *
+ * The other three courses have no Across Cultures card, and the engine handoff
+ * describes their stage as items, Builder, then one of your own, with the line
+ * appearing last. They keep that order until someone asks otherwise.
+ *
+ * Both the stage and the Markdown exporter read this, so the handbook writer is
+ * never told the line sits somewhere the screen does not put it.
+ */
+export const SYNTHESIS_CLOSES_ITEMS = ['navigation']
+
+/** Does this course close its CONNECT IT items with the synthesis line? */
+export const closesItems = (courseId) => SYNTHESIS_CLOSES_ITEMS.includes(courseId)
+
 /** Navigation asks for at least this many words before it will take the submit. */
 export const FEYNMAN_MIN_WORDS = 15
 

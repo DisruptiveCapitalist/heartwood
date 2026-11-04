@@ -62,7 +62,7 @@ The three forms are worth holding apart, because they fail differently. A **coor
 
 Look at what every one of those has in common: you did not give the position, you gave the position *in a form that person could use*. That choice is the skill. The numbers are the easy part.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 This week's field exercise, and it should take twenty minutes. Pick somewhere within a mile of your front door that you can see from a path — a bridge, a bench, a particular tree, the corner of a field. Go there. Write its position down three times: once as coordinates in degrees, minutes and seconds; once as a direction and a distance from your own front door; and once as landmarks only, in a way somebody who has never been to your town could follow. Then hand all three to somebody and watch which one they actually use. Keep this somewhere — you will want it again in Week 2, when the compass turns that middle description into something you can walk.

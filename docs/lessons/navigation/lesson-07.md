@@ -64,7 +64,7 @@ Here is the arithmetic, and it is worth getting right once rather than half-reme
 
 What all six have in common is a number that somebody had to look up rather than work out. The Earth's field is not tidy enough to be calculated from a picture — which is why every one of those things comes with a date on it.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Fifteen minutes, indoors, and you will know your own number. Look up your declination on NOAA's calculator — search for "NOAA magnetic declination calculator" and give it your town. Write the figure and today's date in the front of your notebook, in the form *7.2° W* or *15.0° E*, not as a bare number, because the letter is the half people lose. Then find any paper map of your area and hunt for the declination diagram in the margin. Compare its figure with today's. The difference is how far the Earth's field has drifted since that sheet was printed — and if the map is old enough, it is more than the width of the trail you were planning to walk.

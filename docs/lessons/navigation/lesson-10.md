@@ -63,7 +63,7 @@ There are two ways to orient a map and they fail in different circumstances, so 
 
 Each of those is the same small act of humility: instead of translating the picture in your head, you turn the picture until it agrees with the world. It is the cheapest navigation technique there is, and the one people skip.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 This is the week's field exercise, and the brief asks for it to be short and safe. In a park or open ground you know well, set a course of four legs that brings you back to where you started — a rough square is ideal. Before you go, draw it on a sketch of the area and work out each leg's bearing and rough distance. Convert every one to magnetic using your own looked-up declination, and write them in a list. Then walk it: set each bearing, pick a landmark, count your paces, and tick the leg off. Keep a road or a building you recognise in sight the whole way; take water, and tell somebody where you are going. The measure of success is finishing within sight of your starting point — and if you do not, the interesting question is which leg went wrong and how you would know.

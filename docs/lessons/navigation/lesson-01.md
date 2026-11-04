@@ -60,7 +60,7 @@ This is why a compass on its own can't tell you where you are. It tells you whic
 
 Every one of those works only because both people share the reference. The minute they don't, "by the gate" means nothing.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Stand at your front door. Say out loud, in one sentence, where your car or mailbox is — using a reference, a direction, and a distance. Now say it again from a **different** reference: the garage, a tree, the street corner. Same car, two perfectly good descriptions. Position is never one fixed sentence; it depends on what you measure from.

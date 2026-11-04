@@ -66,7 +66,7 @@ Three habits separate a reading you can trust from one you cannot. **Hold it lev
 
 All six are the same shape: one movement that chooses the target and a second that makes the instrument honest about it. Doing only the first is the mistake a compass makes easy.
 
-_On screen it sits here, and appears only once the learner has ticked two of the items above or written one of their own._
+_On screen it sits here — directly under the items — and appears only once the learner has ticked two of the items above or written one of their own._
 
 ### The Builder — try it yourself
 Twenty minutes in the open, somewhere familiar — your own yard or a park you know. Take a real compass, stand well clear of cars and fences, and pick three things you can see and name: a chimney, a particular tree, a mast. Take a bearing to each one, properly: aim, box, read. Write all three down as three-digit numbers with an **M** after them. Now walk fifty paces to one side and take the three bearings again. Two of them will have changed a little and one — whichever is furthest away — will barely have moved at all. That is worth noticing, and Week 5 will make use of it.
