@@ -1,5 +1,5 @@
-# The Art and Science of Navigation — Lesson 2: True north and magnetic north
-> Week 2 of 6 · The Compass and Earth's Magnetic Field  
+# The Art and Science of Navigation — Lesson 7: True north and magnetic north
+> Week 2 of 6 · The Compass and Earth's Magnetic Field · lesson 2 of 5 this week  
 > Concept: **The needle and the map disagree**  
 > Lesson completes when: **the Feynman explanation is submitted**
 
@@ -77,7 +77,7 @@ From the late 1200s, Mediterranean sailors used portolan charts: coastal charts 
 Laid over a modern map, these charts sit rotated anticlockwise, usually by something between about 8 and 10 degrees. The long-standing explanation is that they were drawn to magnetic north rather than true north, and that the rotation is simply the Mediterranean's declination at the time, frozen into the paper. If that is right, these are the oldest recorded measurements of declination in Europe — made by people who were not trying to measure it, and may not have known there was anything to measure.
 
 > **What remains uncertain:** The rotation is real and measurable; the explanation is not settled. The charts' rotation does not change over the centuries in the way a magnetic explanation predicts it should, since declination in the Mediterranean was itself drifting, and some scholars argue the rotation comes from the underlying survey or from the chart-making method instead. Who drew the first portolan, where, and from what, is also unknown — the earliest surviving example, the Carte Pisane, is usually dated to the late thirteenth century, and even that is disputed.  
-> **Sources:** Campbell, "Portolan Charts from the Late Thirteenth Century to 1500," in *The History of Cartography*, vol. 1 (1987); Nicolai, *A Critical Review of the Hypothesis of a Medieval Origin for Portolan Charts* (2016).
+> **Sources:** Campbell, "Portolan Charts from the Late Thirteenth Century to 1500," in *The History of Cartography*, vol. 1 (1987); Nicolai, *The Enigma of the Origin of Portolan Charts: A Geodetic Analysis of the Hypothesis of a Medieval Origin*, Brill (2016).
 
 _Do not restate this claim in the handbook without its label, its uncertainty and its sources._
 

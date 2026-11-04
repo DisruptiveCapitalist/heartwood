@@ -1,5 +1,5 @@
-# The Art and Science of Navigation — Lesson 1: What is magnetism?
-> Week 2 of 6 · The Compass and Earth's Magnetic Field  
+# The Art and Science of Navigation — Lesson 6: What is magnetism?
+> Week 2 of 6 · The Compass and Earth's Magnetic Field · lesson 1 of 5 this week  
 > Concept: **A field gives every spot a direction**  
 > Lesson completes when: **the Feynman explanation is submitted**
 
@@ -12,7 +12,7 @@ _Opening question._ A compass needle has nothing to push against. No string, no 
 
 **What it shows.** Two tabs, 760 × 470. **A magnet on the table** draws a bar magnet 128 px long with its field as nine traced lines, and a small compass — a 26 px rose with a red north end — sitting at one of four spots around it, turned to whatever the field is doing there. **The Earth itself** draws the globe with a bar magnet inside it, tilted from the dashed spin axis, eleven field lines arcing from one end round to the other, and a compass lying flat on the ground at a chosen magnetic latitude, tipping with the field. Readouts give the needle's angle and the relative strength on the first tab, and the dip angle and the usable fraction of the pull on the second.
 
-**What the learner can change.** First tab: four places to put the compass (straight above, off to the side, up at the corner, underneath), a toggle for the field lines, and a button that turns the magnet round so every needle flips. Second tab: four places to stand — the magnetic equator, Ohio, northern Alaska, the pole — and the same field-lines toggle.
+**What the learner can change.** First tab: four places to put the compass (straight above, off to the side, up at the corner, underneath), a toggle for the field lines, and a button that turns the magnet round so every needle flips. Second tab: four places to stand — the magnetic equator, Ohio, Anchorage, the pole — and the same field-lines toggle.
 
 **The numbers behind it.** The bar magnet is two point poles 128 px apart; the Earth is a single point dipole at the centre, with its axis tilted 9.21° from the axis of rotation (NOAA NCEI, WMM2025 at 2025.0). Everything drawn and every number shown comes from the same field function, so the needle cannot disagree with the lines around it. The dipole gives the textbook relation exactly, checked at six latitudes: tan(dip) = 2 × tan(magnetic latitude) — 0° and 100% of the pull usable at the magnetic equator, 66.5° and 40% at magnetic latitude 49°, 75.1° and 26% at 62°, 89.0° and 2% at 88°. Field strength is quoted in the lesson as a range, 25 to 65 µT, not as a local figure. The geomagnetic pole is 80.85° N, 72.76° W and the dip pole 85.76° N, 139.30° E — about 894 miles apart.
 
@@ -111,7 +111,7 @@ Banned words: **attract**, **pull**, **grab**
 
 It would try to point **straight down**, and a flat compass cannot do that. The needle would simply sit there, dragging on the glass, telling you nothing. This is the thing the whole lesson has been circling: a needle is not aiming at a place, it is lying down along the field — and at the dip pole the field goes vertically into the ground.
 
-You can watch it coming. Go back to SEE IT, press **The Earth itself**, and walk north. At the magnetic equator the field is level and every bit of it is usable. At Ohio's magnetic latitude it already dives 67° and only 40% of the pull is sideways. In northern Alaska, 75° and 26%. At the pole, 90° and nothing at all. A compass is an instrument that works beautifully across most of the world and stops working precisely where the children's-book picture says it should work best.
+You can watch it coming. Go back to SEE IT, press **The Earth itself**, and walk north. At the magnetic equator the field is level and every bit of it is usable. At Ohio's magnetic latitude it already dives 67° and only 40% of the pull is sideways. In Anchorage, 75° and 26%. At the pole, 90° and nothing at all. A compass is an instrument that works beautifully across most of the world and stops working precisely where the children's-book picture says it should work best.
 
 _Links across to:_ Electricity, Lesson 11 — the compass needle that flinches near a wire (`electricity/lesson-11`)
 

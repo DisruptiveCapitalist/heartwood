@@ -14,8 +14,15 @@
 //     tan(dip) = 2 × tan(magnetic latitude)
 //       magnetic equator   0°   100% of the pull is level
 //       magnetic lat 49°  66.5°  40%          (Ohio)
-//       magnetic lat 62°  75.1°  26%          (northern Alaska)
+//       magnetic lat 62°  75.1°  26%          (Anchorage)
 //       magnetic lat 88°  89.0°   2%
+//
+// The place names are labels for those magnetic latitudes, and they were
+// checked rather than guessed: geomagnetic latitude from the looked-up pole
+// below, sin(lat_m) = sin(lat)sin(lat_p) + cos(lat)cos(lat_p)cos(lon - lon_p),
+// gives Columbus 48.9° and Anchorage 61.9° — so 49° is Ohio and 62° is
+// Anchorage, not northern Alaska, which is nearer 70° (Utqiagvik 70.1°,
+// Prudhoe Bay 70.5°). Design caught the name; the figures were already right.
 //
 // Figures that were looked up, not modelled — NOAA NCEI, WMM2025 at 2025.0:
 //     dipole axis tilted 9.21° from the axis of rotation
@@ -151,7 +158,7 @@ export default {
       placeholder: `It would try to…`,
       reveal: [
         `It would try to point **straight down**, and a flat compass cannot do that. The needle would simply sit there, dragging on the glass, telling you nothing. This is the thing the whole lesson has been circling: a needle is not aiming at a place, it is lying down along the field — and at the dip pole the field goes vertically into the ground.`,
-        `You can watch it coming. Go back to SEE IT, press **The Earth itself**, and walk north. At the magnetic equator the field is level and every bit of it is usable. At Ohio's magnetic latitude it already dives 67° and only 40% of the pull is sideways. In northern Alaska, 75° and 26%. At the pole, 90° and nothing at all. A compass is an instrument that works beautifully across most of the world and stops working precisely where the children's-book picture says it should work best.`
+        `You can watch it coming. Go back to SEE IT, press **The Earth itself**, and walk north. At the magnetic equator the field is level and every bit of it is usable. At Ohio's magnetic latitude it already dives 67° and only 40% of the pull is sideways. In Anchorage, 75° and 26%. At the pole, 90° and nothing at all. A compass is an instrument that works beautifully across most of the world and stops working precisely where the children's-book picture says it should work best.`
       ],
       crossLink: {
         courseId: 'electricity',

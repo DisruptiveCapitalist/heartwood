@@ -1,5 +1,5 @@
-# The Art and Science of Navigation — Lesson 3: Learning to use a compass
-> Week 2 of 6 · The Compass and Earth's Magnetic Field  
+# The Art and Science of Navigation — Lesson 8: Learning to use a compass
+> Week 2 of 6 · The Compass and Earth's Magnetic Field · lesson 3 of 5 this week  
 > Concept: **Aim it, box the needle, read it**  
 > Lesson completes when: **the Feynman explanation is submitted**
 
@@ -76,7 +76,7 @@ Twenty minutes in the open, somewhere familiar — your own yard or a park you k
 
 Ahmad ibn Mājid, an Arab navigator born in Julfar on the Gulf coast around 1432, wrote extensively on navigation in the Indian Ocean. His *Kitāb al-Fawāʾid fī Uṣūl ʿIlm al-Baḥr wa-l-Qawāʿid* — the Book of Useful Information on the Principles and Rules of Navigation, completed in 1490 — is a systematic manual: routes, seasons, coastal landmarks, instruments and the magnetic compass, which by his time was in ordinary use aboard ship.
 
-What is striking is the rose he worked with. Rather than a circle cut into equal degrees, his directions were named after the rising and setting points of fifteen stars either side of due north and due south, giving thirty-two named directions around the horizon. The compass needle was fitted into that existing framework rather than replacing it, so a bearing was both an instrument reading and the name of a star you could go out and look at. It is the same job as a three-digit number, done in a language built out of the sky.
+What is striking is the rose he worked with. Rather than a circle cut into equal degrees, his directions were named after where fifteen stars rise and where the same fifteen set — thirty points around the horizon — with due north and due south added to make thirty-two. The compass needle was fitted into that existing framework rather than replacing it, so a bearing was both an instrument reading and the name of a star you could go out and look at. It is the same job as a three-digit number, done in a language built out of the sky.
 
 > **What remains uncertain:** Ibn Mājid's own texts survive and are well studied, but the popular story that he personally piloted Vasco da Gama from Malindi to India in 1498 is doubtful — it rests on a sixteenth-century account written long after the fact, the named pilot is described inconsistently, and most specialists now reject the identification. How far his manuals describe ordinary practice across the whole Indian Ocean, rather than the practice he knew and argued for, is also hard to judge.  
 > **Sources:** Tibbetts, *Arab Navigation in the Indian Ocean before the Coming of the Portuguese* (1971), a translation and study of the *Kitāb al-Fawāʾid*; Ibn Mājid, *Kitāb al-Fawāʾid* (1490).

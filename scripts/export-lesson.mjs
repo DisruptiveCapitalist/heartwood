@@ -46,13 +46,23 @@ const H = (level, text) => `${'#'.repeat(level)} ${text}\n`
 const P = (text) => `${strip(text)}\n`
 const LIST = (items) => items.map((i) => `- ${strip(i)}`).join('\n') + '\n'
 
+// `lesson.number` is the position within the week — lesson 6 is week 2's first,
+// so it carries number 1, which is right on screen ("Lesson 1 of 5") and wrong
+// in a heading. Everyone names lessons absolutely, the cross-links included
+// ("Electricity, Lesson 11" for electricity/lesson-11), and the id is where
+// that number already lives.
+const absolute = (lesson) => {
+  const n = Number(/(\d+)$/.exec(lesson.id)?.[1])
+  return Number.isInteger(n) && n > 0 ? n : lesson.number
+}
+
 function render(course, lesson) {
   const week = course.weeks[lesson.week - 1]
   const out = []
 
-  out.push(H(1, `${course.title} — Lesson ${lesson.number}: ${strip(lesson.title)}`))
+  out.push(H(1, `${course.title} — Lesson ${absolute(lesson)}: ${strip(lesson.title)}`))
   out.push(
-    `> Week ${lesson.week} of ${course.weeks.length} · ${week.title}  \n` +
+    `> Week ${lesson.week} of ${course.weeks.length} · ${week.title} · lesson ${lesson.number} of ${week.lessons.length} this week  \n` +
     `> Concept: **${strip(lesson.concept)}**  \n` +
     `> Lesson completes when: **${course.completeOn === 'feynman' ? 'the Feynman explanation is submitted' : 'REFLECT is reached'}**\n`
   )

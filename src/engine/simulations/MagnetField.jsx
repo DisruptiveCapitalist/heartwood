@@ -225,7 +225,7 @@ function Bar({ spot, setSpot, lines, setLines, flipped, setFlipped }) {
 const EARTH_SPOTS = [
   { id: 'eq', name: `The magnetic equator`, mlat: 0 },
   { id: 'mid', name: `Ohio`, mlat: 49 },
-  { id: 'north', name: `Northern Alaska`, mlat: 62 },
+  { id: 'north', name: `Anchorage`, mlat: 62 },
   { id: 'pole', name: `The pole`, mlat: 88 }
 ]
 

@@ -1,3 +1,4 @@
+import { existsSync, readFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
 import { standardCourses as courses } from '../content/index.js'
 import { validateLesson, ROUTE_IDS } from '../content/schema.js'
@@ -72,6 +73,15 @@ describe('lesson content', () => {
           expect(target, `no course "${link.courseId}"`).toBeTruthy()
           expect(target.lessons[link.lessonId], `no lesson "${link.lessonId}"`).toBeTruthy()
           expect(link.label).toBeTruthy()
+
+          // A label that names a lesson number has to name the one it opens.
+          // "Electricity, Lesson 11" pointing at electricity/lesson-07 would
+          // be a live link and still a lie.
+          const claimed = /\bLesson (\d+)\b/.exec(link.label)
+          if (claimed) {
+            expect(link.lessonId, `label says Lesson ${claimed[1]}`)
+              .toBe(`lesson-${String(claimed[1]).padStart(2, '0')}`)
+          }
         })
 
         it('answers every wrong prediction instead of buzzing it', () => {
@@ -112,4 +122,46 @@ describe('addressing the learner', () => {
     expect(fill('So, {name} — why?', 'Dennis')).toBe('So, Dennis — why?')
     expect(fill('So, {name} — why?', '')).toBe('So, — why?')
   })
+})
+
+// The exporter strips the {name} token out of copy before writing it; a title
+// has none today, but comparing headings means spelling the same rule here.
+const strip = (text) =>
+  String(text ?? '')
+    .replace(/\{name\}\s*,\s*/g, '')
+    .replaceAll('{name}', '')
+    .replace(/ {2,}/g, ' ')
+    .replace(/^(\s*)([a-z])/, (_, sp, c) => sp + c.toUpperCase())
+    .trim()
+
+// Design reads the Markdown exports, not the screen, and found Lessons 6-10
+// headed "Lesson 1" to "Lesson 5" — `lesson.number` is the position within the
+// week. The heading now carries the absolute number, and this checks the
+// exports on disk, which is the thing anyone writing a handbook actually holds.
+//
+// It only checks exports that exist: a course nobody has exported yet is not a
+// failure, and running the script is a separate step.
+describe('the Markdown exports', () => {
+  const root = new URL('../../docs/lessons/', import.meta.url)
+
+  for (const course of courses) {
+    for (const [id, lesson] of Object.entries(course.lessons)) {
+      const file = new URL(`${course.id}/${id}.md`, root)
+      if (!existsSync(file)) continue
+
+      it(`${course.id}/${id} is headed with its own lesson number`, () => {
+        const text = readFileSync(file, 'utf8')
+        const first = text.split('\n')[0]
+        const n = Number(/(\d+)$/.exec(id)[1])
+
+        expect(first, 'the H1 must name the lesson by its absolute number')
+          .toBe(`# ${course.title} — Lesson ${n}: ${strip(lesson.title)}`)
+
+        // The within-week position is not lost, it just moves out of the
+        // heading, where "Lesson 1" meant two different things.
+        expect(text, 'the week position belongs in the blockquote')
+          .toContain(`lesson ${lesson.number} of`)
+      })
+    }
+  }
 })
