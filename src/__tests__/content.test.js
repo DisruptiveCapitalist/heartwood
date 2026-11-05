@@ -8,6 +8,7 @@ import { MODES as COMPASS_MODES } from '../engine/simulations/Compass.jsx'
 import { MODES as SHADOW_MODES } from '../engine/simulations/ShadowStick.jsx'
 import { MODES as STAR_MODES } from '../engine/simulations/StarSky.jsx'
 import { MODES as CHART_MODES } from '../engine/simulations/ChartFix.jsx'
+import { MODES as VOYAGE_MODES } from '../engine/simulations/Voyage.jsx'
 import { PLATE_IDS } from '../engine/plates.jsx'
 import { fill } from '../lib/rich.jsx'
 
@@ -29,7 +30,8 @@ const MODE_FAMILIES = {
   'compass': COMPASS_MODES,
   'shadow-stick': SHADOW_MODES,
   'star-sky': STAR_MODES,
-  'chart-fix': CHART_MODES
+  'chart-fix': CHART_MODES,
+  'voyage': VOYAGE_MODES
 }
 
 describe('lesson content', () => {

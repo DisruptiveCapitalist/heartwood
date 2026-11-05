@@ -23,6 +23,11 @@ import lesson22 from './lessons/lesson-22.js'
 import lesson23 from './lessons/lesson-23.js'
 import lesson24 from './lessons/lesson-24.js'
 import lesson25 from './lessons/lesson-25.js'
+import lesson26 from './lessons/lesson-26.js'
+import lesson27 from './lessons/lesson-27.js'
+import lesson28 from './lessons/lesson-28.js'
+import lesson29 from './lessons/lesson-29.js'
+import lesson30 from './lessons/lesson-30.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -120,14 +125,26 @@ export default {
       ]
     },
     {
+      // The five titles are the outline's own, unchanged. What they turned out
+      // to mean was decided by the two debts the course had run up: longitude,
+      // promised since Lesson 3 and named for Week 6 in Lesson 25's reveal, and
+      // the Field Guide's Chapter 31, which no earlier week could carry. So
+      // Lesson 26 is longitude and the instrument that solved it, ancient and
+      // modern, because every instrument that ever found longitude is a clock.
+      //
+      // Part V of the Field Guide — wind and weather, water and drainage,
+      // plants, animals, geology, the human landscape, chapters 17 to 22 — is
+      // still homeless, and so is Chapter 14, measuring height with a compass.
+      // Five slots could not hold them as well as the week's own promises. That
+      // is a seventh week or a second class, and it is the learner's call.
       title: `Putting It Together`,
       idea: `Instruments, judgement, and the traditions that got there first.`,
       lessons: [
-        { title: `Modern instruments and what they assume` },
-        { title: `When the instruments fail` },
-        { title: `Looking back across the traditions` },
-        { title: `Planning a real journey` },
-        { title: `The Heartwood Navigation Challenge` }
+        { title: `Modern instruments and what they assume`, lessonId: 'lesson-26' },
+        { title: `When the instruments fail`, lessonId: 'lesson-27' },
+        { title: `Looking back across the traditions`, lessonId: 'lesson-28' },
+        { title: `Planning a real journey`, lessonId: 'lesson-29' },
+        { title: `The Heartwood Navigation Challenge`, lessonId: 'lesson-30' }
       ]
     }
   ],
@@ -157,12 +174,17 @@ export default {
     'lesson-22': lesson22,
     'lesson-23': lesson23,
     'lesson-24': lesson24,
-    'lesson-25': lesson25
+    'lesson-25': lesson25,
+    'lesson-26': lesson26,
+    'lesson-27': lesson27,
+    'lesson-28': lesson28,
+    'lesson-29': lesson29,
+    'lesson-30': lesson30
   },
 
   nextUp: {
-    title: `Week 6 is not written yet`,
-    blurb: `Twenty-five lessons in, and you can find your position four ways: crossed bearings to two landmarks, a bearing and a measured distance to one, a plot carried forward from somewhere you knew, and two bearings to a single landmark with a run in between. You also know, measured rather than asserted, how much each of them lies to you — and that the little triangle three bearings leave holds your position one time in four. One thing is still missing, and it has been missing since Lesson 3: longitude. The exchange rate has been in your notebook since Lesson 14 — fifteen degrees to the hour — and using it needs a clock that keeps somewhere else's time while you travel.`
+    title: `The Art and Science of Navigation is complete`,
+    blurb: `All thirty lessons. You can find direction five ways and position five ways, you know what each of them costs you in yards, and you know the one asymmetry that explains three thousand years of other people's work: north and south can be measured afresh every clear night, and east and west has to be carried. Nothing here is ever locked, so go back to any of it. But the course was never the point — the Field Guide has thirty-one chapters and a set of blank worksheets, and the last lesson's challenge needs real ground, a real pencil and a position nobody has told you.`
   },
 
   journalPrompts: [

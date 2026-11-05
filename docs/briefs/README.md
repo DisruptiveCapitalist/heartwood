@@ -19,11 +19,23 @@ teaches and what it must not do — this repository is the authority on how.
 
 The Navigation class has no build package of its own: its six-week outline
 arrived in the chat and lives in `src/content/navigation/course.js`, which is
-now the record of it. **Built: 25/30.** That outline and the Field Guide spec
+now the record of it. **Built: 30/30.** That outline and the Field Guide spec
 disagreed about Week 5, and the spec won — see the comment on the week in
 `course.js`. Check the spec's chapter list before writing a `fieldGuide` block;
 Week 5 was first built pointing at Chapter 14, which is about measuring the
 height of a tree.
+
+**Two parts of the Field Guide spec have no lesson anywhere in the class, and
+that is a decision rather than an oversight.** Week 6's five slots went to the
+outline's own five titles, and the two debts the course had already run up —
+longitude, promised to the learner since Lesson 3 and named for Week 6 in
+Lesson 25, and emergency navigation — took two of them. So **Chapter 14,
+Measuring Height with a Compass**, appears only as a formal-names term in
+Lessons 23 and 29; and the whole of **Part V, chapters 17 to 22** — wind and
+weather, water and drainage, plants, animals, geology, the human landscape —
+has no lesson at all. Those chapters still have to be written for the handbook
+and the lessons are not there to support them. A seventh week, or a second
+class, is the obvious home, and it is the learner's call.
 
 Electricity & Energy has no separate document: its syllabus arrived inside
 `university-handoff.md` and the design references, and the built syllabus in

@@ -71,6 +71,7 @@ import ShadowStick from './ShadowStick.jsx'
 import SolarClock from './SolarClock.jsx'
 import StarSky from './StarSky.jsx'
 import ChartFix from './ChartFix.jsx'
+import Voyage from './Voyage.jsx'
 
 // A lesson's SEE IT stage names a simulation by id. A new lesson that needs a
 // new scene adds a component here; lessons that can reuse an existing scene
@@ -152,7 +153,8 @@ export const simulations = {
   'shadow-stick': ShadowStick,
   'solar-clock': SolarClock,
   'star-sky': StarSky,
-  'chart-fix': ChartFix
+  'chart-fix': ChartFix,
+  'voyage': Voyage
 }
 
 export function getSimulation(id) {
