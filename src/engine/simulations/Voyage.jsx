@@ -554,11 +554,25 @@ function Assay() {
     { colour: GREEN, text: `latitude, from the sky — flat for ever` },
     { colour: RED, text: `longitude, by reckoning alone` },
     ...(lunarErr !== null
-      ? [{ colour: 'var(--accent)', dash: '9 6', text: `longitude, by the Moon — a flat ${num(lunarErr)} miles` }]
+      ? [{
+        // "about", because the figure is what this kit's sextant and this
+        // parallel give, not a constant of the method; and the full "never
+        // improves" rather than "flat", because a flat 51 could be read as
+        // always exactly 51 rather than as not growing with the voyage.
+        colour: 'var(--accent)',
+        dash: '9 6',
+        text: `longitude, by the Moon — about ${num(lunarErr)} miles, and it never improves`
+      }]
       : []),
     ...(nav.rate !== null ? [{ colour: BLUE, text: `longitude, by the chronometer` }] : [])
   ]
   const legendTop = 118
+  // Wide enough for the longest row it is actually showing: the Moon's line
+  // carries a number and the others do not, so a fixed width is either too
+  // wide for two kits or too narrow for the other two. 6.75 px a character is
+  // measured off the rendered 12.5 px bold sans, with the swatch and padding
+  // added.
+  const legendWidth = Math.max(...legend.map((r) => r.text.length)) * 6.6 + 56
 
   const lonNow = Math.min(...[drAt(days), lunarErr, chronAt(days)].filter((v) => v !== null))
 
@@ -572,8 +586,15 @@ function Assay() {
           note={`out, by the best means you have`} />
         <Readout align="right" width={300} label="SO EAST AND WEST IS WORSE BY"
           value={`${r1(lonNow / Math.max(latErr, 0.01))}×`}
+          // Kept to three lines. The readouts are an absolutely positioned
+          // overlay on the stage, so a fourth line reaches down into the chart
+          // and lands on the day marker's caption. The figure this note used to
+          // carry — that the Moon only beats the reckoning after 17 days — is
+          // in the lesson's own copy, which has room for it.
           note={nav.rate === null
-            ? `and it will go on getting worse, because nothing you can observe checks it. ${nav.lunars ? `The Moon gives you a fixed ${num(lunarErr)} miles — better than the reckoning after ${r0(lunarErr / (nav.dr * run))} days, and it needs a clear sky, an almanac and four hours of arithmetic.` : `There is no observation that will.`}`
+            ? (nav.lunars
+              ? `and nothing checks it but the Moon — about ${num(lunarErr)} miles, which never grows but needs a clear sky.`
+              : `and nothing you can observe checks it, so it goes on growing for as long as the voyage lasts.`)
             : `and the chronometer is the only thing that ever changed that: ${r1(lonMiles(clockDrift(nav.rate, 1), lat))} miles a day instead of ${r0(nav.dr * run)}.`} />
       </div>
 
@@ -596,8 +617,11 @@ function Assay() {
           <Tag x={x0 - 42} y={(y0 + y1) / 2} size={12} weight={700} colour="var(--ink-2)">miles</Tag>
 
           {/* today, drawn under everything so the labels' halos cut it */}
-          <line x1={X(days)} y1={y1 - 6} x2={X(days)} y2={y0 + 6} stroke="var(--ink)" strokeWidth="1.6" opacity="0.6" />
-          <Tag x={X(days)} y={y1 - 14} size={12} weight={700}>{`day ${days}`}</Tag>
+          <line x1={X(days)} y1={y1} x2={X(days)} y2={y0 + 6} stroke="var(--ink)" strokeWidth="1.6" opacity="0.6" />
+          {/* Sits as low as it can without entering the plot: the readouts
+              float over the stage and the longest of the four notes reaches
+              down to here. Measured at 1,500 px — 21 px of clearance. */}
+          <Tag x={X(days)} y={y1 - 4} size={12} weight={700}>{`day ${days}`}</Tag>
 
           {/* dead reckoning */}
           <path d={path(drAt)} fill="none" stroke={RED} strokeWidth="2.6" />
@@ -618,7 +642,7 @@ function Assay() {
           {/* latitude */}
           <path d={path(() => latErr)} fill="none" stroke={GREEN} strokeWidth="3" />
           {/* the legend, last and opaque */}
-          <rect x={X(1.2) - 12} y={legendTop - 16} width={436} height={legend.length * 20 + 10}
+          <rect x={X(1.2) - 12} y={legendTop - 16} width={legendWidth} height={legend.length * 20 + 10}
             rx="5" fill={PAPER} opacity="0.94" />
           {legend.map((row, i) => (
             <g key={row.text} transform={`translate(${X(1.2)} ${legendTop + i * 20})`}>
