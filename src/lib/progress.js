@@ -204,6 +204,7 @@ export function todayCard(course, progressOf, sessionMinutes = 30) {
 /** One row per week, with each lesson's status. */
 export function weekRows(course, progressOf) {
   let counted = 0
+  let absolute = 0
   return course.weeks.map((week, wi) => ({
     // An optional week is not "week 7": it announces itself with its own
     // label, and the numbering of the course proper stops before it.
@@ -219,8 +220,15 @@ export function weekRows(course, progressOf) {
       const p = lesson ? progressOf(lesson.id) : null
       const complete = !!lesson && isDone(p, course)
       const inProgress = !!lesson && !complete && isStarted(p)
+      absolute += 1
       return {
         number: li + 1,
+        // A numbered week gives its lessons their context, so they count from
+        // one inside it. An optional block has no number, so "Lesson 1" there
+        // would be the third Lesson 1 on the page — those count from the
+        // start of the course, which is also how the Markdown exports head
+        // them and how the Week 7 package numbers them.
+        absolute,
         title: entry.title,
         lessonId: lesson?.id ?? null,
         built: !!lesson,

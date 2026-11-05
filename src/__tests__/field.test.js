@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import {
-  yardsOff, channelled, flagPoints, lakeBreeze, delta, norm,
+  yardsOff, strayedBy, channelled, flagPoints, lakeBreeze, delta, norm,
   GRID, heights, downhill, accumulate, trace, basin, isSink, isEdge, isHollow,
   cellBearing, wander,
   mossOdds, mossSurvey,
@@ -22,11 +22,32 @@ describe('what an angle costs on the ground', () => {
     expect(Math.round(yardsOff(2, 7.2))).toBe(445)
   })
 
-  // The number that makes Field Week's cautions worth a week. A sixty-degree
-  // error is not a wobble to be corrected; it is a different journey.
-  it('finds a sixty-degree error is not an error but another destination', () => {
+  // Design caught this course quoting d·tan θ at sixty degrees, where it is
+  // simply the wrong quantity. Walking a mile on a bearing sixty degrees off
+  // leaves you a mile from where you meant to be, not 3,048 yards: the two
+  // walks and the start make an equilateral triangle.
+  it('measures a stray by the gap, not by the tangent', () => {
+    expect(Math.round(strayedBy(1, 60))).toBe(1760)
+    expect(strayedBy(1, 60) / 1760).toBeCloseTo(1, 9)
     expect(Math.round(yardsOff(1, 60))).toBe(3048)
-    expect(yardsOff(1, 60) / 1760).toBeCloseTo(1.73, 2)
+    expect(yardsOff(1, 60)).toBeGreaterThan(strayedBy(1, 60))
+  })
+
+  // And why the old rule is still the right one where the course uses it:
+  // the two agree to better than a per cent below about ten degrees, and
+  // part company badly above thirty.
+  it('agrees with the small-angle rule only while the angle is small', () => {
+    expect(strayedBy(1, 1)).toBeCloseTo(30.72, 2)
+    for (const a of [0.5, 1, 2, 5, 10]) {
+      expect(Math.abs(yardsOff(1, a) / strayedBy(1, a) - 1), `${a}°`).toBeLessThan(0.016)
+    }
+    expect(yardsOff(1, 45) / strayedBy(1, 45)).toBeGreaterThan(1.3)
+    expect(yardsOff(1, 80) / strayedBy(1, 80)).toBeGreaterThan(4)
+  })
+
+  it('keeps the thirty-one yards a mile rule as the small-angle limit', () => {
+    expect(Math.round(strayedBy(1, 1))).toBe(31)
+    expect(Math.round(strayedBy(1, 2))).toBe(61)
   })
 })
 
@@ -90,10 +111,12 @@ describe('water and the shape of the ground', () => {
     expect(Math.round(lo)).toBe(637)
   })
 
-  it('conserves the rain: every cell drains to a sink', () => {
-    const sinks = all.filter((i) => isSink(dir, i))
-    const total = sinks.reduce((t, i) => t + acc[i], 0)
-    expect(total).toBe(w * h)
+  it('conserves the rain: all of it either stops or leaves', () => {
+    const stays = all.filter((i) => isSink(dir, i)).reduce((t, i) => t + acc[i], 0)
+    const leaves = all.filter((i) => isEdge(i) && !isSink(dir, i)).reduce((t, i) => t + acc[i], 0)
+    expect(stays + leaves).toBe(w * h)
+    // Nearly a third of the rain on this sheet never gets off it.
+    expect(stays / (w * h)).toBeCloseTo(0.31, 2)
   })
 
   // The required case from the Field Guide's Chapter 18. One hollow in the
@@ -119,8 +142,8 @@ describe('water and the shape of the ground', () => {
     expect(isEdge(0)).toBe(true)
     expect(isEdge(w * h - 1)).toBe(true)
     expect(isEdge(40 * w + 44)).toBe(false)
-    const sinks = all.filter((i) => isSink(dir, i))
-    expect(sinks.filter((i) => isEdge(i)).length).toBe(sinks.length - 1)
+    // The only sink left is the hollow, and it is nowhere near the edge.
+    expect(all.filter((i) => isSink(dir, i)).every((i) => !isEdge(i))).toBe(true)
   })
 
   it('gives bearings on the grid the same sense as the rest of the course', () => {
@@ -130,51 +153,55 @@ describe('water and the shape of the ground', () => {
     expect(cellBearing(10 * w + 10, 11 * w + 10)).toBeCloseTo(180, 6)
   })
 
-  // Lesson 32's headline. A watercourse does not have a direction; it has a
-  // sequence of them, and on this sheet the longest one covers 146 degrees of
-  // the compass between its head and its mouth.
-  it('finds one stream running through 146 degrees of the compass', () => {
+  // A watercourse does not have a direction; it has a sequence of them. The
+  // longest walk on this sheet is 3.7 miles and the most wandering is 135
+  // degrees — both of them real drainage now that the border is not a dam.
+  it('finds the longest walk on the sheet', () => {
     let longest = []
-    for (let y = 2; y < h - 2; y += 3) {
-      for (let x = 2; x < w - 2; x += 3) {
+    for (let y = 1; y < h - 1; y++) {
+      for (let x = 1; x < w - 1; x++) {
         const p = trace(dir, y * w + x)
         if (p.length > longest.length) longest = p
       }
     }
-    expect(longest).toHaveLength(149)
-    expect((longest.length * GRID.yardsPerCell) / 1760).toBeCloseTo(9.3, 1)
-    const wd = wander(longest)
-    expect(Math.round(wd.spread)).toBe(146)
-    expect(Math.round(wd.from)).toBe(90)
+    expect(longest).toHaveLength(59)
+    expect((longest.length * GRID.yardsPerCell) / 1760).toBeCloseTo(3.7, 1)
     expect(isEdge(longest[longest.length - 1])).toBe(true)
   })
 
-  // A spread is the smallest arc that holds every leg, not the largest minus
-  // the smallest: a stream that runs due north and then a little west of
-  // north has wandered 27 degrees, not 333.
-  // Lesson 32's two starts, 220 yards apart on one hillside, and the whole
+  // Lesson 32's two starts, 220 yards apart on one shoulder, and the whole
   // argument of the lesson: one of them comes out and the other does not.
   it('sends two walks 220 yards apart to opposite fates', () => {
     const hollow = all.find((i) => isHollow(dir, i))
-    const ridge = trace(dir, 10 * w + 10)
-    const above = trace(dir, 8 * w + 10)
-    expect(ridge[ridge.length - 1]).toBe(hollow)
-    expect(isEdge(above[above.length - 1])).toBe(true)
+    const near = trace(dir, 12 * w + 57)
+    const along = trace(dir, 12 * w + 59)
+    expect(near[near.length - 1]).toBe(hollow)
+    expect(isEdge(along[along.length - 1])).toBe(true)
     expect(2 * GRID.yardsPerCell).toBe(220)
-    expect((ridge.length * GRID.yardsPerCell) / 1760).toBeCloseTo(3.4, 1)
-    expect((above.length * GRID.yardsPerCell) / 1760).toBeCloseTo(5.9, 1)
+    expect((near.length * GRID.yardsPerCell) / 1760).toBeCloseTo(2.6, 1)
+    expect((along.length * GRID.yardsPerCell) / 1760).toBeCloseTo(3.6, 1)
   })
 
-  // And the one the lesson opens on: eight and a half miles of walking that
-  // faces through five eighths of the compass before it is finished.
-  it('finds a stream that covers 225 degrees before it is done', () => {
-    const p = trace(dir, 40 * w + 12)
-    expect(p).toHaveLength(135)
-    expect((p.length * GRID.yardsPerCell) / 1760).toBeCloseTo(8.4, 1)
+  // The one the lesson opens on: two and a half miles of walking that faces
+  // through more than a third of the compass and then stops in the hollow.
+  it('finds a stream that covers 135 degrees and then stops', () => {
+    const p = trace(dir, 39 * w + 12)
+    expect(p).toHaveLength(40)
+    expect((p.length * GRID.yardsPerCell) / 1760).toBeCloseTo(2.5, 1)
     const wd = wander(p)
-    expect(Math.round(wd.spread)).toBe(225)
-    expect(Math.round(wd.from)).toBe(90)
-    expect(Math.round(wd.to)).toBe(315)
+    expect(Math.round(wd.spread)).toBe(135)
+    expect(Math.round(wd.from)).toBe(0)
+    expect(Math.round(wd.to)).toBe(135)
+    expect(isHollow(dir, p[p.length - 1])).toBe(true)
+  })
+
+  // The border was a dam before: water that reached the edge could not leave,
+  // so it ran along it, and the longest "stream" on the sheet was mostly the
+  // paper's own boundary. Off the sheet is downhill now, so the only place on
+  // it where water stops is the hollow.
+  it('lets water leave the sheet instead of running round the rim', () => {
+    expect(all.filter((i) => isSink(dir, i))).toHaveLength(1)
+    expect(all.filter((i) => isHollow(dir, i))).toHaveLength(1)
   })
 
   it('gives a short path a direction rather than a NaN', () => {

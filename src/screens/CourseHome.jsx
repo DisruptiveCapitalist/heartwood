@@ -140,7 +140,7 @@ export default function CourseHome({ course, onOpenLesson, onCatalog, sessionMin
                         fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.1em',
                         color: l.built ? 'var(--accent)' : 'var(--muted)', minWidth: 74
                       }}>
-                        LESSON {l.number}
+                        LESSON {w.optional ? l.absolute : l.number}
                       </span>
                       <span style={{ fontSize: 19, flex: 1, color: l.built ? '#2f2921' : 'var(--ink-4)', textWrap: 'pretty' }}>
                         <Rich text={l.title} />

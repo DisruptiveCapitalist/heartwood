@@ -13,9 +13,17 @@
 //   its speed. On the same picture, at the same moment, two other valleys
 //   report two other winds.
 //
-//   WHAT SIXTY DEGREES COSTS, in the currency the course has used since
-//   Lesson 7: 3,048 yards in a mile. That is not an error to be corrected. It
-//   is a different journey.
+//   WHAT SIXTY DEGREES COSTS. Walk a mile on it and you finish 1,760 yards —
+//   a whole mile — from where you meant to be, because the two walks and the
+//   start make an equilateral triangle.
+//
+//   This lesson first said 3,048 yards, which is d·tan θ. Design caught it.
+//   The tangent is the right function for a small compass error, where the
+//   forward distance is what is fixed, and the wrong one here: a mile walked
+//   on a bearing sixty degrees off is a mile walked, not two. The 31-yards-a-
+//   mile-per-degree rule this course has used since Lesson 7 is the small-
+//   angle limit of the honest formula and is safe only while the angle is
+//   small — the two agree to better than one per cent below ten degrees.
 //
 //   THE SHORE, which is not a model at all. Land heats faster than water by
 //   day and cools faster by night, so a shore breeze blows onshore in the
@@ -46,7 +54,7 @@ export default {
     simulation: { id: 'field', props: { mode: 'wind' } },
     observations: [
       { text: `The forecast says the wind is from the west, 270°, at twelve miles an hour. In the north valley it is from **330°** at **six**. In the middle valley it is from somewhere else again. Nobody is wrong and nothing has changed about the weather — a valley will not let air cross it, so what blows along it is whatever was already going that way.` },
-      { text: `That tree is flagged by the wind that actually reaches it, so it is a record of **its own valley**, not of the weather. Read it as the prevailing wind and you are **60° out**, which is **3,048 yards in every mile** you walk on it. Sixty degrees is not an error you correct at the end of the day. It is a different journey.`, emphasis: true },
+      { text: `That tree is flagged by the wind that actually reaches it, so it is a record of **its own valley**, not of the weather. Read it as the prevailing wind and you are **60° out** — and walking a mile on that leaves you **1,760 yards from where you meant to be**, which is a whole mile. At sixty degrees you and the person who went the right way are as far apart as either of you walked.`, emphasis: true },
       { text: `Now the second picture, and this one is not a model of anything. Stand on a lake shore at three in the afternoon and the breeze comes off the water. Stand in the same footprints at four in the morning and it comes off the land — **the same beach, reversed by exactly 180°**, twice a day, every day, because land heats and cools faster than water does.` }
     ]
   },
@@ -192,7 +200,7 @@ export default {
     {
       id: 'example',
       label: `Walk me through an example`,
-      body: `The forecast says west, 270°, twelve miles an hour. You are in a valley running north-west to south-east, so its axis is 330°–150°. The air arriving from the west is going east; the part of that going south-east survives and the part going north-east does not, so what you feel is a wind out of the north-west — from 330° — at twelve times the cosine of sixty degrees, which is six miles an hour. Everything about it is honest. If you now use it to find north you will be sixty degrees wrong, and sixty degrees over a mile is three thousand yards.`
+      body: `The forecast says west, 270°, twelve miles an hour. You are in a valley running north-west to south-east, so its axis is 330°–150°. The air arriving from the west is going east; the part of that going south-east survives and the part going north-east does not, so what you feel is a wind out of the north-west — from 330° — at twelve times the cosine of sixty degrees, which is six miles an hour. Everything about it is honest. If you now use it to find north you will be sixty degrees wrong, and a mile walked on that finishes a mile away from where you wanted to be.`
     },
     {
       id: 'smaller',

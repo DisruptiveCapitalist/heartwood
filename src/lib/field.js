@@ -42,12 +42,42 @@ export const brg = (d) => String(Math.round(norm(d)) % 360).padStart(3, '0')
 export const YARDS_PER_MILE = 1760
 
 /**
- * What an angular error costs on the ground. The course's oldest arithmetic,
- * from Lesson 7, and the unit every claim in this week is converted into:
- * one degree is about 31 yards a mile, and sixty degrees is not an error at
- * all — it is a different journey.
+ * THE SMALL-ANGLE RULE, and it is only that.
+ *
+ * `d · tan θ` is the course's oldest arithmetic, from Lesson 7: it is how far
+ * off the line you are once you have made `d` of FORWARD progress, and for the
+ * degree or two a compass is wrong by it is the right number — about 31 yards
+ * a mile per degree.
+ *
+ * It is the wrong number for a large angle, and Design caught this course
+ * using it that way. Walk a mile on a bearing sixty degrees off and you have
+ * walked a mile, not two: the honest question is how far you finish from where
+ * you meant to be, and that is `strayedBy` below. At 60° this function says
+ * 3,048 yards and the truth is 1,760.
+ *
+ * Kept, because the small-angle form is what Lessons 7, 29 and 35 mean, and
+ * because `tan` is the right function when the forward distance is what is
+ * fixed — a position line pivoting on a landmark, a survey line held for a
+ * measured easting. Not to be used above about ten degrees.
  */
 export const yardsOff = (miles, degrees) => miles * YARDS_PER_MILE * Math.tan(rad(Math.abs(degrees)))
+
+/**
+ * How far you finish from where you meant to be, having walked `miles` on a
+ * bearing `degrees` off the one you wanted.
+ *
+ * Both of you walked the same distance, so the two endpoints and the start
+ * make an isosceles triangle and the gap is its base: 2 d sin(θ/2). This is
+ * correct at every angle, and it tends to the same 31 yards a mile per degree
+ * as θ gets small, which is why the old rule works where it works.
+ *
+ * At sixty degrees the triangle is equilateral, so you finish exactly as far
+ * from your destination as you walked — a mile off, after a mile. That is a
+ * better sentence than the one this course had, and it has the merit of being
+ * true.
+ */
+export const strayedBy = (miles, degrees) =>
+  2 * miles * YARDS_PER_MILE * Math.sin(rad(Math.abs(degrees)) / 2)
 
 /* ---- wind: a local fact (Lesson 31) ----------------------------------- */
 
@@ -176,15 +206,33 @@ export function downhill(z, { w, h } = GRID) {
       for (let k = 0; k < 8; k++) {
         const nx = x + NEIGHBOURS[k][0]
         const ny = y + NEIGHBOURS[k][1]
-        if (nx < 0 || ny < 0 || nx >= w || ny >= h) continue
         const run = NEIGHBOURS[k][0] && NEIGHBOURS[k][1] ? Math.SQRT2 : 1
-        const slope = (z[i] - z[ny * w + nx]) / run
+        // Off the sheet is downhill. Skipping out-of-bounds neighbours instead
+        // made the border a dam: water arriving at the edge could not leave,
+        // so it ran ALONG it, and the longest "stream" on this sheet turned
+        // out to be mostly the paper's own border. That inflated the lesson's
+        // headline — 225° of wander and 8.4 miles — with an artefact of the
+        // grid. A real sheet is a window on country that continues.
+        const zn = nx < 0 || ny < 0 || nx >= w || ny >= h ? -Infinity : z[ny * w + nx]
+        const slope = (z[i] - zn) / run
         if (slope > best) { best = slope; pick = k }
       }
       dir[i] = pick
     }
   }
   return dir
+}
+
+/** Where a cell's water goes next, or -1 if it leaves the sheet or stops. */
+export function flowsTo(dir, i, { w, h } = GRID) {
+  const k = dir[i]
+  if (k < 0) return -1
+  const x = i % w
+  const y = (i / w) | 0
+  const nx = x + NEIGHBOURS[k][0]
+  const ny = y + NEIGHBOURS[k][1]
+  if (nx < 0 || ny < 0 || nx >= w || ny >= h) return -1
+  return ny * w + nx
 }
 
 /** How many cells drain through each cell. One unit of rain on every cell. */
@@ -196,20 +244,14 @@ export function accumulate(dir, { w, h } = GRID) {
   // simpler and exact.
   const indeg = new Int32Array(w * h)
   for (let i = 0; i < w * h; i++) {
-    const k = dir[i]
-    if (k < 0) continue
-    const x = i % w
-    const y = (i / w) | 0
-    indeg[(y + NEIGHBOURS[k][1]) * w + (x + NEIGHBOURS[k][0])] += 1
+    const j = flowsTo(dir, i, { w, h })
+    if (j >= 0) indeg[j] += 1
   }
   const queue = order.filter((i) => indeg[i] === 0)
   for (let qi = 0; qi < queue.length; qi++) {
     const i = queue[qi]
-    const k = dir[i]
-    if (k < 0) continue
-    const x = i % w
-    const y = (i / w) | 0
-    const j = (y + NEIGHBOURS[k][1]) * w + (x + NEIGHBOURS[k][0])
+    const j = flowsTo(dir, i, { w, h })
+    if (j < 0) continue
     acc[j] += acc[i]
     if (--indeg[j] === 0) queue.push(j)
   }
@@ -222,11 +264,9 @@ export function trace(dir, start, { w, h } = GRID) {
   const seen = new Set([start])
   let i = start
   for (let step = 0; step < w * h; step++) {
-    const k = dir[i]
-    if (k < 0) break
-    const x = i % w
-    const y = (i / w) | 0
-    i = (y + NEIGHBOURS[k][1]) * w + (x + NEIGHBOURS[k][0])
+    const j = flowsTo(dir, i, { w, h })
+    if (j < 0) break
+    i = j
     if (seen.has(i)) break
     seen.add(i)
     path.push(i)
@@ -238,11 +278,8 @@ export function trace(dir, start, { w, h } = GRID) {
 export function basin(dir, outlet, { w, h } = GRID) {
   const into = new Map()
   for (let i = 0; i < w * h; i++) {
-    const k = dir[i]
-    if (k < 0) continue
-    const x = i % w
-    const y = (i / w) | 0
-    const j = (y + NEIGHBOURS[k][1]) * w + (x + NEIGHBOURS[k][0])
+    const j = flowsTo(dir, i, { w, h })
+    if (j < 0) continue
     if (!into.has(j)) into.set(j, [])
     into.get(j).push(i)
   }
@@ -263,7 +300,8 @@ export const isSink = (dir, i) => dir[i] < 0
  * A cell on the edge of the sheet. The distinction matters and the lesson
  * turns on it: water that reaches the edge has left the map and may well
  * reach a road, while water that stops in a hollow in the middle of the sheet
- * has stopped, and so will you.
+ * has stopped, and so will you. Since the edge now drains off, a walk that
+ * ends on one ended because the paper did.
  */
 export const isEdge = (i, { w, h } = GRID) =>
   i % w === 0 || i % w === w - 1 || (i / w | 0) === 0 || (i / w | 0) === h - 1

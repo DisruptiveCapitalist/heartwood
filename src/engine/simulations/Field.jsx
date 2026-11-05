@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import {
-  yardsOff, channelled, flagPoints, lakeBreeze, brg, norm, delta,
+  yardsOff, strayedBy, channelled, flagPoints, lakeBreeze, brg, norm, delta,
   GRID, heights, downhill, accumulate, trace, basin, isHollow, isEdge, wander,
   mossOdds, mossSurvey,
   iceFlow, flowSpread, driftOn,
@@ -223,7 +223,7 @@ function Valley() {
 
   const v = VALLEYS.find((q) => q.id === which)
   const c = channelled(windFrom, v.axis, speed)
-  const miss = yardsOff(1, c.deflection)
+  const miss = strayedBy(1, c.deflection)
 
   return (
     <>
@@ -237,7 +237,7 @@ function Valley() {
             : `at ${r1(c.speed)} mph. The valley will not let air across it, so what blows down it is what was already going that way.`} />
         <Readout align="right" width={300} label="SO A TREE HERE IS OUT BY"
           value={`${r0(c.deflection)}°`} colour={c.deflection > 30 ? RED : GREEN}
-          note={`if you read it as the prevailing wind — which is ${num(miss)} yards in every mile you walk on it. ${c.deflection > 45 ? `That is not an error. That is a different journey.` : ``}`} />
+          note={`if you read it as the prevailing wind. Walk a mile on that and you finish ${num(miss)} yards from where you meant to be${c.deflection >= 60 ? ` — which at sixty degrees is a mile, exactly as far as you walked` : ``}.`} />
       </div>
 
       <Stage>
@@ -400,7 +400,12 @@ function Wind() {
 
 /* ---- the sheet Lessons 32 and 33 share --------------------------------- */
 
-const SHEET = { x: 40, y: 56, w: 680, h: 510 }
+// The readouts float over the first 92 units of the stage and the frame is
+// 600 tall, so the sheet starts below one and stops above the other — and it
+// is kept square to the ground it represents, six miles by four and a half,
+// which 620 × 465 is.
+const WATER_H = 600
+const SHEET = { x: 70, y: 100, w: 620, h: 465 }
 const cellW = SHEET.w / GRID.w
 const cellH = SHEET.h / GRID.h
 const cellX = (i) => SHEET.x + (i % GRID.w) * cellW + cellW / 2
@@ -452,10 +457,10 @@ function contourPaths(z, level) {
 // completely different things: one walk comes out at the edge of the sheet,
 // the other ends in the hollow. That pairing is the lesson.
 const STARTS = [
-  { id: 'west', name: `the west slope`, cell: 40 * GRID.w + 12 },
-  { id: 'ridge', name: `the north-west ridge`, cell: 10 * GRID.w + 10 },
-  { id: 'above', name: `220 yards higher up that ridge`, cell: 8 * GRID.w + 10 },
-  { id: 'south', name: `the south ridge`, cell: 56 * GRID.w + 30 }
+  { id: 'west', name: `the west slope`, cell: 39 * GRID.w + 12 },
+  { id: 'ne', name: `the north-east shoulder`, cell: 12 * GRID.w + 57 },
+  { id: 'east', name: `220 yards east along it`, cell: 12 * GRID.w + 59 },
+  { id: 'nw', name: `the north-west ridge`, cell: 10 * GRID.w + 10 }
 ]
 
 function Water() {
@@ -502,7 +507,7 @@ function Water() {
       </div>
 
       <Stage>
-        <Frame label={`A contour sheet six miles by four and a half, with the streams drawn from the drainage. Following the water from ${start.name} is a walk of ${r1(miles)} miles through ${r0(wd.spread)} degrees of the compass, ending ${offSheet ? 'at the edge of the sheet' : 'in a closed hollow with no outlet'}.`}>
+        <Frame h={WATER_H} label={`A contour sheet six miles by four and a half, with the streams drawn from the drainage. Following the water from ${start.name} is a walk of ${r1(miles)} miles through ${r0(wd.spread)} degrees of the compass, ending ${offSheet ? 'at the edge of the sheet' : 'in a closed hollow with no outlet'}.`}>
           <rect x={SHEET.x} y={SHEET.y} width={SHEET.w} height={SHEET.h} fill="#efe6d4" />
           {levels.map((L) => (
             <path key={L} d={contourPaths(terrain.z, L)} fill="none"
@@ -526,7 +531,11 @@ function Water() {
           <Tag x={cellX(start.cell)} y={cellY(start.cell) - 14}>you start here</Tag>
 
           <circle cx={cellX(end)} cy={cellY(end)} r="8" fill={offSheet ? GREEN : RED} />
-          <Tag x={cellX(end)} y={cellY(end) + (cellY(end) > H - 70 ? -16 : 26)} colour={offSheet ? GREEN : RED}>
+          {/* Clamped: an outlet in the corner put this label half off the
+              paper, and one near the foot put it under the scale bar. */}
+          <Tag x={Math.min(W - 120, Math.max(120, cellX(end)))}
+            y={cellY(end) + (cellY(end) > SHEET.y + SHEET.h - 60 ? -18 : 26)}
+            colour={offSheet ? GREEN : RED}>
             {offSheet ? `the water leaves the sheet` : `the water stops. So do you.`}
           </Tag>
 
@@ -536,12 +545,12 @@ function Water() {
             </Tag>
           )}
 
-          <g transform={`translate(${W - 150} 34)`}>
+          <g transform={`translate(${W - 34} 128)`}>
             <line x1="0" y1="26" x2="0" y2="-6" stroke="var(--ink)" strokeWidth="2.5" />
             <path d="M 0 -14 l -7 12 l 14 0 z" fill="var(--ink)" />
-            <Tag x={0} y={42} size={11} weight={700}>TRUE N</Tag>
+            <Tag x={0} y={42} size={11} weight={700}>N</Tag>
           </g>
-          <g transform={`translate(70 ${H - 22})`}>
+          <g transform={`translate(${SHEET.x} ${WATER_H - 22})`}>
             <Tag x={(1760 / GRID.yardsPerCell) * cellW / 2} y={-10} size={11} weight={500} colour="var(--ink-2)">one mile</Tag>
             <line x1="0" y1="0" x2={(1760 / GRID.yardsPerCell) * cellW} y2="0" stroke="var(--ink)" strokeWidth="3" />
           </g>
@@ -672,8 +681,14 @@ const SITES = [
   { id: 's4', name: `Site D`, e: 170, n: 60, lobe: 'scioto' }
 ]
 
-const mapX = (e) => W / 2 + e * 1.55
-const mapY = (n) => 470 - n * 0.85
+// Relaid after Design's review. The domes were off the left edge, their
+// labels and the divide caption were under the readouts, a site label was
+// under the model banner and the north arrow sat on another. Everything now
+// lives between y = 130 and y = 540 inside a 600-tall frame, and both domes
+// are on the paper.
+const ICE_H = 600
+const mapX = (e) => W / 2 + e * 0.95
+const mapY = (n) => 470 - n * 0.64
 
 function Ice() {
   const [a, setA] = useState('s1')
@@ -698,35 +713,36 @@ function Ice() {
         <Readout align="right" width={290} label="SO THE TWO DISAGREE BY"
           value={`${r1(apart)}°`} colour={apart > 20 ? RED : apart > 6 ? undefined : GREEN}
           note={sameLobe
-            ? `Both sites are under the same lobe, and the ice still scratched them ${r1(apart)}° apart, because ice spreads outward from where it is thickest. Take either one for north and you are ${num(yardsOff(1, Math.abs(delta(fa, 180))))} yards a mile out.`
+            ? `Both sites are under the same lobe, and the ice still scratched them ${r1(apart)}° apart, because ice spreads outward from where it is thickest. Take either one for north and a mile's walking finishes ${num(strayedBy(1, Math.abs(delta(fa, 180))))} yards from where you meant to be.`
             : `These two are under different lobes, split by high ground. The same ice sheet, the same winter, and two answers that are nowhere near each other.`} />
       </div>
 
       <Stage>
-        <Frame label={`A regional map of ice flowing outward from two domes. Striations at ${sa.name} run ${brg(fa)} degrees and at ${sb.name} ${brg(fb)} degrees — ${r1(apart)} degrees apart.`}>
+        <Frame h={ICE_H} label={`A regional map of ice flowing outward from two domes. Striations at ${sa.name} run ${brg(fa)} degrees and at ${sb.name} ${brg(fb)} degrees — ${r1(apart)} degrees apart.`}>
           {LOBES.map((l) => (
             <g key={l.id}>
-              <circle cx={mapX(l.dome.e)} cy={mapY(l.dome.n)} r="150" fill={l.tint} opacity="0.07" />
+              <circle cx={mapX(l.dome.e)} cy={mapY(l.dome.n)} r="140" fill={l.tint} opacity="0.07" />
               <circle cx={mapX(l.dome.e)} cy={mapY(l.dome.n)} r="9" fill={l.tint} />
-              <Tag x={mapX(l.dome.e)} y={mapY(l.dome.n) - 18} size={12} colour={l.tint}>{l.name}</Tag>
+              {/* Below the dome: above it the labels sat in the readouts. */}
+              <Tag x={mapX(l.dome.e)} y={mapY(l.dome.n) + 26} size={12} colour={l.tint}>{l.name}</Tag>
               {/* flow lines radiating from the dome */}
               {Array.from({ length: 9 }, (_, i) => {
                 const bearing = 140 + i * 12.5
                 const r = (bearing * Math.PI) / 180
                 const x1 = mapX(l.dome.e) + Math.sin(r) * 60
                 const y1 = mapY(l.dome.n) - Math.cos(r) * 60 * 0.55
-                const x2 = mapX(l.dome.e) + Math.sin(r) * 330
-                const y2 = mapY(l.dome.n) - Math.cos(r) * 330 * 0.55
+                const x2 = mapX(l.dome.e) + Math.sin(r) * 300
+                const y2 = mapY(l.dome.n) - Math.cos(r) * 300 * 0.55
                 return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke={l.tint} strokeWidth="1.2" opacity="0.3" />
               })}
             </g>
           ))}
 
-          <Tag x={W / 2} y={44} size={12.5} weight={700} colour="var(--ink-2)">
-            high ground between the two — in Ohio, the Bellefontaine Outlier
-          </Tag>
-          <line x1={mapX(-10)} y1={mapY(430)} x2={mapX(-10)} y2={mapY(120)}
+          <line x1={mapX(-10)} y1={mapY(430)} x2={mapX(-10)} y2={mapY(40)}
             stroke="var(--ink)" strokeWidth="2" strokeDasharray="6 6" opacity="0.35" />
+          <Tag x={mapX(-10)} y={146} size={12.5} weight={700} colour="var(--ink-2)">
+            high ground between the two — the Bellefontaine Outlier
+          </Tag>
 
           {SITES.map((s) => {
             const chosen = s.id === a || s.id === b
@@ -736,14 +752,18 @@ function Ice() {
                 <Arrow at={{ x: mapX(s.e), y: mapY(s.n) }} bearing={f} len={chosen ? 58 : 38}
                   colour={chosen ? RED : 'var(--ink-3)'} width={chosen ? 3.2 : 2} head={chosen ? 9 : 6} />
                 <circle cx={mapX(s.e)} cy={mapY(s.n)} r="5" fill="var(--ink)" />
-                <Tag x={mapX(s.e)} y={mapY(s.n) + 44} size={chosen ? 12.5 : 11.5} weight={chosen ? 700 : 500}>
+                {/* Above the dot for the southernmost sites: below, their
+                    labels sat on the model banner. */}
+                <Tag x={mapX(s.e)} y={mapY(s.n) + (mapY(s.n) > 440 ? -34 : 44)}
+                  size={chosen ? 12.5 : 11.5} weight={chosen ? 700 : 500}>
                   {s.name} · {brg(f)}°
                 </Tag>
               </g>
             )
           })}
 
-          <g transform={`translate(${W - 92} ${H - 104})`}>
+          {/* Bottom left, clear of every site: it used to cover Site D. */}
+          <g transform={`translate(44 ${ICE_H - 176})`}>
             <line x1="0" y1="30" x2="0" y2="-10" stroke="var(--ink)" strokeWidth="2.5" />
             <path d="M 0 -18 l -7 12 l 14 0 z" fill="var(--ink)" />
             <Tag x={0} y={46} size={11} weight={700}>TRUE N</Tag>
@@ -770,25 +790,33 @@ const LAT = 40
 function Survey() {
   const [system, setSystem] = useState('grid')
   const [error, setError] = useState(2)
+  // How far this particular survey wandered from the plan. Not a measurement
+  // of Ohio: a figure the learner sets, because the honest instruction is to
+  // go and check one road rather than to trust a number from a book.
+  const [drift, setDrift] = useState(0.5)
 
   const conv = convergence(LAT, TOWNSHIP_MILES)
-  const gridYards = yardsOff(1, conv)
+  const roadOff = conv + drift
+  const roadYards = yardsOff(1, roadOff)
   const compassYards = yardsOff(1, error)
   const metes = useMemo(() => metesBearings(14, 5), [])
   const metesError = expectedError(metes)
 
   const grid = system === 'grid'
-  const box = { x: 90, y: 110, w: 580, h: 390 }
+  const box = { x: 90, y: 160, w: 580, h: 326 }
 
-  // The irregular tract: boundaries that follow the ground. Drawn from the
-  // same generator the arithmetic uses, so the picture and the figure agree.
+  // Sections are numbered like a plough: 6 to 1 along the top row right to
+  // left, 7 to 12 back the other way, and so on. Drawing them 1 to 6 on every
+  // row, as this did, is something anybody with a plat map would catch.
+  const sectionNumber = (row, col) => (row % 2 === 0 ? 6 * row + 6 - col : 6 * row + 1 + col)
+
   const tracts = useMemo(() => {
     const out = []
     let x = box.x + 30
     let y = box.y + 40
     for (let i = 0; i < metes.length; i++) {
       const r = (metes[i] * Math.PI) / 180
-      const len = 70 + ((i * 37) % 60)
+      const len = 64 + ((i * 37) % 56)
       const nx = Math.min(box.x + box.w - 20, Math.max(box.x + 20, x + Math.sin(r) * len))
       const ny = Math.min(box.y + box.h - 20, Math.max(box.y + 20, y - Math.cos(r) * len))
       out.push({ a: { x, y }, b: { x: nx, y: ny }, bearing: metes[i] })
@@ -801,27 +829,35 @@ function Survey() {
   return (
     <>
       <div className="hw-readouts" style={READOUT_INSET}>
-        <Readout label={grid ? `A SECTION-LINE ROAD IS OFF TRUE NORTH BY` : `A ROAD HERE IS OFF THE NEAREST CARDINAL BY`}
-          value={grid ? `${r1(conv * 60)}′` : `${r0(metesError)}°`} width={225}
-          colour={grid ? GREEN : RED}
+        {grid ? (
+          <Readout label="THE GRID WAS DRAWN TRUE TO" value={`${r1(conv * 60)}′`} width={210} colour={GREEN}
+            note={`four minutes of arc across a township — the meridians closing on the pole, and nothing else. That is the plan.`} />
+        ) : (
+          <Readout label="A ROAD HERE IS OFF THE NEAREST CARDINAL BY" value={`${r0(metesError)}°`} width={225}
+            colour={RED}
+            note={`on average, and nothing tells you WHICH cardinal it was aiming at, so even that is the best of four guesses`} />
+        )}
+        {grid ? (
+          <Readout label="BUT THIS ONE WAS RUN WITH A COMPASS" value={`${r1(drift)}° out`} width={235}
+            colour={drift > 0.75 ? RED : undefined}
+            note={`Ohio's early lines were run with a compass and a chain, and some of them wander by a degree or more. Only the ground will tell you.`} />
+        ) : (
+          <Readout label="WHICH IS, PER MILE WALKED" value={`${num(yardsOff(1, metesError))} yd`} width={185}
+            colour={RED} note={`and that is the AVERAGE case`} />
+        )}
+        <Readout align="right" width={300} label="SO AGAINST YOUR COMPASS, THE ROAD IS"
+          value={grid ? `${r1(compassYards / roadYards)}× better` : `no use at all`}
+          colour={grid ? (compassYards / roadYards > 2 ? GREEN : undefined) : RED}
           note={grid
-            ? `four minutes of arc across a township — the meridians closing on the pole, and nothing else`
-            : `on average, and nothing tells you WHICH cardinal it was aiming at, so even that is the best of four guesses`} />
-        <Readout label={grid ? `WHICH IS, PER MILE WALKED` : `WHICH IS, PER MILE WALKED`}
-          value={grid ? `${r1(gridYards)} yd` : `${num(yardsOff(1, metesError))} yd`} width={185}
-          colour={grid ? GREEN : RED} note={grid ? `off the line you meant to hold` : `and that is the AVERAGE case`} />
-        <Readout align="right" width={290} label="AND YOUR COMPASS, READ TO TWO DEGREES"
-          value={`${r1(compassYards)} yd`}
-          note={grid
-            ? `So the road is ${r1(compassYards / gridYards)} times the better instrument. Somebody surveyed it to true north and left it lying on the ground for you.`
+            ? `${r1(roadYards)} yards a mile against your compass's ${r1(compassYards)}. At no drift it is ${r1(compassYards / yardsOff(1, conv))} times better; at a degree and a half the compass wins. Check one road, once — then use it all day, because it does not drift.`
             : `Here the compass wins by a mile, literally. The lesson is not that roads are a bad compass — it is that a road is only a compass where somebody made it one.`} />
       </div>
 
       <Stage>
         <Frame label={grid
-          ? `A township of thirty-six square-mile sections with roads on the section lines, every one running true north-south or east-west.`
+          ? `A township of thirty-six square-mile sections, numbered back and forth as a real plat is, with roads on the section lines.`
           : `A tract surveyed by metes and bounds, its boundaries following the ground, with roads on no consistent bearing at all.`}>
-          <Tag x={W / 2} y={60} size={14} weight={700}>
+          <Tag x={W / 2} y={140} size={14} weight={700}>
             {grid ? `Six miles square — thirty-six sections, and a road on every line` : `The same six miles, surveyed by metes and bounds`}
           </Tag>
 
@@ -837,20 +873,27 @@ function Survey() {
                     stroke="var(--ink)" strokeWidth={i === 0 || i === 6 ? 2.4 : 1.8} opacity="0.75" />
                 </g>
               ))}
-              {Array.from({ length: SECTIONS_PER_TOWNSHIP }, (_, i) => (
-                <text key={i} x={box.x + ((i % 6) + 0.5) * (box.w / 6)}
-                  y={box.y + (Math.floor(i / 6) + 0.5) * (box.h / 6) + 5} textAnchor="middle"
-                  style={{ fontFamily: 'var(--sans)', fontSize: 11.5, fill: 'var(--ink-3)' }}>
-                  {i + 1}
-                </text>
-              ))}
-              <Tag x={box.x + box.w / 2} y={box.y + box.h + 28} size={12.5} weight={700} colour={GREEN}>
-                every road here runs 000°, 090°, 180° or 270° — to within four minutes of arc
+              {Array.from({ length: SECTIONS_PER_TOWNSHIP }, (_, i) => {
+                const row = Math.floor(i / 6)
+                const col = i % 6
+                return (
+                  <text key={i} x={box.x + (col + 0.5) * (box.w / 6)}
+                    y={box.y + (row + 0.5) * (box.h / 6) + 5} textAnchor="middle"
+                    style={{ fontFamily: 'var(--sans)', fontSize: 11.5, fill: 'var(--ink-3)' }}>
+                    {sectionNumber(row, col)}
+                  </text>
+                )
+              })}
+              <Tag x={box.x + box.w / 2} y={box.y + box.h + 30} size={12.5} weight={700} colour={GREEN}>
+                designed to run 000°, 090°, 180° or 270°
+              </Tag>
+              <Tag x={box.x + box.w / 2} y={box.y + box.h + 52} size={12.5} weight={600} colour="var(--ink-2)">
+                — on the ground, check one against your compass first
               </Tag>
             </>
           ) : (
             <>
-              <path d={`M ${box.x + 20} ${box.y + 300} Q ${box.x + 160} ${box.y + 250}, ${box.x + 280} ${box.y + 310} T ${box.x + 560} ${box.y + 280}`}
+              <path d={`M ${box.x + 20} ${box.y + 270} Q ${box.x + 160} ${box.y + 224}, ${box.x + 280} ${box.y + 282} T ${box.x + 560} ${box.y + 252}`}
                 fill="none" stroke={BLUE} strokeWidth="5" opacity="0.4" />
               {tracts.map((t, i) => (
                 <g key={i}>
@@ -858,13 +901,16 @@ function Survey() {
                   <circle cx={t.b.x} cy={t.b.y} r="3" fill="var(--ink)" opacity="0.6" />
                 </g>
               ))}
-              <Tag x={box.x + box.w / 2} y={box.y + box.h + 28} size={12.5} weight={700} colour={RED}>
-                every line follows the ground — a stream, a ridge, a marked tree, somebody else's older claim
+              <Tag x={box.x + box.w / 2} y={box.y + box.h + 30} size={12.5} weight={700} colour={RED}>
+                every line follows the ground — a stream, a ridge, a marked tree
+              </Tag>
+              <Tag x={box.x + box.w / 2} y={box.y + box.h + 52} size={12.5} weight={600} colour="var(--ink-2)">
+                — or somebody else's older claim
               </Tag>
             </>
           )}
 
-          <g transform={`translate(${W - 66} 150)`}>
+          <g transform={`translate(${W - 44} 196)`}>
             <line x1="0" y1="30" x2="0" y2="-10" stroke="var(--ink)" strokeWidth="2.5" />
             <path d="M 0 -18 l -7 12 l 14 0 z" fill="var(--ink)" />
             <Tag x={0} y={46} size={11} weight={700}>TRUE N</Tag>
@@ -877,8 +923,15 @@ function Survey() {
           { id: 'grid', name: `On the survey grid` },
           { id: 'metes', name: `In the Virginia Military District` }
         ]} />
-        <Slider id="hw-ce" label={`Your compass is good to ${error}°`} min={1} max={6} step={0.5}
-          value={error} onChange={setError} />
+        {/* Wrapped in a row: a Slider is `flex: 1 1 220px`, and in a COLUMN
+            flex container that basis is a height, so a bare one left 220px of
+            empty band underneath it. */}
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          <Slider id="hw-ce" label={`Your compass is good to ${error}°`} min={1} max={6} step={0.5}
+            value={error} onChange={setError} />
+          <Slider id="hw-cd" label={`Suppose this survey drifted ${r1(drift)}°`} min={0} max={1.5} step={0.1}
+            value={drift} onChange={setDrift} />
+        </div>
       </Controls>
     </>
   )

@@ -9,14 +9,24 @@
 //
 // MEASURED IN src/lib/field.js, CHECKED IN src/__tests__/field.test.js:
 //
-//   A SECTION-LINE ROAD IS TRUE TO FOUR MINUTES OF ARC. The only thing
-//   pulling a Public Land Survey township off true north is the convergence
-//   of the meridians, and at Ohio's latitude across six miles that is 4.4
-//   arcminutes — 0.073°, which is 2.2 YARDS IN A MILE.
+//   THE PLAN IS TRUE TO FOUR MINUTES OF ARC. The only thing pulling a Public
+//   Land Survey township off true north BY DESIGN is the convergence of the
+//   meridians, and at Ohio's latitude across six miles that is 4.4
+//   arcminutes — 0.073°, which is 2.2 yards in a mile. Against a compass read
+//   to two degrees, 61.5 yards in a mile, that is twenty-seven times better.
 //
-//   YOUR COMPASS, READ TO TWO DEGREES, IS 61.5 YARDS IN A MILE. So the road
-//   is about twenty-seven times the better instrument, and it is lying on the
-//   ground, free, in every township of the grid.
+//   THAT IS THE DRAWING, NOT THE GROUND, and the lesson first failed to say
+//   so. Design caught it. The lines were run with a compass and a chain by
+//   men walking, and Ohio's early surveys wander: a degree or more in places,
+//   and the Connecticut Western Reserve is not even laid out on six-mile
+//   townships. A survey half a degree out is worth 17.6 yards a mile — still
+//   three and a half times a compass — and one a degree and a half out has
+//   lost its advantage altogether.
+//
+//   So the honest instruction is Design's own wording: designed to run 000°,
+//   090°, 180° or 270°; on the ground, check one against your compass first.
+//   And the reason to bother is the part that does survive — once checked, a
+//   road does not drift, does not need declination, and is there all day.
 //
 //   AND TWENTY MILES AWAY IT IS WORTH NOTHING. In the Virginia Military
 //   District — the one part of Ohio never surveyed on a rectangular system,
@@ -37,7 +47,7 @@ export default {
   number: 5,
   week: 7,
   title: `The land people left`,
-  openingQuestion: `Every other sign this week is a record of a force. This one is a record of a decision — and where the decision was to run a line due north, it is better than your compass.`,
+  openingQuestion: `Every other sign this week is a record of a force. This one is a record of a decision — and where somebody decided to run a line due north, and managed it, it is better than your compass.`,
   concept: `Human patterns follow rules, and the rules vary`,
 
   fieldGuide: {
@@ -51,9 +61,9 @@ export default {
     line: `The same six miles of Ohio, surveyed two ways. Start on the grid and read the first two numbers.`,
     simulation: { id: 'field', props: { mode: 'survey' } },
     observations: [
-      { text: `A township on the Public Land Survey is six miles square and divided into thirty-six sections of a square mile, with a road on nearly every line. The only thing pulling those lines off true north is the meridians closing as they go towards the pole, and across six miles at this latitude that is **4.4 minutes of arc** — **2.2 yards in a mile**.` },
-      { text: `Now look at the third readout. Your compass, read to two degrees, is out by **61.5 yards in a mile**. The road is about **twenty-seven times the better instrument**, it required no skill from you, and somebody surveyed it to true north two centuries ago and left it lying on the ground.`, emphasis: true },
-      { text: `Then press the other button. This is the Virginia Military District — the one part of Ohio never surveyed on a rectangular plan, because Virginia's land warrants were laid out by metes and bounds, each line following a stream, a ridge or a marked tree. A boundary here sits on average **22° from the nearest cardinal**, and nothing whatever tells you which cardinal it was aiming at. Same state. Twenty miles apart.` }
+      { text: `A township on the Public Land Survey is six miles square and divided into thirty-six sections of a square mile — numbered back and forth like a plough, 6 to 1 along the top row and 7 to 12 back the other way — with a road on nearly every line. **By design**, the only thing pulling those lines off true north is the meridians closing towards the pole: **4.4 minutes of arc** across six miles, which is 2.2 yards in a mile.` },
+      { text: `That is the drawing. The ground is another matter: these lines were run with a compass and a chain by men walking, and Ohio's early surveys wander — a degree or more in places, and the Western Reserve in the north-east is not even on six-mile townships. Drag the drift slider. **At half a degree out the road is still three and a half times your compass; at a degree and a half it has lost the argument.**`, emphasis: true },
+      { text: `So the rule is the one printed under the township: **designed to run 000°, 090°, 180° or 270° — on the ground, check one against your compass first.** Then press the other button. This is the Virginia Military District — the one part of Ohio never surveyed on a rectangular plan, because Virginia's land warrants were laid out by metes and bounds, each line following a stream, a ridge or a marked tree. A boundary here sits on average **22° from the nearest cardinal**, and nothing whatever tells you which cardinal it was aiming at. Same state. Twenty miles apart.` }
     ]
   },
 
@@ -61,7 +71,7 @@ export default {
     voice: 'professor',
     line: `Three sentences to close the class, and the first one is the only good news in Field Week.`,
     sentences: [
-      `**A human mark is the only sign in this week that might have been aligned on purpose, and where it was, it is superb.** Everything else here records a force — wind, water, shade, ice — and a force has no interest in the pole. A surveyor does. When the United States laid out the Public Land Survey it ran its lines on true north, corrected for the convergence of the meridians at intervals, and the roads and field boundaries that followed those lines inherited that accuracy. The result is a direction good to a few minutes of arc, free, continuous for hundreds of miles, and visible in fog, at night and on a phone with a dead battery.`,
+      `**A human mark is the only sign in this week that might have been aligned on purpose, and where it was, it is superb.** Everything else here records a force — wind, water, shade, ice — and a force has no interest in the pole. A surveyor does. When the United States laid out the Public Land Survey it SPECIFIED lines on true north, with correction lines at intervals for the convergence of the meridians, and the roads and field boundaries that followed those lines inherited whatever accuracy the surveyors achieved. On the plan that is a few minutes of arc. On the ground it is whatever a man with a compass and a chain managed, which in early Ohio is sometimes a degree or more — so the right posture is to check one road, once, against a bearing you trust. What survives the checking is the valuable part: a direction that is free, continuous for hundreds of miles, needs no declination, does not drift, and is visible in fog, at night and on a phone with a dead battery.`,
       `**But it is a fact about a system, and systems have edges.** The grid covers most of the United States west and north of the original colonies and stops dead where other arrangements were already in place — Spanish and French land grants, the Connecticut Western Reserve with its own scheme, and in Ohio the Virginia Military District, where warrants were taken up by metes and bounds in the Virginia manner: so many poles from the forked sycamore, along the creek to the stone. Those lines follow the ground, which means they follow drainage, which means they inherit everything Lesson 32 said about drainage. The roads that grew on them tell you about the landscape and nothing about north.`,
       `And **a human mark is evidence about people, which is why it has to be read with more care than a rock.** A road's bearing is a decision somebody made, and decisions have reasons: a surveyor's instruction, a river crossing, an older trail, a boundary agreed in a treaty, a landowner's refusal. That makes human signs the richest ones in the landscape and the easiest to over-read, because it is very tempting to supply a reason yourself. The discipline is the one from Lesson 30: ask what would have to be true for your reading to be right, and ask whether anything else would produce the same mark.`
     ],
@@ -73,7 +83,9 @@ export default {
     formalNames: {
       terms: [
         { term: `Public Land Survey System`, meaning: `The American rectangular survey. Townships of 36 square-mile sections, run on true north with periodic corrections. The reason so much of the country is a grid.` },
-        { term: `Section line`, meaning: `A boundary of one square mile. Where a road follows one, it runs a cardinal direction to a few minutes of arc.` },
+        { term: `Section line`, meaning: `A boundary of one square mile. A road on one is MEANT to run a cardinal direction; how close it comes depends on who ran the survey and when.` },
+        { term: `Section numbering`, meaning: `Back and forth like a plough: 6 to 1 along the top row right to left, 7 to 12 the other way, and so on to 36 in the south-east corner. Section 1 is always the north-east corner.` },
+        { term: `The Western Reserve`, meaning: `Connecticut's claim in north-east Ohio, surveyed on FIVE-mile townships with its own numbering. One of several reasons "the grid" is not one thing even inside one state.` },
         { term: `Convergence`, meaning: `Meridians closing towards the pole, which is why a rectangular survey needs correction lines and why the grid is not perfect. At Ohio's latitude, 4.4 minutes across a township.` },
         { term: `Metes and bounds`, meaning: `A boundary described by bearings, distances and landmarks — "so many poles to the forked sycamore". Follows the ground, so it follows drainage.` },
         { term: `Virginia Military District`, meaning: `The part of Ohio between the Little Miami and the Scioto, taken up on Virginia bounty warrants by metes and bounds. The only part of the state not on a rectangular system.` },
@@ -178,7 +190,7 @@ export default {
     {
       id: 'compass',
       label: `Explain it with a compass`,
-      body: `In grid country, use your compass to check the road rather than the other way round. Stand on a section road, sight along it, and read the bearing: you should get within a degree or two of a cardinal, and the difference you see is mostly your compass's error rather than the road's. That makes the road a calibration standard — a known direction, free, to check your instrument and your declination setting against. It is the only free calibration standard this course has offered you.`
+      body: `In grid country, use your compass to check the road rather than the other way round. Stand on a section road, sight along it, and read the bearing. If it comes out within a degree of a cardinal, the road and your compass have checked each other and you may use either; if it is three degrees off, one of them is wrong and you have learned something important before you needed it. Do this once in an area and you have either a free, continuous, drift-free direction for the rest of the day, or a warning — and both are worth the minute.`
     },
     {
       id: 'map',
@@ -198,7 +210,7 @@ export default {
     {
       id: 'example',
       label: `Walk me through an example`,
-      body: `You are on a section road in western Ohio in thick fog. The road runs east–west to within four minutes of arc, which is two yards in a mile, so you can walk it for an hour and know your line better than any compass bearing you could hold. Now drive forty miles east into the Virginia Military District and try the same thing. The road you are on was laid along a boundary that ran from a sycamore to a creek; it averages twenty-two degrees off the nearest cardinal, and you do not know which cardinal. In the first place the road is an instrument. In the second it is a river.`
+      body: `You are on a section road in western Ohio in thick fog. You checked it this morning against a bearing you trusted and it came out within half a degree of due east, which is eighteen yards in a mile — three times better than the compass in your pocket — so you can walk it for an hour and hold a line you could not hold by hand. Now drive forty miles east into the Virginia Military District and try the same thing. The road you are on was laid along a boundary that ran from a sycamore to a creek; it averages twenty-two degrees off the nearest cardinal, and you do not know which cardinal. In the first place the road is an instrument you have checked. In the second it is a river.`
     },
     {
       id: 'smaller',
@@ -208,7 +220,7 @@ export default {
     {
       id: 'backward',
       label: `Work backward from the answer`,
-      body: `Work backwards from the surprise: the best compass in this entire course is a road, and it is better than the instrument by a factor of twenty-seven. How can a road be more accurate than a device built for the purpose? Because the accuracy was not produced where you are standing. It was produced once, by surveyors with a transit and a chain and a great deal of time, and then stored in the landscape where it does not drift, does not need declination, and cannot be misread by a tired person at dusk. Everything in this course that worked well worked like that — a difficult measurement made once, carefully, and then carried.`
+      body: `Work backwards from the surprise: the best compass in this entire course is a road, and it is better than the instrument by a factor of twenty-seven. How can a road be more accurate than a device built for the purpose? Because the accuracy, where it exists, was not produced where you are standing. It was produced once, by surveyors with a chain and a great deal of walking, and then stored in the landscape where it does not drift, does not need declination, and cannot be misread by a tired person at dusk. Where they got it right it is superb; where they did not, it is wrong in the same way for miles, which is why one check settles it. Everything in this course that worked well worked like that — a difficult measurement made once, carefully, and then carried.`
     }
   ],
 

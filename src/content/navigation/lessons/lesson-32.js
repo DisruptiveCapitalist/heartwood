@@ -11,16 +11,22 @@
 // everything on it — the contours, the streams, the walks — comes out of one
 // height function, so the picture cannot disagree with the numbers.
 //
-//   A WATERCOURSE HAS NO DIRECTION. The longest walk on the sheet is 8.4
-//   miles and faces through 225° OF THE COMPASS before it is done — five
-//   eighths of the circle, from 090 round to 315. The average of those
-//   bearings is not a fact about anything.
+//   A WATERCOURSE HAS NO DIRECTION. The walk from the west slope is 2.5 miles
+//   and faces through 135° OF THE COMPASS before it is done — more than a
+//   third of the circle, from 000 round to 135. The average of those bearings
+//   is not a fact about anything.
 //
-//   AND IT DOES NOT ALWAYS COME OUT. One hollow in the middle of the sheet
-//   takes 5,273 acres of drainage — about a third of everything — and has no
-//   outlet at all. Two walks that begin 220 YARDS APART on the same hillside
-//   end in different worlds: one leaves the sheet after 5.9 miles, the other
-//   stops after 3.4 in standing water with the walker in the middle of it.
+//   AND IT DOES NOT ALWAYS COME OUT. That same walk stops dead: one hollow in
+//   the middle of the sheet takes 5,273 acres of drainage — 31% of the whole
+//   sheet — and has no outlet at all. Two more walks that begin 220 YARDS
+//   APART on one shoulder end in different worlds: one runs 2.6 miles and
+//   stops in that hollow, the other runs 3.6 and leaves the sheet.
+//
+//   AN EARLIER VERSION OF THIS LESSON QUOTED 8.4 MILES AND 225°, and those
+//   were an artefact of my own grid: water reaching the border could not
+//   leave it, so it ran along it, and the longest "stream" on the sheet was
+//   mostly the edge of the paper. Off the sheet is downhill now. The hollow's
+//   figures were never affected and have not changed.
 //
 //   Closed basins are not an invention of this simulation. Glaciated country
 //   is full of them, which is exactly why Ohio has so many swamps, and why
@@ -50,9 +56,9 @@ export default {
     line: `A sheet six miles by four and a half, and a rule everybody has heard. Start on the west slope and watch the dashed line, not the numbers.`,
     simulation: { id: 'field', props: { mode: 'water' } },
     observations: [
-      { text: `Following the water from the west slope is a walk of **8.4 miles** — and it faces through **225° of the compass** on the way, swinging from 090 round to 315. That is five eighths of the circle. At no point is the stream doing anything but going downhill, and at no point is it telling you anything about north.` },
-      { text: `Now the two starts on the north-west ridge. They are **220 yards apart** — two minutes' walk on the same hillside. From the upper one the water runs 5.9 miles and leaves the sheet. From the lower one it runs 3.4 miles and **stops**, in a hollow with **5,273 acres** draining into it and nothing at all draining out.`, emphasis: true },
-      { text: `Press SHOW WHAT DRAINS THERE and look at how much of the map is shaded. Nearly a third of this ground sends its water to a place with no exit. That is not a trick of the drawing: glaciated country is full of closed hollows, which is why Ohio has the swamps it has — and why "follow the water and you'll come out somewhere" is worse advice here than in most places.` }
+      { text: `Following the water from the west slope is a walk of **2.5 miles** — and it faces through **135° of the compass** on the way, swinging from 000 round to 135. That is more than a third of the circle. At no point is the stream doing anything but going downhill, and at no point is it telling you anything about north.` },
+      { text: `And read the third readout, because that walk does not come out anywhere. It **stops** — in a hollow with **5,273 acres** draining into it and nothing at all draining out. Now try the two starts on the north-east shoulder. They are **220 yards apart**, two minutes on the same ground: one runs 2.6 miles and ends in that same hollow, the other runs 3.6 miles and leaves the sheet.`, emphasis: true },
+      { text: `Press SHOW WHAT DRAINS THERE and look at how much of the map goes red. **Thirty-one per cent** of this ground sends its water to a place with no exit, and nothing at either starting point would have told you which side of the line you were on. That is not a trick of the drawing: glaciated country is full of closed hollows, which is why Ohio has the swamps it has — and why "follow the water and you'll come out somewhere" is worse advice here than in most places.` }
     ]
   },
 
@@ -134,7 +140,7 @@ export default {
         {
           id: 'uphill',
           text: `That the ground rises to the north-east, so the water is running south-west at that point.`,
-          verdict: `Right, and the rule is worth having because it is one of very few in this week that is reliable — the contour has to run up the valley, round the stream and back, so the bend must point towards the higher ground, which is upstream. But notice exactly how much you have learned: the direction of ONE short reach of ONE watercourse. The next V half a mile down the sheet may point somewhere entirely different, and the simulation's longest stream faces through two hundred and twenty-five degrees before it finishes. The V is a local truth, correctly read.`
+          verdict: `Right, and the rule is worth having because it is one of very few in this week that is reliable — the contour has to run up the valley, round the stream and back, so the bend must point towards the higher ground, which is upstream. But notice exactly how much you have learned: the direction of ONE short reach of ONE watercourse. The next V half a mile down the sheet may point somewhere entirely different, and the simulation's opening stream faces through a hundred and thirty-five degrees before it finishes. The V is a local truth, correctly read.`
         },
         {
           id: 'north',
@@ -191,12 +197,12 @@ export default {
     {
       id: 'diagram',
       label: `Show me a diagram`,
-      body: `Ignore the contours at first and look only at the blue dots, which are where enough water has gathered to make a stream. See how they join: many small ones feeding fewer big ones, like veins. Now press the two north-west ridge starts in turn and watch the dashed line. Those two walks begin two hundred and twenty yards apart. One leaves the sheet and one stops dead in the middle of it, and nothing you could see from the starting point would tell you which you were on.`
+      body: `Ignore the contours at first and look only at the blue dots, which are where enough water has gathered to make a stream. See how they join: many small ones feeding fewer big ones, like veins. Now press the two north-east shoulder starts in turn and watch the dashed line. Those two walks begin two hundred and twenty yards apart. One leaves the sheet and one stops dead in the middle of it, and nothing you could see from the starting point would tell you which you were on.`
     },
     {
       id: 'example',
       label: `Walk me through an example`,
-      body: `You start on the west slope and follow the water. The first half mile runs east. Then the valley swings and you are going south-east, then south, then — three miles in, around a spur — west of south, and by the end you are walking north-west. Eight and a half miles, and the bearing has covered two hundred and twenty-five degrees. If at any point in that walk somebody had asked you which way north was, and you had answered from the stream, you would have given a different wrong answer each time.`
+      body: `You start on the west slope and follow the water. The first stretch runs due north. Then the ground turns you east, and then south-east, and by the end you are heading south-east into a flat place with no way out. Two and a half miles, and the bearing has covered a hundred and thirty-five degrees. If at any point in that walk somebody had asked you which way north was, and you had answered from the stream, you would have given a different wrong answer each time — and then you would have arrived in a swamp.`
     },
     {
       id: 'smaller',
