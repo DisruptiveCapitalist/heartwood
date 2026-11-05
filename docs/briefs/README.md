@@ -51,12 +51,15 @@ has no lesson at all. Those chapters still have to be written for the handbook
 and the lessons are not there to support them. A seventh week, or a second
 class, is the obvious home, and it is the learner's call.
 
-**One thing the spec asks for that no lesson carries.** Chapter 23 wants the
-Bighorn Medicine Wheel and the alignments proposed for it. Lesson 28 is the
+**Three things the spec asks for that no lesson carries.** Chapter 23 wants the
+Bighorn Medicine Wheel and the alignments proposed for it; Lesson 28 is the
 lesson behind Chapter 23 and its one Across Cultures slot holds the Chacoan
-Great North Road, which that lesson needs. So the Bighorn card was written for
-the handbook alone and filed in `docs/cards/` — see the README there. It is the
-only card in the course with no lesson behind it.
+Great North Road, which that lesson needs. Chapter 25 wants the signs of land
+and the training of navigators; the course's two Pacific slots, in Lessons 19
+and 24, hold the star compass and *etak*. All three cards were therefore written
+for the handbook alone and filed in `docs/cards/` — see the README there. They
+are the only cards in the course with no lesson behind them, and each says at
+its head why it is one.
 
 Electricity & Energy has no separate document: its syllabus arrived inside
 `university-handoff.md` and the design references, and the built syllabus in
