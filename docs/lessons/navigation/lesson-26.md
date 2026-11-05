@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 26: Modern instruments and what they assume
-> Week 6 of 6 · Putting It Together · lesson 1 of 5 this week  
+> Week 6 of 7 · Putting It Together · lesson 1 of 5 this week  
 > Concept: **Longitude is a clock**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

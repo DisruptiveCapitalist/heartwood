@@ -1,5 +1,5 @@
 import { read, write, lessonKey } from './storage.js'
-import { STAGES, COMPLETION } from '../content/schema.js'
+import { STAGES, COMPLETION, isOptionalWeek, requiredWeeks } from '../content/schema.js'
 
 // Everything the screens need about where the learner has got to, derived from
 // storage in one place. The engine writes; the home page only reads.
@@ -71,17 +71,32 @@ export function isDone(p, course) {
     : !!(p.visited ?? {}).reflect
 }
 
-/** The lessons of a course that have actually been written, in order. */
+/**
+ * The lessons of a course that have actually been written, in order.
+ *
+ * `optional` says the lesson belongs to a bonus week. Everything that counts
+ * the course — the catalog's figures, the Today card, whether the class reads
+ * COMPLETE — filters those out. Everything that records what the learner has
+ * DONE — the journal, the Understanding Map — keeps them, because the learner
+ * wrote them and they are not less real for being optional.
+ */
 export function writtenLessons(course) {
   const out = []
   course.weeks.forEach((week, wi) => {
     week.lessons.forEach((entry, li) => {
       const lesson = entry.lessonId ? course.lessons[entry.lessonId] : null
-      if (lesson) out.push({ lesson, week: wi + 1, number: li + 1, title: entry.title })
+      if (lesson) {
+        out.push({ lesson, week: wi + 1, number: li + 1, title: entry.title, optional: isOptionalWeek(week) })
+      }
     })
   })
   return out
 }
+
+/** The written lessons the course proper is made of. */
+export const requiredLessons = (course) => writtenLessons(course).filter((l) => !l.optional)
+/** The written lessons of a bonus week, if there is one. */
+export const optionalLessons = (course) => writtenLessons(course).filter((l) => l.optional)
 
 /**
  * The Understanding Map to show on the home page.
@@ -93,14 +108,32 @@ export function writtenLessons(course) {
  * product does not yet collect — see README, "What is deliberately not built".)
  */
 export function courseMap(course, progressOf) {
-  const written = writtenLessons(course)
+  const written = requiredLessons(course)
+  const touched = (item) => isStarted(progressOf(item.lesson.id)) || isDone(progressOf(item.lesson.id), course)
   let map = written[0]?.lesson.map ?? []
   for (const item of written) {
-    if (isStarted(progressOf(item.lesson.id)) || isDone(progressOf(item.lesson.id), course)) {
-      map = item.lesson.map
-    }
+    if (touched(item)) map = item.lesson.map
+  }
+
+  // A bonus week can be taken in any order, including before the course proper
+  // is finished, so its map must not REPLACE the snapshot — a learner who does
+  // Field Week early would otherwise see the course roll backwards. Its own
+  // concepts are merged in at the higher of the two levels instead.
+  for (const item of optionalLessons(course)) {
+    if (touched(item)) map = mergeMap(map, item.lesson.map)
   }
   return map
+}
+
+/** Two Understanding Map snapshots, taking the better level for each concept. */
+export function mergeMap(base, extra) {
+  const out = base.map((e) => ({ ...e }))
+  for (const entry of extra ?? []) {
+    const found = out.find((e) => e.name === entry.name)
+    if (!found) out.push({ ...entry })
+    else if (entry.level > found.level) found.level = entry.level
+  }
+  return out
 }
 
 export function journalEntries(course, progressOf) {
@@ -122,7 +155,8 @@ export function journalEntries(course, progressOf) {
  * The Today card. One question, answered on arrival: what am I doing today?
  */
 export function todayCard(course, progressOf, sessionMinutes = 30) {
-  const written = writtenLessons(course)
+  // The course proper. A bonus week is never anybody's next thing to do.
+  const written = requiredLessons(course)
   const anyStarted = written.some(({ lesson }) => isStarted(progressOf(lesson.id)))
 
   for (const { lesson, week, number } of written) {
@@ -164,8 +198,14 @@ export function todayCard(course, progressOf, sessionMinutes = 30) {
 
 /** One row per week, with each lesson's status. */
 export function weekRows(course, progressOf) {
+  let counted = 0
   return course.weeks.map((week, wi) => ({
-    number: wi + 1,
+    // An optional week is not "week 7": it announces itself with its own
+    // label, and the numbering of the course proper stops before it.
+    number: isOptionalWeek(week) ? null : (counted += 1),
+    optional: isOptionalWeek(week),
+    label: week.label ?? null,
+    blurb: week.blurb ?? null,
     title: week.title,
     idea: week.idea,
     active: wi === 0,
@@ -185,9 +225,18 @@ export function weekRows(course, progressOf) {
   }))
 }
 
-/** Every lesson slot in a class, written or not. Six weeks of five. */
+/**
+ * Every lesson slot in the course PROPER, written or not. Six weeks of five.
+ * A bonus week is deliberately not in this number: the class is thirty
+ * lessons whether or not Field Week exists, and `bonusTotal` counts that
+ * separately.
+ */
 export function totalLessons(course) {
-  return course.weeks.reduce((n, w) => n + w.lessons.length, 0)
+  return requiredWeeks(course).reduce((n, w) => n + w.lessons.length, 0)
+}
+
+export function bonusTotal(course) {
+  return (course?.weeks ?? []).filter(isOptionalWeek).reduce((n, w) => n + w.lessons.length, 0)
 }
 
 /**
@@ -196,7 +245,7 @@ export function totalLessons(course) {
  */
 export function courseProgress(course, progressOf) {
   const total = totalLessons(course)
-  const written = writtenLessons(course)
+  const written = requiredLessons(course)
   let done = 0
   let started = false
 
@@ -206,11 +255,28 @@ export function courseProgress(course, progressOf) {
     if (isStarted(p)) started = true
   }
 
+  // Counted, shown, and never allowed to hold the class open. A learner who
+  // has finished the thirty has finished the class, whatever Field Week says.
+  const extra = optionalLessons(course)
+  let bonusDone = 0
+  for (const { lesson } of extra) {
+    const p = progressOf(lesson.id)
+    if (isDone(p, course)) bonusDone += 1
+    if (isStarted(p)) started = true
+  }
+
+  // `bonusDone > 0` belongs in here and was missing: a lesson can be finished
+  // without `isStarted` ever being true of it, because that reads the stage
+  // index and the journal, so a learner who had done nothing but Field Week
+  // read NOT STARTED. Caught by the guard in completion.test.js rather than by
+  // anybody looking at the catalog.
+  const touched = started || done > 0 || bonusDone > 0
   return {
     total,
     built: written.length,
     done,
-    started: started || done > 0,
-    status: done >= total ? 'COMPLETE' : (started || done > 0) ? 'IN PROGRESS' : 'NOT STARTED'
+    bonus: { total: bonusTotal(course), built: extra.length, done: bonusDone },
+    started: touched,
+    status: done >= total ? 'COMPLETE' : touched ? 'IN PROGRESS' : 'NOT STARTED'
   }
 }

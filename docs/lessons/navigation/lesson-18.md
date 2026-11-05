@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 18: The stars and latitude
-> Week 4 of 6 · Navigating by the Night Sky · lesson 3 of 5 this week  
+> Week 4 of 7 · Navigating by the Night Sky · lesson 3 of 5 this week  
 > Concept: **A height in the sky is a position on the Earth**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

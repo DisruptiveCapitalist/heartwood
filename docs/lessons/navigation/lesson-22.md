@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 22: The cocked hat
-> Week 5 of 6 · Measuring, Plotting, and Finding Position · lesson 2 of 5 this week  
+> Week 5 of 7 · Measuring, Plotting, and Finding Position · lesson 2 of 5 this week  
 > Concept: **What three disagreeing lines tell you**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

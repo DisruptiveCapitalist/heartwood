@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 25: Finding the way back
-> Week 5 of 6 · Measuring, Plotting, and Finding Position · lesson 5 of 5 this week  
+> Week 5 of 7 · Measuring, Plotting, and Finding Position · lesson 5 of 5 this week  
 > Concept: **A fix from one landmark and a run**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

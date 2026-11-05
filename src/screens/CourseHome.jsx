@@ -107,15 +107,16 @@ export default function CourseHome({ course, onOpenLesson, onCatalog, sessionMin
         <div style={{ marginTop: 18 }}>
           {weeks.map((w) => (
             <div
-              key={w.number}
+              key={w.title}
               className="hw-week"
+              style={w.optional ? { borderTop: '2px solid var(--rule)', marginTop: 10, paddingTop: 30 } : undefined}
             >
               <div>
                 <span style={{
                   fontFamily: 'var(--sans)', fontSize: 11, fontWeight: 700, letterSpacing: '.18em',
-                  color: w.active ? 'var(--accent)' : 'var(--faint)'
+                  color: w.optional ? 'var(--muted)' : w.active ? 'var(--accent)' : 'var(--faint)'
                 }}>
-                  WEEK {w.number}
+                  {w.optional ? w.label : `WEEK ${w.number}`}
                 </span>
                 <h3 style={{ fontSize: 24, fontWeight: 400, margin: '8px 0 0', color: w.active ? 'var(--ink)' : 'var(--muted)' }}>
                   {w.title}
@@ -123,6 +124,11 @@ export default function CourseHome({ course, onOpenLesson, onCatalog, sessionMin
                 <p style={{ fontSize: 18, fontStyle: 'italic', color: 'var(--muted)', margin: '8px 0 0', textWrap: 'pretty' }}>
                   {w.idea}
                 </p>
+                {w.blurb && (
+                  <p style={{ fontSize: 15.5, color: 'var(--ink-4)', margin: '12px 0 0', textWrap: 'pretty' }}>
+                    {w.blurb}
+                  </p>
+                )}
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>

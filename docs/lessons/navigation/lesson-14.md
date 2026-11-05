@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 14: Solar time and the compass
-> Week 3 of 6 · The Sun, Shadows, and Time · lesson 4 of 5 this week  
+> Week 3 of 7 · The Sun, Shadows, and Time · lesson 4 of 5 this week  
 > Concept: **Clock time is an agreement; solar time is a measurement**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

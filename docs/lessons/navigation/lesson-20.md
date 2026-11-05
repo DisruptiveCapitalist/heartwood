@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 20: A night-sky navigation exercise
-> Week 4 of 6 · Navigating by the Night Sky · lesson 5 of 5 this week  
+> Week 4 of 7 · Navigating by the Night Sky · lesson 5 of 5 this week  
 > Concept: **Every star is a compass, if you know your own latitude**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

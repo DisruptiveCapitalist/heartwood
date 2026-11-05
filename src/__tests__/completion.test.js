@@ -2,7 +2,14 @@ import { readFileSync } from 'node:fs'
 import { describe, it, expect } from 'vitest'
 import { courses } from '../content/index.js'
 import { isDone, emptyProgress } from '../lib/progress.js'
-import { COMPLETION, NAVIGATION_ROUTE_IDS, SYNTHESIS_CLOSES_ITEMS, closesItems } from '../content/schema.js'
+import {
+  COMPLETION, NAVIGATION_ROUTE_IDS, SYNTHESIS_CLOSES_ITEMS, closesItems,
+  isOptionalWeek, requiredWeeks
+} from '../content/schema.js'
+import {
+  totalLessons, bonusTotal, courseProgress, weekRows, todayCard, courseMap,
+  requiredLessons, optionalLessons, mergeMap, emptyProgress as empty
+} from '../lib/progress.js'
 import { MODES as COMPASS_MODES } from '../engine/simulations/Compass.jsx'
 import { describe as describeSim } from '../engine/simulations/descriptions.js'
 
@@ -235,6 +242,137 @@ describe('Navigation banned words', () => {
   it('says why they are banned, in words about this lesson', () => {
     for (const [id, lesson] of lessons) {
       expect((lesson.feynman.bannedNote ?? '').length, `${id} bannedNote`).toBeGreaterThan(40)
+    }
+  })
+})
+
+
+// Navigation's Field Week is the first optional week in the product, and the
+// machinery that keeps it out of the count is shared by all five courses. The
+// failure these guard against is silent and ugly: Physics quietly reading
+// "30 of 35", or a class that will not say COMPLETE because of five lessons
+// nobody was asked to do.
+describe('the optional Field Week', () => {
+  const done = { ...empty(), feynmanSubmitted: true, visited: { see: true, reflect: true } }
+  const none = empty()
+  const finished = (ids) => (id) => (ids.includes(id) ? done : none)
+
+  const required = requiredLessons(navigation).map((l) => l.lesson.id)
+  const optional = optionalLessons(navigation).map((l) => l.lesson.id)
+
+  it('is the only optional week anywhere in the product', () => {
+    for (const course of courses) {
+      const extra = (course.weeks ?? []).filter(isOptionalWeek)
+      if (course.id === 'navigation') expect(extra).toHaveLength(1)
+      else expect(extra, `${course.id} has an optional week`).toHaveLength(0)
+    }
+  })
+
+  it('leaves every class thirty lessons long, Navigation included', () => {
+    for (const course of courses.filter((c) => c.kind !== 'algebra')) {
+      expect(totalLessons(course), course.id).toBe(30)
+    }
+    expect(bonusTotal(navigation)).toBe(5)
+    for (const course of courses.filter((c) => c.id !== 'navigation')) {
+      expect(bonusTotal(course), course.id).toBe(0)
+    }
+  })
+
+  it('splits the lessons into thirty required and five extra', () => {
+    expect(required).toHaveLength(30)
+    expect(optional).toEqual(['lesson-31', 'lesson-32', 'lesson-33', 'lesson-34', 'lesson-35'])
+    expect(requiredWeeks(navigation)).toHaveLength(6)
+    expect(navigation.weeks).toHaveLength(7)
+  })
+
+  // The rule the learner asked for: finishing Lesson 30 finishes the class.
+  it('reads COMPLETE after the thirtieth lesson, with Field Week untouched', () => {
+    const p = courseProgress(navigation, finished(required))
+    expect(p.done).toBe(30)
+    expect(p.total).toBe(30)
+    expect(p.status).toBe('COMPLETE')
+    expect(p.bonus).toEqual({ total: 5, built: 5, done: 0 })
+  })
+
+  it('counts Field Week separately and never adds it in', () => {
+    const p = courseProgress(navigation, finished([...required, 'lesson-31', 'lesson-33']))
+    expect(p.done).toBe(30)
+    expect(p.total).toBe(30)
+    expect(p.bonus.done).toBe(2)
+    expect(p.status).toBe('COMPLETE')
+  })
+
+  // And the other way about: Field Week alone must not make the class look
+  // started-and-stalled at nothing, nor complete.
+  it('does not let Field Week alone complete the class', () => {
+    const p = courseProgress(navigation, finished(optional))
+    expect(p.done).toBe(0)
+    expect(p.bonus.done).toBe(5)
+    expect(p.status).toBe('IN PROGRESS')
+    expect(p.started).toBe(true)
+  })
+
+  it('never sends the Today card into Field Week', () => {
+    // Part-way through the course proper.
+    const mid = todayCard(navigation, finished(required.slice(0, 12)))
+    expect(optional).not.toContain(mid.lessonId)
+    // And with the whole course finished, it offers the course's own nextUp
+    // rather than the first optional lesson.
+    const after = todayCard(navigation, finished(required))
+    expect(optional).not.toContain(after.lessonId)
+    expect(after.title).toBe(navigation.nextUp.title)
+  })
+
+  it('gives the optional week a label instead of a number', () => {
+    const rows = weekRows(navigation, () => none)
+    expect(rows).toHaveLength(7)
+    expect(rows.slice(0, 6).map((r) => r.number)).toEqual([1, 2, 3, 4, 5, 6])
+    const field = rows[6]
+    expect(field.optional).toBe(true)
+    expect(field.number).toBe(null)
+    expect(field.label).toBe('FIELD WEEK · OPTIONAL')
+    expect(field.blurb).toBeTruthy()
+    expect(field.lessons).toHaveLength(5)
+    // Every other course keeps plain numbered weeks and no label.
+    for (const course of courses.filter((c) => c.id !== 'navigation' && c.kind !== 'algebra')) {
+      for (const row of weekRows(course, () => none)) {
+        expect(row.optional, course.id).toBe(false)
+        expect(row.number, course.id).toBeGreaterThan(0)
+      }
+    }
+  })
+
+  // Field Week can be taken in any order, including before the course proper
+  // is finished, so its map must not replace the snapshot — a learner who
+  // does it early would otherwise watch the course roll backwards.
+  it('merges the Field Week map instead of replacing it', () => {
+    const early = courseMap(navigation, finished(['lesson-05', 'lesson-31']))
+    const names = early.map((e) => e.name)
+    // Everything Lesson 5 had, still there.
+    for (const entry of navigation.lessons['lesson-05'].map) {
+      expect(names, entry.name).toContain(entry.name)
+    }
+    // And Lesson 31's own concepts added.
+    expect(names).toContain('Wind is local')
+  })
+
+  it('takes the better level for a concept in both maps', () => {
+    const merged = mergeMap(
+      [{ name: 'Position', level: 3 }, { name: 'Longitude', level: 5 }],
+      [{ name: 'Position', level: 5 }, { name: 'Aspect', level: 4 }]
+    )
+    expect(merged).toEqual([
+      { name: 'Position', level: 5 },
+      { name: 'Longitude', level: 5 },
+      { name: 'Aspect', level: 4 }
+    ])
+  })
+
+  it('numbers the Field Week lessons one to five of week seven', () => {
+    for (const [i, id] of optional.entries()) {
+      const lesson = navigation.lessons[id]
+      expect(lesson.week, id).toBe(7)
+      expect(lesson.number, id).toBe(i + 1)
     }
   })
 })

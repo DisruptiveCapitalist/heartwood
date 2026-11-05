@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 import { openCourses, comingClass } from '../content/index.js'
 import { readProgress, courseProgress } from '../lib/progress.js'
+import { requiredWeeks } from '../content/schema.js'
 import { readAlgebra, readPathChoice, algebraProgress } from '../lib/algebra.js'
 import { useLearner } from '../lib/learner.jsx'
 
@@ -79,9 +80,30 @@ function ClassCard({ course, index, onOpen }) {
             />
           ))}
         </span>
+        {/* A bonus week gets its own short strip rather than lengthening the
+            one above. The class is thirty lessons; Field Week is beside it,
+            not part of it, and the two must never be added together. */}
+        {p.bonus?.total > 0 && (
+          <span
+            style={{ display: 'flex', gap: 3, width: '32%' }}
+            role="img"
+            aria-label={`Field Week: ${p.bonus.done} of ${p.bonus.total} extra lessons finished.`}
+          >
+            {Array.from({ length: p.bonus.total }, (_, i) => (
+              <span
+                key={i}
+                style={{
+                  flex: 1, height: 4, borderRadius: 1,
+                  background: i < p.bonus.done ? 'var(--green)' : i < p.bonus.built ? '#cdc0ab' : '#ebe3d4'
+                }}
+              />
+            ))}
+          </span>
+        )}
         <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap' }}>
           <span style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--muted)' }}>
-            {p.done} of {p.total} lessons · {course.weeks.length} weeks
+            {p.done} of {p.total} lessons · {requiredWeeks(course).length} weeks
+            {p.bonus?.total > 0 && ` · Field Week ${p.bonus.done} of ${p.bonus.total}`}
           </span>
           <span style={{
             fontFamily: 'var(--sans)', fontSize: 12.5, fontWeight: 700, letterSpacing: '.12em',

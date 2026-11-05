@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 2: The Earth beneath our feet
-> Week 1 of 6 · Understanding Our Earth · lesson 2 of 5 this week  
+> Week 1 of 7 · Understanding Our Earth · lesson 2 of 5 this week  
 > Concept: **A small patch of a ball looks flat**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

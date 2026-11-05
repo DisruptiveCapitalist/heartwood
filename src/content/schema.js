@@ -85,6 +85,27 @@ export const SYNTHESIS_CLOSES_ITEMS = ['navigation']
 /** Does this course close its CONNECT IT items with the synthesis line? */
 export const closesItems = (courseId) => SYNTHESIS_CLOSES_ITEMS.includes(courseId)
 
+/**
+ * A week may be marked optional, and exactly one is: Navigation's Field Week.
+ *
+ * An optional week is not a seventh week of the course. It is five extra
+ * lessons that give the Field Guide's Part V — reading the natural world —
+ * the lessons it never had, and the learner asked for them to sit outside the
+ * count rather than stretch the course to thirty-five. So:
+ *
+ *   - `totalLessons` and the catalog's tick strip ignore it
+ *   - the course reads COMPLETE after Lesson 30, not after Lesson 35
+ *   - the Today card never sends anyone into it
+ *   - it is never locked, never ordered, and nothing depends on it
+ *
+ * A week sets `optional: true`, and `label` and `blurb` for how it announces
+ * itself in place of "WEEK 7".
+ */
+export const isOptionalWeek = (week) => week?.optional === true
+
+/** The weeks that make up the course proper. */
+export const requiredWeeks = (course) => (course?.weeks ?? []).filter((w) => !isOptionalWeek(w))
+
 /** Navigation asks for at least this many words before it will take the submit. */
 export const FEYNMAN_MIN_WORDS = 15
 

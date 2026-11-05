@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 27: When the instruments fail
-> Week 6 of 6 · Putting It Together · lesson 2 of 5 this week  
+> Week 6 of 7 · Putting It Together · lesson 2 of 5 this week  
 > Concept: **Aiming off, and keeping the sign**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

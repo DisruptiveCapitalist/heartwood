@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 13: Finding direction with the Sun
-> Week 3 of 6 · The Sun, Shadows, and Time · lesson 3 of 5 this week  
+> Week 3 of 7 · The Sun, Shadows, and Time · lesson 3 of 5 this week  
 > Concept: **A method is only as good as the day you use it on**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

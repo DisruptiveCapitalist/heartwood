@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 9: Following a bearing
-> Week 2 of 6 · The Compass and Earth's Magnetic Field · lesson 4 of 5 this week  
+> Week 2 of 7 · The Compass and Earth's Magnetic Field · lesson 4 of 5 this week  
 > Concept: **Walk at a thing, not at a needle**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

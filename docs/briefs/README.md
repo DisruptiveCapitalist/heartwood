@@ -16,7 +16,7 @@ teaches and what it must not do — this repository is the authority on how.
 | `physics-i-lessons-3-30.md` | The build package for Physics I, Lessons 3–30. **Built: 30/30.** |
 | `anatomy-course-spec.md` | The full Anatomy & Physiology course spec, all 30 lessons. **Built: 30/30.** Sections 5, 6 and 8 are what you need. |
 | `navigation-handoff.md` | The Navigation design handoff. **The four decisions that override the brief** are in it: cultures spread through the course rather than gathered at the end, completion on the Feynman submission, long field exercises becoming simulations, and the Field Guide being out of scope. All four are built; this is where they came from. Its storage-key note describes the DESIGN PROTOTYPES, not this app — see below. |
-| `navigation-week-7.md` | The optional Field Week, Lessons 31–35, which gives the handbook's Part V the lessons it never had. **Not built.** |
+| `navigation-week-7.md` | The optional Field Week, Lessons 31–35, which gives the handbook's Part V the lessons it never had. **Built: 5/5.** Optional means optional in the code as well as the copy — see `isOptionalWeek` in `schema.js` and the guards in `completion.test.js`. |
 | `field-guide-spec.md` | The Heartwood Field Guide spec: the companion handbook to the Navigation class, in 31 chapters across six parts. **It is the authority on chapter numbers**, which every Navigation lesson cites, and on what each chapter must contain. |
 
 Navigation's six-week outline arrived in the chat and lives in
@@ -29,8 +29,15 @@ disagreed about Week 5, and the spec won — see the comment on the week in
 Week 5 was first built pointing at Chapter 14, which is about measuring the
 height of a tree.
 
+**Part V now has its lessons** — Field Week, 31 to 35, covering chapters 17 to
+22, with 19 and 20 sharing Lesson 33. What remains unbuilt is **Chapter 14,
+Measuring Height with a Compass**, which appears only as a formal-names term
+in Lessons 23 and 29.
+
+The paragraph below is kept as the record of why Week 6 looked as it did.
+
 **Two parts of the Field Guide spec have no lesson anywhere in the class, and
-that is a decision rather than an oversight.** Week 6's five slots went to the
+that was a decision rather than an oversight.** Week 6's five slots went to the
 outline's own five titles, and the two debts the course had already run up —
 longitude, promised to the learner since Lesson 3 and named for Week 6 in
 Lesson 25, and emergency navigation — took two of them. So **Chapter 14,

@@ -28,6 +28,11 @@ import lesson27 from './lessons/lesson-27.js'
 import lesson28 from './lessons/lesson-28.js'
 import lesson29 from './lessons/lesson-29.js'
 import lesson30 from './lessons/lesson-30.js'
+import lesson31 from './lessons/lesson-31.js'
+import lesson32 from './lessons/lesson-32.js'
+import lesson33 from './lessons/lesson-33.js'
+import lesson34 from './lessons/lesson-34.js'
+import lesson35 from './lessons/lesson-35.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -146,6 +151,30 @@ export default {
         { title: `Planning a real journey`, lessonId: 'lesson-29' },
         { title: `The Heartwood Navigation Challenge`, lessonId: 'lesson-30' }
       ]
+    },
+    {
+      // Not a seventh week. Five extra lessons that give the Field Guide's
+      // Part V — reading the natural world, chapters 17 to 22 — the lessons it
+      // never had, and which the learner asked to sit OUTSIDE the count rather
+      // than stretch the course to thirty-five. `optional: true` is what keeps
+      // them out of it: the catalog's figures, the Today card and whether the
+      // class reads COMPLETE all walk the required weeks only. See
+      // `isOptionalWeek` in schema.js and the guards in completion.test.js.
+      //
+      // Chapters 19 and 20 share Lesson 33, because plants and animals fail as
+      // compasses for the same reason. Chapter 20's own caution is in it.
+      optional: true,
+      label: `FIELD WEEK · OPTIONAL`,
+      blurb: `Five extra lessons on reading the land itself. Take them any time, in any order, or not at all.`,
+      title: `Reading the Natural World`,
+      idea: `Every sign out here is a true record of a local force, and not one of them is a compass.`,
+      lessons: [
+        { title: `The wind has a shape`, lessonId: 'lesson-31' },
+        { title: `Water knows the way down`, lessonId: 'lesson-32' },
+        { title: `Living signs`, lessonId: 'lesson-33' },
+        { title: `Reading rock and snow`, lessonId: 'lesson-34' },
+        { title: `The land people left`, lessonId: 'lesson-35' }
+      ]
     }
   ],
 
@@ -179,12 +208,17 @@ export default {
     'lesson-27': lesson27,
     'lesson-28': lesson28,
     'lesson-29': lesson29,
-    'lesson-30': lesson30
+    'lesson-30': lesson30,
+    'lesson-31': lesson31,
+    'lesson-32': lesson32,
+    'lesson-33': lesson33,
+    'lesson-34': lesson34,
+    'lesson-35': lesson35
   },
 
   nextUp: {
     title: `The Art and Science of Navigation is complete`,
-    blurb: `All thirty lessons. You can find direction five ways and position five ways, you know what each of them costs you in yards, and you know the one asymmetry that explains three thousand years of other people's work: north and south can be measured afresh every clear night, and east and west has to be carried. Nothing here is ever locked, so go back to any of it. But the course was never the point — the Field Guide has thirty-one chapters and a set of blank worksheets, and the last lesson's challenge needs real ground, a real pencil and a position nobody has told you.`
+    blurb: `All thirty lessons. You can find direction five ways and position five ways, you know what each of them costs you in yards, and you know the one asymmetry that explains three thousand years of other people's work: north and south can be measured afresh every clear night, and east and west has to be carried. Nothing here is ever locked, so go back to any of it. There is also a Field Week below, five optional lessons on reading the land itself — wind, water, living things, rock and the marks people leave — which is the other half of the subject and the half where almost everything popularly said is wrong. But the course was never the point: the Field Guide has thirty-one chapters and a set of blank worksheets, and the last lesson's challenge needs real ground, a real pencil and a position nobody has told you.`
   },
 
   journalPrompts: [

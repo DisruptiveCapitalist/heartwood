@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 11: Why the Sun appears to move
-> Week 3 of 6 · The Sun, Shadows, and Time · lesson 1 of 5 this week  
+> Week 3 of 7 · The Sun, Shadows, and Time · lesson 1 of 5 this week  
 > Concept: **The Sun's path is a place-and-date, not a rule**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

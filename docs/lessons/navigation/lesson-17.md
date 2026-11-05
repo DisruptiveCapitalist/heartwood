@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 17: Finding Polaris
-> Week 4 of 6 · Navigating by the Night Sky · lesson 2 of 5 this week  
+> Week 4 of 7 · Navigating by the Night Sky · lesson 2 of 5 this week  
 > Concept: **Patterns point; the pole is a place, not a star**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

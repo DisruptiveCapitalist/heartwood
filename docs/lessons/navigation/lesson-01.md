@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 1: What does it mean to know where you are?
-> Week 1 of 6 · Understanding Our Earth · lesson 1 of 5 this week  
+> Week 1 of 7 · Understanding Our Earth · lesson 1 of 5 this week  
 > Concept: **Position needs a reference**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

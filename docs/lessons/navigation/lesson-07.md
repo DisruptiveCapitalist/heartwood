@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 7: True north and magnetic north
-> Week 2 of 6 · The Compass and Earth's Magnetic Field · lesson 2 of 5 this week  
+> Week 2 of 7 · The Compass and Earth's Magnetic Field · lesson 2 of 5 this week  
 > Concept: **The needle and the map disagree**  
 > Lesson completes when: **the Feynman explanation is submitted**
 
