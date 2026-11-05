@@ -38,7 +38,7 @@ import {
 //   Latitude error does not grow with the length of a voyage and longitude
 //   error does. That is the whole asymmetry, it holds for every tradition, and
 //   a chronometer is the only thing that ever changed it: 0.7 miles a day
-//   instead of 3.
+//   against the reckoning's 5.
 //
 //   On a day's walk it matters far more WHERE you take your one fix than
 //   whether you take one. The same fix is worth 84 yards at the first landmark
@@ -513,23 +513,37 @@ function AimOff() {
 
 /* ---- Lesson 28 — latitude is flat, longitude rots ---------------------- */
 
+// A kit is an INSTRUMENT and nothing else. It used to carry its own quality
+// of dead reckoning too — 5% of the run for the first two and 3% for the last
+// two — and that was wrong twice over. It produced two figures in the lesson
+// that could not be reconciled, because "150 miles by day 30" belonged to one
+// kit and "3 miles a day" to another and neither said so; and it falsified the
+// lesson's own claim, since stepping from the kamal to the sextant then
+// changed the CLIMBING line as well as the flat one, with no clock involved.
+//
+// The reckoning is now one figure for every kit, set by the learner, so that
+// changing the kit moves only what the kit can move.
 export const NAVIGATORS = [
-  { id: 'eye', name: `By eye and a log line`, arcmin: 60, rate: null, dr: 0.05 },
-  { id: 'kamal', name: `A kamal, no clock`, arcmin: 30, rate: null, dr: 0.05 },
-  { id: 'lunars', name: `A sextant and the Moon`, arcmin: 2, rate: null, dr: 0.03, lunars: true },
-  { id: 'chron', name: `A sextant and a chronometer`, arcmin: 2, rate: 3, dr: 0.03, lunars: true }
+  { id: 'eye', name: `By eye and a log line`, arcmin: 60, rate: null },
+  { id: 'kamal', name: `A kamal, no clock`, arcmin: 30, rate: null },
+  { id: 'lunars', name: `A sextant and the Moon`, arcmin: 2, rate: null, lunars: true },
+  { id: 'chron', name: `A sextant and a chronometer`, arcmin: 2, rate: 3, lunars: true }
 ]
 
 function Assay() {
   const [who, setWho] = useState('eye')
   const [days, setDays] = useState(30)
   const [lat, setLat] = useState(20)
+  // How good the reckoning is, as a fraction of the distance run. The same for
+  // every kit, because the lesson's claim is about what a kit CAN change.
+  const [reckon, setReckon] = useState(5)
 
   const nav = NAVIGATORS.find((n) => n.id === who)
   const run = KNOTS_PER_DAY
+  const drPerDay = (reckon / 100) * run
 
   const latErr = nav.arcmin // one arcminute of altitude is one mile of latitude
-  const drAt = (d) => nav.dr * run * d
+  const drAt = (d) => drPerDay * d
   const chronAt = (d) => (nav.rate === null ? null : lonMiles(clockDrift(nav.rate, d), lat))
   const lunarErr = nav.lunars ? lunarLonNm(nav.arcmin, lat) : null
 
@@ -537,7 +551,10 @@ function Assay() {
   const x0 = 70
   const x1 = W - 40
   const y0 = 430
-  const y1 = 110
+  // The plot top, and it is set by the readouts rather than by taste: they
+  // are an absolutely positioned overlay on the stage and three lines of note
+  // reach this far down, so the day marker's caption sits just above here.
+  const y1 = 130
   const X = (d) => x0 + (d / 40) * (x1 - x0)
   const Y = (nm) => y0 - Math.min(1, nm / top) * (y0 - y1)
   const path = (f) => Array.from({ length: 81 }, (_, i) => i / 2)
@@ -566,7 +583,7 @@ function Assay() {
       : []),
     ...(nav.rate !== null ? [{ colour: BLUE, text: `longitude, by the chronometer` }] : [])
   ]
-  const legendTop = 118
+  const legendTop = 140
   // Wide enough for the longest row it is actually showing: the Moon's line
   // carries a number and the others do not, so a fixed width is either too
   // wide for two kits or too narrow for the other two. 6.75 px a character is
@@ -593,9 +610,9 @@ function Assay() {
           // in the lesson's own copy, which has room for it.
           note={nav.rate === null
             ? (nav.lunars
-              ? `and nothing checks it but the Moon — about ${num(lunarErr)} miles, which never grows but needs a clear sky.`
-              : `and nothing you can observe checks it, so it goes on growing for as long as the voyage lasts.`)
-            : `and the chronometer is the only thing that ever changed that: ${r1(lonMiles(clockDrift(nav.rate, 1), lat))} miles a day instead of ${r0(nav.dr * run)}.`} />
+              ? `and the reckoning adds ${r1(drPerDay)} miles a day. Only the Moon checks it, at about ${num(lunarErr)}.`
+              : `and the reckoning adds ${r1(drPerDay)} miles a day, which nothing you can observe checks.`)
+            : `and only a clock ever changed that: ${r1(lonMiles(clockDrift(nav.rate, 1), lat))} miles a day against the reckoning's ${r1(drPerDay)}.`} />
       </div>
 
       <Stage>
@@ -662,6 +679,10 @@ function Assay() {
             value={days} onChange={setDays} />
           <Slider id="hw-alat" label={`On the parallel of ${lat}° — a degree of longitude is ${r1(nmPerDegLon(lat))} miles here`}
             min={0} max={60} step={5} value={lat} onChange={setLat} />
+        </div>
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          <Slider id="hw-adr" label={`The reckoning is good to ${reckon}% of the distance run — ${r1(drPerDay)} miles a day`}
+            min={1} max={8} step={1} value={reckon} onChange={setReckon} />
         </div>
       </Controls>
     </>

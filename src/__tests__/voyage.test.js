@@ -438,49 +438,58 @@ describe('what each kit is worth after a passage', () => {
   const DAYS = 30
   const LAT = 20
   const RUN = 100
+  // One quality of dead reckoning for every kit, which is the whole point of
+  // the comparison: a kit is an instrument, and an instrument cannot change
+  // how well the ship counts. Design found the old arrangement, where the two
+  // better-equipped kits also reckoned better, producing two figures in the
+  // lesson that could not be reconciled — "150 miles by day 30" was one kit
+  // and "3 miles a day" another, and neither said which.
+  const RECKON = 0.05
+  const perDay = RECKON * RUN
   const row = (id) => {
     const n = NAVIGATORS.find((x) => x.id === id)
-    const dr = n.dr * RUN * DAYS
+    const dr = perDay * DAYS
     const chron = n.rate === null ? null : lonMiles(clockDrift(n.rate, DAYS), LAT)
     const lunar = n.lunars ? lunarLonNm(n.arcmin, LAT) : null
-    return {
-      lat: n.arcmin,
-      lon: Math.min(...[dr, chron, lunar].filter((v) => v !== null)),
-      dr,
-      chron,
-      lunar
-    }
+    return { lat: n.arcmin, lon: Math.min(...[dr, chron, lunar].filter((v) => v !== null)), dr, chron, lunar }
   }
 
-  it('is four kits and no more', () => {
+  it('is four kits and no more, and none of them carries a reckoning', () => {
     expect(NAVIGATORS.map((n) => n.id)).toEqual(['eye', 'kamal', 'lunars', 'chron'])
+    for (const n of NAVIGATORS) expect(n.dr, `${n.id} still carries a reckoning`).toBeUndefined()
   })
 
-  it('reproduces Lesson 28\'s table', () => {
+  it("reproduces Lesson 28's table", () => {
     expect(row('eye').lat).toBe(60)
-    expect(Math.round(row('eye').lon)).toBe(150)
     expect(row('kamal').lat).toBe(30)
-    expect(Math.round(row('kamal').lon)).toBe(150)
     expect(row('lunars').lat).toBe(2)
-    expect(Math.round(row('lunars').lon)).toBe(51)
     expect(row('chron').lat).toBe(2)
+    expect(Math.round(row('eye').lon)).toBe(150)
+    expect(Math.round(row('kamal').lon)).toBe(150)
+    expect(Math.round(row('lunars').lon)).toBe(51)
     expect(Math.round(row('chron').lon)).toBe(21)
   })
 
-  it('finds a better instrument moving a level and only a clock a gradient', () => {
-    // The latitude line is flat: the same at day one as at day thirty.
-    for (const n of NAVIGATORS) expect(n.arcmin).toBe(n.arcmin)
-    // Dead reckoning climbs at 3 to 5 miles a day; a 3 s/day chronometer at 0.7.
-    const perDay = lonMiles(clockDrift(3, 1), LAT)
-    expect(Math.round(perDay * 10) / 10).toBe(0.7)
-    expect(NAVIGATORS.find((n) => n.id === 'chron').dr * RUN).toBe(3)
-    expect((NAVIGATORS.find((n) => n.id === 'chron').dr * RUN) / perDay).toBeGreaterThan(4)
+  // The claim the lesson actually makes, now that it is true: changing the kit
+  // moves the flat line and leaves the climbing one exactly where it was.
+  it('finds a better instrument moving a level and nothing else', () => {
+    const climbs = NAVIGATORS.map((n) => row(n.id).dr)
+    expect(new Set(climbs).size).toBe(1)
+    expect(climbs[0]).toBe(150)
+    expect(NAVIGATORS.map((n) => n.arcmin)).toEqual([60, 30, 2, 2])
   })
 
-  it('finds the Moon only beating the reckoning after seventeen days', () => {
-    const n = NAVIGATORS.find((n) => n.id === 'lunars')
-    const days = lunarLonNm(n.arcmin, LAT) / (n.dr * RUN)
-    expect(Math.round(days)).toBe(17)
+  it('finds only a clock changing a gradient', () => {
+    const chron = lonMiles(clockDrift(3, 1), LAT)
+    expect(Math.round(chron * 100) / 100).toBe(0.7)
+    expect(perDay / chron).toBeCloseTo(7.1, 1)
+  })
+
+  it('finds the Moon only beating the reckoning after ten days', () => {
+    const n = NAVIGATORS.find((x) => x.id === 'lunars')
+    const days = lunarLonNm(n.arcmin, LAT) / perDay
+    expect(Math.round(days)).toBe(10)
+    expect(Math.round(lunarLonNm(n.arcmin, LAT))).toBe(51)
   })
 })
 

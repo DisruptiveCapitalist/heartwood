@@ -14,29 +14,43 @@
 // the two quantities.
 //
 // MEASURED IN src/lib/voyage.js, CHECKED IN src/__tests__/voyage.test.js.
-// Thirty days at a hundred miles a day, on the parallel of 20°:
+// Thirty days at a hundred miles a day, on the parallel of 20°, with the
+// reckoning good to five per cent of the distance run — which is a figure the
+// learner sets, the same for every kit:
 //
-//                              latitude    longitude, best available
-//   by eye and a log line        60 nm        150 nm   (reckoning only)
-//   a kamal, no clock            30 nm        150 nm   (reckoning only)
-//   a sextant and the Moon        2 nm         51 nm   (lunar distances)
-//   a sextant and a chronometer   2 nm         21 nm
+//                                latitude   by reckoning   by the Moon   by clock
+//   by eye and a log line          60 nm       150 nm          —            —
+//   a kamal, no clock              30 nm       150 nm          —            —
+//   a sextant and the Moon          2 nm       150 nm        51 nm          —
+//   a sextant and a chronometer     2 nm       150 nm        51 nm       21 nm
 //
-//   THE SHAPE OF THE TABLE IS THE LESSON. The latitude column is flat in the
-//   length of the voyage — it is a measurement, retaken every clear night, and
-//   tonight's does not inherit yesterday's mistake. The longitude column grows,
-//   because longitude is carried and every day's error is added to the last.
+//   THE SHAPE OF THE TABLE IS THE LESSON, and the reckoning column is the
+//   part that carries it: changing the kit does not move it at all. The
+//   latitude column is flat in the LENGTH of the voyage — a measurement,
+//   retaken every clear night, and tonight's does not inherit yesterday's
+//   mistake. The reckoning column grows at five miles a day whatever you are
+//   holding, because longitude is carried and every day's error is added.
 //
 //   A chronometer is the only thing in the history of the subject that changed
-//   that: 0.7 miles a day instead of 3. Not better arithmetic, not better
-//   seamanship — a better clock.
+//   that: 0.7 miles a day against the reckoning's 5. Not better arithmetic,
+//   not better seamanship — a better clock.
+//
+//   DESIGN CAUGHT AN EARLIER VERSION giving two figures that could not be
+//   reconciled — "150 miles by day thirty", which is five a day, beside "three
+//   miles a day". Both were right and they belonged to different kits: the two
+//   better-equipped ones were also given a better reckoning, 3% against 5%, and
+//   nothing on screen or in the copy said so. Worse, it made this lesson's own
+//   claim false, because stepping from the kamal to the sextant then changed
+//   the climbing line as well as the flat one with no clock involved. The
+//   reckoning is now one figure for every kit, set by the learner and printed
+//   on the slider.
 //
 //   AND THE MOON'S PRICE, which is why lunar distances never displaced the
 //   reckoning for ordinary voyages: the Moon moves against the stars at 32.9
 //   arcminutes an hour, so an arcminute of measured angle is 1.8 minutes of
 //   time and 27.3 arcminutes of longitude. The penalty factor is 27. The same
 //   sextant that gives latitude to two miles gives longitude to fifty-one, and
-//   it only beats the dead reckoning after seventeen days at sea.
+//   at five per cent it only beats the reckoning after ten days at sea.
 //
 // The Chaco figures in the card are computed from published alignment
 // measurements rather than asserted: 50 km at 3.1° off north ends 2.7 km to the
@@ -64,8 +78,8 @@ export default {
     simulation: { id: 'voyage', props: { mode: 'assay' } },
     observations: [
       { text: `With nothing but your eye and a log line, after thirty days your **latitude is 60 miles out and your longitude is 150**. But look at the shape of the two lines rather than the numbers. The green one is flat. It was 60 miles out on the first day and it is 60 miles out on the thirtieth, because you measure it again every clear night and tonight's measurement does not care what last night's said.` },
-      { text: `The red one climbs, and it will go on climbing for as long as you are at sea, because longitude is not measured — it is **carried**, and every day's error is added to all the days before it. Now step through the four kits. A better instrument pulls the flat line down: **60 miles, then 30, then 2.** It does almost nothing to the climbing one.`, emphasis: true },
-      { text: `Only the last kit changes the climb, and it changes it by having a clock in it: **0.7 miles a day instead of 3**. And note the Moon's line on the two middle kits — flat, like latitude, because it is an observation rather than a tally, and sitting up at **51 miles**, because the Moon is a slow hand on a vast clock. It takes seventeen days at sea before lunar distances beat simply counting.` }
+      { text: `The red one climbs, and it will go on climbing for as long as you are at sea, because longitude is not measured — it is **carried**, and every day's error is added to all the days before it. Now step through the four kits. A better instrument pulls the flat line down — **60 miles, then 30, then 2** — and does not move the climbing one by a hair. It cannot: the reckoning is the ship's counting, and no sextant ever counted anything.`, emphasis: true },
+      { text: `Only the last kit changes the climb, and it does it by having a clock in it: **0.7 miles a day against the reckoning's 5**. And note the Moon's line on the two middle kits — flat, like latitude, because it is an observation rather than a tally, and sitting up at **51 miles**, because the Moon is a slow hand on a vast clock. It takes ten days at sea before lunar distances beat simply counting.` }
     ]
   },
 
@@ -204,12 +218,12 @@ export default {
     {
       id: 'diagram',
       label: `Show me a diagram`,
-      body: `Ignore the numbers on the graph and look only at the slopes. One line is flat and the others climb. That is the whole lesson in one picture, and it is the reason the four preset kits do such different things: the first three presets pull the flat line downward and leave the slopes alone, and only the last one changes a slope. If you remember nothing else from this lesson, remember that a better instrument moves a level and only a clock changes a gradient.`
+      body: `Ignore the numbers on the graph and look only at the slopes. One line is flat and the others climb. That is the whole lesson in one picture, and it is the reason the four preset kits do such different things: the first three presets pull the flat line downward and leave the slopes alone, and only the last one changes a slope. If you remember nothing else from this lesson, remember that a better instrument moves a level and only a clock changes a gradient. Step through the kits and watch: the red line does not stir.`
     },
     {
       id: 'example',
       label: `Walk me through an example`,
-      body: `A ship leaves the Canaries on the first of the month with a good sextant and no clock. On the third she measures the noon Sun and is on the parallel of 20° N, within two miles. On the thirtieth she measures it again and is on the parallel of 20° N, within two miles — the same two miles, not twenty-eight days' worth. Meanwhile her longitude has come entirely from the log line and the compass: three per cent of three thousand miles is ninety miles of accumulated error, and she has no way whatever of checking it. The captain's answer is Lesson 27's: do not steer for Barbados, steer for its parallel, then turn west and run until something appears.`
+      body: `A ship leaves the Canaries on the first of the month with a good sextant and no clock. On the third she measures the noon Sun and is on the parallel of 20° N, within two miles. On the thirtieth she measures it again and is on the parallel of 20° N, within two miles — the same two miles, not twenty-eight days' worth. Meanwhile her longitude has come entirely from the log line and the compass: five per cent of three thousand miles is a hundred and fifty miles of accumulated error, and the sextant in her captain's hand has done nothing about it, because a sextant does not count. The captain's answer is Lesson 27's: do not steer for Barbados, steer for its parallel, then turn west and run until something appears.`
     },
     {
       id: 'smaller',
