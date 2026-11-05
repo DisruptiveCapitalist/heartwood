@@ -18,6 +18,11 @@ import lesson17 from './lessons/lesson-17.js'
 import lesson18 from './lessons/lesson-18.js'
 import lesson19 from './lessons/lesson-19.js'
 import lesson20 from './lessons/lesson-20.js'
+import lesson21 from './lessons/lesson-21.js'
+import lesson22 from './lessons/lesson-22.js'
+import lesson23 from './lessons/lesson-23.js'
+import lesson24 from './lessons/lesson-24.js'
+import lesson25 from './lessons/lesson-25.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -97,14 +102,21 @@ export default {
       ]
     },
     {
-      title: `Reading the Land and Sea`,
-      idea: `The ground, the water and the weather are instruments too.`,
+      // Retitled when the week was built. The outline this course started from
+      // called Week 5 "Reading the Land and Sea", but Lesson 10 promises
+      // resection to Week 5 four separate times — including in a Field Guide
+      // note that sends it to Chapter 12 — and Lesson 20 promises crossed
+      // lines. Those lessons are shipped and approved, so the week delivers
+      // what the learner was told it would. Terrain and contours, weather, and
+      // the signs of land still need a home; that is a decision for Week 6.
+      title: `Measuring, Plotting, and Finding Position`,
+      idea: `A line tells you where you are not. Two lines tell you where you are.`,
       lessons: [
-        { title: `Terrain, contours and handrails` },
-        { title: `Wind, weather and the monsoon` },
-        { title: `Swells, birds and signs of land` },
-        { title: `Dead reckoning` },
-        { title: `Review: finding the way back` }
+        { title: `Two lines that cross`, lessonId: 'lesson-21' },
+        { title: `The cocked hat`, lessonId: 'lesson-22' },
+        { title: `How far is it?`, lessonId: 'lesson-23' },
+        { title: `Dead reckoning`, lessonId: 'lesson-24' },
+        { title: `Finding the way back`, lessonId: 'lesson-25' }
       ]
     },
     {
@@ -140,12 +152,17 @@ export default {
     'lesson-17': lesson17,
     'lesson-18': lesson18,
     'lesson-19': lesson19,
-    'lesson-20': lesson20
+    'lesson-20': lesson20,
+    'lesson-21': lesson21,
+    'lesson-22': lesson22,
+    'lesson-23': lesson23,
+    'lesson-24': lesson24,
+    'lesson-25': lesson25
   },
 
   nextUp: {
-    title: `Week 5 is not written yet`,
-    blurb: `Twenty lessons in, and four ways to find north: a needle, a shadow at noon, a pattern of stars, and a point in the sky with nothing on it. You can also say, for the first time, roughly where you are — the pole's height above your horizon is your latitude, to within about forty miles if you are careless about the hour. Next: crossing the lines, so that two bearings become a place rather than two directions.`
+    title: `Week 6 is not written yet`,
+    blurb: `Twenty-five lessons in, and you can find your position four ways: crossed bearings to two landmarks, a bearing and a measured distance to one, a plot carried forward from somewhere you knew, and two bearings to a single landmark with a run in between. You also know, measured rather than asserted, how much each of them lies to you — and that the little triangle three bearings leave holds your position one time in four. One thing is still missing, and it has been missing since Lesson 3: longitude. The exchange rate has been in your notebook since Lesson 14 — fifteen degrees to the hour — and using it needs a clock that keeps somewhere else's time while you travel.`
   },
 
   journalPrompts: [

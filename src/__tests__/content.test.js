@@ -4,6 +4,10 @@ import { standardCourses as courses } from '../content/index.js'
 import { validateLesson, ROUTE_IDS } from '../content/schema.js'
 import { simulations } from '../engine/simulations/index.js'
 import { MODES as CIRCUIT_MODES } from '../engine/simulations/CircuitLoop.jsx'
+import { MODES as COMPASS_MODES } from '../engine/simulations/Compass.jsx'
+import { MODES as SHADOW_MODES } from '../engine/simulations/ShadowStick.jsx'
+import { MODES as STAR_MODES } from '../engine/simulations/StarSky.jsx'
+import { MODES as CHART_MODES } from '../engine/simulations/ChartFix.jsx'
 import { PLATE_IDS } from '../engine/plates.jsx'
 import { fill } from '../lib/rich.jsx'
 
@@ -14,6 +18,19 @@ import { fill } from '../lib/rich.jsx'
 // different lesson shape — three pathways, answered problems, its own player —
 // so it gets its own validator and its own file, algebra.test.js. Walking
 // `standardCourses` rather than `courses` is what keeps the two apart.
+
+// Every simulation that serves several lessons through a `mode` prop. The test
+// below was written for circuit-loop alone and so did not cover the four
+// families added since, each of which has the same failure mode: a misspelled
+// mode falls through to the component's default and renders the wrong lesson's
+// scene under this lesson's copy, with nothing thrown and nothing logged.
+const MODE_FAMILIES = {
+  'circuit-loop': CIRCUIT_MODES,
+  'compass': COMPASS_MODES,
+  'shadow-stick': SHADOW_MODES,
+  'star-sky': STAR_MODES,
+  'chart-fix': CHART_MODES
+}
 
 describe('lesson content', () => {
   for (const course of courses) {
@@ -33,9 +50,8 @@ describe('lesson content', () => {
         // lamp, and nothing would throw. Check the prop against the component.
         it('asks its simulation for a mode the simulation has', () => {
           const { id, props } = lesson.see.simulation
-          if (id === 'circuit-loop' && props?.mode !== undefined) {
-            expect(CIRCUIT_MODES).toContain(props.mode)
-          }
+          const known = MODE_FAMILIES[id]
+          if (known && props?.mode !== undefined) expect(known).toContain(props.mode)
         })
 
         // A plate renders nothing at all when its id doesn't match a drawing, so
