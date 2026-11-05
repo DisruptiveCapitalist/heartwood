@@ -15,6 +15,15 @@ teaches and what it must not do — this repository is the authority on how.
 | `university-handoff.md` | The multi-class handoff. The catalog, the class home, and how to add a class. Also records which Lesson 1 copy was approved by the learner. |
 | `physics-i-lessons-3-30.md` | The build package for Physics I, Lessons 3–30. **Built: 30/30.** |
 | `anatomy-course-spec.md` | The full Anatomy & Physiology course spec, all 30 lessons. **Built: 30/30.** Sections 5, 6 and 8 are what you need. |
+| `field-guide-spec.md` | The Heartwood Field Guide spec: the companion handbook to the Navigation class, in 31 chapters across six parts. **It is the authority on chapter numbers**, which every Navigation lesson cites, and on what each chapter must contain. |
+
+The Navigation class has no build package of its own: its six-week outline
+arrived in the chat and lives in `src/content/navigation/course.js`, which is
+now the record of it. **Built: 25/30.** That outline and the Field Guide spec
+disagreed about Week 5, and the spec won — see the comment on the week in
+`course.js`. Check the spec's chapter list before writing a `fieldGuide` block;
+Week 5 was first built pointing at Chapter 14, which is about measuring the
+height of a tree.
 
 Electricity & Energy has no separate document: its syllabus arrived inside
 `university-handoff.md` and the design references, and the built syllabus in
