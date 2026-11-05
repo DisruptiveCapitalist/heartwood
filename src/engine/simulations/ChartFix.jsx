@@ -366,7 +366,7 @@ function TwoBearings() {
         </Sheet>
       </div>
 
-      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
+      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap', gap: 12 }}>
         <Pick label="FIRST BEARING TO" options={WEEK5_MARKS} value={a} onChange={setA} />
         <Pick label="SECOND BEARING TO" options={WEEK5_MARKS} value={b} onChange={setB} />
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
@@ -475,7 +475,7 @@ function CockedHat() {
         </Sheet>
       </div>
 
-      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
+      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap', gap: 12 }}>
         <Pick label="WHICH THREE" options={TRIOS} value={trioId} onChange={setTrio} />
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap', alignItems: 'flex-end' }}>
           <Slider id="hw-sigma" label={`Bearings good to about ${sigma}°`} min={0.5} max={4} step={0.5}
@@ -560,7 +560,7 @@ function Pacing() {
         </Sheet>
       </div>
 
-      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
+      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap', gap: 12 }}>
         <Pick label="WALK TO" value={to} onChange={setTo}
           options={WEEK5_MARKS.filter((m) => m.id !== 'ford')} />
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
@@ -657,7 +657,7 @@ function DeadReckoning() {
         </Sheet>
       </div>
 
-      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
+      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap', gap: 12 }}>
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <Slider id="hw-sp" label={`Going ${speed} mph — ${hours.toFixed(1)} hours for the run`}
             min={2} max={6} step={0.5} value={speed} onChange={setSpeed} />
@@ -745,7 +745,7 @@ function RunningFix() {
         </Sheet>
       </div>
 
-      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>
+      <div className="hw-controls hw-controls-stack" style={{ flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap', gap: 12 }}>
         <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
           <Slider id="hw-run" label={`Run ${run} yards between the two bearings`} min={200} max={1300} step={50}
             value={run} onChange={setRun} />

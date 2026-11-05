@@ -10,7 +10,7 @@ _Opening question._ Twenty-seven lessons, twenty-five traditions in the margin. 
 
 **On-screen simulation:** `voyage` ({"mode":"assay"})
 
-**What it shows.** A graph of position error in nautical miles, from 0 to 200, against days at sea, from 0 to 40, for one ocean passage done with four different kits. The latitude line is drawn flat, because it is a measurement retaken every clear night; the dead-reckoning longitude line climbs steadily; the chronometer's line climbs far more slowly; and the lunar-distance line is flat but high. A vertical marker shows the day being read.
+**What it shows.** A graph of position error in nautical miles, from 0 to 200, against days at sea, from 0 to 40, for one ocean passage done with four different kits. The latitude line is drawn flat, because it is a measurement retaken every clear night; the dead-reckoning longitude line climbs steadily; the chronometer's line climbs far more slowly; and the lunar-distance line is flat but high. A vertical marker shows the day being read, and the four curves are named in a legend in the upper left rather than beside the lines — four curves crossing each other and a movable marker cannot all be labelled where they run.
 
 **What the learner can change.** Which kit: by eye and a log line, a kamal with no clock, a sextant and the Moon, or a sextant and a chronometer. Then the days at sea from 1 to 40 and the latitude of the passage from 0° to 60°, which changes what a degree of longitude is worth in miles.
 

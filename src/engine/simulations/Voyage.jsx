@@ -150,9 +150,16 @@ const Stage = ({ children }) => (
   </div>
 )
 
+// `flexWrap: 'nowrap'` is load-bearing and looks like noise. The stylesheet
+// gives .hw-controls `flex-wrap: wrap`, which is right for its default row
+// direction; turning the direction to column without also turning the wrap off
+// makes a multi-line column flex container, and those inflate their lines — 47
+// px of sliders came out 114 px tall, leaving a 67 px band of nothing between
+// the sliders and the buttons underneath them. Measured, not guessed: setting
+// the container to nowrap in the page collapsed the row to 47.
 const Controls = ({ children }) => (
   <div className="hw-controls hw-controls-stack"
-    style={{ flexDirection: 'column', alignItems: 'stretch', gap: 12 }}>{children}</div>
+    style={{ flexDirection: 'column', alignItems: 'stretch', flexWrap: 'nowrap', gap: 12 }}>{children}</div>
 )
 
 /* ---- Lesson 26, first face — a clock at sea ---------------------------- */
@@ -536,6 +543,23 @@ function Assay() {
   const path = (f) => Array.from({ length: 81 }, (_, i) => i / 2)
     .map((d) => `${d ? 'L' : 'M'} ${X(d).toFixed(1)} ${Y(f(d)).toFixed(1)}`).join(' ')
 
+  // Four lines that cross a movable vertical marker and each other cannot all
+  // be labelled where they run: on the chronometer kit the latitude line sits
+  // at 2 miles and the chronometer's climbs from 0 through 28, so anything
+  // written beside one is written across the other. So the curves are named in
+  // a legend instead, in the upper left, which is empty in all four kits — and
+  // the legend is drawn last, on its own patch of paper, so the day marker
+  // passes behind it rather than through it.
+  const legend = [
+    { colour: GREEN, text: `latitude, from the sky — flat for ever` },
+    { colour: RED, text: `longitude, by reckoning alone` },
+    ...(lunarErr !== null
+      ? [{ colour: 'var(--accent)', dash: '9 6', text: `longitude, by the Moon — a flat ${num(lunarErr)} miles` }]
+      : []),
+    ...(nav.rate !== null ? [{ colour: BLUE, text: `longitude, by the chronometer` }] : [])
+  ]
+  const legendTop = 118
+
   const lonNow = Math.min(...[drAt(days), lunarErr, chronAt(days)].filter((v) => v !== null))
 
   return (
@@ -571,38 +595,39 @@ function Assay() {
           <Tag x={(x0 + x1) / 2} y={y0 + 44} size={12} weight={700} colour="var(--ink-2)">days at sea</Tag>
           <Tag x={x0 - 42} y={(y0 + y1) / 2} size={12} weight={700} colour="var(--ink-2)">miles</Tag>
 
+          {/* today, drawn under everything so the labels' halos cut it */}
+          <line x1={X(days)} y1={y1 - 6} x2={X(days)} y2={y0 + 6} stroke="var(--ink)" strokeWidth="1.6" opacity="0.6" />
+          <Tag x={X(days)} y={y1 - 14} size={12} weight={700}>{`day ${days}`}</Tag>
+
           {/* dead reckoning */}
           <path d={path(drAt)} fill="none" stroke={RED} strokeWidth="2.6" />
-          <Tag x={X(37)} y={Y(Math.min(top - 14, drAt(37))) - 12} anchor="end" colour={RED} size={12.5} weight={700}>
-            longitude, by reckoning alone
-          </Tag>
+
           {/* lunars */}
           {lunarErr !== null && (
             <>
               <path d={path(() => lunarErr)} fill="none" stroke="var(--accent)" strokeWidth="2.2" strokeDasharray="9 6" />
-              <Tag x={X(3)} y={Y(lunarErr) - 12} anchor="start" colour="var(--accent)" size={12.5} weight={700}>
-                longitude, by the Moon — {num(lunarErr)} miles, and it never improves
-              </Tag>
             </>
           )}
           {/* chronometer */}
           {nav.rate !== null && (
             <>
               <path d={path((d) => chronAt(d))} fill="none" stroke={BLUE} strokeWidth="2.6" />
-              <Tag x={X(37)} y={Y(chronAt(37)) - 12} anchor="end" colour={BLUE} size={12.5} weight={700}>
-                longitude, by the chronometer
-              </Tag>
+
             </>
           )}
           {/* latitude */}
           <path d={path(() => latErr)} fill="none" stroke={GREEN} strokeWidth="3" />
-          <Tag x={X(20)} y={Y(latErr) + (latErr > 40 ? -12 : 20)} colour={GREEN} size={12.5} weight={700}>
-            latitude, from the sky — flat for ever
-          </Tag>
+          {/* the legend, last and opaque */}
+          <rect x={X(1.2) - 12} y={legendTop - 16} width={436} height={legend.length * 20 + 10}
+            rx="5" fill={PAPER} opacity="0.94" />
+          {legend.map((row, i) => (
+            <g key={row.text} transform={`translate(${X(1.2)} ${legendTop + i * 20})`}>
+              <line x1="0" y1="-4" x2="26" y2="-4" stroke={row.colour} strokeWidth="3"
+                strokeDasharray={row.dash} />
+              <Tag x={36} y={0} anchor="start" size={12.5} weight={700} colour={row.colour}>{row.text}</Tag>
+            </g>
+          ))}
 
-          {/* today */}
-          <line x1={X(days)} y1={y1 - 6} x2={X(days)} y2={y0 + 6} stroke="var(--ink)" strokeWidth="1.6" opacity="0.6" />
-          <Tag x={X(days)} y={y1 - 14} size={12} weight={700}>{`day ${days}`}</Tag>
         </Frame>
       </Stage>
 
@@ -646,6 +671,9 @@ function PlanSheet({ children, label, lit = [], marks = DAY_POINTS.slice(0, 7) }
         <Tag x={0} y={44} size={11} weight={700}>TRUE N</Tag>
       </g>
       <g transform={`translate(${W - 230} ${H - 24})`}>
+        {/* A position line can run anywhere, and on Lesson 30 one runs straight
+            through here. The bar gets a patch of paper to sit on. */}
+        <rect x="-14" y="-26" width={PLAN_PX + 28} height="38" rx="5" fill={PAPER} opacity="0.94" />
         <Tag x={PLAN_PX / 2} y={-11} size={11.5} weight={500} colour="var(--ink-2)">one mile</Tag>
         <line x1="0" y1="0" x2={PLAN_PX} y2="0" stroke="var(--ink)" strokeWidth="3" />
         {[0, PLAN_PX / 2, PLAN_PX].map((x) => (
@@ -853,7 +881,9 @@ function Challenge() {
  * magnification printed on it — the same device Week 5 needed for the cocked
  * hat, and for the same reason.
  */
-function Inset({ at, truth, evidence, x = 24, y = 232, w = 190, h = 196 }) {
+// The box is kept clear of the stone bridge's label, which starts at x 201:
+// at 190 wide it reached 214 and covered the first two letters.
+function Inset({ at, truth, evidence, x = 16, y = 236, w = 176, h = 190 }) {
   const span = 0.14 // miles across the window
   const k = (w * 0.8) / span
   const toLocal = (p) => ({
