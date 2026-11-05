@@ -138,12 +138,17 @@ export function mergeMap(base, extra) {
 
 export function journalEntries(course, progressOf) {
   const entries = []
+  // An optional week is not "week 7": it says what it is. Without this a
+  // Field Week journal entry was filed under a week number the learner has
+  // never seen anywhere else in the product.
+  const labelOf = (course, index) => course.weeks[index - 1]?.label ?? null
   for (const { lesson, week, number } of writtenLessons(course)) {
     const text = (progressOf(lesson.id).journalText ?? '').trim()
     if (text) {
+      const label = labelOf(course, week)
       entries.push({
         lessonId: lesson.id,
-        label: `WEEK ${week} · LESSON ${number} · ${lesson.concept.toUpperCase()}`,
+        label: `${label ?? `WEEK ${week}`} · LESSON ${number} · ${lesson.concept.toUpperCase()}`,
         text
       })
     }

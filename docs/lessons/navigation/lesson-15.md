@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 15: Building a simple Sun compass
-> Week 3 of 7 · The Sun, Shadows, and Time · lesson 5 of 5 this week  
+> Week 3 of 8 · The Sun, Shadows, and Time · lesson 5 of 5 this week  
 > Concept: **The Sun is the standard your instrument is measured against**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

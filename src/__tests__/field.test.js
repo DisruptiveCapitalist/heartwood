@@ -5,7 +5,9 @@ import {
   cellBearing, wander,
   mossOdds, mossSurvey,
   iceFlow, flowSpread, driftOn,
-  convergence, expectedError, metesBearings, MILES_PER_DEGREE
+  convergence, expectedError, metesBearings, MILES_PER_DEGREE,
+  heightAboveEye, objectHeight, heightBothAngles, distanceFromHeight,
+  angleSensitivity, heightError, eyeOmission, BEST_ANGLE, ASSUMED_EYE_FEET
 } from '../lib/field.js'
 
 // Field Week's arithmetic. The file it tests mixes two kinds of claim and says
@@ -281,5 +283,72 @@ describe('the land people left', () => {
     const spread = expectedError(metesBearings(4000, 5))
     expect(spread).toBeGreaterThan(20)
     expect(spread).toBeLessThan(25)
+  })
+})
+
+
+describe('measuring height with a compass', () => {
+  // The Field Guide's Chapter 14 asks for this worked example by name, so it
+  // is here as the chapter wrote it — and it turns out to be a good example
+  // of the chapter's own caution, since at that size the observer's eye is a
+  // third of the answer.
+  it('reproduces the chapter\'s worked example: 30 degrees at 20 feet', () => {
+    expect(heightAboveEye(20, 30)).toBeCloseTo(11.547, 3)
+    expect(objectHeight(20, 30)).toBeCloseTo(17.047, 3)
+    expect(ASSUMED_EYE_FEET).toBe(5.5)
+    expect(eyeOmission(20, 30)).toBeCloseTo(0.3226, 3)
+  })
+
+  // The finding the lesson is built on. Differentiating d·tan θ and dividing
+  // by the height gives 2δθ / sin 2θ, which bottoms out at forty-five degrees
+  // — and at forty-five the height above your eye IS the distance, so the
+  // best place to stand is also the place with no arithmetic in it.
+  it('finds the sighting error least at forty-five degrees', () => {
+    expect(BEST_ANGLE).toBe(45)
+    const at45 = angleSensitivity(45, 1)
+    expect(at45).toBeCloseTo(0.0349, 4)
+    for (const a of [5, 10, 20, 30, 44, 46, 60, 70, 80, 85]) {
+      expect(angleSensitivity(a, 1), `${a}°`).toBeGreaterThan(at45)
+    }
+  })
+
+  it('is symmetric about forty-five degrees', () => {
+    for (const d of [5, 15, 25, 35]) {
+      expect(angleSensitivity(45 - d, 1)).toBeCloseTo(angleSensitivity(45 + d, 1), 9)
+    }
+    expect(angleSensitivity(10, 1)).toBeCloseTo(0.1021, 4)
+    expect(angleSensitivity(5, 1)).toBeCloseTo(0.2010, 4)
+  })
+
+  it('makes the tangent disappear at forty-five degrees', () => {
+    for (const d of [20, 137, 400]) expect(heightAboveEye(d, 45)).toBeCloseTo(d, 9)
+  })
+
+  it('adds the pacing error in quadrature with the sighting error', () => {
+    expect(heightError(45, 1, 0.05)).toBeCloseTo(0.0610, 4)
+    expect(heightError(15, 1, 0.05)).toBeCloseTo(0.0859, 4)
+    // At the best angle the pace count is the bigger of the two.
+    expect(0.05).toBeGreaterThan(angleSensitivity(45, 1))
+  })
+
+  // The same sum inverted, which is the navigational use: a known height
+  // gives a distance, with exactly the same sensitivity — so a far-off object
+  // subtending a small angle is a poor rangefinder.
+  it('turns a known height into a distance, and badly at small angles', () => {
+    expect(distanceFromHeight(100, 5)).toBeCloseTo(1143.0, 1)
+    expect(distanceFromHeight(100, 20)).toBeCloseTo(274.7, 1)
+    expect(distanceFromHeight(100, 45)).toBeCloseTo(100, 6)
+    expect(angleSensitivity(5, 1)).toBeCloseTo(0.201, 3)
+  })
+
+  // Sloping ground is a BIAS, not a wobble: ignoring the down-angle to a base
+  // below you understates the height every single time.
+  it('needs both angles when the base is not at eye level', () => {
+    expect(heightBothAngles(100, 30, 8)).toBeCloseTo(71.79, 2)
+    expect(heightAboveEye(100, 30)).toBeCloseTo(57.74, 2)
+    const short = 1 - heightAboveEye(100, 30) / heightBothAngles(100, 30, 8)
+    expect(short).toBeCloseTo(0.196, 3)
+    // With the base at eye level the two agree.
+    expect(heightBothAngles(100, 30, 0)).toBeCloseTo(heightAboveEye(100, 30), 9)
   })
 })

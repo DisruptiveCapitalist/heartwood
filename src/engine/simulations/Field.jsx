@@ -4,7 +4,9 @@ import {
   GRID, heights, downhill, accumulate, trace, basin, isHollow, isEdge, wander,
   mossOdds, mossSurvey,
   iceFlow, flowSpread, driftOn,
-  convergence, metesBearings, expectedError, TOWNSHIP_MILES, SECTIONS_PER_TOWNSHIP
+  convergence, metesBearings, expectedError, TOWNSHIP_MILES, SECTIONS_PER_TOWNSHIP,
+  heightAboveEye, objectHeight, distanceFromHeight, angleSensitivity, heightError,
+  eyeOmission, BEST_ANGLE, ASSUMED_EYE_FEET
 } from '../../lib/field.js'
 
 // Navigation, Lessons 31 to 35 — the optional Field Week.
@@ -14,6 +16,7 @@ import {
 //   'living'  what one mossy tree can actually tell you            (Lesson 33)
 //   'ice'     a scratch in rock points away from the dome          (Lesson 34)
 //   'survey'  a road is a compass only if somebody surveyed it     (Lesson 35)
+//   'height'  where to stand so the arithmetic disappears          (Lesson 36)
 //
 // EVERYTHING QUOTED IS COMPUTED IN src/lib/field.js AND CHECKED IN
 // src/__tests__/field.test.js — but that file mixes two kinds of claim and
@@ -47,7 +50,7 @@ import {
 //   out by metes and bounds sits, on average, 22° from the nearest cardinal,
 //   and nothing tells you which cardinal it was aiming at.
 
-export const MODES = ['wind', 'water', 'living', 'ice', 'survey']
+export const MODES = ['wind', 'water', 'living', 'ice', 'survey', 'height']
 
 const PAPER = '#f5efe3'
 const RED = 'oklch(0.46 0.15 25)'
@@ -881,10 +884,154 @@ function Survey() {
   )
 }
 
-/* ---- one week, five jobs ----------------------------------------------- */
+/* ---- Lesson 36 — measuring height with a compass ------------------------ */
+
+// An oak, sixty feet to the top, which is a big one but not a freak. The
+// drawing is to scale in both directions, so the observer's eye height is as
+// small as it really is — which is the point of the chapter's own caution.
+const TREE_FEET = 60
+const ABOVE_EYE = TREE_FEET - ASSUMED_EYE_FEET
+const FAR = 300
+const PX_PER_FOOT = 520 / FAR
+const GROUND = 316
+const FRAME_H = 584
+const STAND_X = 110
+
+function Height() {
+  const [distance, setDistance] = useState(240)
+  const [sight, setSight] = useState(1)
+  const [pace, setPace] = useState(5)
+
+  const angle = (Math.atan2(ABOVE_EYE, distance) * 180) / Math.PI
+  const band = heightError(angle, sight, pace / 100)
+  const feet = band * ABOVE_EYE
+  const best = heightError(BEST_ANGLE, sight, pace / 100)
+  const bestFeet = best * ABOVE_EYE
+  const at45 = distanceFromHeight(ABOVE_EYE, BEST_ANGLE)
+
+  const baseX = STAND_X + distance * PX_PER_FOOT
+  const eyeY = GROUND - ASSUMED_EYE_FEET * PX_PER_FOOT
+  const topY = GROUND - TREE_FEET * PX_PER_FOOT
+
+  // the error curve
+  const cx0 = 90
+  const cx1 = W - 50
+  const cy0 = 524
+  const cy1 = 412
+  const TOP = 0.2
+  const CX = (a) => cx0 + ((a - 5) / 80) * (cx1 - cx0)
+  const CY = (e) => cy0 - Math.min(1, e / TOP) * (cy0 - cy1)
+  const curve = Array.from({ length: 81 }, (_, i) => 5 + i)
+    .map((a, i) => `${i ? 'L' : 'M'} ${CX(a).toFixed(1)} ${CY(heightError(a, sight, pace / 100)).toFixed(1)}`)
+    .join(' ')
+
+  return (
+    <>
+      <div className="hw-readouts" style={READOUT_INSET}>
+        <Readout label="THE TOP OF THE TREE IS AT" value={`${r1(angle)}°`} width={185}
+          note={`from ${num(distance)} feet away`} />
+        <Readout label="SO YOUR ANSWER IS WORTH" value={`±${r1(feet)} ft`} width={185}
+          colour={band > best * 1.25 ? RED : GREEN}
+          note={`on a ${num(ABOVE_EYE)}-foot height above your eye — ${r1(band * 100)}%`} />
+        <Readout align="right" width={310} label="AND IF YOU STOOD AT FORTY-FIVE DEGREES"
+          value={`±${r1(bestFeet)} ft`} colour={GREEN}
+          note={`which is ${num(at45)} feet from the trunk. That is where a degree of sighting error costs least — and where the height above your eye is simply the distance you walked, with no tangent to look up.`} />
+      </div>
+
+      <Stage>
+        <Frame h={FRAME_H} label={`A tree sixty feet tall seen from ${distance} feet away, with the sight line to the top at ${r1(angle)} degrees. Below, a curve of the error in the answer against the angle you stand at, which is least at forty-five degrees.`}>
+          {/* the ground */}
+          <line x1="40" y1={GROUND} x2={W - 30} y2={GROUND} stroke="var(--ink)" strokeWidth="2" opacity="0.5" />
+
+          {/* the tree */}
+          <g>
+            <line x1={baseX} y1={GROUND} x2={baseX} y2={topY + 10} stroke="var(--ink)" strokeWidth="5" />
+            <ellipse cx={baseX} cy={topY + 26} rx="30" ry="34" fill={GREEN} opacity="0.28" />
+            <ellipse cx={baseX} cy={topY + 14} rx="20" ry="20" fill={GREEN} opacity="0.3" />
+            <Tag x={baseX} y={topY - 14} size={12.5} weight={700}>{`${TREE_FEET} feet, and you do not know that`}</Tag>
+          </g>
+
+          {/* the observer */}
+          <g>
+            <line x1={STAND_X} y1={GROUND} x2={STAND_X} y2={eyeY} stroke="var(--ink)" strokeWidth="3" />
+            <circle cx={STAND_X} cy={eyeY - 5} r="5" fill="var(--ink)" />
+            <Tag x={STAND_X - 8} y={GROUND + 20} anchor="end" size={11.5} weight={600}>
+              {`eye ${ASSUMED_EYE_FEET} ft`}
+            </Tag>
+          </g>
+
+          {/* the sight line and the angle */}
+          <line x1={STAND_X} y1={eyeY} x2={baseX} y2={topY} stroke={BLUE} strokeWidth="2.4" />
+          <line x1={STAND_X} y1={eyeY} x2={baseX} y2={eyeY} stroke="var(--ink-3)" strokeWidth="1.4" strokeDasharray="5 5" />
+          <path d={`M ${STAND_X + 44} ${eyeY} A 44 44 0 0 0 ${STAND_X + 44 * Math.cos((angle * Math.PI) / 180)} ${eyeY - 44 * Math.sin((angle * Math.PI) / 180)}`}
+            fill="none" stroke={BLUE} strokeWidth="1.6" />
+          <Tag x={STAND_X + 62} y={eyeY - 16} anchor="start" size={12.5} weight={700} colour={BLUE}>{`${r1(angle)}°`}</Tag>
+
+          {/* the measured base distance */}
+          <line x1={STAND_X} y1={GROUND + 34} x2={baseX} y2={GROUND + 34} stroke="var(--accent)" strokeWidth="2" />
+          {[STAND_X, baseX].map((x) => (
+            <line key={x} x1={x} y1={GROUND + 28} x2={x} y2={GROUND + 40} stroke="var(--accent)" strokeWidth="2" />
+          ))}
+          <Tag x={(STAND_X + baseX) / 2} y={GROUND + 54} size={12.5} weight={700} colour="var(--accent)">
+            {`${num(distance)} feet, paced — and good to ${pace}%`}
+          </Tag>
+
+          {/* the error curve */}
+          <g>
+            {[0, 0.05, 0.1, 0.15, 0.2].map((e) => (
+              <g key={e}>
+                <line x1={cx0} y1={CY(e)} x2={cx1} y2={CY(e)} stroke="var(--ink)" strokeWidth="0.7" opacity="0.18" />
+                <Tag x={cx0 - 10} y={CY(e) + 4} anchor="end" size={10.5} weight={500} colour="var(--ink-2)">
+                  {`${Math.round(e * 100)}%`}
+                </Tag>
+              </g>
+            ))}
+            {[5, 25, 45, 65, 85].map((a) => (
+              <g key={a}>
+                <line x1={CX(a)} y1={cy1} x2={CX(a)} y2={cy0} stroke="var(--ink)" strokeWidth="0.7" opacity="0.18" />
+                <Tag x={CX(a)} y={cy0 + 18} size={10.5} weight={500} colour="var(--ink-2)">{`${a}°`}</Tag>
+              </g>
+            ))}
+            <path d={curve} fill="none" stroke={RED} strokeWidth="2.6" />
+            <line x1={CX(45)} y1={cy1 - 4} x2={CX(45)} y2={cy0 + 4} stroke={GREEN} strokeWidth="1.8" opacity="0.8" />
+            <circle cx={CX(angle)} cy={CY(band)} r="6" fill={BLUE} />
+            {/* Beside the line and inside the chart: above it, this label
+                landed on the paced-distance caption, and at the foot of the
+                chart it landed on the degree labels. */}
+            <Tag x={CX(45) + 12} y={cy1 + 44} anchor="start" size={12} weight={700} colour={GREEN}>
+              the best place to stand
+            </Tag>
+            <Tag x={W / 2} y={cy0 + 42} size={12} weight={600} colour="var(--ink-2)">
+              how wrong the answer is, against the angle you take it at
+            </Tag>
+          </g>
+        </Frame>
+      </Stage>
+
+      <Controls>
+        <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          <Slider id="hw-hd" label={`Standing ${num(distance)} feet from the trunk`} min={25} max={FAR} step={5}
+            value={distance} onChange={setDistance} />
+          <Slider id="hw-hs" label={`Sighting good to ${sight}°`} min={0.5} max={3} step={0.5}
+            value={sight} onChange={setSight} />
+          <Slider id="hw-hp" label={`Pacing good to ${pace}%`} min={2} max={10} step={1}
+            value={pace} onChange={setPace} />
+        </div>
+        <div className="hw-actions" style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+          <Toggle on={Math.abs(angle - 45) < 1} onClick={() => setDistance(Math.round(at45 / 5) * 5)}>
+            WALK UNTIL THE TOP IS AT 45°
+          </Toggle>
+          <Toggle on={distance === FAR} onClick={() => setDistance(FAR)}>STAND WELL BACK</Toggle>
+        </div>
+      </Controls>
+    </>
+  )
+}
+
+/* ---- one week, six jobs ------------------------------------------------ */
 
 export default function Field({ mode = 'wind' }) {
-  const Scene = { wind: Wind, water: Water, living: Living, ice: Ice, survey: Survey }[mode] ?? Wind
+  const Scene = { wind: Wind, water: Water, living: Living, ice: Ice, survey: Survey, height: Height }[mode] ?? Wind
   return (
     <div className="hw-sim">
       <Scene />

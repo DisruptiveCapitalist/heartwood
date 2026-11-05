@@ -87,7 +87,7 @@ function ClassCard({ course, index, onOpen }) {
           <span
             style={{ display: 'flex', gap: 3, width: '32%' }}
             role="img"
-            aria-label={`Field Week: ${p.bonus.done} of ${p.bonus.total} extra lessons finished.`}
+            aria-label={`Optional: ${p.bonus.done} of ${p.bonus.total} extra lessons finished.`}
           >
             {Array.from({ length: p.bonus.total }, (_, i) => (
               <span
@@ -103,7 +103,10 @@ function ClassCard({ course, index, onOpen }) {
         <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, flexWrap: 'wrap' }}>
           <span style={{ fontFamily: 'var(--sans)', fontSize: 12.5, color: 'var(--muted)' }}>
             {p.done} of {p.total} lessons · {requiredWeeks(course).length} weeks
-            {p.bonus?.total > 0 && ` · Field Week ${p.bonus.done} of ${p.bonus.total}`}
+            {/* "Field Week" was the wording Design asked for, and held while
+                Field Week was the only optional block. Chapter 14's lesson
+                sits in a second one, so the caption names the category. */}
+            {p.bonus?.total > 0 && ` · Optional ${p.bonus.done} of ${p.bonus.total}`}
           </span>
           <span style={{
             fontFamily: 'var(--sans)', fontSize: 12.5, fontWeight: 700, letterSpacing: '.12em',

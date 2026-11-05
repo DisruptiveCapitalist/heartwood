@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 19: The southern sky and other star traditions
-> Week 4 of 7 · Navigating by the Night Sky · lesson 4 of 5 this week  
+> Week 4 of 8 · Navigating by the Night Sky · lesson 4 of 5 this week  
 > Concept: **The same error, with nothing there to catch it**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

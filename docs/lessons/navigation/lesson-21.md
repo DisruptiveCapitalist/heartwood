@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 21: Two lines that cross
-> Week 5 of 7 · Measuring, Plotting, and Finding Position · lesson 1 of 5 this week  
+> Week 5 of 8 · Measuring, Plotting, and Finding Position · lesson 1 of 5 this week  
 > Concept: **A position from two bearings**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 34: Reading rock and snow
-> Week 7 of 7 · Reading the Natural World · lesson 4 of 5 this week  
+> Week 7 of 8 · Reading the Natural World · lesson 4 of 5 this week  
 > Concept: **Marks record local forces**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

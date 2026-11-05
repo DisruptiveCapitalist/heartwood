@@ -458,3 +458,63 @@ export const expectedError = (bearings) => {
   })
   return best.reduce((t, v) => t + v, 0) / best.length
 }
+
+/* ---- measuring height with a compass (Lesson 36, Chapter 14) ----------- */
+
+/**
+ * The clinometer sum, and the only place in this subject where standing in
+ * the right spot makes the arithmetic disappear.
+ *
+ * Height above eye level is the horizontal distance times the tangent of the
+ * vertical angle. Everything interesting is in how the answer goes wrong.
+ */
+export const ASSUMED_EYE_FEET = 5.5
+
+export const heightAboveEye = (distance, angle) => distance * Math.tan(rad(angle))
+
+/** The whole object, eye height included — which is the commonest omission. */
+export const objectHeight = (distance, angle, eye = ASSUMED_EYE_FEET) =>
+  heightAboveEye(distance, angle) + eye
+
+/**
+ * On sloping ground the base of the object is not at your eye level, so one
+ * angle is not enough: sight the top AND the base, and add the two tangents.
+ * Ignoring the down-angle to a base below you UNDERSTATES the height by
+ * `distance × tan(down)`, every time, in the same direction — a bias, in
+ * Lesson 22's sense, not a wobble.
+ */
+export const heightBothAngles = (distance, up, down) =>
+  distance * (Math.tan(rad(up)) + Math.tan(rad(down)))
+
+/** The same instrument turned round: a known height gives a distance. */
+export const distanceFromHeight = (height, angle) => height / Math.tan(rad(angle))
+
+/**
+ * How much a degree of sighting error costs, as a fraction of the answer.
+ *
+ * Differentiating d·tan θ gives d·sec²θ, and dividing by the height itself
+ * leaves δθ / (sin θ cos θ), which is 2δθ / sin 2θ. That function has a
+ * minimum at forty-five degrees and climbs steeply at both ends — and it is
+ * the same expression for a distance taken from a known height, because the
+ * two are the same sum inverted.
+ *
+ * The practical consequence is the lesson: walk until the top of the thing is
+ * at forty-five degrees. That is where the sighting error costs least AND
+ * where the height above your eye is simply the distance you walked, so there
+ * is no tangent to look up at all.
+ */
+export const BEST_ANGLE = 45
+export const angleSensitivity = (angle, degError = 1) =>
+  (2 * rad(degError)) / Math.sin(2 * rad(angle))
+
+/**
+ * The two errors together, as fractions: pacing is proportional and goes
+ * straight through, sighting is proportional and depends on where you stood.
+ * Independent, so they add in quadrature — Lesson 29's rule.
+ */
+export const heightError = (angle, degError, pace) =>
+  Math.hypot(pace, angleSensitivity(angle, degError))
+
+/** What forgetting your eye height costs, as a fraction of the true height. */
+export const eyeOmission = (distance, angle, eye = ASSUMED_EYE_FEET) =>
+  eye / objectHeight(distance, angle, eye)

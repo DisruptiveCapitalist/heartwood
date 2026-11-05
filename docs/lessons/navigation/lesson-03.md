@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 3: The language of latitude and longitude
-> Week 1 of 7 · Understanding Our Earth · lesson 3 of 5 this week  
+> Week 1 of 8 · Understanding Our Earth · lesson 3 of 5 this week  
 > Concept: **A coordinate is two measured angles**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

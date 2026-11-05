@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 33: Living signs
-> Week 7 of 7 · Reading the Natural World · lesson 3 of 5 this week  
+> Week 7 of 8 · Reading the Natural World · lesson 3 of 5 this week  
 > Concept: **A clue to conditions is not a clue to north**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

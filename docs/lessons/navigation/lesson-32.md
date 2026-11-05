@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 32: Water knows the way down
-> Week 7 of 7 · Reading the Natural World · lesson 2 of 5 this week  
+> Week 7 of 8 · Reading the Natural World · lesson 2 of 5 this week  
 > Concept: **Drainage describes the ground**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

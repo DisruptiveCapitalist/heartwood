@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 12: The shadow knows
-> Week 3 of 7 · The Sun, Shadows, and Time · lesson 2 of 5 this week  
+> Week 3 of 8 · The Sun, Shadows, and Time · lesson 2 of 5 this week  
 > Concept: **The shortest shadow is a true north line**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

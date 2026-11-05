@@ -8,7 +8,7 @@ import {
 } from '../content/schema.js'
 import {
   totalLessons, bonusTotal, courseProgress, weekRows, todayCard, courseMap,
-  requiredLessons, optionalLessons, mergeMap, emptyProgress as empty
+  requiredLessons, optionalLessons, mergeMap, journalEntries, emptyProgress as empty
 } from '../lib/progress.js'
 import { MODES as COMPASS_MODES } from '../engine/simulations/Compass.jsx'
 import { describe as describeSim } from '../engine/simulations/descriptions.js'
@@ -260,11 +260,17 @@ describe('the optional Field Week', () => {
   const required = requiredLessons(navigation).map((l) => l.lesson.id)
   const optional = optionalLessons(navigation).map((l) => l.lesson.id)
 
-  it('is the only optional week anywhere in the product', () => {
+  // Two of them now: Field Week, and the single lesson for the Field Guide's
+  // Chapter 14, which belongs beside Week 5's measuring and had nowhere to go.
+  it('is the only course with optional weeks at all', () => {
     for (const course of courses) {
       const extra = (course.weeks ?? []).filter(isOptionalWeek)
-      if (course.id === 'navigation') expect(extra).toHaveLength(1)
-      else expect(extra, `${course.id} has an optional week`).toHaveLength(0)
+      if (course.id === 'navigation') {
+        expect(extra).toHaveLength(2)
+        expect(extra.map((w) => w.label)).toEqual(['FIELD WEEK · OPTIONAL', 'ONE MORE · OPTIONAL'])
+      } else {
+        expect(extra, `${course.id} has an optional week`).toHaveLength(0)
+      }
     }
   })
 
@@ -272,17 +278,19 @@ describe('the optional Field Week', () => {
     for (const course of courses.filter((c) => c.kind !== 'algebra')) {
       expect(totalLessons(course), course.id).toBe(30)
     }
-    expect(bonusTotal(navigation)).toBe(5)
+    expect(bonusTotal(navigation)).toBe(6)
     for (const course of courses.filter((c) => c.id !== 'navigation')) {
       expect(bonusTotal(course), course.id).toBe(0)
     }
   })
 
-  it('splits the lessons into thirty required and five extra', () => {
+  it('splits the lessons into thirty required and six extra', () => {
     expect(required).toHaveLength(30)
-    expect(optional).toEqual(['lesson-31', 'lesson-32', 'lesson-33', 'lesson-34', 'lesson-35'])
+    expect(optional).toEqual([
+      'lesson-31', 'lesson-32', 'lesson-33', 'lesson-34', 'lesson-35', 'lesson-36'
+    ])
     expect(requiredWeeks(navigation)).toHaveLength(6)
-    expect(navigation.weeks).toHaveLength(7)
+    expect(navigation.weeks).toHaveLength(8)
   })
 
   // The rule the learner asked for: finishing Lesson 30 finishes the class.
@@ -291,7 +299,7 @@ describe('the optional Field Week', () => {
     expect(p.done).toBe(30)
     expect(p.total).toBe(30)
     expect(p.status).toBe('COMPLETE')
-    expect(p.bonus).toEqual({ total: 5, built: 5, done: 0 })
+    expect(p.bonus).toEqual({ total: 6, built: 6, done: 0 })
   })
 
   it('counts Field Week separately and never adds it in', () => {
@@ -307,7 +315,7 @@ describe('the optional Field Week', () => {
   it('does not let Field Week alone complete the class', () => {
     const p = courseProgress(navigation, finished(optional))
     expect(p.done).toBe(0)
-    expect(p.bonus.done).toBe(5)
+    expect(p.bonus.done).toBe(6)
     expect(p.status).toBe('IN PROGRESS')
     expect(p.started).toBe(true)
   })
@@ -323,16 +331,20 @@ describe('the optional Field Week', () => {
     expect(after.title).toBe(navigation.nextUp.title)
   })
 
-  it('gives the optional week a label instead of a number', () => {
+  it('gives each optional week a label instead of a number', () => {
     const rows = weekRows(navigation, () => none)
-    expect(rows).toHaveLength(7)
+    expect(rows).toHaveLength(8)
+    // The course proper keeps numbering 1 to 6 and stops there.
     expect(rows.slice(0, 6).map((r) => r.number)).toEqual([1, 2, 3, 4, 5, 6])
-    const field = rows[6]
-    expect(field.optional).toBe(true)
-    expect(field.number).toBe(null)
+    const [field, one] = rows.slice(6)
+    expect([field.optional, one.optional]).toEqual([true, true])
+    expect([field.number, one.number]).toEqual([null, null])
     expect(field.label).toBe('FIELD WEEK · OPTIONAL')
+    expect(one.label).toBe('ONE MORE · OPTIONAL')
     expect(field.blurb).toBeTruthy()
+    expect(one.blurb).toBeTruthy()
     expect(field.lessons).toHaveLength(5)
+    expect(one.lessons).toHaveLength(1)
     // Every other course keeps plain numbered weeks and no label.
     for (const course of courses.filter((c) => c.id !== 'navigation' && c.kind !== 'algebra')) {
       for (const row of weekRows(course, () => none)) {
@@ -368,11 +380,28 @@ describe('the optional Field Week', () => {
     ])
   })
 
-  it('numbers the Field Week lessons one to five of week seven', () => {
-    for (const [i, id] of optional.entries()) {
+  it('numbers each optional block from one', () => {
+    for (const [i, id] of ['lesson-31', 'lesson-32', 'lesson-33', 'lesson-34', 'lesson-35'].entries()) {
       const lesson = navigation.lessons[id]
       expect(lesson.week, id).toBe(7)
       expect(lesson.number, id).toBe(i + 1)
     }
+    expect(navigation.lessons['lesson-36'].week).toBe(8)
+    expect(navigation.lessons['lesson-36'].number).toBe(1)
+  })
+
+  // A journal entry from an optional week is filed under that week's own
+  // label. Without it, Field Week's entries read "WEEK 7", which is a number
+  // the learner never sees anywhere else in the product.
+  it('files an optional journal entry under the week\'s label', () => {
+    const wrote = (id) => (lessonId) =>
+      lessonId === id ? { ...none, journalText: 'something' } : none
+    const field = journalEntries(navigation, wrote('lesson-33'))
+    expect(field[0].label.startsWith('FIELD WEEK · OPTIONAL · LESSON 3 ·')).toBe(true)
+    const one = journalEntries(navigation, wrote('lesson-36'))
+    expect(one[0].label.startsWith('ONE MORE · OPTIONAL · LESSON 1 ·')).toBe(true)
+    // And a required week still reads as a week.
+    const week2 = journalEntries(navigation, wrote('lesson-07'))
+    expect(week2[0].label.startsWith('WEEK 2 · LESSON 2 ·')).toBe(true)
   })
 })

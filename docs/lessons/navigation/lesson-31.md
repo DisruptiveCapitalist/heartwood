@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 31: The wind has a shape
-> Week 7 of 7 · Reading the Natural World · lesson 1 of 5 this week  
+> Week 7 of 8 · Reading the Natural World · lesson 1 of 5 this week  
 > Concept: **Wind is local**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

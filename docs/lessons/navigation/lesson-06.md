@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 6: What is magnetism?
-> Week 2 of 7 · The Compass and Earth's Magnetic Field · lesson 1 of 5 this week  
+> Week 2 of 8 · The Compass and Earth's Magnetic Field · lesson 1 of 5 this week  
 > Concept: **A field gives every spot a direction**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

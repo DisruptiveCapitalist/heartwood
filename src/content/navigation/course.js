@@ -33,6 +33,7 @@ import lesson32 from './lessons/lesson-32.js'
 import lesson33 from './lessons/lesson-33.js'
 import lesson34 from './lessons/lesson-34.js'
 import lesson35 from './lessons/lesson-35.js'
+import lesson36 from './lessons/lesson-36.js'
 import { COMPLETION, NAVIGATION_ROUTE_IDS } from '../schema.js'
 
 // Heartwood's fifth class, and the first to change two of the engine's rules.
@@ -175,6 +176,25 @@ export default {
         { title: `Reading rock and snow`, lessonId: 'lesson-34' },
         { title: `The land people left`, lessonId: 'lesson-35' }
       ]
+    },
+    {
+      // One lesson on its own, and it is a shelf rather than a theme.
+      //
+      // Chapter 14 belongs with Week 5's measuring — it is Lesson 23's
+      // sibling, distance turned on its side — and Week 5 was full by the
+      // time anybody noticed it had no lesson. It is not put into Field Week
+      // because Field Week has an argument, stated in its idea line, and a
+      // lesson about measuring a tree with a clinometer is not part of it;
+      // and because the Week 7 package specifies Field Week as five lessons,
+      // and quietly making it six would contradict a document in this repo.
+      optional: true,
+      label: `ONE MORE · OPTIONAL`,
+      blurb: `A single lesson, out of order. It belongs beside Week 5's measuring, and Week 5 was already full.`,
+      title: `Measuring Height with a Compass`,
+      idea: `The one measurement in this subject with a right place to stand — and standing there removes the arithmetic.`,
+      lessons: [
+        { title: `How tall is that?`, lessonId: 'lesson-36' }
+      ]
     }
   ],
 
@@ -213,12 +233,13 @@ export default {
     'lesson-32': lesson32,
     'lesson-33': lesson33,
     'lesson-34': lesson34,
-    'lesson-35': lesson35
+    'lesson-35': lesson35,
+    'lesson-36': lesson36
   },
 
   nextUp: {
     title: `The Art and Science of Navigation is complete`,
-    blurb: `All thirty lessons. You can find direction five ways and position five ways, you know what each of them costs you in yards, and you know the one asymmetry that explains three thousand years of other people's work: north and south can be measured afresh every clear night, and east and west has to be carried. Nothing here is ever locked, so go back to any of it. There is also a Field Week below, five optional lessons on reading the land itself — wind, water, living things, rock and the marks people leave — which is the other half of the subject and the half where almost everything popularly said is wrong. But the course was never the point: the Field Guide has thirty-one chapters and a set of blank worksheets, and the last lesson's challenge needs real ground, a real pencil and a position nobody has told you.`
+    blurb: `All thirty lessons. You can find direction five ways and position five ways, you know what each of them costs you in yards, and you know the one asymmetry that explains three thousand years of other people's work: north and south can be measured afresh every clear night, and east and west has to be carried. Nothing here is ever locked, so go back to any of it. There is also a Field Week below, five optional lessons on reading the land itself — wind, water, living things, rock and the marks people leave — which is the other half of the subject and the half where almost everything popularly said is wrong — and one more lesson after that, on measuring the height of a thing with the compass in your hand. But the course was never the point: the Field Guide has thirty-one chapters and a set of blank worksheets, and the last lesson's challenge needs real ground, a real pencil and a position nobody has told you.`
   },
 
   journalPrompts: [

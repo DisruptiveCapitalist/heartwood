@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 10: The map and compass work together
-> Week 2 of 7 · The Compass and Earth's Magnetic Field · lesson 5 of 5 this week  
+> Week 2 of 8 · The Compass and Earth's Magnetic Field · lesson 5 of 5 this week  
 > Concept: **A bearing carried onto paper**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

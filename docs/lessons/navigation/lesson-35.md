@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 35: The land people left
-> Week 7 of 7 · Reading the Natural World · lesson 5 of 5 this week  
+> Week 7 of 8 · Reading the Natural World · lesson 5 of 5 this week  
 > Concept: **Human patterns follow rules, and the rules vary**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

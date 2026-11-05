@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 5: Putting it together: where am I?
-> Week 1 of 7 · Understanding Our Earth · lesson 5 of 5 this week  
+> Week 1 of 8 · Understanding Our Earth · lesson 5 of 5 this week  
 > Concept: **A position described three ways**  
 > Lesson completes when: **the Feynman explanation is submitted**
 

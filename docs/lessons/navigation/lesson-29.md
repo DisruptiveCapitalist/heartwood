@@ -1,5 +1,5 @@
 # The Art and Science of Navigation — Lesson 29: Planning a real journey
-> Week 6 of 7 · Putting It Together · lesson 4 of 5 this week  
+> Week 6 of 8 · Putting It Together · lesson 4 of 5 this week  
 > Concept: **A plan is an error budget**  
 > Lesson completes when: **the Feynman explanation is submitted**
 
