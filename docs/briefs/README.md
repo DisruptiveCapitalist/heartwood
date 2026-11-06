@@ -51,7 +51,7 @@ has no lesson at all. Those chapters still have to be written for the handbook
 and the lessons are not there to support them. A seventh week, or a second
 class, is the obvious home, and it is the learner's call.
 
-**Five things the spec asks for that no lesson carries.** Chapter 23 wants the
+**Six things the spec asks for that no lesson carries.** Chapter 23 wants the
 Bighorn Medicine Wheel and the alignments proposed for it; Lesson 28 is the
 lesson behind Chapter 23 and its one Across Cultures slot holds the Chacoan
 Great North Road, which that lesson needs. Chapter 25 wants the signs of land
@@ -64,7 +64,10 @@ fourth and the largest: no lesson carries a Mesoamerican card at all, so that
 file holds four of them plus a note on the Olmec lodestone, which the evidence
 will not carry as a card. Chapter 29, African and Indian Ocean Navigation, is
 the fifth and holds five cards: Lessons 8 and 18 are the region's only lessons
-and Chapter 27 already has them.
+and Chapter 27 already has them. Chapter 27 itself is the sixth: its astrolabe
+section needed the distinction between the planispheric instrument, which is an
+astronomical computer used standing still, and the mariner's astrolabe, which
+is a different object and Iberian.
 
 Electricity & Energy has no separate document: its syllabus arrived inside
 `university-handoff.md` and the design references, and the built syllabus in
